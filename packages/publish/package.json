@@ -1,0 +1,23 @@
+{
+  "name": "@floor/publish",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:live": "FLOOR_LIVE=1 vitest run",
+    "typecheck": "tsc --noEmit -p .",
+    "import": "tsx src/importer.ts",
+    "test:swarm": "FLOOR_SWARM=1 vitest run"
+  },
+  "dependencies": {
+    "@arkiv-network/sdk": "1.0.1",
+    "@ethersphere/bee-js": "13.2.0",
+    "@floor/core": "workspace:*",
+    "viem": "^2.38.6"
+  }
+}
