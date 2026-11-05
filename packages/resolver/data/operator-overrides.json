@@ -1,0 +1,8 @@
+{
+  "_comment": "Curated grouping on top of LayerZero metadata ids. Each entry maps a metadata id to an operator family (same organisation = one trust domain, Aave RF §2.2 / TALF reply #7). Every override needs a reason.",
+  "groups": {
+    "canary": { "ids": ["canary", "canary-sponsored", "canary-subsidized", "canary-wbtc"], "reason": "Same operator brand (Canary) with sponsored/subsidized variants" },
+    "mantle": { "ids": ["mantle01", "mantle02", "mantle03", "mantlecross", "mantle-bank"], "reason": "Numbered/variant DVNs under the Mantle brand; treated as one organisation until shown otherwise" }
+  },
+  "dead": ["lz-dead-dvn"]
+}

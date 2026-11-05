@@ -1,0 +1,2744 @@
+{
+ "chains": {
+  "arbitrum": {
+   "0x01f9aad7c53626bf8807d640d9ddf852254d6f63": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x021e401c2a1a60618c5e6353a40524971eba1e8d": {
+    "id": "lagrange-labs",
+    "name": "Lagrange"
+   },
+   "0x05ce650134d943c5e336dc7990e84fb4e69fdf29": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x0711dd777ae626ef5e0a4f50e199c7a0e0666857": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x1308151a7ebac14f435d3ad5ff95c34160d539a5": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x14e570a1684c7ca883b35e1b25d2f7cec98a16cd": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x150a58e9e6bf69cceb1dba5ae97c166dc8792539": {
+    "id": "ccip",
+    "name": "Chainlink"
+   },
+   "0x19670df5e16bea2ba9b9e68b48c054c5baea06b8": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x1acff1ac63a77b48dc1186985cb36192599c9a6a": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0x2f2f1c6025e8da125e2afd73ba17d3cbdfe3d093": {
+    "id": "ondo-staging",
+    "name": "Ondo Staging"
+   },
+   "0x2f55c492897526677c5b68fb199ea31e2c126416": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x313328609a9c38459cae56625fff7f2ad6dcde3b": {
+    "deprecated": true,
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0x3b65e87e2a4690f14cae0483014259ded8215adc": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0x4066b6e7bfd761b579902e7e8d03f4feb9b9536e": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0x40a341b4d69d7b2981cb5029f14701a5d3886964": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0x4708a19824bfe71262a91cdefa36ce21cbffafe1": {
+    "id": "ondo",
+    "name": "Ondo"
+   },
+   "0x4a6b9962945d866f53fd114bb76b38b8791b8c1d": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x4b61abbf0248a564c02fc252a22739d33b76dcf6": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0x4c41b4edf85dee828c2cfcc80019cb2bbcfb69a5": {
+    "id": "nodit",
+    "name": "Nodit"
+   },
+   "0x50ff206140cadada2d9d510f1a184be9221d86cf": {
+    "id": "mantle-bank",
+    "name": "Mantle Bank"
+   },
+   "0x539008c98b17803a273edf98aba2d4414ee3f4d7": {
+    "id": "portal",
+    "name": "Portal"
+   },
+   "0x5496d03d9065b08e5677e1c5d1107110bb05d445": {
+    "id": "superform",
+    "name": "Superform"
+   },
+   "0x54dd79f5ce72b51fcbbcb170dd01e32034323565": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0x5756a74e8e18d8392605ba667171962b2b2826b5": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0x5cff49d69d79d677dd3e5b38e048a0dcb6d86aaf": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x6268950b2d11aa0516007b6361f6ee3facb3cb14": {
+    "deprecated": true,
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0x66228c260b0edf66ae74d127251102a5f146ae5e": {
+    "id": "brale",
+    "name": "Brale"
+   },
+   "0x6eb08810138317aa2af560c174c1390de6c413d4": {
+    "id": "worldpay",
+    "name": "Worldpay"
+   },
+   "0x7151c89f6ba70d6ab845289e4ec706530ffaf3cb": {
+    "id": "zeeve",
+    "name": "Zeeve"
+   },
+   "0x758c419533ad64ce9d3413bc8d3a97b026098ec1": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x77aaf86b4466a67869667babe02c6ebe7e7791d6": {
+    "id": "ubisoft",
+    "name": "Ubisoft"
+   },
+   "0x78203678d264063815dac114ea810e9837cd80f7": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x790a1946893df8cf85412e9b088c66c3ee1f5747": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0x7a205ed4e3d7f9d0777594501705d8cd405c3b05": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0x7b8a0fd9d6ae5011d5cbd3e85ed6d5510f98c9bf": {
+    "id": "mercury",
+    "name": "Shrapnel"
+   },
+   "0x7ebbe1305304f24c7d343d31a331aaf0ada64da7": {
+    "id": "apedvn",
+    "name": "ApeDVN"
+   },
+   "0x82c1d3209e32beb7a55069b2c8af5b6f62e2dbd1": {
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x8e5f5825602bc5db725974bb9e60677d4adc5fbe": {
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0x8ede21203e062d7d1eaec11c4c72ad04cdc15658": {
+    "id": "altlayer",
+    "name": "AltLayer"
+   },
+   "0x8fa9eef18c2a1459024f0b44714e5acc1ce7f5e8": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0x969a0bdd86a230345ad87a6a381de5ed9e6cda85": {
+    "id": "restake",
+    "name": "Restake"
+   },
+   "0x9bcd17a654bffaa6f8fea38d19661a7210e22196": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0x9d3979c7e3dd26653c52256307709c09f47741e0": {
+    "deprecated": true,
+    "id": "axelar",
+    "name": "Axelar"
+   },
+   "0x9e930731cb4a6bf7ecc11f695a295c60bdd212eb": {
+    "id": "mim",
+    "name": "MIM"
+   },
+   "0xa0cc33dd6f4819d473226257792afe230ec3c67f": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0xa3858e2a9860c935fc9586a617e9b2a674c3e4c8": {
+    "id": "muon",
+    "name": "Muon"
+   },
+   "0xa7b5189bca84cd304d8553977c7c614329750d99": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xa8b8575fa41c305953f519c7d288cd7741727c7b": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0xabc9b1819cc4d9846550f928b985993cf6240439": {
+    "id": "pearlnet",
+    "name": "Pearlnet"
+   },
+   "0xabea0b6b9237b589e676dc16f6d74bf7612591f4": {
+    "id": "omni-x",
+    "name": "Omni X"
+   },
+   "0xb0646fb9028364ac1f04477271375ef32a8a5e62": {
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xb3ce0a5d132cd9bf965aba435e650c55edce0062": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0xb42726e41dbe96fc4ea6d73cd792167608353698": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0xbacfe8d53f8728b8980b9f99e897d8b29334c922": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0xc07125d75bfa05a0108de0f64c4d6ebb12b357f6": {
+    "id": "flowdesk",
+    "name": "Flowdesk"
+   },
+   "0xcb1b1d524d013a32e976a5963bd541c388ec0517": {
+    "id": "wyoming",
+    "name": "Wyoming"
+   },
+   "0xcced05c3667877b545285b25f19f794436a1c481": {
+    "id": "switchboard",
+    "name": "Switchboard"
+   },
+   "0xcd37ca043f8479064e10635020c65ffc005d36f6": {
+    "id": "stablelab",
+    "name": "StableLab"
+   },
+   "0xd074b6bbcbec2f2b4c4265de3d95e521f82bf669": {
+    "id": "blockhunters",
+    "name": "Blockhunters"
+   },
+   "0xd1c70192cc0eb9a89e3d9032b9facab259a0a1e9": {
+    "deprecated": true,
+    "id": "omnicat",
+    "name": "Omnicat"
+   },
+   "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+    "id": "google-cloud",
+    "name": "Google"
+   },
+   "0xd954bf7968ef68875c9100c9ec890f969504d120": {
+    "id": "nodes-guru",
+    "name": "Nodes.Guru"
+   },
+   "0xddaa92ce2d2fac3f7c5eae19136e438902ab46cc": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0xdf30c9f6a70ce65a152c5bd09826525d7e97ba49": {
+    "id": "delegate",
+    "name": "Delegate"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xe6cd8c2e46ef396df88048449e5b1c75172b40c3": {
+    "id": "planetarium-labs",
+    "name": "Planetarium Labs"
+   },
+   "0xeae839784e5f6c79bbaf34b6023a2f62e134ab39": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xebdd2b83220c14ddd6928e0b5cba41db66d84e93": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0xecb3ac94976f11a53ae74af1f36fb89e247faeef": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0xf0e40968e27f63b3b0a0b3baac4a274149376591": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0xf2e380c90e6c09721297526dbc74f870e114dfcb": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0xf2e89ed7e342c708ba8cd79b293ad9244f5fccb3": {
+    "id": "bera",
+    "name": "Bera"
+   },
+   "0xfdd2e77a6addc1e18862f43297500d2ebfbd94ac": {
+    "id": "nocturnal-labs",
+    "name": "Nocturnal Labs"
+   }
+  },
+  "avalanche": {
+   "0x07c05eab7716acb6f83ebf6268f8eecda8892ba1": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x07ff86c392588254ad10f0811dbbcad45f4c7d87": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x0e95cf21ad9376a26997c97f326c5a0a267bb8ff": {
+    "id": "portal",
+    "name": "Portal"
+   },
+   "0x0f56ce0ca0595792db727a21596edc2fd39be444": {
+    "id": "nodit",
+    "name": "Nodit"
+   },
+   "0x0ffe02df012299a370d5dd69298a5826eacafdf8": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x1308151a7ebac14f435d3ad5ff95c34160d539a5": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x1455f0dfb52dd70eb9ce2dfffbf33ba542757bc6": {
+    "id": "worldpay",
+    "name": "Worldpay"
+   },
+   "0x150a58e9e6bf69cceb1dba5ae97c166dc8792539": {
+    "id": "ccip",
+    "name": "Chainlink"
+   },
+   "0x1a5df1367f21d55b13d5e2f8778ad644bc97ac6d": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x1feb08b1a53a9710afce82d380b8c2833c69a37e": {
+    "id": "republic-crypto",
+    "name": "Republic"
+   },
+   "0x21caf0bce846aaa78c9f23c5a4ec5988ecbf9988": {
+    "id": "omni-x",
+    "name": "Omni X"
+   },
+   "0x252b234545e154543ad2784c7111eb90406be836": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0x2ac038606fff3fb00317b8f0ccfb4081694acdd0": {
+    "id": "planetarium-labs",
+    "name": "Planetarium Labs"
+   },
+   "0x2b8cbea81315130a4c422e875063362640ddfeb0": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0x375c76c6e8ec55a358e6a8c72fe233d0d4a96bee": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0x377b51593a03b82543c1508fe7e75aba6acde008": {
+    "id": "restake",
+    "name": "Restake"
+   },
+   "0x41ef29f974fc9f6772654f005271c64210425391": {
+    "deprecated": true,
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0x54dd79f5ce72b51fcbbcb170dd01e32034323565": {
+    "deprecated": true,
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0x5a54fe5234e811466d5366846283323c954310b2": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0x5fddd320a1e29bb466fa635661b125d51d976f92": {
+    "id": "stablelab",
+    "name": "StableLab"
+   },
+   "0x65c41255c7f49a4b728676a0ede4a1329ff6911a": {
+    "id": "zeeve",
+    "name": "Zeeve"
+   },
+   "0x6821ea3d3a52421d2b7df330f2316ed157314d7f": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0x6995acd4ae604f8f334f5309a75232544f78e0c9": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0x6a110d94e1baa6984a3d904bab37ae49b90e6b4f": {
+    "id": "mercury",
+    "name": "Shrapnel"
+   },
+   "0x795c62387ef3022b61f2c705bfbe5d94a78b971d": {
+    "id": "flowdesk",
+    "name": "Flowdesk"
+   },
+   "0x7a2e074b795aae3b1e33bc3f18c80898ad07d410": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0x7a42a1c1deba75756f9af12bee6b29cfc2be3d70": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x7b8a0fd9d6ae5011d5cbd3e85ed6d5510f98c9bf": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x83d06212b6647b0d0865e730270751e3fdf5036e": {
+    "id": "delegate",
+    "name": "Delegate"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x8efb6b7dc61c6b6638714747d5e6b81a3512b5c3": {
+    "id": "altlayer",
+    "name": "AltLayer"
+   },
+   "0x8fb0b7d74b557e4b45ef89648bac197eab2e4325": {
+    "id": "superform",
+    "name": "Superform"
+   },
+   "0x900529a2c84f43f7203e4060c4d6ba2df65bfaa0": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0x90cca24d1338bd284c25776d9c12f96764bde5e1": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x92ef4381a03372985985e70fb15e9f081e2e8d14": {
+    "id": "switchboard",
+    "name": "Switchboard"
+   },
+   "0x962f502a63f5fbeb44dc9ab932122648e8352959": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x9ac1de95fe35747b7af3fb7b3bbbdf7479b73a54": {
+    "id": "anchorage",
+    "name": "Anchorage"
+   },
+   "0xa3858e2a9860c935fc9586a617e9b2a674c3e4c8": {
+    "id": "muon",
+    "name": "Muon"
+   },
+   "0xa59ba433ac34d2927232918ef5b2eaafcf130ba5": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xa80aa110f05c9c6140018aae0c4e08a70f43350d": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0xab82e9b24004b954985528dac14d1b020722a3c8": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0xb6323aa5a3fc07d93a3cf0f1044447f2a88b7dab": {
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xbd836c4c9d2c3ff94718173b463054c3e2c11cf4": {
+    "id": "nocturnal-labs",
+    "name": "Nocturnal Labs"
+   },
+   "0xbe57e9e7d9eb16b92c6383792abe28d64a18c0f1": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xc18d69d1a83294d0886e1b79f241405f1fa86cb6": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0xc390fd7ca590a505655eb6c454ed0783c99a2ea9": {
+    "deprecated": true,
+    "id": "axelar",
+    "name": "Axelar"
+   },
+   "0xc4a92afb196657d08b688b1bc60b6b0da5e7551f": {
+    "id": "brale",
+    "name": "Brale"
+   },
+   "0xc80294aea91671fc65e433e7689239efd32f9d7e": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0xc816afa2f1c4ab615fe735270d1831fa7d067d15": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0xc86d023c11c5e8aa731f40b65158590624d242af": {
+    "id": "ubisoft",
+    "name": "Ubisoft"
+   },
+   "0xcc49e6fca014c77e1eb604351cc1e08c84511760": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0xcced05c3667877b545285b25f19f794436a1c481": {
+    "deprecated": true,
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0xcdcaff226ea108514035d3c08ea2dfa3b7f8ec8c": {
+    "id": "mantle-bank",
+    "name": "Mantle Bank"
+   },
+   "0xcf4e975c0da5d1c6d9e5f16285cbb921a685023d": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0xcff5b0608fa638333f66e0da9d4f1eb906ac18e3": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0xd074b6bbcbec2f2b4c4265de3d95e521f82bf669": {
+    "id": "blockhunters",
+    "name": "Blockhunters"
+   },
+   "0xd24972c11f91c1bb9eaee97ec96bb9c33cf7af24": {
+    "id": "pearlnet",
+    "name": "Pearlnet"
+   },
+   "0xd251d8a85cdfc84518b9454ee6a8d017e503f56c": {
+    "id": "nodes-guru",
+    "name": "Nodes.Guru"
+   },
+   "0xd3333aa4fa669d3eb036676ec01cb0acaaec0cc0": {
+    "id": "eigenzero",
+    "name": "EigenZero"
+   },
+   "0xd46270746acbca85dab8de1ce1d71c46c2f2994c": {
+    "id": "ccip",
+    "name": "Chainlink CCIP"
+   },
+   "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+    "id": "google-cloud",
+    "name": "Google"
+   },
+   "0xda4428ff0f15b9d92c39ae08c4fc2f1216662c2f": {
+    "id": "wyoming",
+    "name": "Wyoming"
+   },
+   "0xdec88bcef6ef7ecf1062d6554bbbc64dff8adb6e": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xe057124bb34312127730d968923a5407435945e6": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0xe4193136b92ba91402313e95347c8e9fad8d27d0": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xe552485d02edd3067fe7fcbd4dd56bb1d3a998d2": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0xe94ae34dfcc87a61836938641444080b98402c75": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0xe9d8f20ae42e4634b07b9c994e23ce71c266d205": {
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0xf18f2c3d86ec9a350d5e10cb67c614201f210d3d": {
+    "id": "bera",
+    "name": "Bera"
+   },
+   "0xf45742bbfabcee739ea2a2d0ba2dd140f1f2c6a3": {
+    "id": "mim",
+    "name": "MIM"
+   },
+   "0xfe4c37cd401f58ee0bf4d214447bf306c2bbd41b": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0xffe42dc3927a240f3459e5ec27eaabd88727173e": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   }
+  },
+  "base": {
+   "0x133e9fb2d339d8428476a714b1113b024343811e": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x187cf227f81c287303ee765ee001e151347faaa2": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0x1a3a8421e48b7536f3f71d8b14a1449c90efa909": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0x2d0d29f7c5225e0bbd8b7deeea2ee005f82cc219": {
+    "id": "brale",
+    "name": "Brale"
+   },
+   "0x3a4636e9ab975d28d3af808b4e1c9fd936374e30": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x3acc906ca13fe210c98d8f75edd7db60e129d7fc": {
+    "id": "worldpay",
+    "name": "Worldpay"
+   },
+   "0x41ef29f974fc9f6772654f005271c64210425391": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0x4873d56816f45ef341a8819d7039e4746ed77c21": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0x4fb4d1a9d7197248bce8954dd9d3427b944fb97f": {
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0x505e855810cb243b2f23e95fdbb8f28d22f87a8c": {
+    "id": "ubisoft",
+    "name": "Ubisoft"
+   },
+   "0x554833698ae0fb22ecc90b01222903fd62ca4b47": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0x5b6735c66d97479ccd18294fc96b3084ecb2fa3f": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0x6498b0632f3834d7647367334838111c8c889703": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x658947bc7956aea0067a62cf87ab02ae199ef3f3": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x6b34e842175c701f488e2dd335a98caaec49593f": {
+    "id": "zeeve",
+    "name": "Zeeve"
+   },
+   "0x761bc869351293c5572ed5581e23e7d5d9c6d3d1": {
+    "id": "mantle-bank",
+    "name": "Mantle Bank"
+   },
+   "0x7a3d18e2324536294cd6f054cdde7c994f40391a": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x8b4874a130d7f1f702d59115f6d31bcc3e0972c3": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x8deec5b3deb8640bf79b334b59227454e0901953": {
+    "deprecated": true,
+    "id": "altlayer",
+    "name": "AltLayer"
+   },
+   "0x922827caf098837cfbc2196cf65814e2e1160a38": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0x93ac538152e1bc4f093ae5666ee9fd1d84f4f4bf": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x99afc2a3b8f5cb86a4c4e1320ede1e8c34273854": {
+    "id": "citrea",
+    "name": "Citrea"
+   },
+   "0x9e059a54699a285714207b43b055483e78faac25": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x9e930731cb4a6bf7ecc11f695a295c60bdd212eb": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0xa0af56164f02bdf9d75287ee77c568889f11d5f2": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xa0b19a90b6fd5856cf4d08dde416edf6b15614de": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0xa3858e2a9860c935fc9586a617e9b2a674c3e4c8": {
+    "id": "muon",
+    "name": "Muon"
+   },
+   "0xa7b5189bca84cd304d8553977c7c614329750d99": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0xa9d11632ec5f9502d39aff28d66415f6cca37544": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0xaab5a48cfc03efa9cc34a2c1aacccb84b4b770e4": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0xb1473ac9f58fb27597a21710da9d1071841e8163": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xb3ce0a5d132cd9bf965aba435e650c55edce0062": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0xb4001056811f032f6224140af2ada6118e33080b": {
+    "id": "apedvn",
+    "name": "ApeDVN"
+   },
+   "0xc2a0c36f5939a14966705c7cec813163faeea1f0": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xc50a49186aa80427aa3b0d3c2cec19ba64222a29": {
+    "id": "lagrange-labs",
+    "name": "Lagrange"
+   },
+   "0xcd37ca043f8479064e10635020c65ffc005d36f6": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xcdf31d62140204c08853b547e64707110fbc6680": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+    "id": "google-cloud",
+    "name": "Google"
+   },
+   "0xd752c8dbb10158d66c91518437349002d6542986": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0xd77a62b54ee18bcd667b6cd158d5a000182af5cf": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0xd863f288d3bb1947dfa13d7ccce80bc56974fa22": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0xdcacd7e37f392ffad4b2703a21f6a0c8e2451e96": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0xdd7b5e1db4aafd5c8ec3b764efb8ed265aa5445b": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xe6cd8c2e46ef396df88048449e5b1c75172b40c3": {
+    "deprecated": true,
+    "id": "omnicat",
+    "name": "Omnicat"
+   },
+   "0xeae72c81f3fce1313eeee26717f42af91e178516": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0xeb62f578497bdc351dd650853a751135212faf49": {
+    "id": "superform",
+    "name": "Superform"
+   },
+   "0xeede111103535e473451311e26c3e6660b0f77e1": {
+    "id": "omni-x",
+    "name": "Omni X"
+   },
+   "0xf4c489afd83625f510947e63ff8f90dfee0ae46c": {
+    "id": "nocturnal-labs",
+    "name": "Nocturnal Labs"
+   },
+   "0xf80285efb7518d5c79f4e98e3baa59da5ee79621": {
+    "id": "wyoming",
+    "name": "Wyoming"
+   }
+  },
+  "bsc": {
+   "0x00e91548787caf130d811ef1872f2bc2c0583d90": {
+    "id": "flowdesk",
+    "name": "Flowdesk"
+   },
+   "0x00efecf8714c2bc9376f8391f47a2ffce8bcdfea": {
+    "id": "ondo",
+    "name": "Ondo"
+   },
+   "0x0321a1b9e48ccdc5a8a32c524b858e10072ef798": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x05aaefdf9db6e0f7d27fa3b6ee099edb33da029e": {
+    "id": "planetarium-labs",
+    "name": "Planetarium Labs"
+   },
+   "0x089e70bc883ad0b6551e513bf7a71ffd2059f9f1": {
+    "id": "ondo-staging",
+    "name": "Ondo Staging"
+   },
+   "0x0a25b9aaa98c26c1cfd0f20ef40db5ba21369055": {
+    "id": "mantle-bank",
+    "name": "Mantle Bank"
+   },
+   "0x0cea5a94f8cd3330c4f84944bf4500f8dacd440c": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0x150a58e9e6bf69cceb1dba5ae97c166dc8792539": {
+    "id": "ccip",
+    "name": "Chainlink"
+   },
+   "0x165bcb144efe79a955c608a3d69e08e21c91c79d": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0x1bab20e7fdc79257729cb596bef85db76c44915e": {
+    "id": "nodes-guru",
+    "name": "Nodes.Guru"
+   },
+   "0x247624e2143504730aec22912ed41f092498bef2": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x25e0e650a78e6304a3983fc4b7ffc6544b1beea6": {
+    "id": "mim",
+    "name": "MIM"
+   },
+   "0x2afa3787cd95fee5d5753cd717ef228eb259f4ea": {
+    "deprecated": true,
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0x2c7185f5b0976397d9eb5c19d639d4005e6708f0": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0x313328609a9c38459cae56625fff7f2ad6dcde3b": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0x31f748a368a893bdb5abb67ec95f232507601a73": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x33e5fcc13d7439cc62d54c41aa966197145b3cd7": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0x439264fb87581a70bb6d7befd16b636521b0ad2d": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0x48ecf6d66045aad8d75e72109489ac29da6066a9": {
+    "id": "nocturnal-labs",
+    "name": "Nocturnal Labs"
+   },
+   "0x4d52f5bc932cf1a854381a85ad9ed79b8497c153": {
+    "id": "restake",
+    "name": "Restake"
+   },
+   "0x509889389cfb7a89850017425810116a44676f58": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x5246d80e5673251eb1977ae9d07a93fbd8649963": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x534c6b3e6805e9287ff1d49c349d5f7a01b9b7f5": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x53561bcfe6b3f23bc72e5b9919c12322729942e8": {
+    "id": "ccip",
+    "name": "Chainlink CCIP"
+   },
+   "0x547bf6889b1095b7cc6e525a1f8e8fdb26134a38": {
+    "id": "blockhunters",
+    "name": "Blockhunters"
+   },
+   "0x5a4c666e9c7aa86fd4fbfdfbfd04646dcc45c6c5": {
+    "id": "omni-x",
+    "name": "Omni X"
+   },
+   "0x5a54fe5234e811466d5366846283323c954310b2": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0x68389e9d2a1a015f25850d13fd7b2df59bd40a87": {
+    "id": "apedvn",
+    "name": "ApeDVN"
+   },
+   "0x68dd7cceca7d2738728185bca3db0c9199ed567a": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0x72f697797ac173f09eda73dd9c11a141376d2b57": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0x81d8516adae92b655acaf6a04c9526716baeb849": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x82f6ad698f3116ca1b71836a7f1303628fa855db": {
+    "deprecated": true,
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0x878c20d3685cdbc5e2680a8a0e7fb97389344fe1": {
+    "deprecated": true,
+    "id": "axelar",
+    "name": "Axelar"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x8e2248f0137e8d3c628de5d6376089e0b8541400": {
+    "id": "anchorage",
+    "name": "Anchorage"
+   },
+   "0x8ed0a851964604bb1b6b1a703f4c8234ee684d76": {
+    "id": "bera",
+    "name": "Bera"
+   },
+   "0x8fc629aa400d4d9c0b118f2685a49316552abf27": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0x9188b373378d284c9174ae474c2b0a937924b34b": {
+    "id": "eigenzero",
+    "name": "EigenZero"
+   },
+   "0x92453ce02159f774f1c846a4a0693008ed020f59": {
+    "id": "zeeve",
+    "name": "Zeeve"
+   },
+   "0x97e19088d0c9d490a99b57fb52ad3636d7c3612c": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0x9eeee79f5dbc4d99354b5cb547c138af432f937b": {
+    "id": "delegate",
+    "name": "Delegate"
+   },
+   "0xa2ceb887f545400b8247dfb7e9ccada7ababbde8": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0xa3858e2a9860c935fc9586a617e9b2a674c3e4c8": {
+    "id": "muon",
+    "name": "Muon"
+   },
+   "0xabc9b1819cc4d9846550f928b985993cf6240439": {
+    "id": "stablelab",
+    "name": "StableLab"
+   },
+   "0xac8de74ce0a44a5e73bbc709fe800406f58431e0": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xb4fa7f1c67e5ec99b556ec92cbddbcdd384106f2": {
+    "id": "mercury",
+    "name": "Shrapnel"
+   },
+   "0xb7485cac48e809276f63d7ad93ec3206070775c2": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0xbc625fc2db9754fd4cd3cfb7dbaa81b9c6f6e2e2": {
+    "id": "brale",
+    "name": "Brale"
+   },
+   "0xbd40c9047980500c46b8aed4462e2f889299febe": {
+    "id": "portal",
+    "name": "Portal"
+   },
+   "0xc6e1f0fc326913bd31fb11699c61f6f1f2a5e6d2": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0xccf6ee53aa0b7c7f190d2a7b273e7b04cce14d21": {
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xd29dcf66e264aa7d6833bdac6b9279791a7c246b": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0xd36246c322ee102a2203bca9cafb84c179d306f6": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0xd4925b81f62457caca368412315d230535b9a48a": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0xd4bf35ce3bfc7f7d7dfc0694a7d4aa8b8c60a38c": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+    "id": "google-cloud",
+    "name": "Google"
+   },
+   "0xd791948db16ab4373fa394b74c727ddb7fb02520": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0xd841a741addcb6dea735d3b8c9faf96ba3f3d30d": {
+    "deprecated": true,
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xdb979d0a36af0525afa60fc265b1525505c55d79": {
+    "id": "altlayer",
+    "name": "AltLayer"
+   },
+   "0xdff3f73c260b3361d4f006b02972c6af6c5c5417": {
+    "deprecated": true,
+    "id": "omnicat",
+    "name": "Omnicat"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xe48a3dd4d207338a8fabe4e929d78d78c38cadea": {
+    "id": "citrea",
+    "name": "Citrea"
+   },
+   "0xe4b64c3a70cd7f7c38d48f66ba5db9a41c485f64": {
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0xe5491fac6965aa664efd6d1ae5e7d1d56da4fdda": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0xe9b5e4f9395a60799f4f608ba3abebdfc0ee6d9c": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0xec65a0245c19a084650cb5b85fd1a2bc7b0fd452": {
+    "id": "mantle03",
+    "name": "Mantle03"
+   },
+   "0xee412dc75e4244d45e5820544411ede5af6e16d1": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0xeece50190806fa57016028d31d8631419882401c": {
+    "id": "nodit",
+    "name": "Nodit"
+   },
+   "0xf0809f6e760a5452ee567975eda7a28da4a83d38": {
+    "id": "switchboard",
+    "name": "Switchboard"
+   },
+   "0xf0a5c5306adbfd4e3dfd5d4b148b451c411d3878": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xf4c489afd83625f510947e63ff8f90dfee0ae46c": {
+    "id": "superform",
+    "name": "Superform"
+   },
+   "0xf7ddee427507cdb6885e53caaaa1973b1fe29357": {
+    "id": "republic-crypto",
+    "name": "Republic"
+   },
+   "0xfa9ba83c102283958b997adc8b44ed3a3cdb5dda": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0xfd6865c841c2d64565562fcc7e05e619a30615f0": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xfe1cd27827e16b07e61a4ac96b521bdb35e00328": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   }
+  },
+  "ethereum": {
+   "0x006e1248be5e40b4a4e7099397719df7ab872de7": {
+    "id": "predicate",
+    "name": "Predicate"
+   },
+   "0x02041731cb8cbae90838bb8632c359fc0c2b0775": {
+    "id": "zeeve",
+    "name": "Zeeve"
+   },
+   "0x05d78174b97cf2ec223ee578cd1f401ff792ca31": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x06559ee34d85a88317bf0bfe307444116c631b67": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0x0ae4e6a9a8b01ee22c6a49af22b674a4e033a23d": {
+    "id": "mim",
+    "name": "MIM"
+   },
+   "0x0cea5a94f8cd3330c4f84944bf4500f8dacd440c": {
+    "id": "nodit",
+    "name": "Nodit"
+   },
+   "0x150a58e9e6bf69cceb1dba5ae97c166dc8792539": {
+    "id": "ccip",
+    "name": "Chainlink"
+   },
+   "0x15fadad87913c3bb95f8f9f2e2b287e71ba7817d": {
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0x1e129c36bc3afc3f0d46a42c9d9cab7586bda94c": {
+    "id": "altlayer",
+    "name": "AltLayer"
+   },
+   "0x231a5c32e8792c327f4ecdc15aa3b6e82bc7f105": {
+    "id": "anchorage",
+    "name": "Anchorage"
+   },
+   "0x241c66a979125f230c239e79d103e0c2128c6618": {
+    "id": "ondo",
+    "name": "Ondo"
+   },
+   "0x276e6b1138d2d49c0cda86658765d12ef84550c1": {
+    "id": "switchboard",
+    "name": "Switchboard"
+   },
+   "0x28abf64947496a34dcbd1e65983f445e0d6d6e09": {
+    "id": "worldpay",
+    "name": "Worldpay"
+   },
+   "0x28deced567a4477e214e15780d345139d0186142": {
+    "id": "bridge",
+    "name": "Bridge"
+   },
+   "0x2c97f92eb72dcb3cf1b13d8a14b9d599482fc90d": {
+    "deprecated": true,
+    "id": "quantoz",
+    "name": "Quantoz"
+   },
+   "0x2f0ba3dbb93cf087e32c15aab46726fdb4fb24cf": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x2fdbb1e2419e13a7e043d07eaf412934b73ad7a8": {
+    "id": "flowdesk",
+    "name": "Flowdesk"
+   },
+   "0x373a6e5c0c4e89e24819f00aa37ea370917aaff4": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0x380275805876ff19055ea900cdb2b46a94ecf20d": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x38179d3bfa6ef1d69a8a7b0b671ba3d8836b2ae8": {
+    "deprecated": true,
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0x38654142f5e672ae86a1b21523aafc765e6a1e08": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0x394fe81886baf6e2d5bee37ffa24b07133c320c6": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0x3a283ed6bcce8d9dfb673fbfba6e644c9d02e9ab": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x3a4636e9ab975d28d3af808b4e1c9fd936374e30": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x3b0531eb02ab4ad72e7a531180beef9493a00dd2": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0x3d68029e411b181fefa1a8ba60aaf27dbe68636c": {
+    "id": "mysten-labs",
+    "name": "Mysten Labs"
+   },
+   "0x3f965b507a3ab2dd945c1796c973b206af4e5fcb": {
+    "id": "citrea",
+    "name": "Citrea"
+   },
+   "0x4066b6e7bfd761b579902e7e8d03f4feb9b9536e": {
+    "id": "quantoz",
+    "name": "Quantoz"
+   },
+   "0x4184dd22692c8b50d8d7ee0d7b6028e45dbf8108": {
+    "id": "eigenzero",
+    "name": "EigenZero"
+   },
+   "0x45c09dc691b0ad798e10d38b97e9dfd917d4b680": {
+    "id": "fbtc",
+    "name": "FBTC"
+   },
+   "0x4d45727d2de5ffc811e6a161c3a7233a2ea2e0e7": {
+    "deprecated": true,
+    "id": "mantle02",
+    "name": "Mantle02"
+   },
+   "0x53af943a880b93eb53c8e39def519ae4dcaab0ef": {
+    "id": "fbtc-new",
+    "name": "FBTC New"
+   },
+   "0x53bc8c65bcc9850247b1586389d59744bd28fe6a": {
+    "id": "conflux",
+    "name": "Conflux"
+   },
+   "0x554833698ae0fb22ecc90b01222903fd62ca4b47": {
+    "id": "mantle03",
+    "name": "Mantle03"
+   },
+   "0x58249a2ec05c1978bf21df1f5ec1847e42455cf4": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0x589dedbd617e0cbcb916a9223f4d1300c294236b": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x58dff8622759ea75910a08dba5d060579271dcd7": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0x5a54fe5234e811466d5366846283323c954310b2": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0x5fddd320a1e29bb466fa635661b125d51d976f92": {
+    "id": "stablelab",
+    "name": "StableLab"
+   },
+   "0x6c70db9ce65fa37499c1f1a150a6440fc9c7273a": {
+    "id": "wyoming",
+    "name": "Wyoming"
+   },
+   "0x6e70fcdc42d3d63748b7d8883399dcb16bbb5c8c": {
+    "id": "blockhunters",
+    "name": "Blockhunters"
+   },
+   "0x707f480a30fa724658640b65bc233a2a6180f887": {
+    "id": "brale",
+    "name": "Brale"
+   },
+   "0x747c741496a507e4b404b50463e691a8d692f6ac": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x7518f30bd5867b5fa86702556245dead173afe46": {
+    "id": "superform",
+    "name": "Superform"
+   },
+   "0x771d10d0c86e26ea8d3b778ad4d31b30533b9cbf": {
+    "id": "ccip",
+    "name": "Chainlink CCIP"
+   },
+   "0x7a23612f07d81f16b26cf0b5a4c3eca0e8668df2": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0x7c42f598d22e8711998bac7c3360a7b3a514863d": {
+    "id": "nocturnal-labs",
+    "name": "Nocturnal Labs"
+   },
+   "0x7cc59b5062a8291804a21a2a793c6ce9ea2f0eb9": {
+    "id": "mantle01",
+    "name": "Mantle01"
+   },
+   "0x7e65bdd15c8db8995f80abf0d6593b57dc8be437": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0x864b42dddc43a610e7506c163048c087f0b406ef": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0x868e6393aea25e8c7e58bc5d4c90a5237c573ff6": {
+    "id": "mantle-bank",
+    "name": "Mantle Bank"
+   },
+   "0x87048402c32632b7c4d0a892d82bc1160e8b2393": {
+    "id": "delegate",
+    "name": "Delegate"
+   },
+   "0x89ca15937e1033af26fe4c5e976216e8c8179408": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0x8bd47cbd47980cc6f3f8451fa7586548014b10db": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x8fafae7dd957044088b3d0f67359c327c6200d18": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0x92ef4381a03372985985e70fb15e9f081e2e8d14": {
+    "id": "portal",
+    "name": "Portal"
+   },
+   "0x94aafe0a92a8300f0a2100a7f3de47d6845747a9": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0x95729ea44326f8add8a9b1d987279dbdc1dd3dff": {
+    "id": "lagrange-labs",
+    "name": "Lagrange"
+   },
+   "0x96a2894042dfec802a23b1ad02f0314ac24b6010": {
+    "id": "mantlecross",
+    "name": "MantleCross"
+   },
+   "0x972ed7bd3d42d9c0bea3632992ebf7e97186ea4a": {
+    "id": "planetarium-labs",
+    "name": "Planetarium Labs"
+   },
+   "0x98b2e2aa4694680ed610d4f0a9bb78e8f7f1f200": {
+    "id": "bharvest",
+    "name": "B-Harvest"
+   },
+   "0x9f45834f0c8042e36935781b944443e906886a87": {
+    "id": "nodes-guru",
+    "name": "Nodes.Guru"
+   },
+   "0xa1bc1b9af01a0ec78883aa5dc7decdce897e1e76": {
+    "id": "republic-crypto",
+    "name": "Republic"
+   },
+   "0xa4fe5a5b9a846458a70cd0748228aed3bf65c2cd": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0xa59ba433ac34d2927232918ef5b2eaafcf130ba5": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xaf75bfd402f3d4ee84978179a6c87d16c4bd1724": {
+    "id": "omni-x",
+    "name": "Omni X"
+   },
+   "0xb0b2ef168f52f6d1e42f461e11117295ef992daf": {
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0xc3d74be06eedd78b540ee5df73bac13dc6ca338a": {
+    "id": "apedvn",
+    "name": "ApeDVN"
+   },
+   "0xc61af5706b80ca941a0aab1c7b3d7a953e4dd8c4": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0xc81f832841b11ea2a3f20792fae897bb3420ba20": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0xc9ca319f6da263910fd9b037ec3d817a814ef3d8": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0xc9ec2e72e8265868beccee5c8696c981898eedf0": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0xcc35923c43893cc31f2815e216afd7efb60f1fb0": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0xcc9da5b157ed87e24a9cf562e6a7c05d3c3decd3": {
+    "id": "ubisoft",
+    "name": "Ubisoft"
+   },
+   "0xcd0ca0619fc8db4d47b19a1f04105312952e5f6d": {
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xce5b47fa5139fc5f3c8c5f4c278ad5f56a7b2016": {
+    "deprecated": true,
+    "id": "axelar",
+    "name": "Axelar"
+   },
+   "0xce97511db880571a7c31821eb026ef12fcac892e": {
+    "id": "mercury",
+    "name": "Shrapnel"
+   },
+   "0xd24972c11f91c1bb9eaee97ec96bb9c33cf7af24": {
+    "id": "pearlnet",
+    "name": "Pearlnet"
+   },
+   "0xd42306df1a805d8053bc652ce0cd9f62bde80146": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+    "id": "google-cloud",
+    "name": "Google"
+   },
+   "0xdb979d0a36af0525afa60fc265b1525505c55d79": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xdd907f5af01a829cd65c99a132e8720d3e990d02": {
+    "id": "mantle02",
+    "name": "Mantle02"
+   },
+   "0xdeb742e71d57603d8f769ce36f4353468007fc02": {
+    "deprecated": true,
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xe2e558c85e00b4d7529433c1cc78ab678cf62538": {
+    "id": "bera",
+    "name": "Bera"
+   },
+   "0xe4193136b92ba91402313e95347c8e9fad8d27d0": {
+    "id": "restake",
+    "name": "Restake"
+   },
+   "0xe552485d02edd3067fe7fcbd4dd56bb1d3a998d2": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0xf10ea2c0d43bc4973cfbcc94ebafc39d1d4af118": {
+    "deprecated": true,
+    "id": "omnicat",
+    "name": "Omnicat"
+   },
+   "0xf34d1b07c64c4f4d492ae3ddd0aab0658a2975eb": {
+    "id": "ondo-staging",
+    "name": "Ondo Staging"
+   },
+   "0xf4064220871e3b94ca6ab3b0cee8e29178bf47de": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xf9d2c0915cac4c75b7ae359089333c8ac258e12c": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   }
+  },
+  "ink": {
+   "0x0ad6c9eb13e373154bfb303561b979bac5fa2302": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0x14cef90d175cc13f5110ae1bc5ba04f407ae7ab0": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0x174f2ba26f8adeafa82663bcf908288d5dbca649": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x18766ca3fecde0c1251922be6d3a088adf5f53e6": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0x19f6b66c598ac6e39cddbf26ed3d0317762a4a35": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0x1c5c9c9b50885319bd3cb7e67294136cd436bee3": {
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0x1e4ce74ccf5498b19900649d9196e64bab592451": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0x2cabf8f2c0aae35a771a1c19487684e94388b03a": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x2f2e289f15ad6677abd3efc5573d1e3ffbe71d8b": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0x3410d9f92bdecf95f6bfba31d016a21b084f781b": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0x395b14700812cccc38b8e64f0a06ce2045fe9ba3": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x3a4636e9ab975d28d3af808b4e1c9fd936374e30": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x5ba261d2b595966a81548b4fbe3851a6da9cf92c": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x5fc8c440f7b9c7646c2904ac63c1c0ca714c733e": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x68b6fb5e728db92a09ba810595915ae3d7399e40": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0x96ca3420bedd887cabdaba29c7dce6bad57af98b": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xb4f6632b78046de37531549dfb23d79862ca6a68": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0xbbada47d1dd5f5b04414178e841a5a508c57bfaf": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xdd7b5e1db4aafd5c8ec3b764efb8ed265aa5445b": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xdf44a1594d3d516f7cdfb4dc275a79a5f6e3db1d": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0xe81d43f3a41c9a4901cda66165aba3a397827b69": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0xe900e073badafdc6f72541f34e6b701bde835487": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xf007f1fef50c0acaf4418741454bcaeaecb96b87": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0xf772581dcf3300914d6222c4e6fcf0ed5ef93142": {
+    "id": "tss",
+    "name": "TSS"
+   }
+  },
+  "mantle": {
+   "0x0d7cb4033e0c193f65b3639e61b6986a29bf1dd4": {
+    "id": "mantle01",
+    "name": "Mantle01"
+   },
+   "0x18f76f0d8ccd176bbe59b3870fa486d1fff87026": {
+    "deprecated": true,
+    "id": "mantle02",
+    "name": "Mantle02"
+   },
+   "0x1a3a8421e48b7536f3f71d8b14a1449c90efa909": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0x2206ceb6809bd39f8707ed5ee618f8cfa57e40f2": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0x28b6140ead70cb2fb669705b3598ffb4beaa060b": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x28b81e60cea9889dd51cbd04b7afc4e92d048447": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x2e2af282e98bfaded5dd6ec51c7240d818ddbbd9": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x2f2e289f15ad6677abd3efc5573d1e3ffbe71d8b": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0x315b0e76a510607bb0f706b17716f426d5b385b8": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0x377b51593a03b82543c1508fe7e75aba6acde008": {
+    "id": "ondo-staging",
+    "name": "Ondo Staging"
+   },
+   "0x39afb616cf25f87971005adebd91b5199c577d6e": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0x3e249f6892acfef1922fc3bce38fefeec3896817": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x45f1d581f704b3203d0a4eab2a572658d7a2e678": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0x58620c352dd33eaaa2f6513877515453e20e8656": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x5a4c666e9c7aa86fd4fbfdfbfd04646dcc45c6c5": {
+    "id": "mantle02",
+    "name": "Mantle02"
+   },
+   "0x6346ca9b1f77bf10ffbacdac48f28e2ca4f3ba83": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0x6de158a8df33b336d2bdb39d07c13bb791af74c4": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0x6e6359a9abe2e235ef2b82e48f0f93d1ec16afbb": {
+    "deprecated": true,
+    "id": "axelar",
+    "name": "Axelar"
+   },
+   "0x78203678d264063815dac114ea810e9837cd80f7": {
+    "id": "mantle03",
+    "name": "Mantle03"
+   },
+   "0x7a7a3bfa6cf44136cd173fc5fcbd00bcd05d7866": {
+    "id": "mantlecross",
+    "name": "MantleCross"
+   },
+   "0x7a7ddc46882220a075934f40380d3a7e1e87d409": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x7fe673201724925b5c477d4e1a4bd3e954688cf5": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xa2447e5b58d357c49bf74b50b14421e6a100e525": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0xa450ed8a3582497272f896086f484bc37c87c185": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0xaab5a48cfc03efa9cc34a2c1aacccb84b4b770e4": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0xb19a9370d404308040a9760678c8ca28affbbb76": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xb797053fba3d41f5067c4bd74dc334328395c4d2": {
+    "id": "mantle-bank",
+    "name": "Mantle Bank"
+   },
+   "0xb832b06ab57da86afbd6a1af9857703d548fb37d": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0xcc2697009ac9c3bedfa5438cd92c033e4f310f82": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0xcc49e6fca014c77e1eb604351cc1e08c84511760": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xcdb8fc1d6c943aa95de16ce3d4e6fbf9a527cd7d": {
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0xdd7b5e1db4aafd5c8ec3b764efb8ed265aa5445b": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0xdeb742e71d57603d8f769ce36f4353468007fc02": {
+    "id": "ondo",
+    "name": "Ondo"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xf18f2c3d86ec9a350d5e10cb67c614201f210d3d": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0xfe809470016196573d64a8d17a745bebea4ecc41": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   }
+  },
+  "optimism": {
+   "0x021e401c2a1a60618c5e6353a40524971eba1e8d": {
+    "id": "planetarium-labs",
+    "name": "Planetarium Labs"
+   },
+   "0x03d2414476a742aba715bcc337583c820525e22a": {
+    "id": "omni-x",
+    "name": "Omni X"
+   },
+   "0x06e8042729cef3ae6d6db5350f48f9d736c3675d": {
+    "id": "altlayer",
+    "name": "AltLayer"
+   },
+   "0x1288cdad593856d7672f82e4cc5fdfe1cf59646d": {
+    "id": "nodit",
+    "name": "Nodit"
+   },
+   "0x150a58e9e6bf69cceb1dba5ae97c166dc8792539": {
+    "id": "ccip",
+    "name": "Chainlink"
+   },
+   "0x16f4349157feb35307bb36d0a445b8c4925b73da": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0x19670df5e16bea2ba9b9e68b48c054c5baea06b8": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0x218b462e19d00c8fed4adbce78f33aef88d2ccfc": {
+    "deprecated": true,
+    "id": "axelar",
+    "name": "Axelar"
+   },
+   "0x313328609a9c38459cae56625fff7f2ad6dcde3b": {
+    "id": "switchboard",
+    "name": "Switchboard"
+   },
+   "0x37a37d958a43810ec169eece501c525664ddf890": {
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0x3b0531eb02ab4ad72e7a531180beef9493a00dd2": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x3b247f1b48f055ebf2db593672b98c9597e3081e": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0x41f3a349e6ac46caad2da04cfceae3e0de0e6c0c": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x427bd19a0463fc4edc2e247d35eb61323d7e5541": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0x47039f4327f74e755f65821040a7e0addd596d09": {
+    "id": "nocturnal-labs",
+    "name": "Nocturnal Labs"
+   },
+   "0x4873d56816f45ef341a8819d7039e4746ed77c21": {
+    "id": "zeeve",
+    "name": "Zeeve"
+   },
+   "0x4be02c7e81bcd78ead40aac095a2115541f86c52": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0x51accfb59e4bda0f8324934f9789e9ea19fbeff4": {
+    "id": "ubisoft",
+    "name": "Ubisoft"
+   },
+   "0x539008c98b17803a273edf98aba2d4414ee3f4d7": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0x56d675bfd1574ff170723689223c3a93dee5fa78": {
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0x57f61546bd2259db04ee7132ac385e5447174403": {
+    "id": "flowdesk",
+    "name": "Flowdesk"
+   },
+   "0x5b6735c66d97479ccd18294fc96b3084ecb2fa3f": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0x5f5512c760f69a338cf2758d1e6a957571bb6ee0": {
+    "id": "bera",
+    "name": "Bera"
+   },
+   "0x6075e53dc2ddcfa81142fbad52315ae627ffce75": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x6a02d83e8d433304bba74ef1c427913958187142": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x6f798d30577c91e8f9291e82e633dbe4dce16b93": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0x723e6d1d06c14880ff9bd4b075b700ea67b88c08": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0x7240264781aa2f97cb994c6231297a8606483242": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0x73ddc92e39aeda95feb8d3e0008016d9f1268c76": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x79c6df01265cf083d295de45c2947e93b2ac47c1": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0x7a205ed4e3d7f9d0777594501705d8cd405c3b05": {
+    "id": "delegate",
+    "name": "Delegate"
+   },
+   "0x7b8a0fd9d6ae5011d5cbd3e85ed6d5510f98c9bf": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0x8381c626542b06963ef33dea9f47e80bf5574480": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x90ee303d4743f460b9a38415e09f3799b85a4efc": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x947bb89919d1e5996d6c46223626ac2e97bcf8a3": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0x94ec5934daa761d7597b76fd0fecf8385de143be": {
+    "id": "wyoming",
+    "name": "Wyoming"
+   },
+   "0x969a0bdd86a230345ad87a6a381de5ed9e6cda85": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0x9e930731cb4a6bf7ecc11f695a295c60bdd212eb": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0xa0cc33dd6f4819d473226257792afe230ec3c67f": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0xa3858e2a9860c935fc9586a617e9b2a674c3e4c8": {
+    "id": "muon",
+    "name": "Muon"
+   },
+   "0xa4281c1c88f0278ff696edeb517052153190fc9e": {
+    "id": "lagrange-labs",
+    "name": "Lagrange"
+   },
+   "0xa7b5189bca84cd304d8553977c7c614329750d99": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xabc9b1819cc4d9846550f928b985993cf6240439": {
+    "id": "pearlnet",
+    "name": "Pearlnet"
+   },
+   "0xaf75bfd402f3d4ee84978179a6c87d16c4bd1724": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0xb0b2ef168f52f6d1e42f461e11117295ef992daf": {
+    "id": "superform",
+    "name": "Superform"
+   },
+   "0xb3ce0a5d132cd9bf965aba435e650c55edce0062": {
+    "id": "blockhunters",
+    "name": "Blockhunters"
+   },
+   "0xb4fa7f1c67e5ec99b556ec92cbddbcdd384106f2": {
+    "deprecated": true,
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0xb908fc507fe3145e855cf63127349756b9ecf3a6": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0xbd78d684d1a0fc494e8bebbabfa6f9226a7aecf5": {
+    "id": "worldpay",
+    "name": "Worldpay"
+   },
+   "0xcced05c3667877b545285b25f19f794436a1c481": {
+    "id": "restake",
+    "name": "Restake"
+   },
+   "0xcd37ca043f8479064e10635020c65ffc005d36f6": {
+    "id": "stablelab",
+    "name": "StableLab"
+   },
+   "0xd36246c322ee102a2203bca9cafb84c179d306f6": {
+    "id": "mercury",
+    "name": "Shrapnel"
+   },
+   "0xd37adf2200142ec766a519099e7b55cb9198b640": {
+    "id": "brale",
+    "name": "Brale"
+   },
+   "0xd4925b81f62457caca368412315d230535b9a48a": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+    "id": "google-cloud",
+    "name": "Google"
+   },
+   "0xd77a62b54ee18bcd667b6cd158d5a000182af5cf": {
+    "deprecated": true,
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0xd841a741addcb6dea735d3b8c9faf96ba3f3d30d": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xd954bf7968ef68875c9100c9ec890f969504d120": {
+    "id": "mim",
+    "name": "MIM"
+   },
+   "0xdf30c9f6a70ce65a152c5bd09826525d7e97ba49": {
+    "id": "portal",
+    "name": "Portal"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xe552485d02edd3067fe7fcbd4dd56bb1d3a998d2": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0xe6cd8c2e46ef396df88048449e5b1c75172b40c3": {
+    "id": "nodes-guru",
+    "name": "Nodes.Guru"
+   },
+   "0xea0c32623d19d888e926e68667a5e42853fa91b4": {
+    "deprecated": true,
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xeb64c44109ede90cc6e34953ab122a1f09460a44": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0xebc3065003e67caac747836da272d9e5271a37e1": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0xf24dc834039a1e39f6b99a51df05df9c91e35b2d": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0xf7859b3ada3b2fcb60202f1bed0bf58a3e74f67e": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0xfe6507f094155cabb4784403cd784c2df04122dd": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   }
+  },
+  "plasma": {
+   "0x0a5a808dc5f9280b26ebe11b356d200e34a48517": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0x0ad6c9eb13e373154bfb303561b979bac5fa2302": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0x193204535913df3a3b350fcd2e1c97d047abb409": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x1a335dc84c1f48b30984f8f377b33d6a72dc4933": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0x2465ee263149a18d61c9224244c61a5871dc0473": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0x282b3386571f7f794450d5789911a9804fa346b4": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x28ea3ed40d8d2e853bb80d4f7051f1e266e30633": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0x2cad582a78e71c5756e7e4851c365d86d95645b4": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0x3b65e87e2a4690f14cae0483014259ded8215adc": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0x6788f52439aca6bff597d3eec2dc9a44b8fee842": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0xa51ce237fafa3052d5d3308df38a024724bb1274": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xabc9b1819cc4d9846550f928b985993cf6240439": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xb2d6285a358a80fe3355b76547c2d1912a978f51": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0xd4ce45957fbcb88b868ad2c759c7db9bc2741e56": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0xdcdd4628f858b45260c31d6ad076bd2c3d3c2f73": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0xe5bffd46776251b70895517d4ab635a640da61e9": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xe8d83e3b9cb9cc679e1a19088e11fe45b3e978ae": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xf81da1b0f3ac725503ad0c2c229d1edc57204787": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xfc9f1c561aef95cd4b8d4621f85bdf374fde2e6d": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0xfd429433af17c5c75e4c8bc84b8f6dcd1b2c051a": {
+    "id": "p2p",
+    "name": "P2P"
+   }
+  },
+  "polygon": {
+   "0x02152f4624596602dcbb8b8ead2988ad44edc865": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x047d9dbe4fc6b5c916f37237f547f9f42809935a": {
+    "deprecated": true,
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0x06b85533967179ed5bc9c754b84ae7d02f7ed830": {
+    "id": "omni-x",
+    "name": "Omni X"
+   },
+   "0x0a8618f71db88ab5d0caf0610ede19f0ab8817c5": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x0fa06167ba4829bbbb72471e7363405a4aba365e": {
+    "id": "FurtherFP",
+    "name": "FurtherFP"
+   },
+   "0x13feb7234ff60a97af04477d6421415766753ba3": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0x14206011d192e4f41d694d21ac599d0e88c2c12a": {
+    "id": "fidelity",
+    "name": "Fidelity Center for Applied Technology"
+   },
+   "0x150a58e9e6bf69cceb1dba5ae97c166dc8792539": {
+    "id": "ccip",
+    "name": "Chainlink"
+   },
+   "0x1bab20e7fdc79257729cb596bef85db76c44915e": {
+    "id": "mim",
+    "name": "MIM"
+   },
+   "0x1e4ce74ccf5498b19900649d9196e64bab592451": {
+    "id": "superform",
+    "name": "Superform"
+   },
+   "0x23de2fe932d9043291f870324b74f820e11dc81a": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x247624e2143504730aec22912ed41f092498bef2": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0x25e0e650a78e6304a3983fc4b7ffc6544b1beea6": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x28a165dbdf00b1e85295d4d6678eb71af24693ee": {
+    "id": "bridge",
+    "name": "Bridge"
+   },
+   "0x2ac038606fff3fb00317b8f0ccfb4081694acdd0": {
+    "id": "planetarium-labs",
+    "name": "Planetarium Labs"
+   },
+   "0x2ac7f400d486f6b81660e7d279072e0c18e16733": {
+    "id": "worldpay",
+    "name": "Worldpay"
+   },
+   "0x2afa3787cd95fee5d5753cd717ef228eb259f4ea": {
+    "id": "restake",
+    "name": "Restake"
+   },
+   "0x2cabf8f2c0aae35a771a1c19487684e94388b03a": {
+    "id": "flowdesk",
+    "name": "Flowdesk"
+   },
+   "0x31f748a368a893bdb5abb67ec95f232507601a73": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x4066b6e7bfd761b579902e7e8d03f4feb9b9536e": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0x43cfcc293cdf99f7d021f21ffd443f174ab0e843": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x4c41b4edf85dee828c2cfcc80019cb2bbcfb69a5": {
+    "id": "nodit",
+    "name": "Nodit"
+   },
+   "0x4d52f5bc932cf1a854381a85ad9ed79b8497c153": {
+    "id": "delegate",
+    "name": "Delegate"
+   },
+   "0x53bdce6dccf7505a55813022f53c43fabfef7b3a": {
+    "deprecated": true,
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0x547bf6889b1095b7cc6e525a1f8e8fdb26134a38": {
+    "id": "republic-crypto",
+    "name": "Republic"
+   },
+   "0x54dd79f5ce72b51fcbbcb170dd01e32034323565": {
+    "id": "mercury",
+    "name": "Shrapnel"
+   },
+   "0x5a54fe5234e811466d5366846283323c954310b2": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0x5cccb8de6cdba9d2af9d84465653af7390fdf9dd": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0x5cff49d69d79d677dd3e5b38e048a0dcb6d86aaf": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x66d771b8f938ccb82a1a9cb7a93671cb92016ab0": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x7bb8fae7f3e0ee0065fe685c597e67348b2a3adb": {
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0x7decc6df3af9cfc275e25d2f9703ecf7ad800d5d": {
+    "deprecated": true,
+    "id": "paxos",
+    "name": "Paxos"
+   },
+   "0x8b430df07ce9666fdffd99c1ea0153f6e178bcd6": {
+    "id": "brale",
+    "name": "Brale"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x8fc629aa400d4d9c0b118f2685a49316552abf27": {
+    "id": "portal",
+    "name": "Portal"
+   },
+   "0x9eeee79f5dbc4d99354b5cb547c138af432f937b": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0xa2d10677441230c4aed58030e4ea6ba7bfd80393": {
+    "deprecated": true,
+    "id": "omnicat",
+    "name": "Omnicat"
+   },
+   "0xa3858e2a9860c935fc9586a617e9b2a674c3e4c8": {
+    "id": "muon",
+    "name": "Muon"
+   },
+   "0xa6f5ddbf0bd4d03334523465439d301080574742": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0xa70c51c38d5a9990f3113a403d74eba01fce4ccb": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xa75abcc0fab6ae09c8fd808bec7be7e88fe31d6b": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0xa773b91c42fc8e77c37d7396b2814b8fa485b2c3": {
+    "id": "quantoz",
+    "name": "Quantoz"
+   },
+   "0xab6d3d37d8dc309e7d8086b2e85a953b84ee5fa9": {
+    "deprecated": true,
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0xab98becd7ed5494e7da7bd6c698a282f21492d6d": {
+    "deprecated": true,
+    "id": "quantoz",
+    "name": "Quantoz"
+   },
+   "0xabc9b1819cc4d9846550f928b985993cf6240439": {
+    "id": "stablelab",
+    "name": "StableLab"
+   },
+   "0xb16a4842182655c6c539c00b257d49a1e9571511": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0xbabbb709b3cefe563f2ab14898a53301686d48b9": {
+    "id": "altlayer",
+    "name": "AltLayer"
+   },
+   "0xbcefdadb8d24b1d36c26b522235012cd4cf162f6": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xbd40c9047980500c46b8aed4462e2f889299febe": {
+    "id": "blockhunters",
+    "name": "Blockhunters"
+   },
+   "0xc30291521305bc76115de7bca8034ea7147abe36": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0xc58181b471163c5021a7b4206b4d8d176719c06a": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0xc6d46f63578635e4a7140cdf4d0eea0fd7bb50ec": {
+    "id": "switchboard",
+    "name": "Switchboard"
+   },
+   "0xc79f0b1bcb7cdae9f9ba547dcfc57cbfcd2993a5": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xcd19d26710cacf8241583769f353ea7395159007": {
+    "id": "stakingcabin",
+    "name": "StakingCabin"
+   },
+   "0xcd8ea69bbca0a2bb221aed59fa2704f01fc76a9f": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0xcf46153f01355036bf07e5f7fb1eb262f25dfedd": {
+    "id": "bera",
+    "name": "Bera"
+   },
+   "0xd1b5493e712081a6fbab73116405590046668f6b": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xd410ddb726991f372b69a05b006d2ae5a8cedbd6": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0xd56e4eab23cb81f43168f9f45211eb027b9ac7cc": {
+    "id": "google-cloud",
+    "name": "Google"
+   },
+   "0xdab6e6ecb3513a8d2614ad75199b4b264a731050": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0xdd3d71ff05d9206c69c667d22b3a0970009780e4": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xe34a8d1c1e8ec397314ac019879df14de9bcf490": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0xecb3ac94976f11a53ae74af1f36fb89e247faeef": {
+    "id": "gitcoin",
+    "name": "Gitcoin"
+   },
+   "0xf0809f6e760a5452ee567975eda7a28da4a83d38": {
+    "id": "01node",
+    "name": "01node"
+   },
+   "0xf60c89799c85d8fab79519f7666dcde2a7c97cca": {
+    "id": "nocturnal-labs",
+    "name": "Nocturnal Labs"
+   },
+   "0xf6cb110b0334825797b9b733060229c68e5d8bef": {
+    "id": "wyoming",
+    "name": "Wyoming"
+   },
+   "0xf7ddee427507cdb6885e53caaaa1973b1fe29357": {
+    "id": "nodes-guru",
+    "name": "Nodes.Guru"
+   }
+  },
+  "scroll": {
+   "0x05aaefdf9db6e0f7d27fa3b6ee099edb33da029e": {
+    "deprecated": true,
+    "id": "zenrock",
+    "name": "Zenrock"
+   },
+   "0x34730f2570e6cff8b1c91faabf37d0dd917c4367": {
+    "id": "p-ops-team",
+    "name": "P-OPS"
+   },
+   "0x446755349101cb20c582c224462c3912d3584dce": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x4694e7c4b79f47ced7be20e2f7684cbb3d85832c": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0x70cedf51c199fad12c6c0a71cd876af948059540": {
+    "deprecated": true,
+    "id": "axelar",
+    "name": "Axelar"
+   },
+   "0x755b3b6e6be0747f02ccc0b96001403fc7e8def5": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x7a7ddc46882220a075934f40380d3a7e1e87d409": {
+    "id": "bcw",
+    "name": "BCW Group"
+   },
+   "0x7fe673201724925b5c477d4e1a4bd3e954688cf5": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x8ddf05f9a5c488b4973897e278b58895bf87cb24": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0x93bb6f93fa90a18e88a27bcfbcb048f7e14733c6": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0xb212750bc22d26499dabf3ffe2ba1931dc3af3e1": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0xb42726e41dbe96fc4ea6d73cd792167608353698": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0xb87591d8b0b93fae8b631a073577c40e8dd46a62": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xbe0d08a85eebfcc6eda0a843521f7cbb1180d2e2": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xc6a6324932b399d6a673b7ed0af671f28033e046": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0xcb566e3b6934fa77258d68ea18e931fa75e1aaaa": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0xcf46153f01355036bf07e5f7fb1eb262f25dfedd": {
+    "id": "stablecoinx",
+    "name": "StablecoinX"
+   },
+   "0xdb238d5196328b5623612c235062427f2f6792c0": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0xdd7b5e1db4aafd5c8ec3b764efb8ed265aa5445b": {
+    "deprecated": true,
+    "id": "bware-labs",
+    "name": "BWare"
+   },
+   "0xdf44a1594d3d516f7cdfb4dc275a79a5f6e3db1d": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc": {
+    "deprecated": true,
+    "id": "polyhedra-network",
+    "name": "Polyhedra zkBridge"
+   },
+   "0xf60c89799c85d8fab79519f7666dcde2a7c97cca": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xfa9ba83c102283958b997adc8b44ed3a3cdb5dda": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   }
+  },
+  "sonic": {
+   "0x01bbb6319c596e70342a0cfd1193cfebe10bbb1d": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0x05aaefdf9db6e0f7d27fa3b6ee099edb33da029e": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x282b3386571f7f794450d5789911a9804fa346b4": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x3b0531eb02ab4ad72e7a531180beef9493a00dd2": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x3c4e4c3baa5d883654970fe34db8c943ebf43ab2": {
+    "id": "curve",
+    "name": "Curve"
+   },
+   "0x45a7305c65aad28384f20a80f87a5183772e4f70": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0x54dd79f5ce72b51fcbbcb170dd01e32034323565": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0x64d684840881b45869b0c72b17aa911a3fc4305e": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x6788f52439aca6bff597d3eec2dc9a44b8fee842": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x6995acd4ae604f8f334f5309a75232544f78e0c9": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0x78f607fc38e071ceb8630b7b12c358ee01c31e96": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x805ed883fa3453e7ac588667785a4495c573cd13": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0x87a4d47918e83df0fcf6040dbdc358119f7deb2a": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0xa3858e2a9860c935fc9586a617e9b2a674c3e4c8": {
+    "id": "muon",
+    "name": "Muon"
+   },
+   "0xb2c7832aa8dda878de6f949485f927e9e532e92c": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0xc8b7744afd77c3eecf310383837a07584766a51a": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xca764b512e2d2fd15fca1c0a38f7cfe9153148f0": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0xdd7b5e1db4aafd5c8ec3b764efb8ed265aa5445b": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xde79818c75649773fc462e9d3134b23b81741481": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xdfbb5c677db41b5ef3a180509cde27b5c9784655": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   }
+  },
+  "unichain": {
+   "0x00a979a5d306e9c5f8cf473659e75f8002e06fc8": {
+    "id": "canary",
+    "name": "Canary"
+   },
+   "0x06bd01bfa19ac2c1974cb7a36dde44ce1068a8c5": {
+    "id": "canary-sponsored",
+    "name": "Canary Sponsored"
+   },
+   "0x1337834fd822065af36a13657d2e847616129f3f": {
+    "id": "animoca-blockdaemon",
+    "name": "Animoca-Blockdaemon"
+   },
+   "0x144c6a7a17781e165f430b18f0680c5b3e3713e2": {
+    "id": "nansen",
+    "name": "Nansen"
+   },
+   "0x148ae5e1df44cf8b6d258430eab79b28d0da4aa6": {
+    "id": "canary-wbtc",
+    "name": "WBTC Canary"
+   },
+   "0x208894346d2995a26493f8c2a5b04fb1ee41a899": {
+    "id": "usdt0",
+    "name": "USDT0"
+   },
+   "0x25e0e650a78e6304a3983fc4b7ffc6544b1beea6": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x282b3386571f7f794450d5789911a9804fa346b4": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0x306b9a8953b9462f8b826e6768a93c8ea7454965": {
+    "id": "tss",
+    "name": "TSS"
+   },
+   "0x643923a777570c5377cd0e973d999c00cce55249": {
+    "id": "nethermind",
+    "name": "Twinstake"
+   },
+   "0x6788f52439aca6bff597d3eec2dc9a44b8fee842": {
+    "deprecated": true,
+    "id": "lz-dead-dvn",
+    "name": "LZDeadDVN"
+   },
+   "0x6a4c9096f162f0ab3c0517b0a40dc1ce44785e16": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0x97faa2a9c9bf8b4082b175a5b894ce6bac6697a8": {
+    "id": "frax",
+    "name": "Frax"
+   },
+   "0x9885110b909e88bb94f7f767a68ec2558b2afa73": {
+    "deprecated": true,
+    "id": "stargate",
+    "name": "Stargate"
+   },
+   "0xa92e7ff777c47f34a766ed43be43d35acd81a89e": {
+    "id": "blockaid",
+    "name": "Blockaid"
+   },
+   "0xab82e9b24004b954985528dac14d1b020722a3c8": {
+    "id": "p2p",
+    "name": "P2P"
+   },
+   "0xb85775a6868c1a729447951fd59f9f7f095cd0b1": {
+    "id": "layerzero-labs",
+    "name": "LayerZero Labs"
+   },
+   "0xbf46508b127aca0890fd4e00f3a42a2aeeb63273": {
+    "id": "canary-subsidized",
+    "name": "Canary Subsidized"
+   },
+   "0xc6a6324932b399d6a673b7ed0af671f28033e046": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0xd8a1e914bdc19be62d548403303f13663a360c6b": {
+    "id": "horizen-labs",
+    "name": "Horizen"
+   },
+   "0xdd7b5e1db4aafd5c8ec3b764efb8ed265aa5445b": {
+    "deprecated": true,
+    "id": "bitgo",
+    "name": "BitGo"
+   },
+   "0xe47a381dacdb5c42b32ac4b47508ea935b4cb0b8": {
+    "id": "deutsche-telekom",
+    "name": "Deutsche Telekom"
+   },
+   "0xf02d0f9acc2870e12c34aa3816dd86fac1339f38": {
+    "id": "luganodes",
+    "name": "Luganodes"
+   },
+   "0xfcd362de25b72955268bf28c1c2620cd0b7d04f4": {
+    "id": "01node",
+    "name": "01node"
+   }
+  }
+ },
+ "fetchedAt": "2026-11-06",
+ "source": "https://metadata.layerzero-api.com/v1/metadata/dvns"
+}
