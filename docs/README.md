@@ -31,6 +31,7 @@ Last full evidence audit: 2026-11-06 (primary sources + onchain reads).
 | 17 | [17-sources.md](17-sources.md) | Every source, grouped |
 | 18 | [18-ethglobal-rules.md](18-ethglobal-rules.md) | ETHGlobal rules verbatim: deadline, picks, build rules, AI, video, judging |
 | 19 | [19-sponsor-dev-reference.md](19-sponsor-dev-reference.md) | Developer quick-reference from official sponsor docs (CRE, CCIP, Arkiv, Swarm, Anon-RPC, Morpho, LayerZero) |
+| 20 | [20-swarm-design.md](20-swarm-design.md) | Swarm design: evidence bundles, Arkiv↔Swarm link, browser verify, site on Swarm, `swarm.md` outline |
 | — | [evidence/](evidence/) | Scripts, raw onchain outputs and the guard fork tests (re-runnable) |
 
 For AI agents and Claude: see [`/AGENTS.md`](../AGENTS.md) and [`/CLAUDE.md`](../CLAUDE.md).

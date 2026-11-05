@@ -37,12 +37,13 @@
 6. Arkiv mirror (importer + one user-facing query) + the four judged files + `schema.md`.
 7. Web page: asset grade + evidence + browser verify through Anon-RPC, backend-off moment.
 8. Kelp replay on a fork: borrow reverts on Aave.
+9. Swarm evidence bundles linked from Arkiv (`swarmRef` + `bundleHash`), and the browser verifier reading them from Swarm, plus `/arkiv/swarm.md` ([20](20-swarm-design.md)).
 
-**Should have:** mainnet loop with Morpho Sentinel on our own vault; Swarm evidence bundles + `swarm.md`; `floor check` CLI pre-sign simulation.
+**Should have:** mainnet loop with Morpho Sentinel on our own vault; site hosted on Swarm behind a feed + per-asset "latest" feed; `floor check` CLI pre-sign simulation.
 
 **Stretch:** blast-radius query; CCIP 2.0 CCV scoring; guard on testnet; Compound III / Euler legs of the replay.
 
-**Cut if behind at Fri 14:00 IST:** mainnet loop → fork-only enforcement; Swarm → drop the bonus.
+**Cut if behind at Fri 14:00 IST:** mainnet loop → fork-only enforcement; site-on-Swarm → keep evidence bundles only.
 
 ## Rules we must not break (from [18](18-ethglobal-rules.md))
 
