@@ -30,7 +30,7 @@ Sources, read 2026-11-06:
 
 ## AI tools
 
-- "The use of AI tools (e.g., ChatGPT, Claude Code, GitHub Copilot, Cursor, etc.) is generally permitted…"
+- "The use of AI tools (e.g., …) is generally permitted…"
 - "**Attribution:** Clearly document in your submission where and how AI tools were used in the project. This includes specifying which parts of the code, specific files, or assets were generated or assisted by AI."
 - "**Involvement:** AI tools should be used to assist your development process, not to create the entire project. Submissions that rely entirely on AI without meaningful contributions from team members may not be eligible for partner prizes or finalist consideration."
 - "**Spec-Driven Development:** … you must include all spec files, prompts, and planning artifacts in your submission repository."

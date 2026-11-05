@@ -34,4 +34,4 @@ Last full evidence audit: 2026-11-06 (primary sources + onchain reads).
 | 20 | [20-swarm-design.md](20-swarm-design.md) | Swarm design: evidence bundles, Arkiv↔Swarm link, browser verify, site on Swarm, `swarm.md` outline |
 | — | [evidence/](evidence/) | Scripts, raw onchain outputs and the guard fork tests (re-runnable) |
 
-For AI agents and Claude: see [`/AGENTS.md`](../AGENTS.md) and [`/CLAUDE.md`](../CLAUDE.md).
+For AI agents: see [`/AGENTS.md`](../AGENTS.md).
