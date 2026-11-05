@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+coverage/
+*.log
+.DS_Store
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+docs/evidence/guard-proof/out/
+docs/evidence/guard-proof/cache/
+docs/evidence/guard-proof/lib/
