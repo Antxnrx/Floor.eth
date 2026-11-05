@@ -3,7 +3,7 @@
 ## The problem in six parts
 
 1. **Lenders accept bridged and wrapped collateral without checking its effective security.** Kelp's attacked route ran on a single verifier for 12.5 months while rsETH was collateral on Aave, Compound III and Euler. ([03](03-kelp-onchain-timeline.md))
-2. **"Effective" differs from "configured".** LayerZero app config fields set to `0` inherit the endpoint default; the default for some routes is still a single DVN (Unichain default read onchain: 1 required DVN, 15 confirmations). An optional threshold can make "3 DVNs" mean "any 1 of 3". ([07](07-effective-state-rules.md), [08](08-safe-guard-findings.md) tests e, f)
+2. **"Effective" differs from "configured".** LayerZero app config fields set to `0` inherit the endpoint default; LayerZero sets and can change those defaults without the app doing anything. (Today the Unichain default points at LZDeadDVN, which disables the route; it is not a 1-verifier default.) An optional threshold can make "3 DVNs" mean "any 1 of 3". ([07](07-effective-state-rules.md), [08](08-safe-guard-findings.md) tests e, f)
 3. **Signal- and change-triggered guards miss risk that never moves.** rsETH's verifier config never changed for 12.5 months.
 4. **Every lender has its own rules** (Aave, Morpho curators, Euler, Spark, Fluid, Compound) and nobody checks them continuously across all of them.
 5. **Shared components are invisible.** When the threat is any asset, a broad freeze is right (Aave froze 292 reserves on Oct 29 2026 for that reason). When the threat is a shared component (a verifier operator, an RPC fleet), responders need the exact list of what depends on it. No neutral cross-lender map exists today.

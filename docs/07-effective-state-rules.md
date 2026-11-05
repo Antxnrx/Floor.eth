@@ -7,7 +7,7 @@ The difference between Floor and a wrong number is here. Every rule below is fro
 Source: LayerZero-v2 @ `9c741e7f`, `packages/layerzero-v2/evm/...`
 
 1. **Use the resolved config, never the raw input.** `ReceiveUln302.getUlnConfig(oapp, eid)` / `SendUln302.getUlnConfig` (and `EndpointV2.getConfig(oapp, lib, eid, 2)`) return the app config merged with the default. `UlnBase.sol` L11-12/L27-29: `0` = DEFAULT (inherit), `255` = NIL (explicitly none). L74-111 resolve per field.
-   - Fork test f: Unichain default today = **1 required DVN, 15 confirmations** (read via a never-configured OApp). An app field left at 0 inherits that.
+   - Fork test f: the Unichain default reads as 1 required DVN, 15 confirmations (via a never-configured OApp). That DVN is **LZDeadDVN** (`0x747c…f6ac`), which never signs, so today the default *disables* the route. Treat dead DVNs as "route disabled" (see `@floor/core` `independence()`), and monitor defaults: LayerZero can change them.
 2. **Effective quorum = required DVNs + optional threshold.** Fork test e: required = NIL (255), optional = 3 DVNs with threshold 1 → looks like 3 DVNs, is really "any 1 of 3".
 3. **Dedupe by operator.** Multiple DVN addresses run by one organisation count as one (Aave §2.2, Aave Labs reply #7). Needs a curated DVN → operator map (hardcode ~15 known DVNs at M0).
 4. **Check both directions.** Inbound security is decided by the destination chain's **receive** config; outbound by the source **send** config. Kelp's drain hit the Ethereum receive side for eid 30320.

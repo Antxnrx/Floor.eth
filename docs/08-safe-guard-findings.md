@@ -29,9 +29,9 @@ forge test --match-contract GuardProof -vv    # RPC=<archive mainnet RPC> to ove
 | c | With a module enabled, even an always-revert guard is never called; module sets 1 DVN then removes the guard. |
 | d | Safe calls `OApp.setDelegate(hotWallet)`; hot wallet calls `endpoint.setConfig` directly. Safe and guard are not in the path. |
 | e | required = NIL, optional = 3, threshold 1: looks like 3 DVNs, is any-1-of-3. Passes the naive guard. |
-| f | LZ default for Unichain is 1 DVN / 15 confirmations; config `0` inherits it. |
+| f | The LZ default for Unichain reads as 1 required DVN / 15 confirmations; config `0` inherits it. **Correction (2026-11-06):** that DVN (`0x747c741496a507e4b404b50463e691a8d692f6ac`) is LayerZero's **LZDeadDVN** (LZ metadata API), which never signs, so the default *disables* the route rather than securing it with one verifier. The test proves inheritance, not a weak default. |
 | h1 | Post-state guard blocks the direct call, MultiSend path, fake-3 config and `setDelegate`. |
-| h2 | Post-state guard does not brick when the route is already below the floor via the default; unrelated txs pass; a fix to 4 DVNs is allowed. |
+| h2 | Post-state guard does not brick when the route is already below the floor through an external (default-side) change; unrelated txs pass; a fix to 4 DVNs is allowed. |
 | h3 | Removal is always allowed, so a quorum can remove the guard then weaken (2-step bypass). Known limit. |
 | h4 | Modules still bypass the post-state guard on v1.3.0. Known limit. |
 | h5 | Delegatecall that wipes the guard slot then weakens is caught (Safe caches the guard address before execution). |
@@ -52,7 +52,7 @@ forge test --match-contract GuardProof -vv    # RPC=<archive mainnet RPC> to ove
 | 9 | Delegate/owner is a timelock/proxy controlled by the Safe | Bypass | High | Check at the actual delegate; monitor state | LZ auth code (not tested) |
 | 10 | OApp ownership transfer / upgrade | Bypass | High | Block `transferOwnership`/upgrade; post-check owner + implementation | design |
 | 11 | `setSendLibrary` / `setReceiveLibrary` (incl. to default) | Bypass of selector-only guard | High | Post-check library + `isDefault` | h1; MessageLibManager |
-| 12 | Field `0` = inherit weak default | Silent weakening | High | Score effective config only | f; UlnBase L74-111 |
+| 12 | Field `0` = inherit whatever the default is (today on Unichain: DeadDVN = disabled; LZ can change it) | Silent change with no app tx | High | Score effective config only; monitor defaults | f; UlnBase L74-111 |
 | 13 | NIL / optional threshold fakes 3 | Bypass | High | Effective quorum = required + optional threshold | e |
 | 14 | LayerZero changes defaults (no Safe tx) | Breach with nothing to block | High | Monitoring only; guard must revert only on worsening | UlnBase L55; h2 |
 | 15 | Config changed on another chain | Invisible | High | Guard + monitoring per chain | design |

@@ -210,7 +210,7 @@ contract GuardProof is Test {
 
     // ===================== (f) default inheritance: count 0 = LayerZero default =====================
 
-    function test_f_DefaultForUnichain_IsOneDVN() public view {
+    function test_f_DefaultForUnichain_IsOneDVN_LZDeadDVN() public view {
         // effective config of an OApp that never set anything = LZ default
         UlnConfig memory d = abi.decode(IEndpointV2(EP).getConfig(address(0xdEaD), SEND_ULN, UNICHAIN, 2), (UlnConfig));
         assertEq(d.requiredDVNCount, 1);

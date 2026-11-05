@@ -13,7 +13,7 @@
 | Question | Answer |
 |---|---|
 | "Aave already built a Freeze Guardian." | Aave-only and signal-triggered. rsETH's verifier config never changed for 12.5 months, so there was no signal. Floor grades standing state across lenders and can feed Aave's guardian; both run on CRE. |
-| "LayerZero fixed 1-of-1." | LayerZero Labs' DVN stopped serving 1/1 and says defaults will be ≥3-of-3, but onchain the Unichain default still reads 1 DVN today, app configs vary, and 35 of 39 Aave-exposed adapters reportedly lack inbound limits (community analysis; we reproduce it). |
+| "LayerZero fixed 1-of-1." | LayerZero Labs' DVN stopped serving 1/1 and says defaults will be ≥3-of-3, but defaults remain LayerZero-controlled and changeable, app configs vary, and 35 of 39 Aave-exposed adapters reportedly lack inbound limits (community analysis; we reproduce it). |
 | "Counting DVNs is trivial." | Effective count isn't: defaults (`0`), NIL (`255`), optional thresholds and same-operator collapse all change the answer. Our fork test shows "3 DVNs" that are really any-1-of-3. |
 | "You'd freeze half the market." | Graded responses: DEGRADED lowers caps; only BREACHED freezes new exposure. Issuer manifests explain intended setups. |
 | "Is automatic enforcement dangerous?" | Bounded authority: only reduces risk, never moves funds, never blocks repay or liquidation, re-enable is human. Invariant tests prove it. |

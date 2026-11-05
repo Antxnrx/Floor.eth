@@ -45,3 +45,4 @@ curl -s https://hub.snapshot.org/graphql -H 'content-type: application/json' \
 | 2026-11-06 | "70% of 2026 losses from keys/infra" | 74–76% of H1 2026 losses (Blockaid; TRM Labs) | see 17-sources |
 | 2026-11-06 | "$123–236M bad debt" | Aave modelled $123,708,727 / $230,113,582 (hypothetical) | governance.aave.com/raw/24580/1 |
 | 2026-11-06 | "Several routes used LZ's default config" | All 26 Ethereum routes had explicit app configs pre-hack | evidence/onchain/cfg_pre.txt |
+| 2026-11-06 | "LayerZero's default for Unichain is still 1 DVN" | The default's single DVN `0x747c…f6ac` is **LZDeadDVN** (never signs): the default disables the route | LayerZero metadata API `/v1/metadata/dvns` (`id: lz-dead-dvn`) |
