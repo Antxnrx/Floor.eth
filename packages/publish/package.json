@@ -11,8 +11,8 @@
     "test": "vitest run",
     "test:live": "FLOOR_LIVE=1 vitest run",
     "typecheck": "tsc --noEmit -p .",
-    "import": "tsx src/importer.ts",
-    "test:swarm": "FLOOR_SWARM=1 vitest run"
+    "test:swarm": "FLOOR_SWARM=1 vitest run",
+    "importer": "tsx src/importer.ts"
   },
   "dependencies": {
     "@arkiv-network/sdk": "1.0.1",

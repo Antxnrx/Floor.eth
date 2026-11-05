@@ -67,3 +67,14 @@ describe.runIf(process.env.FLOOR_SWARM)("Swarm round trip on a local Bee node", 
     console.log(`swarm ref ${reference} (${size} bytes) batch ${batch}`);
   }, 180_000);
 });
+
+/** Live read against Arkiv's Rabdi testnet with the SDK (reads need no funds; access key optional for reads). */
+describe.runIf(process.env.FLOOR_LIVE)("Arkiv Rabdi testnet (live read)", () => {
+  it("SDK query path works with our schema and owner filter", async () => {
+    const { arkivClients, latestRating, singleVerifierRoutes } = await import("../src/arkiv.js");
+    const { publicClient } = arkivClients({ accessKey: process.env.ARKIV_ACCESS_KEY ?? "" });
+    const writer = "0x000000000000000000000000000000000000F100" as const;
+    expect(await latestRating(publicClient, writer, RSETH)).toBeNull(); // nothing written by this address yet
+    expect(Array.isArray(await singleVerifierRoutes(publicClient, writer))).toBe(true);
+  }, 60_000);
+});
