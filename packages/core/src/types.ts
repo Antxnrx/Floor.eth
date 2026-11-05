@@ -58,6 +58,12 @@ export interface ForkTestResult {
   forkBlock: number;
   outcome: "NO_INBOUND_LIMIT" | "INBOUND_LIMIT" | "PAUSED" | "TEST_ERROR" | "UNKNOWN";
   revert: string | null;
+  /** Escrow (adapters) in shared decimals at forkBlock; null for mint-class OFTs. */
+  escrowSD?: string | null;
+  /** Largest inbound amount (shared decimals) the app layer accepted, found by binary search. */
+  maxAcceptedSD?: string | null;
+  /** How the result was proven, e.g. "small ok · full ok · full+1 reverts (balance)". */
+  proof?: string;
 }
 
 /** One raw onchain read. The browser verifier replays these via eth_call and compares `result`. */
