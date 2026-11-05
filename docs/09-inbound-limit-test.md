@@ -82,6 +82,12 @@ Implementation: `packages/resolver/src/inbound.ts` (probe), `src/inbound-cli.ts`
 
 Escrow behind unbounded adapters, in whole tokens using each adapter's own shared decimals: USDT 3,301,201,705 · USDe 2,088,039,672 · sUSDe 238,740,672 · PYUSD 1,672,768 · USDG 870,240 · LINK 34,525 · XAUt 30,464 · rsETH 16,990 · WBTC 811.6 · USDtb 230.9 · weETH 0.02 (a minor secondary adapter).
 
-**How this relates to the community's "35 of 39".** Their list covers Aave-exposed adapters on several chains; ours is Ethereum adapters over Aave-listed tokens from LayerZero's metadata. On every adapter both lists name, the outcomes agree. We **independently confirmed dynamically** the two the author could not verify from source: sUSDe (unbounded) and weETH (bounded). We do not claim to reproduce "35/39" itself; the multi-chain list is the next step.
+**How this relates to the community's "35 of 39".** Their list covers Aave-exposed adapters on several chains; ours is Ethereum adapters over Aave-listed tokens from LayerZero's metadata. The two lists overlap:
+- **Agree:** on every overlapping adapter we could probe. That covers USDT0 `0x6c96`, XAUt0, rsETH, WBTC `0x0555`, PYUSD `0xfa0e`, LINK `0x8b31`, USDe, sUSDe, USDtb and USDG, all unbounded, and EtherFi weETH `0xcd2e`, bounded.
+- **Inconclusive:** USDT0 `0x1F74`, which the forum reads as unbounded from source. Our probe returns `TEST_ERROR` because of its custom message codec, so it is unconfirmed by us.
+- **Not in their list (as far as we can tell):** a secondary weETH adapter `0x4eaf`, unbounded but holding only 0.02 weETH.
+- **Dynamic confirmation:** we confirmed by simulation the two the author could not verify from source, sUSDe (unbounded) and weETH (bounded).
+
+We do not claim to reproduce "35/39" itself; the multi-chain list is the next step.
 
 **A mistake we caught in our own summary.** The first tally divided every escrow by 10^6. WBTC's adapter uses 8 shared decimals, so that briefly showed "81,162 WBTC". Results now record `sharedDecimals` and `escrowTokens` per adapter. The correct value is 803.77 WBTC in the main adapter.
