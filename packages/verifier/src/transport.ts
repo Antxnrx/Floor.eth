@@ -83,3 +83,13 @@ export function jsonRpcReader(fetchFn: FetchFn, url: string, opts: { batch?: num
     flush,
   };
 }
+
+/**
+ * Adapter for EF Anon-RPC (`@anon-rpc/browser-harness`, docs/19 §5): `new AnonRpcWorker({...}).fetch` is this-bound
+ * and fetch-compatible, so it plugs straight into jsonRpcReader. Use batch=1: privacy transports may not batch.
+ *   const meter = new TrafficMeter();
+ *   const reader = jsonRpcReader(meter.wrap("anon-rpc", fromAnonRpc(worker)), RPC_URL, { batch: 1 });
+ */
+export function fromAnonRpc(worker: { fetch: (url: string, init: { method: string; headers: Record<string, string>; body: string }) => Promise<{ ok: boolean; status: number; json(): Promise<unknown> }> }): FetchFn {
+  return (url, init) => worker.fetch(url, init);
+}
