@@ -1,0 +1,245 @@
+{
+ "source": "https://metadata.layerzero-api.com/v1/metadata (ethereum.tokens, erc20TokenAddress)",
+ "fetchedAt": "2026-11-06",
+ "note": "Ethereum LayerZero adapters whose underlying token is listed on Aave. Not the community's exact 39-adapter list (which also covers other chains); see docs/09.",
+ "adapters": [
+  {
+   "oapp": "0x093a44369a75afbc245680eb5b296bab9983557b",
+   "symbol": "LINK",
+   "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x8b3157e78f4ea5ad124e16f8c9df5fa27a7b0b33",
+   "symbol": "LINK",
+   "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
+   "issuer": "hybridge",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xee381e476b4335b8584a2026f3e845edac2c69de",
+   "symbol": "LINK",
+   "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
+   "issuer": "harmony",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x53e1c2647a6c7fb34c3b18377061cb05ab64d816",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "glue",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x688e72142674041f8f6af4c808a4045ca1d6ac82",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "byusd",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xa2c323fe5a74adffad2bf3e007e36bb029606444",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "paypal",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xe9e8330a71912f03e54e7d93795acd9a56f070aa",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "plume",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xfa0e06b54986ad96de87a8c56fea76fbd8d493f8",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "flow",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x147bde4f997f0d4c7544ed0c55eacf1e5e6bf9c4",
+   "symbol": "USDG",
+   "underlying": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+   "issuer": "paxos",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xa755782a71bb7ae05ce9b74646ddb52206b96a65",
+   "symbol": "USDG",
+   "underlying": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+   "issuer": "paxos",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x1f748c76de468e9d11bd340fa9d5cbadf315dfb0",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "usdt0",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x2d342de4c58a871b3525740c58a1c112d5835865",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "Zircuit Finance usdt OApp",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x6925ccd29e3993c82a574ced4372d8737c6dbba6",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "citrea",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x6c96de32cea08842dcc4058c14d3aaad7fa41dee",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "usdt0",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x811ed79db9d34e83bdb73df6c3e07961cfb0d5c0",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "usdt0",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x933597a323eb81cae705c5bc29985172fd5a3973",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": null,
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xc2e75f4db642cf1b8b5ca9a1dc0450dae9505352",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xcc1b99ddac1a33c201a742a1851662e87bc7f22c",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "layerzero",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xf6a097b278383ef0a800abd7d700b29b159b19b5",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "harmony",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+   "symbol": "USDe",
+   "underlying": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+   "issuer": "ethena",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xb93e47a4901adccceae4cf7ac4cc74613abb4cf3",
+   "symbol": "USDe",
+   "underlying": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xc708b6887db46005da033501f8aebee72d191a5d",
+   "symbol": "USDtb",
+   "underlying": "0xc139190f447e929f090edeb554d95abb8b18ac1c",
+   "issuer": "ethena",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "wbtc",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x2c01390e10e44c968b73a7bcff7e4b4f50ba76ed",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "citrea",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x713441e6e7865ad91c3a89620dff1cdad49900a6",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xab6ebe9472e2e4b6fe720dad16701f32ab905cc6",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "harmony",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xf1648c50d2863f780c57849d812b4b7686031a3d",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "layerzero",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x1f033d91919ff79bb0fa66fcb378549f6746f03d",
+   "symbol": "XAUT",
+   "underlying": "0x68749665ff8d2d112fa859aa293f07a622782f38",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xb9c2321bb7d0db468f570d10a424d1cc8efd696c",
+   "symbol": "XAUT",
+   "underlying": "0x68749665ff8d2d112fa859aa293f07a622782f38",
+   "issuer": "usdt0",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x85d456b2dff1fd8245387c0bfb64dfb700e98ef3",
+   "symbol": "rsETH",
+   "underlying": "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
+   "issuer": "kelpdao",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+   "symbol": "sUSDe",
+   "underlying": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+   "issuer": "ethena",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0x4eaf10d30a9e988c5e73b328a0ddbd4ffad73913",
+   "symbol": "weETH",
+   "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+   "issuer": "etherfi",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xcd2eb13d6831d4602d80e5db9230a57596cdca63",
+   "symbol": "weETH",
+   "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+   "issuer": "etherfi",
+   "type": "ProxyOFT"
+  },
+  {
+   "oapp": "0xfe7fe01f8b9a76803af3750144c2715d9bcf7d0d",
+   "symbol": "weETH",
+   "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+   "issuer": "etherfi",
+   "type": "ProxyOFT"
+  }
+ ]
+}
