@@ -1,0 +1,2457 @@
+{
+ "block": 26351514,
+ "rpcs": [
+  "eth.drpc.org",
+  "eth-mainnet.public.blastapi.io",
+  "gateway.tenderly.co"
+ ],
+ "method": "eth_call from EndpointV2 (no broadcast); docs/09",
+ "rows": [
+  {
+   "oapp": "0x093a44369a75afbc245680eb5b296bab9983557b",
+   "symbol": "LINK",
+   "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 0.080668,
+   "eids": [
+    30465
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30465,
+     "forkBlock": 26351514,
+     "escrowSD": "80668",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80668",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x8b3157e78f4ea5ad124e16f8c9df5fa27a7b0b33",
+   "symbol": "LINK",
+   "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
+   "issuer": "hybridge",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 34524.844813,
+   "eids": [
+    30367
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "34524844813",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "34524844813",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xee381e476b4335b8584a2026f3e845edac2c69de",
+   "symbol": "LINK",
+   "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
+   "issuer": "harmony",
+   "type": "ProxyOFT",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  },
+  {
+   "oapp": "0x53e1c2647a6c7fb34c3b18377061cb05ab64d816",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "glue",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 1.124131,
+   "eids": [
+    30342
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30342,
+     "forkBlock": 26351514,
+     "escrowSD": "1124131",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "1124131",
+     "proof": "full escrow released in one inbound message · full+1 reverts (InsufficientFunds()) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x688e72142674041f8f6af4c808a4045ca1d6ac82",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "byusd",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 130007.32534,
+   "eids": [
+    30362
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26351514,
+     "escrowSD": "130007325340",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "130007325340",
+     "proof": "full escrow released in one inbound message · full+1 reverts (InsufficientFunds()) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xa2c323fe5a74adffad2bf3e007e36bb029606444",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "paypal",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 0,
+   "eids": [
+    30109,
+    30110,
+    30168,
+    30274,
+    30339,
+    30396
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 6
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30109,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30274,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30396,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xe9e8330a71912f03e54e7d93795acd9a56f070aa",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "plume",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 26.832025,
+   "eids": [
+    30370
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30370,
+     "forkBlock": 26351514,
+     "escrowSD": "26832025",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "26832025",
+     "proof": "full escrow released in one inbound message · full+1 reverts (InsufficientFunds()) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xfa0e06b54986ad96de87a8c56fea76fbd8d493f8",
+   "symbol": "PYUSD",
+   "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+   "issuer": "flow",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 1542732.319608,
+   "eids": [
+    30336
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30336,
+     "forkBlock": 26351514,
+     "escrowSD": "1542732319608",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "1542732319608",
+     "proof": "full escrow released in one inbound message · full+1 reverts (InsufficientFunds()) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x147bde4f997f0d4c7544ed0c55eacf1e5e6bf9c4",
+   "symbol": "USDG",
+   "underlying": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+   "issuer": "paxos",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 0,
+   "eids": [
+    30110,
+    30168,
+    30181,
+    30274,
+    30339,
+    30416
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 6
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30181,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30274,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30416,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xa755782a71bb7ae05ce9b74646ddb52206b96a65",
+   "symbol": "USDG",
+   "underlying": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
+   "issuer": "paxos",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 870240.098656,
+   "eids": [
+    30108,
+    30367
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 2
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30108,
+     "forkBlock": 26351514,
+     "escrowSD": "870240098656",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "870240098656",
+     "proof": "full escrow released in one inbound message · full+1 reverts (InsufficientFunds()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "870240098656",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "870240098656",
+     "proof": "full escrow released in one inbound message · full+1 reverts (InsufficientFunds()) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x1f748c76de468e9d11bd340fa9d5cbadf315dfb0",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "usdt0",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 26259539.435977,
+   "eids": [
+    30110,
+    30125,
+    30168,
+    30343,
+    30420
+   ],
+   "outcome": "TEST_ERROR",
+   "routeCounts": {
+    "TEST_ERROR": 5
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "26259539435977",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30125,
+     "forkBlock": 26351514,
+     "escrowSD": "26259539435977",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26351514,
+     "escrowSD": "26259539435977",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30343,
+     "forkBlock": 26351514,
+     "escrowSD": "26259539435977",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30420,
+     "forkBlock": 26351514,
+     "escrowSD": "26259539435977",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x2d342de4c58a871b3525740c58a1c112d5835865",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "Zircuit Finance usdt OApp",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 1000,
+   "eids": [
+    30184
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26351514,
+     "escrowSD": "1000000000",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "1000000000",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x6925ccd29e3993c82a574ced4372d8737c6dbba6",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "citrea",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 3339.506279,
+   "eids": [
+    30403
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30403,
+     "forkBlock": 26351514,
+     "escrowSD": "3339506279",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3339506279",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x6c96de32cea08842dcc4058c14d3aaad7fa41dee",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "usdt0",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 3299801348.316997,
+   "eids": [
+    30109,
+    30110,
+    30111,
+    30181,
+    30212,
+    30274,
+    30280,
+    30295,
+    30316,
+    30320,
+    30322,
+    30333,
+    30339,
+    30362,
+    30367,
+    30383,
+    30390,
+    30396,
+    30398,
+    30410
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 20
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30109,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30181,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30212,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30274,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30280,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30295,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30316,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30320,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30322,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30333,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30383,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30390,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30396,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30398,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30410,
+     "forkBlock": 26351514,
+     "escrowSD": "3299801348316997",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "3299801348316997",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x811ed79db9d34e83bdb73df6c3e07961cfb0d5c0",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "usdt0",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 0.0109,
+   "eids": [
+    30110,
+    30125,
+    30343,
+    30420
+   ],
+   "outcome": "TEST_ERROR",
+   "routeCounts": {
+    "TEST_ERROR": 4
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30125,
+     "forkBlock": 26351514,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30343,
+     "forkBlock": 26351514,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30420,
+     "forkBlock": 26351514,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x933597a323eb81cae705c5bc29985172fd5a3973",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": null,
+   "type": "ProxyOFT",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  },
+  {
+   "oapp": "0xc2e75f4db642cf1b8b5ca9a1dc0450dae9505352",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 1396017.27131,
+   "eids": [
+    30465
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30465,
+     "forkBlock": 26351514,
+     "escrowSD": "1396017271310",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "1396017271310",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xcc1b99ddac1a33c201a742a1851662e87bc7f22c",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "layerzero",
+   "type": "ProxyOFT",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  },
+  {
+   "oapp": "0xf6a097b278383ef0a800abd7d700b29b159b19b5",
+   "symbol": "USDT",
+   "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "issuer": "harmony",
+   "type": "ProxyOFT",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  },
+  {
+   "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+   "symbol": "USDe",
+   "underlying": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+   "issuer": "ethena",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 2088039671.655209,
+   "eids": [
+    30102,
+    30106,
+    30108,
+    30110,
+    30111,
+    30168,
+    30181,
+    30184,
+    30255,
+    30274,
+    30322,
+    30339,
+    30343,
+    30362,
+    30367,
+    30383,
+    30390,
+    30398,
+    30410,
+    30416,
+    30420
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 21
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30106,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30108,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30181,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30255,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30274,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30322,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30343,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30383,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30390,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30398,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30410,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30416,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30420,
+     "forkBlock": 26351514,
+     "escrowSD": "2088039671655209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "2088039671655209",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xb93e47a4901adccceae4cf7ac4cc74613abb4cf3",
+   "symbol": "USDe",
+   "underlying": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 0,
+   "eids": [
+    30465
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30465,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xc708b6887db46005da033501f8aebee72d191a5d",
+   "symbol": "USDtb",
+   "underlying": "0xc139190f447e929f090edeb554d95abb8b18ac1c",
+   "issuer": "ethena",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 230.929415,
+   "eids": [
+    30110,
+    30184
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 2
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "230929415",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "230929415",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26351514,
+     "escrowSD": "230929415",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "230929415",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "wbtc",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 8,
+   "tokenDecimals": 8,
+   "escrowTokens": 803.76879589,
+   "eids": [
+    30102,
+    30106,
+    30108,
+    30111,
+    30184,
+    30199,
+    30279,
+    30280,
+    30316,
+    30320,
+    30332,
+    30335,
+    30336,
+    30340,
+    30362,
+    30367,
+    30378,
+    30380,
+    30388,
+    30390
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 20
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30106,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30108,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30199,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30279,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30280,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30316,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30320,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30332,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30335,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30336,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30340,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30378,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30380,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30388,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30390,
+     "forkBlock": 26351514,
+     "escrowSD": "80376879589",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "80376879589",
+     "proof": "full escrow released in one inbound message · full+1 reverts (FailedInnerCall()) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x2c01390e10e44c968b73a7bcff7e4b4f50ba76ed",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "citrea",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 8,
+   "tokenDecimals": 8,
+   "escrowTokens": 0.32769349,
+   "eids": [
+    30403
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30403,
+     "forkBlock": 26351514,
+     "escrowSD": "32769349",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "32769349",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x713441e6e7865ad91c3a89620dff1cdad49900a6",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 8,
+   "tokenDecimals": 8,
+   "escrowTokens": 7.52755647,
+   "eids": [
+    30465
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30465,
+     "forkBlock": 26351514,
+     "escrowSD": "752755647",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "752755647",
+     "proof": "full escrow released in one inbound message · full+1 reverts (revert (no data)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xab6ebe9472e2e4b6fe720dad16701f32ab905cc6",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "harmony",
+   "type": "ProxyOFT",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  },
+  {
+   "oapp": "0xf1648c50d2863f780c57849d812b4b7686031a3d",
+   "symbol": "WBTC",
+   "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+   "issuer": "layerzero",
+   "type": "ProxyOFT",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  },
+  {
+   "oapp": "0x1f033d91919ff79bb0fa66fcb378549f6746f03d",
+   "symbol": "XAUT",
+   "underlying": "0x68749665ff8d2d112fa859aa293f07a622782f38",
+   "issuer": "anubis-bridge",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 0,
+   "eids": [
+    30465
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30465,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xb9c2321bb7d0db468f570d10a424d1cc8efd696c",
+   "symbol": "XAUT",
+   "underlying": "0x68749665ff8d2d112fa859aa293f07a622782f38",
+   "issuer": "usdt0",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 30464.367181,
+   "eids": [
+    30102,
+    30106,
+    30109,
+    30110,
+    30125,
+    30168,
+    30212,
+    30339,
+    30343,
+    30367,
+    30383,
+    30390,
+    30396
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 13
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30106,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30109,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30125,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30212,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30343,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30383,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30390,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30396,
+     "forkBlock": 26351514,
+     "escrowSD": "30464367181",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "30464367181",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x85d456b2dff1fd8245387c0bfb64dfb700e98ef3",
+   "symbol": "rsETH",
+   "underlying": "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
+   "issuer": "kelpdao",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 16990.105986,
+   "eids": [
+    30110
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "16990105986",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "16990105986",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+   "symbol": "sUSDe",
+   "underlying": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+   "issuer": "ethena",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 238740672.379186,
+   "eids": [
+    30102,
+    30106,
+    30108,
+    30110,
+    30111,
+    30168,
+    30181,
+    30184,
+    30255,
+    30274,
+    30322,
+    30339,
+    30362,
+    30367,
+    30383,
+    30390,
+    30398,
+    30410,
+    30416,
+    30420
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 20
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30106,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30108,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30181,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30255,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30274,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30322,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30383,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30390,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30398,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30410,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30416,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30420,
+     "forkBlock": 26351514,
+     "escrowSD": "238740672379186",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "238740672379186",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x4eaf10d30a9e988c5e73b328a0ddbd4ffad73913",
+   "symbol": "weETH",
+   "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+   "issuer": "etherfi",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 0.021471,
+   "eids": [
+    30326
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30326,
+     "forkBlock": 26351514,
+     "escrowSD": "21471",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "21471",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xcd2eb13d6831d4602d80e5db9230a57596cdca63",
+   "symbol": "weETH",
+   "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+   "issuer": "etherfi",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 104916.79773,
+   "eids": [
+    30102,
+    30106,
+    30111,
+    30165,
+    30183,
+    30184,
+    30214,
+    30243,
+    30260,
+    30320,
+    30322,
+    30335,
+    30339,
+    30362,
+    30367,
+    30383,
+    30390,
+    30396,
+    30416,
+    30417
+   ],
+   "outcome": "INBOUND_LIMIT",
+   "routeCounts": {
+    "INBOUND_LIMIT": 20
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "20000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 20000000 SD (0.01% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30106,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "20000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 20000000 SD (0.01% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "3000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 3000000000 SD (2.85% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30165,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000 SD (0% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30183,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "2000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 2000000000 SD (1.9% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000000 SD (9.53% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30214,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000 SD (0% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30243,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000 SD (0% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30260,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000 SD (0% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30320,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "2000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 2000000000 SD (1.9% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30322,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000 SD (0% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30335,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000 SD (0% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "2000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 2000000000 SD (1.9% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "10000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 10000000 SD (0% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "2000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 2000000000 SD (1.9% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30383,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "2000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 2000000000 SD (1.9% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30390,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "2000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 2000000000 SD (1.9% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30396,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "20000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 20000000 SD (0.01% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30416,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "1000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 1000000000 SD (0.95% of escrow)"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30417,
+     "forkBlock": 26351514,
+     "escrowSD": "104916797730",
+     "outcome": "INBOUND_LIMIT",
+     "revert": "InboundRateLimitExceeded()",
+     "maxAcceptedSD": "1000000000",
+     "proof": "small ok · full reverts (InboundRateLimitExceeded()) · max accepted 1000000000 SD (0.95% of escrow)"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xfe7fe01f8b9a76803af3750144c2715d9bcf7d0d",
+   "symbol": "weETH",
+   "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+   "issuer": "etherfi",
+   "type": "ProxyOFT",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 0,
+   "eids": [
+    30102,
+    30110,
+    30111,
+    30165,
+    30183,
+    30184,
+    30214,
+    30243,
+    30260,
+    30280,
+    30303
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 11
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30165,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30183,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30214,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30243,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30260,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30280,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30303,
+     "forkBlock": 26351514,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": null,
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound"
+    }
+   ],
+   "crossCheck": "agree"
+  }
+ ],
+ "tally": {
+  "NO_INBOUND_LIMIT": 20,
+  "NO_PEERS": 6,
+  "UNKNOWN": 5,
+  "TEST_ERROR": 2,
+  "INBOUND_LIMIT": 1
+ },
+ "selfCheck": {
+  "ok": true,
+  "detail": "non-endpoint → OnlyEndpoint(0x000000000000000000000000000000000000bEEF); wrong peer → OnlyPeer(30110,0xabababababababababababababababababababababababababababababababab)"
+ }
+}
