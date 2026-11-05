@@ -12,7 +12,8 @@
     "test": "vitest run",
     "test:live": "FLOOR_LIVE=1 vitest run",
     "typecheck": "tsc --noEmit -p .",
-    "inbound": "tsx src/inbound-cli.ts"
+    "inbound": "tsx src/inbound-cli.ts",
+    "feed": "tsx src/feed-cli.ts"
   },
   "dependencies": {
     "@floor/core": "workspace:*",
