@@ -34,3 +34,12 @@ The resolver must reproduce, for the rsETH adapter at block 24,908,284: 26 peers
 ## Tooling
 
 Foundry (`~/.foundry/bin`), Node 26 + pnpm, Go, Python 3, Docker. Public archive-capable RPCs (checked 2026-11-06): `https://eth.drpc.org`, `https://eth-mainnet.public.blastapi.io`, `https://gateway.tenderly.co/public/mainnet`. publicnode now needs a token for historical reads.
+
+## Commands
+
+- Tests: `pnpm -r test` · live: `FLOOR_LIVE=1 pnpm -r test` · contracts: `cd contracts && forge test` · CRE runtime: `cd cre/floor-rating && bun test test/workflow.bun.test.ts`
+- Scan: `pnpm --filter @floor/resolver scan --oapp <addr> --block <n> --symbol <S> --out bundle.json`
+- Inbound probe: `pnpm --filter @floor/resolver inbound --block <n> --out results.json`
+- Feed: `pnpm --filter @floor/resolver feed --bundle bundle.json:<token> --out feed.json`
+- Importer (dry run by default): `pnpm --filter @floor/publish run importer --bundle bundle.json:<token> [--swarm] [--arkiv]`
+- Never `--broadcast`, never send transactions, never write to Arkiv/Swarm mainnet without the user's explicit go-ahead.

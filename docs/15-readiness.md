@@ -2,6 +2,22 @@
 
 **Verdict: yes. Research is done; start building now.** Nothing left needs more research. What's left is setup actions, one booth question and a hard scope cut. Deadline: **Sat Nov 7 2026, 09:00 IST** (verbatim, event details page); our internal target is 07:00 IST, so roughly **28 hours** from this check.
 
+## Build status (updated 2026-11-06, after the first build session)
+
+| Must-have | Status | Where |
+|---|---|---|
+| 1. Resolver (effective state, 3-RPC cross-check) | ✅ done, rsETH fixture passes live | `packages/resolver` |
+| 2. Rule pack v0 + grades with evidence | ✅ done | `packages/core` |
+| 3. Inbound-limit probe | ✅ done: 34 Ethereum adapters probed, calibrated on rsETH/weETH | `packages/resolver`, `docs/09` |
+| 4. CRE workflow → FloorRegistry | ✅ code + tests + WASM compile; **simulation via CLI needs your login** | `cre/floor-rating` |
+| 5. CCIP send → FloorMirror state change | ✅ on the CCIP 2.0 local simulator; **testnet send needs your key** | `contracts` |
+| 6. Arkiv mirror + judged files | ✅ code + live reads + `/arkiv/*.md`; **writes need your key** | `packages/publish`, `arkiv/` |
+| 7. Web page with browser verify | ⚙️ verifier logic done and live-tested; UI wiring is the frontend owner's | `packages/verifier`, `apps/web` |
+| 8. Kelp replay on a fork | ✅ done with the attacker's real txs | `contracts/test/fork/KelpReplay.t.sol` |
+| 9. Swarm evidence + `swarm.md` | ✅ code + local Bee round trip; **public batch needs funds** | `packages/publish`, `arkiv/swarm.md` |
+
+Credential-dependent steps are listed as ready-to-run commands in the root `README.md` ("Commands that need your credentials").
+
 ## Done and verified
 
 - Every number in the brief audited against primary sources / onchain; corrections logged ([00](00-evidence-policy.md)).
@@ -17,14 +33,14 @@
 
 | # | Action | Why |
 |---|---|---|
-| B1 | Install **Bun ≥ 1.2.21** (missing on main machine), CRE CLI, `cre login`, `cre account access` → "Hackathon" | CRE TS SDK needs Bun; deploy approval takes time; simulation works meanwhile |
+| B1 | Bun ≥ 1.2.21 ✅ installed (1.3.1). Still needed: CRE CLI, `cre login`, `cre account access` → "Hackathon" | CRE TS SDK needs Bun; deploy approval takes time; simulation works meanwhile |
 | B2 | Arkiv: faucet + access key (hub.arkiv.network) | Writes to Rabdi testnet |
 | B3 | Deployer wallet funded on the two demo chains (+ CCIP fees; a little USDC for the Morpho vault) | Mainnet loop |
 | B4 | Archive-capable mainnet RPC for forks (public RPCs worked for reads; heavy fork tests may need a keyed provider) | Fork probe + replay |
 | B5 | Swarm postage batch (own Bee node or a service) | Swarm bonus |
 | B6 | Choose and add an open-source licence | Required by Arkiv and CROPS |
 | B7 | Booth: "Can one team win both CRE and CCIP?" (ETHGlobal says all of a partner's tracks count as one pick; winning multiple is the partner's call) | Avoid wasted work |
-| B8 | Pick the CCIP lane and check its version with `@chainlink/ccip-sdk` | "CCIP 2.0" claim |
+| B8 | ✅ Done: Sepolia → Arbitrum Sepolia is a v2.0 lane (`getLaneFeatures`) | "CCIP 2.0" claim |
 
 ## Scope cut
 
