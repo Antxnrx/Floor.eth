@@ -24,7 +24,7 @@ Submission deadline (event details page, verbatim): "**Saturday, November 7th 20
 
 **Our fit:** CRE computes the rating from chain reads + an external source (operator registry / evidence store) and writes a signed report. CCIP: `FloorRegistry` sends status; `FloorMirror._ccipReceive` changes state on the second chain.
 **CRE deploy:** needs approval (`cre account access`, choose "Hackathon"; granted per organisation, reply by email; docs updated 2026-10-09). Simulation is enough for the prize.
-**CCIP 2.0 lanes:** progressive rollout (changelog Jun 11 2026: Ethereum↔Ink, Ethereum↔Mantle, 0G↔Plume); v2.0 tutorials use Ethereum Sepolia ↔ Arbitrum Sepolia; detect lane version with `@chainlink/ccip-sdk`. Claim "CCIP 2.0" only on a v2.0 lane.
+**CCIP 2.0 lanes (checked 2026-11-06 with `@chainlink/ccip-sdk@1.16.1` `getLaneFeatures`):** Ethereum Sepolia → Arbitrum Sepolia, Ethereum Sepolia → Base Sepolia and Base → Arbitrum (mainnet) all report `FINALITY_FAST` defined, i.e. v2.0+ lanes. Background: progressive rollout (changelog Jun 11 2026: Ethereum↔Ink, Ethereum↔Mantle, 0G↔Plume); v2.0 tutorials use Ethereum Sepolia ↔ Arbitrum Sepolia; detect lane version with `@chainlink/ccip-sdk`. Claim "CCIP 2.0" only on a v2.0 lane.
 **Open question for the booth:** can one team win both CRE and CCIP?
 
 ## Arkiv ($15,000) · https://ethglobal.com/events/mumbai/prizes/arkiv

@@ -48,3 +48,40 @@
   "classification": "NO_INBOUND_LIMIT", "matchesCommunity": true, "notes": ""
 }
 ```
+
+## Results (built and run, 2026-11-06)
+
+Implementation: `packages/resolver/src/inbound.ts` (probe), `src/inbound-cli.ts` (`pnpm --filter @floor/resolver inbound --block <n>`), tests in `test/inbound.test.ts`. Raw output: [`packages/resolver/results/inbound-ethereum-26351514.json`](../packages/resolver/results/inbound-ethereum-26351514.json).
+
+**Method as built.** The probe runs `eth_call` from the EndpointV2 address at a pinned block, never a broadcast. It sends a correctly formed OFT credit from the route's real configured peer.
+- **Harness self-check before every run.** The same call must be rejected when sent from a non-endpoint address (`OnlyEndpoint`) and when it claims a wrong peer (`OnlyPeer`). If either check fails, the run aborts.
+- **Proof ladder:**
+  1. A credit of 1 SD unit must succeed.
+  2. A credit for the full escrow must succeed.
+  3. Full escrow + 1 must revert with a balance error, which proves the credit path really moves escrow.
+- **If the full-escrow credit reverts,** binary search measures the largest amount the app layer accepts. That is the inbound cap.
+- **Cross-check:** every decisive result is re-run on a second RPC provider.
+
+**Calibration (live tests pass):**
+
+| Adapter | Expected (community analysis) | Floor probe |
+|---|---|---|
+| rsETH `0x85d4…8Ef3` | no inbound limit | `NO_INBOUND_LIMIT`: full escrow (16,990 rsETH) released in one message |
+| EtherFi weETH `0xcd2e…CA63` | real inbound limit | `INBOUND_LIMIT` on all 20 routes, `InboundRateLimitExceeded()`; caps measured per route (e.g. 20 weETH BSC, 3,000 weETH Optimism) vs 104,917 weETH escrow |
+| USDT0 `0x1F74…FB0` | (custom implementation) | `TEST_ERROR`: custom codec `InvalidMsgType(1)`. Inconclusive, never counted as pass or fail |
+
+**Ethereum, block 26,351,514, 34 LayerZero adapters over Aave-listed tokens** (registry: LayerZero metadata, `packages/resolver/data/adapters-ethereum.json`):
+
+| Outcome | Adapters |
+|---|---|
+| `NO_INBOUND_LIMIT` | **20** (111 routes) |
+| `INBOUND_LIMIT` | 1 (EtherFi weETH main adapter) |
+| `TEST_ERROR` (custom codec) | 2 (USDT0) |
+| `UNKNOWN` (empty escrow, nothing to bound) | 5 |
+| `NO_PEERS` (inactive) | 6 |
+
+Escrow behind unbounded adapters, in whole tokens using each adapter's own shared decimals: USDT 3,301,201,705 · USDe 2,088,039,672 · sUSDe 238,740,672 · PYUSD 1,672,768 · USDG 870,240 · LINK 34,525 · XAUt 30,464 · rsETH 16,990 · WBTC 811.6 · USDtb 230.9 · weETH 0.02 (a minor secondary adapter).
+
+**How this relates to the community's "35 of 39".** Their list covers Aave-exposed adapters on several chains; ours is Ethereum adapters over Aave-listed tokens from LayerZero's metadata. On every adapter both lists name, the outcomes agree. We **independently confirmed dynamically** the two the author could not verify from source: sUSDe (unbounded) and weETH (bounded). We do not claim to reproduce "35/39" itself; the multi-chain list is the next step.
+
+**A mistake we caught in our own summary.** The first tally divided every escrow by 10^6. WBTC's adapter uses 8 shared decimals, so that briefly showed "81,162 WBTC". Results now record `sharedDecimals` and `escrowTokens` per adapter. The correct value is 803.77 WBTC in the main adapter.
