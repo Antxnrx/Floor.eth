@@ -17,7 +17,7 @@
 
 | # | Action | Why |
 |---|---|---|
-| B1 | Install CRE CLI, `cre login`, `cre account access` → "Hackathon" | Deploy approval takes time; simulation works meanwhile |
+| B1 | Install **Bun ≥ 1.2.21** (missing on main machine), CRE CLI, `cre login`, `cre account access` → "Hackathon" | CRE TS SDK needs Bun; deploy approval takes time; simulation works meanwhile |
 | B2 | Arkiv: faucet + access key (hub.arkiv.network) | Writes to Rabdi testnet |
 | B3 | Deployer wallet funded on the two demo chains (+ CCIP fees; a little USDC for the Morpho vault) | Mainnet loop |
 | B4 | Archive-capable mainnet RPC for forks (public RPCs worked for reads; heavy fork tests may need a keyed provider) | Fork probe + replay |
@@ -62,5 +62,6 @@
 
 - Whether our inbound-limit count matches 35/39.
 - CCIP lane version on the chosen pair.
-- Arkiv SDK expiry parameter name in the current SDK.
-- Morpho V2 factory addresses on the chosen chains.
+- CRE's 15 EVM reads per execution: the workflow re-checks a critical subset, the resolver supplies the rest ([19](19-sponsor-dev-reference.md)).
+- Anon-RPC traffic-share measurement (no documented method; we count in our own wrapper).
+- Arkiv SDK is schema-based (`defineSchema`, `expiration` required); old payload/annotations examples are stale.
