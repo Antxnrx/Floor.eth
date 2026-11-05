@@ -33,4 +33,4 @@ The resolver must reproduce, for the rsETH adapter at block 24,908,284: 26 peers
 
 ## Tooling
 
-Foundry (`~/.foundry/bin`), Node 26 + pnpm, Go, Python 3, Docker. Public RPCs: `https://eth.drpc.org`, `https://ethereum-rpc.publicnode.com`.
+Foundry (`~/.foundry/bin`), Node 26 + pnpm, Go, Python 3, Docker. Public archive-capable RPCs (checked 2026-11-06): `https://eth.drpc.org`, `https://eth-mainnet.public.blastapi.io`, `https://gateway.tenderly.co/public/mainnet`. publicnode now needs a token for historical reads.
