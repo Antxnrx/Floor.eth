@@ -1,0 +1,22 @@
+{
+  "name": "@floor/cre-floor-rating",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "main.ts",
+  "scripts": {
+    "test": "vitest run test/logic.test.ts",
+    "typecheck": "tsc --noEmit -p .",
+    "test:live": "FLOOR_LIVE=1 vitest run test/logic.test.ts",
+    "test:workflow": "bun test test/workflow.bun.test.ts"
+  },
+  "dependencies": {
+    "@chainlink/cre-sdk": "1.23.0",
+    "viem": "^2.38.6",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@floor/core": "workspace:*",
+    "vitest": "^3.2.4"
+  }
+}

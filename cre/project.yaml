@@ -1,0 +1,13 @@
+# CRE project settings (docs.chain.link/cre). RPCs are public endpoints; no keys in this file.
+staging-settings:
+  rpcs:
+    - chain-name: ethereum-mainnet
+      url: https://eth.drpc.org
+    - chain-name: ethereum-testnet-sepolia
+      url: https://ethereum-sepolia-rpc.publicnode.com
+production-settings:
+  rpcs:
+    - chain-name: ethereum-mainnet
+      url: https://eth.drpc.org
+    - chain-name: ethereum-testnet-sepolia
+      url: https://ethereum-sepolia-rpc.publicnode.com

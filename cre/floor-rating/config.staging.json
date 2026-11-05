@@ -1,0 +1,9 @@
+{
+  "schedule": "0 */5 * * * *",
+  "feedUrl": "https://raw.githubusercontent.com/MeghVyas3132/Floor.eth/main/cre/floor-rating/fixtures/feed-rseth-prehack.json",
+  "sourceChainSelectorName": "ethereum-mainnet",
+  "registryChainSelectorName": "ethereum-testnet-sepolia",
+  "registryAddress": "0x0000000000000000000000000000000000000000",
+  "gasLimit": "500000",
+  "isTestnet": true
+}
