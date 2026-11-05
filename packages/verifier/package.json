@@ -1,0 +1,18 @@
+{
+  "name": "@floor/verifier",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "test": "vitest run",
+    "test:live": "FLOOR_LIVE=1 vitest run",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@floor/core": "workspace:*",
+    "@floor/resolver": "workspace:*",
+    "viem": "^2.38.6"
+  }
+}

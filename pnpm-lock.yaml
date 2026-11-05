@@ -80,6 +80,18 @@ importers:
         specifier: ^2.38.6
         version: 2.57.16(typescript@5.9.3)(zod@3.25.76)
 
+  packages/verifier:
+    dependencies:
+      '@floor/core':
+        specifier: workspace:*
+        version: link:../core
+      '@floor/resolver':
+        specifier: workspace:*
+        version: link:../resolver
+      viem:
+        specifier: ^2.38.6
+        version: 2.57.16(typescript@5.9.3)(zod@3.25.76)
+
 packages:
 
   '@adraffy/ens-normalize@1.11.1':
