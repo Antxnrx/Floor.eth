@@ -30,3 +30,48 @@ export function mountInView(root = document) {
 	for (const target of targets) io.observe(target);
 	return { destroy: () => io.disconnect() };
 }
+
+/*
+ * One-shot entrance for [data-reveal] blocks.
+ *
+ * The resting state in the stylesheet is the *arrived* state, and the start
+ * state is only ever applied from here. So the content is visible to anyone
+ * whose script did not run, to a crawler, and to a print — the three places a
+ * reveal gated on a class ships a blank section. This function is the only
+ * thing that can hide the block, and it is also the thing that unhides it.
+ *
+ * Unobserved once revealed: an entrance that replays on every scroll past is
+ * a page that will not settle.
+ */
+export function mountReveal(root = document) {
+	const targets = [...root.querySelectorAll("[data-reveal]")];
+	if (!targets.length) return { destroy() {} };
+
+	// Nothing to arm for someone who asked motion to stop — the blocks are
+	// already in their final state, which is the whole point of the default.
+	if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+		return { destroy() {} };
+
+	for (const target of targets) target.classList.add("is-armed");
+
+	const io = new IntersectionObserver(
+		(entries) => {
+			for (const entry of entries) {
+				if (!entry.isIntersecting) continue;
+				// Swapped rather than added: the armed state is a plain
+				// `opacity: 0` with no transition on it, so arming can never
+				// be seen happening, and the entrance is an animation the
+				// revealed class brings with it.
+				entry.target.classList.remove("is-armed");
+				entry.target.classList.add("is-revealed");
+				io.unobserve(entry.target);
+			}
+		},
+		// Later than the loops' margin: a loop wants to be at the right phase
+		// by the time it is read, an entrance wants to be seen happening.
+		{ rootMargin: "0px 0px -12% 0px" },
+	);
+
+	for (const target of targets) io.observe(target);
+	return { destroy: () => io.disconnect() };
+}
