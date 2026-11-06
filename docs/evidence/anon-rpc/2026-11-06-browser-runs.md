@@ -61,3 +61,24 @@ What the page does about it: the Arkiv lookup tries Anon-RPC first and, on any f
 ## For the demo
 
 Use Nym. Start the check on camera, cut while it runs (no speed-up), show the result with the traffic meter. Have the direct-mode result as the fallback, labelled as such. Never present passthrough as anonymous.
+
+## Mainnet RPCs without a Content-Type header (curl, 2026-11-06 evening)
+
+Same request the Nym worker sends: archive `eth_getCode` at block 24,908,284, header removed, `Origin: null`. Then a batch of 10, three times.
+
+| Provider | Archive, no Content-Type | Batch of 10 ×3 | Browser CORS |
+|---|---|---|---|
+| blastapi | ✅ | ✅ 10/10 ×3 | ✅ |
+| MEV Blocker | ✅ | ✅ | ✅ |
+| Tenderly public gateway | ✅ | ✅ | ✅ |
+| ZAN | ✅ | ✅ | ✅ |
+| dRPC | ✅ | ❌ "Batch of more than 3 requests are not allowed" | ✅ |
+| 1rpc, Nodies | ❌ 415 / content-type error | — | ✅ |
+| publicnode, Ankr, BlockPI | ❌ key needed (archive) | — | — |
+| Flashbots | ❌ state pruned | — | — |
+| Cloudflare | ❌ internal error | — | — |
+| merkle, OnFinality, thirdweb | ❌ rate limited | — | — |
+| llamarpc, omniatech, payload.de | ❌ 5xx / unreachable | — | — |
+| lava | ❌ discontinued | — | — |
+
+The verify page now defaults to the four that pass (rotating, with benching). Not yet re-measured through Nym itself: Tenderly and ZAN.

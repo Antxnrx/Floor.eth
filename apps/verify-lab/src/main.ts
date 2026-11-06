@@ -30,10 +30,12 @@ const NETWORKS: Record<Exclude<Net, "direct">, { address: string; config?: unkno
 };
 
 const DEFAULTS = {
-  // Archive + batch-capable free providers that accept Anon-RPC traffic (measured 2026-11-06 in Chrome):
-  // blastapi and MEV Blocker answer through Nym. Nodies (HTTP 415, strict Content-Type) and 1rpc (content-type error)
-  // reject requests arriving through the Nym exit; Nodies also blocks the sandbox's null origin (CORS).
-  rpc: "https://eth-mainnet.public.blastapi.io, https://rpc.mevblocker.io",
+  // Free, keyless providers that pass all four checks (measured 2026-11-06): archive reads at the pinned block,
+  // batches of 10, CORS for the sandbox, and requests WITHOUT a Content-Type header (the Nym worker drops it).
+  // Fail: Nodies + 1rpc (415 without Content-Type), dRPC (batches > 3 refused), publicnode/ankr/blockpi (key for
+  // archive), flashbots (pruned), cloudflare (internal error), merkle/onfinality/thirdweb (rate limited).
+  // Reads rotate across all of them; a rate-limited one is benched for 30 s. Add your own keyed RPC in the page.
+  rpc: "https://eth-mainnet.public.blastapi.io, https://rpc.mevblocker.io, https://gateway.tenderly.co/public/mainnet, https://api.zan.top/eth-mainnet",
   boot: "https://ethereum-rpc.publicnode.com",
   hash: "0x385b1ae424c9c5d46bb22a0081d358385a7dda8bd76f314baa42242acda86561",
   // Floor's writer wallet (also the deployer); README "Writer wallet and query". Override with ?writer=
