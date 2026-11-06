@@ -76,9 +76,12 @@ export function Verify({ id }: { id: string }) {
         </Card>
 
         <Card title="Anon-RPC traffic">
+          {/* The dash holds the figure's slot at full size so the panel does
+              not reflow when the run lands. The label carries the state, which
+              a bare dash on its own could not. */}
           <div className="stat stat-bare">
-            <b className={done ? "ok" : "muted"}>{done ? "100%" : "—"}</b>
-            <span>of chain reads via Anon-RPC{done ? " (0 direct)" : ""}</span>
+            <b className={done ? "ok" : "pending"}>{done ? "100%" : "—"}</b>
+            <span>{done ? "of chain reads via Anon-RPC (0 direct)" : "no chain reads replayed yet"}</span>
           </div>
           <h4>Failure states this screen must handle</h4>
           <ul className="results">

@@ -1,8 +1,9 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { Dashboard } from "./screens/Dashboard";
 import { Asset } from "./screens/Asset";
 import { Verify } from "./screens/Verify";
 import { About, Blast, Check, Enforcement, Kelp, Rules } from "./screens/Others";
+import { usePixelShapes } from "./effects/usePixelShapes";
 
 const Landing = lazy(() => import("./screens/Landing").then((m) => ({ default: m.Landing })));
 const Docs = lazy(() => import("./screens/Docs").then((m) => ({ default: m.Docs })));
@@ -52,11 +53,32 @@ const NAV = [
   ["/about", "About"],
 ] as const;
 
+/**
+ * The prototype's chrome: honesty banner, nav, and the one effect the product
+ * screens borrow from the landing page. The shapes are mounted here rather than
+ * per screen so any screen can declare a `[data-pixel-shape]` host and get it,
+ * and so the remount is keyed on the route that replaced the hosts.
+ */
+function Shell({ path, children }: { path: string; children: ReactNode }) {
+  const main = useRef<HTMLElement>(null);
+  usePixelShapes(main, path);
+  return (
+    <>
+      <div className="proto">Prototype for design handoff · REAL = actual onchain scans · MOCK = invented UI states</div>
+      <nav>
+        <a className="brand" href="#/">FLOOR</a>
+        {NAV.map(([to, label]) => <a key={to} href={`#${to}`} className={path.startsWith(to) ? "on" : ""}>{label}</a>)}
+      </nav>
+      <main ref={main}>{children}</main>
+    </>
+  );
+}
+
 export function App() {
   const path = useHash();
-  // The two public pages bring their own chrome and dark theme, so they bypass
-  // the prototype banner and nav below. The landing also owns every non-route
-  // hash, since its in-page anchors are written bare.
+  // The two public pages bring their own chrome, so they bypass the prototype
+  // banner and nav. The landing also owns every non-route hash, since its
+  // in-page anchors are written bare.
   if (path === "/docs") return <Suspense fallback={null}><Docs /></Suspense>;
   if (path === "/" || !isRoute(path)) return <Suspense fallback={null}><Landing /></Suspense>;
   const [, root, arg = ""] = path.split("/");
@@ -74,14 +96,5 @@ export function App() {
       default: return <p>Not found</p>;
     }
   })();
-  return (
-    <>
-      <div className="proto">Prototype for design handoff · REAL = actual onchain scans · MOCK = invented UI states</div>
-      <nav>
-        <a className="brand" href="#/">FLOOR</a>
-        {NAV.map(([to, label]) => <a key={to} href={`#${to}`} className={path.startsWith(to) ? "on" : ""}>{label}</a>)}
-      </nav>
-      <main>{screen}</main>
-    </>
-  );
+  return <Shell path={path}>{screen}</Shell>;
 }

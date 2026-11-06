@@ -1,40 +1,89 @@
 /*
- * One token set for the landing page and the app.
+ * One token set for the landing page, the docs and the app.
  *
- * Dark only, on purpose: the product is a monitoring surface and the grade
- * colours only read correctly against a dark ground. Everything chromatic on
- * either surface is a grade — if something is coloured, it means something.
+ * The landing is the reference: ghost white page, void-black hero and footer,
+ * one hairline rule colour, Lato for everything that is not data. The app used
+ * to be its own dark theme; it is now the same surface, so a reader moving from
+ * the home page into a scan does not change rooms.
+ *
+ * Light, not dark. The scan is read next to the marketing page and next to the
+ * docs, and the wireframe shapes are drawn in ink at 30% — a drawing that only
+ * exists on a light ground (src/effects/pixelShapes.js). Dark is kept for the
+ * two bands the landing itself keeps dark: the top banner and the footer.
  */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg: #08090b;
-  --panel: #0e1013;
-  --panel-2: #121519;
-  --line: #1d2127;
-  --line-2: #2a3038;
+  /* The four the landing declares in its @theme block; same hexes. */
+  --color-ghost: #f8f8ff;
+  --color-void: #010204;
+  --color-ink: #0e0e14;
+  --color-rule: #dcdce8;
 
-  --ink: #e8ebef;
-  --dim: #9aa3ae;
-  --muted: #6f7883;
+  /*
+   * Ink on ghost white as explicit steps, because the contrast ratio is the
+   * thing being chosen: 60% is 4.90:1, 65% is 5.84:1, 70% is 7.01:1. Nothing
+   * below 60 exists — 55% is 4.14:1 and fails body text.
+   */
+  --ink-60: rgb(14 14 20 / 0.6);
+  --ink-65: rgb(14 14 20 / 0.65);
+  --ink-70: rgb(14 14 20 / 0.7);
+  /* Non-text only: hairlines, chart gridlines, wireframe strokes. */
+  --ink-12: rgb(14 14 20 / 0.12);
+  --ink-30: rgb(14 14 20 / 0.3);
 
-  /* Grades. These four are the only saturated colours in the product. */
-  --ok: #30d158;
-  --degraded: #ffd60a;
-  --unknown: #8e949d;
-  --breached: #ff453a;
+  /* Ghost on void, for the banner and the footer: 55% is 7.4:1, 70% is 12.0:1. */
+  --ghost-55: rgb(248 248 255 / 0.55);
+  --ghost-70: rgb(248 248 255 / 0.7);
+  --ghost-rule: rgb(248 248 255 / 0.15);
+
+  --bg: var(--color-ghost);
+  /* A panel is the same white the landing's shape cards sit on, not a tint. */
+  --panel: #fff;
+  --ink: var(--color-ink);
+  --dim: var(--ink-65);
+  --muted: var(--ink-60);
+  --line: var(--color-rule);
+
+  /*
+   * Grades, re-derived for a light ground. The dark set (#30d158, #ffd60a,
+   * #ff453a) measures 1.9:1, 1.3:1 and 3.2:1 on ghost white and is unreadable
+   * there; these keep the hue and clear 5:1. Still the only saturated colours
+   * in the product — if something is coloured, it means something.
+   */
+  --ok: #0b7a35;
+  --degraded: #8a6200;
+  --unknown: #5a616b;
+  --breached: #c0241a;
 
   /* Provenance badges: whether a row is a real scan or a UI placeholder. */
-  --real: #22d3ee;
-  --mock: #a78bfa;
+  --real: #0e6e80;
+  --mock: #5b3fc4;
 
-  --accent: #6ea8ff;
+  /*
+   * Grade washes for chart bars and chip grounds. 10% of the grade over white
+   * stays under the text that sits on it.
+   */
+  --ok-wash: rgb(11 122 53 / 0.1);
+  --degraded-wash: rgb(138 98 0 / 0.1);
+  --unknown-wash: rgb(90 97 107 / 0.1);
+  --breached-wash: rgb(192 36 26 / 0.1);
+  --real-wash: rgb(14 110 128 / 0.1);
+  --mock-wash: rgb(91 63 196 / 0.1);
+
+  --accent: #1f4fd8;
 
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sans: "Lato", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --page: 1120px;
-  --gut: 24px;
-  --r: 8px;
-  --head: 58px;
+  /* The landing's measure and gutters, so every surface lines up. */
+  --measure: 96rem;
+  --gut: clamp(1.5rem, 5vw, 6rem);
+  /*
+   * Square, not rounded. The landing draws hairline boxes with no radius and
+   * no shadow; a rounded card in the app would be the one thing on screen
+   * that came from somewhere else.
+   */
+  --r: 0px;
+  --head: 56px;
 }
