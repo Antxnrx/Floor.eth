@@ -87,10 +87,26 @@ Never paste keys into files. Use a Foundry keystore (`cast wallet import`) and e
 | 9 | Morpho Vault V2 + FloorSentinel on Base Sepolia (reads the mirror) | `FLOOR_RATING=<mirror> VAULT_V2_FACTORY=0xE3a2CEbca662d99D0F279aF13a6bb8c9825D2ea0 VAULT_ASSET=0x036CbD53842c5426634e7929541eC2318f3dCF7e forge script script/MorphoDemo.s.sol:MorphoDemo --rpc-url https://sepolia.base.org --broadcast --account floor-deployer-2 --gas-estimate-multiplier 300`; after the CCIP message lands, anyone: `cast send <sentinel> "poke(address)" 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7 --rpc-url https://sepolia.base.org --account floor-deployer-2`. (No Sepolia vault: createVaultV2 costs ~34M gas there since Glamsterdam; the Sepolia flow is fork-tested.) |
 | 10 | Licence | ✅ Apache-2.0 (`LICENSE`) |
 
-## Writer wallet and query (Arkiv)
+## Live testnet deployment
 
-- Writer wallet: **TODO after step 8**
-- Query: `arkiv_query` with `arkiv.schema = str('floor.route') AND independent = u64(1)`, filtered by owner = writer (see `arkiv/schema.md`)
+Everything below is live and was checked onchain (full table with tx hashes: `docs/evidence/live-2026-11-07.md`).
+
+- **Verify + dataset pages, served from Swarm:** https://bah5acgzaj4pea2h3q3knmuv4u2ng24wv4x3p5hbhlyi7n5dkbluwu6ejbv7q.bzz.limo/ (`dataset.html` for the Arkiv query)
+- **Ethereum Sepolia:** FloorRegistry `0xE69c3e47DdaB083D0Ba4D8aD2B2dA8531ec18220` (rsETH = BREACHED, written by the CRE workflow), FloorBroadcaster `0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4`
+- **Base Sepolia:** FloorMirror `0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6` (rating delivered by CCIP), Morpho Vault V2 `0xff5E3b49d94AA7C5213938c4B8FF1983456869Be`, FloorSentinel `0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4`
+- **Swarm evidence:** `ca035fbdfa74bfd611af912e4a7debb53f38047a78bcd181a20c1490e8419778`
+- **Arkiv writer:** `0x563567A5788820093f71951DA383838D71ad2360` (Rabdi)
+
+## Arkiv queries (all filtered by the writer as creator)
+
+```ts
+// the Mirror-track query: every adapter backing Aave collateral that can release everything in one message
+client.select().from(FloorAdapter).where(eq("outcome", "NO_INBOUND_LIMIT")).createdBy(writer).orderBy(desc("routes")).fetch()
+// the flight recorder: rsETH's sourced bridge history, oldest first
+client.select().from(FloorEvent).where(eq("token", addr(rsETH))).createdBy(writer).orderBy(asc("block")).fetch()
+// a rating and its routes
+client.select().from(FloorRating).where(eq("token", addr(rsETH))).createdBy(writer).orderBy(desc("block")).fetch()
+```
 
 ## Libraries used
 
