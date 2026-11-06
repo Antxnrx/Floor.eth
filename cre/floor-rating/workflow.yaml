@@ -19,3 +19,17 @@ rehearsal-settings:
     workflow-path: "./main.ts"
     config-path: "./config.staging.json"
     secrets-path: ""
+lie-grade-settings:
+  user-workflow:
+    workflow-name: "floor-rating"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.lie-grade.json"
+    secrets-path: ""
+lie-evidence-settings:
+  user-workflow:
+    workflow-name: "floor-rating"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.lie-evidence.json"
+    secrets-path: ""

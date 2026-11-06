@@ -1,0 +1,9 @@
+{
+  "schedule": "0 */5 * * * *",
+  "feedUrl": "https://raw.githubusercontent.com/MeghVyas3132/Floor.eth/main/cre/floor-rating/fixtures/feed-rseth-lie-evidence.json",
+  "sourceChainSelectorName": "ethereum-mainnet",
+  "registryChainSelectorName": "ethereum-testnet-sepolia",
+  "registryAddress": "0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6",
+  "gasLimit": "500000",
+  "isTestnet": true
+}

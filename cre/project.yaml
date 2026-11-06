@@ -18,3 +18,17 @@ rehearsal-settings:
       url: https://eth.drpc.org
     - chain-name: ethereum-testnet-sepolia
       url: http://127.0.0.1:8546
+# Demo: the workflow fed a lying feed (fixtures/feed-rseth-lie-grade.json) must REJECT and write nothing.
+lie-grade-settings:
+  rpcs:
+    - chain-name: ethereum-mainnet
+      url: https://eth.drpc.org
+    - chain-name: ethereum-testnet-sepolia
+      url: https://ethereum-sepolia-rpc.publicnode.com
+# Demo: the workflow fed a lying feed (fixtures/feed-rseth-lie-evidence.json) must REJECT and write nothing.
+lie-evidence-settings:
+  rpcs:
+    - chain-name: ethereum-mainnet
+      url: https://eth.drpc.org
+    - chain-name: ethereum-testnet-sepolia
+      url: https://ethereum-sepolia-rpc.publicnode.com
