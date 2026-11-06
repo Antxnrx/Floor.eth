@@ -22,6 +22,9 @@
 import { bundleHash, type EvidenceBundle } from "@floor/core";
 import { Bee } from "@ethersphere/bee-js";
 import { readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+/** Paths are relative to where the command was run (pnpm --filter runs the script inside packages/publish). */
+const userPath = (f: string) => resolve(process.env.INIT_CWD ?? process.cwd(), f);
 import { getAddress, type Address, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { createWalletClient, ExpirationTime } from "@arkiv-network/sdk";
@@ -104,7 +107,7 @@ const feedEntries: unknown[] = [];
 for (const p of pairs) {
   const [file, tokenRaw] = p.split(":");
   const token = getAddress(tokenRaw!);
-  const bundle = JSON.parse(readFileSync(file!, "utf8")) as EvidenceBundle;
+  const bundle = JSON.parse(readFileSync(userPath(file!), "utf8")) as EvidenceBundle;
   const hash = bundleHash(bundle);
   console.log(`${bundle.state.asset.symbol} ${token} @${bundle.state.scan.block} grade=${bundle.verdict.grade} hash=${hash}`);
 
@@ -215,6 +218,6 @@ if (flag("--dataset")) {
 
 const feedOut = val("--feed");
 if (feedOut) {
-  writeFileSync(feedOut, JSON.stringify({ schema: "floor.feed/v0", entries: feedEntries }, null, 1));
+  writeFileSync(userPath(feedOut), JSON.stringify({ schema: "floor.feed/v0", entries: feedEntries }, null, 1));
   console.log(`\nwrote CRE feed ${feedOut}`);
 }
