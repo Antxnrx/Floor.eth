@@ -7,10 +7,8 @@
    "eid": 30110,
    "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
    "rpcs": [
-    "https://api.zan.top/arb-one",
-    "https://arbitrum.drpc.org",
-    "https://arbitrum-one-rpc.publicnode.com",
-    "https://arb1.arbitrum.io/rpc"
+    "https://arb1.arbitrum.io/rpc",
+    "https://arbitrum-one-rpc.publicnode.com"
    ],
    "adapters": [
     {
@@ -32,10 +30,8 @@
    "eid": 30106,
    "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
    "rpcs": [
-    "https://1rpc.io/avax/c",
-    "https://api.zan.top/avax-mainnet/ext/bc/C/rpc",
     "https://api.avax.network/ext/bc/C/rpc",
-    "https://avalanche.drpc.org"
+    "https://avalanche-c-chain-rpc.publicnode.com"
    ],
    "adapters": [
     {
@@ -51,9 +47,7 @@
    "eid": 30102,
    "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
    "rpcs": [
-    "https://api.zan.top/bsc-mainnet",
-    "https://binance.llamarpc.com",
-    "https://bsc.drpc.org",
+    "https://bsc-dataseed.bnbchain.org",
     "https://bsc-rpc.publicnode.com"
    ],
    "adapters": [
@@ -82,10 +76,9 @@
    "eid": 30101,
    "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
    "rpcs": [
-    "https://1rpc.io/eth",
-    "https://api.zan.top/eth-mainnet",
+    "https://eth-mainnet.public.blastapi.io",
     "https://gateway.tenderly.co/public/mainnet",
-    "https://rpc.flashbots.net/fast"
+    "https://rpc.mevblocker.io"
    ],
    "adapters": [
     {
@@ -305,10 +298,8 @@
    "eid": 30339,
    "endpoint": "0xca29f3a6f966cb2fc0de625f8f325c0c46dbe958",
    "rpcs": [
-    "https://ink.drpc.org",
-    "https://rpc-qnd.inkonchain.com",
     "https://rpc-gel.inkonchain.com",
-    "https://ink-public.nodies.app"
+    "https://rpc-qnd.inkonchain.com"
    ],
    "adapters": [
     {
@@ -330,9 +321,7 @@
    "eid": 30111,
    "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
    "rpcs": [
-    "https://1rpc.io/op",
-    "https://optimism.gateway.tenderly.co",
-    "https://gateway.tenderly.co/public/optimism",
+    "https://mainnet.optimism.io",
     "https://optimism-rpc.publicnode.com"
    ],
    "adapters": [
@@ -349,9 +338,7 @@
    "eid": 30109,
    "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
    "rpcs": [
-    "https://1rpc.io/matic",
-    "https://gateway.tenderly.co/public/polygon",
-    "https://api.zan.top/polygon-mainnet",
+    "https://polygon-bor-rpc.publicnode.com",
     "https://polygon-rpc.com"
    ],
    "adapters": [
@@ -368,10 +355,8 @@
    "eid": 30274,
    "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
    "rpcs": [
-    "https://rpc.ankr.com/xlayer",
-    "https://xlayer.drpc.org",
-    "https://xlayerrpc.okx.com",
-    "https://xlayer.rpc.blxrbdn.com"
+    "https://rpc.xlayer.tech",
+    "https://xlayerrpc.okx.com"
    ],
    "adapters": [
     {
@@ -382,5 +367,6 @@
     }
    ]
   }
- }
+ },
+ "note": "RPCs: chain-official or publicnode endpoints (the LZ-metadata defaults hit free-plan limits, 2026-11-07)"
 }

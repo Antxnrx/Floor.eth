@@ -1,0 +1,58 @@
+{
+ "block": 159196617,
+ "rpcs": [
+  "mainnet.optimism.io",
+  "optimism-rpc.publicnode.com"
+ ],
+ "method": "eth_call from EndpointV2 (no broadcast); docs/09",
+ "rows": [
+  {
+   "oapp": "0xac800fd6159c2a2cb8fc31ef74621eb430287a5a",
+   "symbol": "OP",
+   "underlying": "0x4200000000000000000000000000000000000042",
+   "type": "OFT_ADAPTER",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 361586.699619,
+   "eids": [
+    30106,
+    30110
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 2
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30106,
+     "forkBlock": 159196617,
+     "escrowSD": "361586699619",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "361586699619",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 159196617,
+     "escrowSD": "361586699619",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "361586699619",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  }
+ ],
+ "tally": {
+  "NO_INBOUND_LIMIT": 1
+ },
+ "selfCheck": {
+  "ok": true,
+  "detail": "non-endpoint → OnlyEndpoint(0x000000000000000000000000000000000000bEEF); wrong peer → OnlyPeer(30106,0xabababababababababababababababababababababababababababababababab)"
+ }
+}

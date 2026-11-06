@@ -91,3 +91,66 @@ Escrow behind unbounded adapters, in whole tokens using each adapter's own share
 We do not claim to reproduce "35/39" itself; the multi-chain list is the next step.
 
 **A mistake we caught in our own summary.** The first tally divided every escrow by 10^6. WBTC's adapter uses 8 shared decimals, so that briefly showed "81,162 WBTC". Results now record `sharedDecimals` and `escrowTokens` per adapter. The correct value is 803.77 WBTC in the main adapter.
+
+## All-chain rerun (2026-11-07): 64 adapters, 8 chains
+
+**Why a rerun.** Three gaps in the first run: (1) the adapter list came from one LayerZero metadata source and missed adapters that LayerZero's OFT registry lists; (2) the peer scan stopped at endpoint id 30499, but LayerZero now has chains at 30500, 30567 and 30600; (3) adapters that **mint** on credit (instead of releasing escrow) were reported as "full+1 also succeeded" / "escrow empty" and left UNKNOWN.
+
+**What changed in the probe.** Adapter list = every `*_ADAPTER` in LayerZero's OFT registry whose inner token is in Aave's token list on that chain (`packages/resolver/data/adapters-all-chains.json`); endpoint address and RPCs per chain (Ink's EndpointV2 differs); peers scanned over 30100–30699; an adapter that accepts more than its escrow, or a credit with no escrow, is tested at the uint64 maximum and, if that reverts, binary-searched for its real cap. The negative control (non-endpoint caller must revert `OnlyEndpoint`, wrong peer must revert `OnlyPeer`) passed on every chain where something was probed. Every decisive result is cross-checked on a second RPC (all agree). Results: `docs/evidence/inbound/2026-11-07-*.json`.
+
+| Chain | Token | Adapter | Outcome | Routes | Escrow (tokens) / mints | Per-message cap (tokens) |
+|---|---|---|---|---|---|---|
+| ethereum | LINK | `0x093a…557b` | NO_INBOUND_LIMIT | 1 | 0.08 |  |
+| ethereum | LINK | `0x8b31…0b33` | NO_INBOUND_LIMIT | 1 | 34,595.04 |  |
+| ethereum | PYUSD | `0x53e1…d816` | NO_INBOUND_LIMIT | 1 | 1.12 |  |
+| ethereum | PYUSD | `0x688e…ac82` | NO_INBOUND_LIMIT | 1 | 130,007.33 |  |
+| ethereum | PYUSD | `0xa2c3…6444` | INBOUND_LIMIT | 7 | mints | 760,000,000 |
+| ethereum | PYUSD | `0xe9e8…70aa` | NO_INBOUND_LIMIT | 1 | 26.83 |  |
+| ethereum | PYUSD | `0xfa0e…93f8` | NO_INBOUND_LIMIT | 1 | 1,269,788.40 |  |
+| ethereum | USDG | `0x147b…f9c4` | INBOUND_LIMIT | 6 | mints | 225,000,000 |
+| ethereum | USDG | `0xa755…6a65` | NO_INBOUND_LIMIT | 2 | 1,038,759.77 |  |
+| ethereum | USDT | `0x1f74…dfb0` | TEST_ERROR | 5 | 29,237,686.70 |  |
+| ethereum | USDT | `0x2d34…5865` | NO_INBOUND_LIMIT | 1 | 1,000.00 |  |
+| ethereum | USDT | `0x6925…bba6` | NO_INBOUND_LIMIT | 1 | 3,339.51 |  |
+| ethereum | USDT | `0x6c96…1dee` | NO_INBOUND_LIMIT | 21 | 3,364,502,782.60 |  |
+| ethereum | USDT | `0x811e…d5c0` | TEST_ERROR | 4 | 0.01 |  |
+| ethereum | USDT | `0xc2e7…5352` | NO_INBOUND_LIMIT | 1 | 1,388,134.73 |  |
+| ethereum | USDe | `0x5d3a…ef34` | NO_INBOUND_LIMIT | 22 | 2,088,159,429.25 |  |
+| ethereum | USDe | `0xb93e…4cf3` | UNKNOWN | 1 | 0.00 |  |
+| ethereum | USDtb | `0xc708…1a5d` | NO_INBOUND_LIMIT | 2 | 230.93 |  |
+| ethereum | WBTC | `0x0555…2b9c` | NO_INBOUND_LIMIT | 21 | 803.02 |  |
+| ethereum | WBTC | `0x2c01…76ed` | NO_INBOUND_LIMIT | 1 | 0.38 |  |
+| ethereum | WBTC | `0x7134…00a6` | NO_INBOUND_LIMIT | 1 | 7.54 |  |
+| ethereum | XAUT | `0x1f03…f03d` | UNKNOWN | 1 | 0.00 |  |
+| ethereum | XAUT | `0xb9c2…696c` | NO_INBOUND_LIMIT | 13 | 30,942.76 |  |
+| ethereum | rsETH | `0x85d4…8ef3` | NO_INBOUND_LIMIT | 1 | 16,988.14 |  |
+| ethereum | sUSDe | `0x211c…e5d2` | NO_INBOUND_LIMIT | 21 | 238,292,520.91 |  |
+| ethereum | weETH | `0x4eaf…3913` | NO_INBOUND_LIMIT | 1 | 0.02 |  |
+| ethereum | weETH | `0xcd2e…ca63` | INBOUND_LIMIT | 20 | 104,918.65 | 10, 20, 1,000 … |
+| ethereum | weETH | `0xfe7f…7d0d` | UNKNOWN | 11 | 0.00 |  |
+| ethereum | FBTC | `0x0b83…da3f` | TEST_ERROR | 1 | 0.02 |  |
+| ethereum | FRAX | `0x909d…1fed` | NO_INBOUND_LIMIT | 2 | 73.93 |  |
+| ethereum | FXS | `0xc6f5…84ec` | UNKNOWN | 15 | 0.00 |  |
+| ethereum | FXS | `0x2343…80d0` | NO_INBOUND_LIMIT | 2 | 14,220.84 |  |
+| ethereum | cbBTC | `0x59ea…f539` | NO_INBOUND_LIMIT | 1 | 4.66 |  |
+| ethereum | wstETH | `0xa2d3…ee3f` | NO_INBOUND_LIMIT | 1 | 1.99 |  |
+| ethereum | wstETH | `0x6cea…5848` | NO_INBOUND_LIMIT | 1 | 0.38 |  |
+| arbitrum | USD₮0 | `0x14e4…8d92` | NO_INBOUND_LIMIT | 21 | mints |  |
+| arbitrum | USD₮0 | `0x7765…9b92` | TEST_ERROR | 5 | 1,362,738.73 |  |
+| bsc | BTCB | `0x5b7b…4b13` | NO_INBOUND_LIMIT | 1 | 1.80 |  |
+| ink | USDG | `0x9e12…8971` | INBOUND_LIMIT | 1 | mints | 25,000,000 |
+| ink | USD₮0 | `0x1cb6…4a65` | NO_INBOUND_LIMIT | 21 | mints |  |
+| optimism | OP | `0xac80…7a5a` | NO_INBOUND_LIMIT | 2 | 361,586.70 |  |
+| polygon | USDT | `0x6ba1…9e13` | NO_INBOUND_LIMIT | 21 | mints |  |
+| xlayer | USD₮0 | `0x94bc…5554` | NO_INBOUND_LIMIT | 21 | mints |  |
+
+Inactive or not covered: LINK `0xee38…`, USDT `0x9335…`, USDT `0xcc1b…`, USDT `0xf6a0…`, WBTC `0xab6e…`, WBTC `0xf164…`, BAL `0xe15b…` (v1), CRV `0xc7ae…` (v1), DAI `0x91a4…` (v1), ETHx `0x39d0…`, FRAX `0xe412…`, LBTC `0x3a76…`, LBTC `0xa7c4…`, LBTC `0x1290…`, LBTC `0xacb1…`, USDC `0x28a9…` (v1), WETH `0x6959…` (v1), crvUSD `0xaa79…` (v1), BTC.b `0x2297…`, Cake `0xb274…`, WBNB `0xa900…`.
+
+Totals: NO_INBOUND_LIMIT 31, NO_PEERS 15, LZ_V1 (not probed) 6, INBOUND_LIMIT 4, TEST_ERROR 4, UNKNOWN 4 (of 64).
+Blocks: ethereum-34 26,357,818, ethereum-new 26,357,878, arbitrum 521,877,486, avalanche 99,609,899, bsc 132,061,699, ink 60,493,792, optimism 159,196,617, polygon 96,858,462, xlayer 75,223,089
+
+
+**What the rerun corrects.** The original 34 Ethereum adapters, re-probed at block 26,357,818 with the wider scan, give the same result except two: **PYUSD `0xa2c3…6444` and USDG `0x147b…f9c4` mint on credit and enforce a real per-message cap (`RateLimitExceeded()`; 760M PYUSD, 225M USDG)**. They were "UNKNOWN (empty escrow)" before. So on Ethereum **three** adapters are inbound-limited (EtherFi weETH main adapter, PYUSD `0xa2c3`, USDG `0x147b`), not one. Logged in `docs/00`.
+
+**Still not determined by this method:** 4 `TEST_ERROR` (USDT0 `0x1f74`, USDT `0x811e`, FBTC, USD₮0 Arbitrum `0x7765`: custom message codecs reject the standard payload) and 4 `UNKNOWN` (empty escrow and the 1-unit credit reverts on a balance check, so nothing to bound). 6 LayerZero **v1** adapters are outside this v2 probe.
+
