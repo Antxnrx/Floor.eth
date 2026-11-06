@@ -25,7 +25,8 @@ const defaultRpcs = chainReg ? chainReg.rpcs.join(",") : "https://eth.drpc.org,h
 const rpcs = makeRpcs((process.env.ETH_RPC_URLS ?? defaultRpcs).split(",").filter(Boolean));
 const block = !args.block || args.block === "latest" ? await rpcs[0]!.client.getBlockNumber() : BigInt(args.block);
 const only = args.only ? new Set(args.only.toLowerCase().split(",")) : null;
-const EIDS = Array.from({ length: 400 }, (_, i) => 30100 + i);
+// LayerZero v2 mainnet endpoint ids run 30101..30600 (LZ metadata, 2026-11-07); scan to 30699 for headroom.
+const EIDS = Array.from({ length: 600 }, (_, i) => 30100 + i);
 
 async function peersOf(oapp: Address): Promise<number[]> {
   const calls = EIDS.map((eid) => ({ to: oapp, sig: "peers", data: encodeFunctionData({ abi: oappAbi, functionName: "peers", args: [eid] }) }));
@@ -35,17 +36,17 @@ async function peersOf(oapp: Address): Promise<number[]> {
 
 // Negative control first: if the harness accepts a call from a non-endpoint address, every result is void.
 // Ethereum: the rsETH adapter (Arbitrum route). Other chains: the first adapter in the registry that has a peer.
-async function selfCheckTarget(): Promise<[Address, number]> {
+async function selfCheckTarget(): Promise<[Address, number] | null> {
   if (!chainReg || args.chain === "ethereum") return ["0x85d456B2DfF1fd8245387C0BfB64Dfb700e98Ef3", 30110];
   for (const a of registry.adapters) {
     const eids = await peersOf(getAddress(a.oapp));
     if (eids.length) return [getAddress(a.oapp), eids[0]!];
   }
-  throw new Error("no adapter with a peer on this chain: nothing to self-check");
+  return null; // no adapter on this chain has a peer: nothing will be probed, every row is NO_PEERS
 }
-const [scOapp, scEid] = await selfCheckTarget();
-const self = await harnessSelfCheck(rpcs[0]!, scOapp, scEid, block);
-console.log(`harness self-check: ${self.ok ? "PASS" : "FAIL"} (${self.detail})`);
+const target = await selfCheckTarget();
+const self = target ? await harnessSelfCheck(rpcs[0]!, target[0], target[1], block) : { ok: true, detail: "skipped: no adapter on this chain has a peer, so no route is probed" };
+console.log(`harness self-check: ${target ? (self.ok ? "PASS" : "FAIL") : "SKIPPED"} (${self.detail})`);
 if (!self.ok) { console.error("aborting: harness does not exercise the real receive path"); process.exit(1); }
 
 const rows: unknown[] = [];

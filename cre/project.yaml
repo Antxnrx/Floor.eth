@@ -11,3 +11,10 @@ production-settings:
       url: https://eth.drpc.org
     - chain-name: ethereum-testnet-sepolia
       url: https://ethereum-sepolia-rpc.publicnode.com
+# Local dress rehearsal only (scripts/rehearse.sh): Sepolia is an anvil fork on 127.0.0.1:8546.
+rehearsal-settings:
+  rpcs:
+    - chain-name: ethereum-mainnet
+      url: https://eth.drpc.org
+    - chain-name: ethereum-testnet-sepolia
+      url: http://127.0.0.1:8546

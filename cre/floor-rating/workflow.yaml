@@ -12,3 +12,10 @@ production-settings:
     workflow-path: "./main.ts"
     config-path: "./config.production.json"
     secrets-path: ""
+rehearsal-settings:
+  user-workflow:
+    workflow-name: "floor-rating"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.staging.json"
+    secrets-path: ""

@@ -108,11 +108,33 @@ export async function probeInbound(rpcs: Rpc[], t: ProbeTarget, block: bigint): 
 
   const results: ForkTestResult[] = [];
   let n = 1;
+  /**
+   * The adapter credits by MINTING (it accepted more than its escrow, or a credit with no escrow at all), as USD₮0's
+   * OAdapter does on L2s. Escrow is then no ceiling: try the largest amount the message can carry (uint64), and if
+   * that reverts, binary-search the largest accepted amount.
+   */
+  async function mintPath(base: Omit<ForkTestResult, "outcome" | "revert" | "maxAcceptedSD" | "proof">, eid: number, peer: Hex, knownOk: bigint, why: string): Promise<ForkTestResult> {
+    const max = await simulate(rpc, t.oapp, eid, peer, U64_MAX, block, n++);
+    if (max.ok) return { ...base, outcome: "NO_INBOUND_LIMIT", revert: null, maxAcceptedSD: U64_MAX.toString(), proof: `credits by minting (${why}) · uint64-max credit accepted in one inbound message` };
+    let lo = knownOk, hi = U64_MAX;
+    while (hi - lo > 1n) {
+      const mid = (lo + hi) / 2n;
+      if ((await simulate(rpc, t.oapp, eid, peer, mid, block, n++)).ok) lo = mid; else hi = mid;
+    }
+    const note = looksBalance(max.reason) ? "REVIEW: the revert looks like a balance/supply error, not a rate limit" : "app-layer cap";
+    return { ...base, outcome: "INBOUND_LIMIT", revert: max.reason, maxAcceptedSD: lo.toString(), proof: `credits by minting (${why}) · uint64-max reverts (${max.reason}) · max accepted ${lo} SD · ${note}` };
+  }
   for (const eid of t.eids) {
     const base = { name: "inbound-limit" as const, eid, forkBlock: Number(block), escrowSD: escrowSD?.toString() ?? null };
     const peer = await read<Hex>(t.oapp, oftAbi, "peers", [eid]);
     if (/^0x0+$/.test(peer)) { results.push({ ...base, outcome: "TEST_ERROR", revert: "no peer", maxAcceptedSD: null, proof: "no peer configured" }); continue; }
-    if (ceiling === 0n) { results.push({ ...base, outcome: "UNKNOWN", revert: null, maxAcceptedSD: null, proof: "escrow is empty: nothing to bound" }); continue; }
+    if (ceiling === 0n) {
+      // Empty escrow: a 1-unit credit can only succeed if the adapter mints.
+      const one = await simulate(rpc, t.oapp, eid, peer, 1n, block, n++);
+      if (one.ok) { results.push(await mintPath(base, eid, peer, 1n, "a credit succeeded with an empty escrow")); continue; }
+      results.push({ ...base, outcome: "UNKNOWN", revert: one.reason, maxAcceptedSD: null, proof: `escrow is empty: nothing to bound (1-unit credit reverts: ${one.reason})` });
+      continue;
+    }
 
     const small = await simulate(rpc, t.oapp, eid, peer, 1n, block, n++);
     if (!small.ok) {
@@ -135,7 +157,7 @@ export async function probeInbound(rpcs: Rpc[], t: ProbeTarget, block: bigint): 
         const note = looksBalance(over.reason) ? "escrow is the only ceiling" : "REVIEW: full+1 revert is not a known balance error";
         results.push({ ...base, outcome: "NO_INBOUND_LIMIT", revert: null, maxAcceptedSD: ceiling.toString(), proof: `full escrow released in one inbound message · full+1 reverts (${over.reason}) → ${note}` });
       } else {
-        results.push({ ...base, outcome: "UNKNOWN", revert: null, maxAcceptedSD: null, proof: "full+1 also succeeded: credit path does not transfer from escrow as expected" });
+        results.push(await mintPath(base, eid, peer, ceiling + 1n, "full escrow + 1 accepted"));
       }
       continue;
     }
