@@ -1,4 +1,4 @@
-import type { EffectHandle } from "./beams";
+import type { EffectHandle } from "./pixelShapes";
 
 /**
  * Toggles `.is-inview` on every `[data-inview]` under `root` while it is on
