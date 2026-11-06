@@ -16,7 +16,7 @@ pnpm --filter @floor/web build    # static build in dist/ (base "./", hash routi
 | `#/asset/:key` | Asset detail: grade, controllers, routes (receive/send), rule results, raw evidence calls | `screens/Asset.tsx` | `EvidenceBundle` |
 | `#/verify/:key` | Browser verification: 6 steps, Anon-RPC traffic share, failure states | `screens/Verify.tsx` | bundle (simulated progress) |
 | `#/kelp` | Kelp replay: without/with Floor + onchain timeline | `screens/Others.tsx` | `KELP_TIMELINE` |
-| `#/enforcement` | Live mainnet loop: rating → CRE → Morpho Sentinel → CCIP | `screens/Others.tsx` | `EVENTS` |
+| `#/enforcement` | Live Sepolia loop: CRE write → FloorRegistry → FloorSentinel cuts a real Morpho Vault V2 cap → CCIP mirror on Arbitrum Sepolia | `screens/Others.tsx` | `EVENTS` |
 | `#/blast` | Blast radius: pick an operator, see exposed assets | `screens/Others.tsx` | `ASSETS` |
 | `#/check` | Issuer pre-sign check: paste Safe tx, see effective-state diff | `screens/Others.tsx` | mock |
 | `#/rules` | Rule pack with verbatim citations | `screens/Others.tsx` | `RULES` |
