@@ -6,6 +6,13 @@
 [data-pixel-shape] {
 	position: relative;
 	display: block;
+	/*
+	 * The colour the solid is drawn in. A canvas cannot take `currentColor`, so
+	 * the script reads this back off the host at mount — which is the only way
+	 * an effect that paints bitmaps can follow a theme it does not know about.
+	 * See effects/pixelShapes.js.
+	 */
+	color: var(--fg);
 }
 
 .pixel-shape {

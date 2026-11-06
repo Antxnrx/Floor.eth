@@ -39,10 +39,30 @@ const SPIN = 0.5;
 // remaining angle closed per 60th of a second.
 const SETTLE = 0.055;
 
-const REST_STROKE = "rgba(14, 14, 20, 0.3)";
-// The hovered state is the brighter one: quantising is a sharpening, not a
-// fade. 0.82 of the ink rather than 1 keeps it a drawing and not a logo.
-const PIXEL_INK = [14, 14, 20, Math.round(255 * 0.82)];
+// Alpha of the vector wireframe at rest, and of the blocks once it has
+// quantised. The hovered state is the stronger one: quantising is a
+// sharpening, not a fade. 0.82 rather than 1 keeps it a drawing and not a
+// logo. The colour is the host's, read at mount — see `inkOf`.
+const REST_ALPHA = 0.3;
+const PIXEL_ALPHA = Math.round(255 * 0.82);
+// What the host resolves to if its `color` is somehow unreadable: the ink the
+// effect was drawn in before it was themed.
+const FALLBACK_INK = [14, 14, 20];
+
+/*
+ * The host's resolved `color`, as three bytes.
+ *
+ * pixelShapes.css sets `color: var(--fg)` on the host precisely so this can
+ * be read back: a canvas takes no `currentColor`, and both the stroke and the
+ * per-pixel RGB rewrite below need real numbers. getComputedStyle always
+ * hands back an `rgb()` / `rgba()` form here whatever the author wrote, so
+ * pulling the first three integers out of it is enough.
+ */
+const inkOf = (host) => {
+	const resolved = getComputedStyle(host).color.match(/\d+(\.\d+)?/g);
+	if (!resolved || resolved.length < 3) return FALLBACK_INK;
+	return resolved.slice(0, 3).map(Number);
+};
 // Alpha a traced pixel must reach to count as covered. The low-resolution
 // trace is still antialiased, and anything under this is the feathered edge
 // of a line that already has its own cell.
@@ -230,6 +250,9 @@ function mountOne(host) {
 	// a smaller target than the gesture deserves.
 	const card = host.closest("[data-shape-card]") ?? host;
 
+	const [inkR, inkG, inkB] = inkOf(host);
+	const restStroke = `rgba(${inkR}, ${inkG}, ${inkB}, ${REST_ALPHA})`;
+
 	const canvas = document.createElement("canvas");
 	canvas.className = "pixel-shape";
 	// Decoration, with the card's heading and copy carrying the meaning.
@@ -340,7 +363,7 @@ function mountOne(host) {
 			ctx.globalAlpha = 1 - p;
 			ctx.lineWidth = dpr;
 			ctx.lineJoin = "round";
-			ctx.strokeStyle = REST_STROKE;
+			ctx.strokeStyle = restStroke;
 			trace(
 				ctx,
 				fit(canvas.width, canvas.height),
@@ -369,7 +392,7 @@ function mountOne(host) {
 		 */
 		const frame = pixCtx.getImageData(0, 0, pixW, pixH);
 		const data = frame.data;
-		const [r, g, b, a] = PIXEL_INK;
+		const [r, g, b, a] = [inkR, inkG, inkB, PIXEL_ALPHA];
 		for (let y = 0, o = 0; y < pixH; y++) {
 			for (let x = 0; x < pixW; x++, o += 4) {
 				const covered = data[o + 3] >= COVER && hash(x, y) <= p;

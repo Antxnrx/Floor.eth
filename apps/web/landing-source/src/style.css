@@ -13,6 +13,36 @@
 	--color-rule: #dcdce8;
 
 	/*
+	 * The dark ramp the landing runs on. Four steps, because the page already
+	 * owns the bottom one: --color-void is fixed by the WebGL clear colour, so
+	 * the hero, the photo plate and the footer sit lower than anything else and
+	 * the bands in between need somewhere to be. The separations are small on
+	 * purpose (page/void 1.08:1, surface/page 1.08:1) — a dark interface that
+	 * steps hard between its surfaces reads as stacked boxes rather than as one
+	 * lit room, and the hairline is what makes a card's edge findable.
+	 *
+	 * Not #000: the page is asked to hold a WebGL hero, two photographs and a
+	 * chart, and true black gives all three a hard seam where they end.
+	 */
+	--color-page: #0d0f15;
+	--color-surface: #151822;
+	--color-raise: #1d212c;
+	--color-edge: #2d3340;
+
+	/*
+	 * The only colour on the page, and it means one thing: this is the part
+	 * that is exposed. Nothing is coloured for being fine — a resolved route is
+	 * drawn in plain ghost — so the eye can take every amber mark on the page
+	 * as a finding without reading the label first.
+	 *
+	 * It comes out of the photography rather than off a palette: the plate and
+	 * the two figures are long-exposure streaks of this colour on black.
+	 *
+	 * 13.3:1 on --color-page, 12.3:1 on --color-surface, 14.4:1 on --color-void.
+	 */
+	--color-flag: #fcd34d;
+
+	/*
 	 * Lato for the page; the wordmark sets Geist Pixel on itself, because it has
 	 * to hand canvas measureText() the identical family string (see
 	 * effects/wordmark.js). Tailwind derives --default-font-family from this, so
@@ -23,6 +53,49 @@
 	 * and the pipeline want a true monospace, which Lato has no answer for.
 	 */
 	--font-sans: "Lato", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * The shared components below — the timeline tick, the headroom meter, the
+ * diagram's wires and nodes — are used by two documents in this bundle that
+ * are not the same colour. index.html is dark; details.html is still the
+ * original light page. So they are written against a foreground/surface pair
+ * rather than against a literal, and each document declares which one it is.
+ *
+ * Light is the default so details.html needs no change to keep working.
+ */
+:root {
+	--fg: var(--color-ink);
+	--bg: var(--color-ghost);
+	--panel: #fff;
+	--panel-hover: #fbfbfe;
+	--hair: var(--color-rule);
+}
+
+.theme-dark {
+	--fg: var(--color-ghost);
+	--bg: var(--color-page);
+	--panel: var(--color-surface);
+	--panel-hover: var(--color-raise);
+	--hair: var(--color-edge);
+}
+
+/*
+ * One easing and three durations for everything that is not a canvas.
+ *
+ * The curve is a quintic ease-out: it leaves immediately and lands slowly,
+ * which is what makes a state change read as a response rather than as a
+ * trip. No overshoot — this page grades collateral, and a control that
+ * bounces is making a claim about how it feels to use rather than about what
+ * it did.
+ *
+ * The three steps are the three sizes of change: a colour, a box, a section.
+ */
+:root {
+	--ease: cubic-bezier(0.16, 1, 0.3, 1);
+	--dur-1: 180ms;
+	--dur-2: 320ms;
+	--dur-3: 560ms;
 }
 
 /*
@@ -168,7 +241,7 @@
 	position: relative;
 	height: 1px;
 	overflow: hidden;
-	background: var(--color-rule);
+	background: var(--hair);
 }
 
 .beam__pulse {
@@ -176,12 +249,7 @@
 	inset-block: 0;
 	left: 0;
 	width: 22%;
-	background: linear-gradient(
-		90deg,
-		transparent,
-		var(--color-ink),
-		transparent
-	);
+	background: linear-gradient(90deg, transparent, var(--fg), transparent);
 	transform: translate3d(-100%, 0, 0);
 }
 
@@ -215,13 +283,13 @@
 	left: 0;
 	width: 0.5rem;
 	height: 0.5rem;
-	background: var(--color-ink);
+	background: var(--fg);
 }
 
 /* The moment the page is actually about. */
 .moment--break::before {
 	background: none;
-	box-shadow: inset 0 0 0 1px var(--color-ink);
+	box-shadow: inset 0 0 0 1px var(--fg);
 }
 
 /*
@@ -256,23 +324,117 @@
 .meter i {
 	width: 0.5rem;
 	height: 0.5rem;
-	background: var(--color-ink);
+	background: var(--fg);
 }
 
 .meter i.is-off {
-	background: var(--color-rule);
+	background: var(--hair);
 }
 
 /* UNKNOWN is not zero headroom — it is no reading at all, so its cells are
    outlines rather than empty fills. */
 .meter i.is-void {
 	background: none;
-	box-shadow: inset 0 0 0 1px var(--color-rule);
+	box-shadow: inset 0 0 0 1px var(--hair);
 }
 
 html {
-	@apply bg-ghost;
+	background: var(--bg);
 	scroll-behavior: smooth;
+}
+
+/*
+ * The footer's section links scroll to a band's very top edge, which puts the
+ * heading hard against the viewport. A little room above it reads as having
+ * arrived somewhere rather than having been cut off.
+ */
+:target,
+section[id] {
+	scroll-margin-block-start: 2.5rem;
+}
+
+::selection {
+	background: var(--color-flag);
+	color: var(--color-ink);
+}
+
+/*
+ * One focus treatment, on the ring rather than on the element's own box, so a
+ * keyboard reader lands on the same mark whatever they land on. Offset,
+ * because several of these controls already have a 1px edge of their own and
+ * a ring drawn on top of it reads as a thicker border.
+ */
+:focus-visible {
+	outline: 2px solid var(--color-flag);
+	outline-offset: 2px;
+}
+
+/*
+ * Anything that answers a pointer answers it over the same interval. Colour
+ * and edge only: a card that also moves is making a second claim, and the
+ * page already has one element per band whose whole job is to respond to
+ * being read.
+ */
+a,
+button {
+	transition:
+		color var(--dur-1) var(--ease),
+		border-color var(--dur-1) var(--ease),
+		background-color var(--dur-1) var(--ease),
+		opacity var(--dur-1) var(--ease);
+}
+
+/*
+ * A content block's entrance. Deliberately not on every section: the bands
+ * that use it are the ones whose content is a set of parts arriving together
+ * — the three readings in Why, the three figures in Without Floor, the
+ * moments on the timeline. The argument's headings are simply there.
+ *
+ * The armed state carries no transition of its own, so the class can be added
+ * after the first paint without the block being seen to fade out. And it is
+ * only ever added by script (effects/inView.js), which is what keeps the
+ * default — for a crawler, a print, or a failed module — the arrived state.
+ */
+[data-reveal].is-armed {
+	opacity: 0;
+}
+
+[data-reveal].is-revealed {
+	animation: reveal var(--dur-3) var(--ease) both;
+	animation-delay: var(--reveal-at, 0ms);
+}
+
+@keyframes reveal {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 0.875rem, 0);
+	}
+}
+
+/*
+ * The incident band. It is still the page's deepest surface, but on an
+ * all-dark page --color-void and --color-page are 1.08:1 apart and the drop
+ * no longer reads on its own. An ember cast up from the lower left does the
+ * work the old black-on-white flip used to: it is the same light as the
+ * photographs either side of it, and it only appears under the one section
+ * that is about something going wrong.
+ */
+.band-incident {
+	position: relative;
+	isolation: isolate;
+}
+
+.band-incident::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(
+		ellipse 70rem 32rem at 8% 108%,
+		color-mix(in srgb, var(--color-flag) 9%, transparent) 0%,
+		transparent 68%
+	);
+	pointer-events: none;
 }
 
 /*
@@ -351,5 +513,24 @@ html {
 	   a deliberate highlight on a still rule. */
 	.beam__pulse {
 		transform: translate3d(195%, 0, 0);
+	}
+
+	/*
+	 * The entrance is never armed in the first place (effects/inView.js
+	 * returns early), so there is nothing here to undo. This is the belt: if
+	 * the preference is turned on while the page is open, an already-armed
+	 * block still resolves rather than staying at zero.
+	 */
+	[data-reveal].is-armed {
+		opacity: 1;
+	}
+
+	[data-reveal].is-revealed {
+		animation: none;
+	}
+
+	a,
+	button {
+		transition-duration: 1ms;
 	}
 }

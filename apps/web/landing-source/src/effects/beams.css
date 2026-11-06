@@ -17,13 +17,14 @@
 }
 
 /*
- * Darker than --color-rule, which is the page's divider weight and all but
- * disappears as a 1px diagonal on ghost white. A wire has to be followable
- * across a 400px run, not just felt as a boundary.
+ * Stronger than --hair, which is the page's divider weight and all but
+ * disappears as a 1px diagonal. A wire has to be followable across a 400px
+ * run, not just felt as a boundary — so it is mixed from the foreground,
+ * which puts it above the ground on either theme.
  */
 .beam-wire {
 	fill: none;
-	stroke: color-mix(in srgb, var(--color-ink) 28%, transparent);
+	stroke: color-mix(in srgb, var(--fg) 28%, transparent);
 	stroke-width: 1;
 }
 
@@ -33,7 +34,7 @@
  * end on a hairline reads as a dropped line rather than a moving one.
  */
 .beam-wire--pulse {
-	stroke: var(--color-ink);
+	stroke: var(--fg);
 	stroke-width: 1.5;
 	stroke-linecap: round;
 	stroke-dasharray: 0.14 0.86;
@@ -73,30 +74,33 @@
 .beam-pin {
 	position: relative;
 	z-index: 1;
-	background: var(--color-ghost);
+	background: var(--panel);
 }
 
 .beam-pin {
 	display: block;
-	border: 1px solid var(--color-rule);
+	border: 1px solid var(--hair);
 	padding: 0.625rem 0.75rem;
 	font-size: 0.75rem;
 	line-height: 1.35;
-	color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+	color: color-mix(in srgb, var(--fg) 65%, transparent);
 }
 
 .beam-node {
-	border: 1px solid var(--color-rule);
+	border: 1px solid var(--hair);
 	margin: 0;
 	padding: 1rem 0.75rem 0.875rem;
 	text-align: center;
 	/* The solid inside quantises on hover; the edge darkening is what says the
 	   tile is the target, since the canvas has no box of its own. */
-	transition: border-color 420ms cubic-bezier(0.16, 1, 0.3, 1);
+	transition:
+		border-color var(--dur-3) var(--ease),
+		background-color var(--dur-3) var(--ease);
 }
 
 @media (hover: hover) {
 	.beam-node:hover {
-		border-color: color-mix(in srgb, var(--color-ink) 40%, transparent);
+		border-color: color-mix(in srgb, var(--fg) 40%, transparent);
+		background: var(--panel-hover);
 	}
 }

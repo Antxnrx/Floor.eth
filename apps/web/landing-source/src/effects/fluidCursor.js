@@ -120,10 +120,18 @@ const DEFAULTS = {
 	friction: 0.22,
 	intensity: 0.4,
 	speedIntensityGain: 0.006,
-	// The project's ink. A dark colour here takes upstream's ink path, where
-	// the trail holds this exact colour and density shows up as opacity,
-	// rather than its additive path, which decays towards black.
-	color: "#0e0e14",
+	/*
+	 * Null means "whatever the section is written in": the trail is read off
+	 * the root's computed `color` at mount. The two documents in this bundle
+	 * are not the same colour — the landing is dark, the long-form page is
+	 * still light — and they share one call site in main.js, so a literal
+	 * here would be invisible on one of them.
+	 *
+	 * Either way this takes upstream's ink path, where the trail holds one
+	 * colour and density shows up as opacity, rather than its additive path,
+	 * which decays towards black.
+	 */
+	color: null,
 	/*
 	 * Opacity ceiling for the densest block. Upstream reaches 1 — it draws
 	 * over a bare demo page, where opaque ink is the effect. This sits under
@@ -189,6 +197,18 @@ const parseColor = (hex) => {
 	};
 };
 
+/*
+ * The root's own text colour, as 0-1 channels. getComputedStyle normalises
+ * every authored form to `rgb()` / `rgba()`, so the first three numbers in it
+ * are the channels whatever the stylesheet said.
+ */
+const currentInk = (root) => {
+	const parts = getComputedStyle(root).color.match(/\d+(\.\d+)?/g);
+	if (!parts || parts.length < 3) return null;
+	const [r, g, b] = parts.slice(0, 3).map(Number);
+	return { r: r / 255, g: g / 255, b: b / 255 };
+};
+
 const NOOP = { destroy: () => {} };
 
 export const mountFluidCursor = (root, options = {}) => {
@@ -202,12 +222,15 @@ export const mountFluidCursor = (root, options = {}) => {
 		return NOOP;
 
 	const config = { ...DEFAULTS, ...options };
-	const ink = parseColor(config.color);
+	const ink = config.color ? parseColor(config.color) : currentInk(root);
 	if (!ink) return NOOP;
 
 	/*
 	 * Upstream's rule that a darker ink splats more density, so a near-black
-	 * trail stays as visible on white as a mid-tone one would.
+	 * trail stays as visible on white as a mid-tone one would. A light trail
+	 * bottoms out at the floor, which is the right end of it anyway: ghost on
+	 * a near-black ground blooms at a density that would barely register the
+	 * other way round.
 	 */
 	const inkGain = Math.max(1 - Math.max(ink.r, ink.g, ink.b), 0.55);
 	const byte = {
