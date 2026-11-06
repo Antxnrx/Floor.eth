@@ -5,6 +5,10 @@ name: deploy
 on:
   push:
     branches: [main]
+  workflow_run:
+    # pushes made by the scheduler (GITHUB_TOKEN) do not trigger workflows, so redeploy when it finishes
+    workflows: [watch, probe]
+    types: [completed]
   workflow_dispatch:
 
 permissions:

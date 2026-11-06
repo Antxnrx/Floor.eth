@@ -1,0 +1,31 @@
+name: watch
+# Every 15 minutes: read LayerZero config-change logs (UlnConfigSet, ReceiveLibrarySet, DelegateSet) on every chain with
+# an Aave V3 market, for every LayerZero deployment of an Aave-listed token. Read-only. Commits
+# docs/evidence/watch/{state,events}.json; the deploy workflow then republishes the site.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: watch
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @floor/resolver exec tsx src/watch-cli.ts --lookback 200
+      - name: Commit state and any new events
+        run: |
+          git config user.name "floor-scheduler"
+          git config user.email "floor-scheduler@users.noreply.github.com"
+          git add docs/evidence/watch
+          git diff --cached --quiet || (git commit -m "watch: config-change check $(date -u +%Y-%m-%dT%H:%MZ)" && git pull --rebase -q && git push)

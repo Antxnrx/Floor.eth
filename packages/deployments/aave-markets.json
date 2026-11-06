@@ -1,6 +1,6 @@
 {
  "source": "Aave V3 markets: github.com/bgd-labs/aave-address-book (src/ts/AaveV3*.ts). Bridging: LayerZero OFT registry (metadata.layerzero-api.com/v1/metadata/experiment/ofts/list). RPCs: LayerZero chain metadata, kept only if they answer eth_chainId with CORS headers and have Multicall3.",
- "generatedAt": "2026-11-06T23:06:47.828Z",
+ "generatedAt": "2026-11-06T23:21:33.961Z",
  "multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11",
  "markets": [
   {
@@ -191,8 +191,8 @@
    "dataProvider": "0x9057ac7b2D35606F8AD5aE2FCBafcD94E58D9927",
    "oracle": "0xC7F58Fca663a8d377B6D0c9703C697f56dC40088",
    "rpcs": [
-    "https://api.zan.top/zksync-mainnet",
-    "https://mainnet.era.zksync.io"
+    "https://mainnet.era.zksync.io",
+    "https://zksync.drpc.org"
    ]
   },
   {
@@ -227,6 +227,7 @@
    "dataProvider": "0x4a24b44b252db149B5B9BCec4dc3c2752807d626",
    "oracle": "0x20040a64612555042335926d72B4E5F667a67fA1",
    "rpcs": [
+    "https://soneium.drpc.org",
     "https://rpc.soneium.org"
    ]
   },
@@ -6083,6 +6084,212 @@
     "symbol": "ynETHx",
     "lzVersion": "v2"
    }
+  }
+ },
+ "layerzero": {
+  "1": {
+   "chainKey": "ethereum",
+   "eid": 30101,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0xc02ab410f0734efa3f14628780e6e695156024c2",
+   "logRpcs": [
+    "https://ethereum-rpc.publicnode.com",
+    "https://rpc.mevblocker.io"
+   ]
+  },
+  "10": {
+   "chainKey": "optimism",
+   "eid": 30111,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x3c4962ff6258dcfcafd23a814237b7d6eb712063",
+   "logRpcs": [
+    "https://optimism.gateway.tenderly.co",
+    "https://gateway.tenderly.co/public/optimism"
+   ]
+  },
+  "56": {
+   "chainKey": "bsc",
+   "eid": 30102,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0xb217266c3a98c8b2709ee26836c98cf12f6ccec1",
+   "logRpcs": [
+    "https://bsc-rpc.publicnode.com",
+    "https://0.48.club"
+   ]
+  },
+  "100": {
+   "chainKey": "gnosis",
+   "eid": 30145,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x9714ccf1dedef14bab5013625db92746c1358cb4",
+   "logRpcs": [
+    "https://gnosis-rpc.publicnode.com",
+    "https://rpc.gnosischain.com"
+   ]
+  },
+  "137": {
+   "chainKey": "polygon",
+   "eid": 30109,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x1322871e4ab09bc7f5717189434f97bbd9546e95",
+   "logRpcs": [
+    "https://gateway.tenderly.co/public/polygon",
+    "https://polygon-bor-rpc.publicnode.com"
+   ]
+  },
+  "143": {
+   "chainKey": "monad",
+   "eid": 30390,
+   "endpoint": "0x6f475642a6e85809b1c36fa62763669b1b48dd5b",
+   "receiveUln302": "0xe1844c5d63a9543023008d332bd3d2e6f1fe1043",
+   "logRpcs": [
+    "https://monad-mainnet-rpc.spidernode.net",
+    "https://rpc2.monad.xyz"
+   ]
+  },
+  "146": {
+   "chainKey": "sonic",
+   "eid": 30332,
+   "endpoint": "0x6f475642a6e85809b1c36fa62763669b1b48dd5b",
+   "receiveUln302": "0xe1844c5d63a9543023008d332bd3d2e6f1fe1043",
+   "logRpcs": [
+    "https://sonic-rpc.publicnode.com",
+    "https://rpc.soniclabs.com"
+   ]
+  },
+  "196": {
+   "chainKey": "xlayer",
+   "eid": 30274,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x2367325334447c5e1e0f1b3a6fb947b262f58312",
+   "logRpcs": []
+  },
+  "324": {
+   "chainKey": "zksync",
+   "eid": 30165,
+   "endpoint": "0xd07c30af3ff30d96bdc9c6044958230eb797ddbf",
+   "receiveUln302": "0x04830f6decf08dec9ed6c3fcad215245b78a59e1",
+   "logRpcs": [
+    "https://mainnet.era.zksync.io",
+    "https://zksync-era.api.pocket.network"
+   ]
+  },
+  "1088": {
+   "chainKey": "metis",
+   "eid": 30151,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x5539eb17a84e1d59d37c222eb2cc4c81b502d1ac",
+   "logRpcs": [
+    "https://metis-rpc.publicnode.com",
+    "https://andromeda.metis.io/?owner=1088"
+   ]
+  },
+  "1868": {
+   "chainKey": "soneium",
+   "eid": 30340,
+   "endpoint": "0x4bcb6a963a9563c33569d7a512d35754221f3a19",
+   "receiveUln302": "0x364b548d8e6db7ca84aaafa54595919eccf961ea",
+   "logRpcs": [
+    "https://rpc.soneium.org"
+   ]
+  },
+  "4326": {
+   "chainKey": "megaeth",
+   "eid": 30398,
+   "endpoint": "0x6f475642a6e85809b1c36fa62763669b1b48dd5b",
+   "receiveUln302": "0xe1844c5d63a9543023008d332bd3d2e6f1fe1043",
+   "logRpcs": [
+    "https://mainnet.megaeth.com/rpc"
+   ]
+  },
+  "5000": {
+   "chainKey": "mantle",
+   "eid": 30181,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x8da6512de9379fbf4f09bf520caf7a85435ed93e",
+   "logRpcs": [
+    "https://mantle-rpc.publicnode.com",
+    "https://rpc.mantle.xyz"
+   ]
+  },
+  "8453": {
+   "chainKey": "base",
+   "eid": 30184,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0xc70ab6f32772f59fbfc23889caf4ba3376c84baf",
+   "logRpcs": [
+    "https://gateway.tenderly.co/public/base",
+    "https://base.gateway.tenderly.co"
+   ]
+  },
+  "9745": {
+   "chainKey": "plasma",
+   "eid": 30383,
+   "endpoint": "0x6f475642a6e85809b1c36fa62763669b1b48dd5b",
+   "receiveUln302": "0xe1844c5d63a9543023008d332bd3d2e6f1fe1043",
+   "logRpcs": [
+    "https://rpc.plasma.to"
+   ]
+  },
+  "42161": {
+   "chainKey": "arbitrum",
+   "eid": 30110,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x7b9e184e07a6ee1ac23eae0fe8d6be2f663f05e6",
+   "logRpcs": [
+    "https://arb1.arbitrum.io/rpc",
+    "https://public-arb-mainnet.fastnode.io"
+   ]
+  },
+  "42220": {
+   "chainKey": "celo",
+   "eid": 30125,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0xadded4478b423d991c21e525cd3638fbce1aad17",
+   "logRpcs": [
+    "https://rpc.ankr.com/celo",
+    "https://forno.celo.org"
+   ]
+  },
+  "43114": {
+   "chainKey": "avalanche",
+   "eid": 30106,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0xbf3521d309642fa9b1c91a08609505ba09752c61",
+   "logRpcs": [
+    "https://avalanche-c-chain-rpc.publicnode.com",
+    "https://avalanche-mainnet.gateway.tenderly.co"
+   ]
+  },
+  "57073": {
+   "chainKey": "ink",
+   "eid": 30339,
+   "endpoint": "0xca29f3a6f966cb2fc0de625f8f325c0c46dbe958",
+   "receiveUln302": "0x473132bb594caef281c68718f4541f73fe14dc89",
+   "logRpcs": [
+    "https://rpc-qnd.inkonchain.com",
+    "https://rpc-gel.inkonchain.com"
+   ]
+  },
+  "59144": {
+   "chainKey": "linea",
+   "eid": 30183,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0xe22ed54177ce1148c557de74e4873619e6c6b205",
+   "logRpcs": [
+    "https://rpc.linea.build",
+    "https://linea.api.pocket.network"
+   ]
+  },
+  "534352": {
+   "chainKey": "scroll",
+   "eid": 30214,
+   "endpoint": "0x1a44076050125825900e736c501f859c50fe728c",
+   "receiveUln302": "0x8363302080e711e0cab978c081b9e69308d49808",
+   "logRpcs": [
+    "https://rpc.scroll.io",
+    "https://scroll-rpc.publicnode.com"
+   ]
   }
  }
 }

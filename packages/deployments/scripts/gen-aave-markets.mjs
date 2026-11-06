@@ -22,6 +22,16 @@ async function rpcOk(url, chainId) {
   } catch { return false; }
 }
 
+/** Serves eth_getLogs over 500 blocks for an address (many free RPCs refuse or cap logs). */
+async function logsOk(url, address) {
+  try {
+    const call = async (method, params) => (await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }), signal: AbortSignal.timeout(10000) })).json();
+    const latest = parseInt((await call("eth_blockNumber", [])).result, 16);
+    const r = await call("eth_getLogs", [{ address, fromBlock: "0x" + (latest - 500).toString(16), toBlock: "0x" + latest.toString(16) }]);
+    return Array.isArray(r.result);
+  } catch { return false; }
+}
+
 const lzmeta = await (await get("https://metadata.layerzero-api.com/v1/metadata")).json();
 const ofts = await (await get("https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/list")).json();
 const lzByChainId = {};
@@ -55,12 +65,25 @@ for (const m of MARKETS) {
   console.log(`${m.padEnd(16)} chain ${String(chainId).padEnd(7)} rpcs ${rpcCache[chainId].length}`);
 }
 const chainIds = new Set(markets.map((x) => x.chainId));
+// LayerZero v2 addresses per chain, for the config-change watch (scripts: packages/resolver/src/watch-cli.ts)
+const lz = {};
+for (const id of chainIds) {
+  const key = id === 1 ? "ethereum" : lzByChainId[id];
+  const d = key ? (lzmeta[key]?.deployments ?? []).find((x) => x.version === 2 && x.endpointV2) : null;
+  if (!d) continue;
+  const cands = [...new Set([...(rpcCache[id] ?? []), ...((id === 1 ? [] : lzmeta[key]?.rpcs) ?? []).map((r) => (typeof r === "string" ? r : r.url)), ...(id === 1 ? ["https://ethereum-rpc.publicnode.com", "https://rpc.mevblocker.io"] : [])])].filter((u) => u?.startsWith("https://") && !u.includes("{"));
+  const logRpcs = [];
+  for (const u of cands) { if (logRpcs.length >= 2) break; if ((await rpcOk(u, id)) && (await logsOk(u, d.endpointV2.address))) logRpcs.push(u); }
+  lz[id] = { chainKey: key, eid: Number(d.eid), endpoint: d.endpointV2.address, receiveUln302: d.receiveUln302?.address ?? null, logRpcs };
+  console.log(`layerzero ${key.padEnd(10)} log rpcs ${logRpcs.length}`);
+}
 const out = {
   source: "Aave V3 markets: github.com/bgd-labs/aave-address-book (src/ts/AaveV3*.ts). Bridging: LayerZero OFT registry (metadata.layerzero-api.com/v1/metadata/experiment/ofts/list). RPCs: LayerZero chain metadata, kept only if they answer eth_chainId with CORS headers and have Multicall3.",
   generatedAt: new Date().toISOString(),
   multicall3: MULTICALL3,
   markets,
   bridged: Object.fromEntries(Object.entries(bridged).filter(([id]) => chainIds.has(Number(id)))),
+  layerzero: lz,
 };
 writeFileSync(new URL("../aave-markets.json", import.meta.url), JSON.stringify(out, null, 1));
 console.log(`wrote aave-markets.json: ${markets.length} markets, ${markets.filter((x) => !x.rpcs.length).length} without a working RPC`);

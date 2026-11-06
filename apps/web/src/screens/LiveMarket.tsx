@@ -9,9 +9,23 @@ import { Card, Stat } from "../components/ui";
  * No Floor server: the browser reads the chains itself.
  */
 type ProbeRow = { oapp: string; outcome?: string; eids?: number[]; results?: { outcome: string; maxAcceptedSD: string | null; proof: string }[]; sharedDecimals?: number };
-const evidence = import.meta.glob("../../../../docs/evidence/inbound/2026-11-07-*.json", { eager: true, import: "default" }) as Record<string, { block: number; rows: ProbeRow[] }>;
+// Probe results: the scheduler's hourly latest-*.json when present, else the 2026-11-07 run (same file suffixes).
+const dated = import.meta.glob("../../../../docs/evidence/inbound/2026-11-07-*.json", { eager: true, import: "default" }) as Record<string, { block: number; rows: ProbeRow[] }>;
+const latest = import.meta.glob("../../../../docs/evidence/inbound/latest-*.json", { eager: true, import: "default" }) as Record<string, { block: number; rows: ProbeRow[] }>;
+const suffix = (p: string) => p.replace(/^.*\/(2026-11-07|latest)-/, "");
+const probeFiles = new Map<string, { block: number; rows: ProbeRow[]; latest: boolean }>();
+for (const [p, d] of Object.entries(dated)) probeFiles.set(suffix(p), { ...d, latest: false });
+for (const [p, d] of Object.entries(latest)) if (d?.rows?.length) probeFiles.set(suffix(p), { ...d, latest: true });
 const PROBE = new Map<string, { outcome: string; routes: number; block: number }>();
-for (const d of Object.values(evidence)) for (const r of d.rows) PROBE.set(r.oapp.toLowerCase(), { outcome: r.outcome ?? "ERROR", routes: r.eids?.length ?? 0, block: d.block });
+for (const d of probeFiles.values()) for (const r of d.rows) PROBE.set(r.oapp.toLowerCase(), { outcome: r.outcome ?? "ERROR", routes: r.eids?.length ?? 0, block: d.block });
+const PROBE_SOURCE = [...probeFiles.values()].some((d) => d.latest) ? "hourly probe" : "inbound probe, 2026-11-07";
+
+// Config watch (every 15 min): last block checked per chain, and config changes on tracked bridges.
+type WatchState = { updatedAt?: string; chains: Record<string, { block: number; checkedAt: string; error?: string }> };
+type WatchEvent = { chainId: number; chain: string; block: number; tx: string; event: string; symbol: string; kind: string; eid?: number; requiredDVNs?: number; singleVerifier?: boolean };
+const watchFiles = import.meta.glob("../../../../docs/evidence/watch/*.json", { eager: true, import: "default" }) as Record<string, unknown>;
+const WATCH = (Object.entries(watchFiles).find(([p]) => p.endsWith("state.json"))?.[1] ?? { chains: {} }) as WatchState;
+const EVENTS = (Object.entries(watchFiles).find(([p]) => p.endsWith("events.json"))?.[1] ?? []) as WatchEvent[];
 
 /** Adapters with no active route (no peers, or LayerZero v1 outside the v2 probe) do not bridge anything today. */
 const INACTIVE = new Set(["NO_PEERS", "LZ_V1", "ERROR"]);
@@ -95,8 +109,8 @@ export function LiveMarket() {
         <Stat value={String(rows.length)} label="collateral assets" source={`${live} markets`} />
         <Stat value={usd(rows.reduce((s, r) => s + (r.suppliedUsd ?? 0), 0))} label="supplied as collateral" source="Aave oracle prices" />
         <Stat value={`${minted.length} · ${usd(minted.reduce((s, r) => s + (r.suppliedUsd ?? 0), 0))}`} label="collateral minted by LayerZero messages on its chain" source="LayerZero OFT registry" />
-        <Stat value={`${mintedDrainable.length} · ${usd(mintedDrainable.reduce((s, r) => s + (r.suppliedUsd ?? 0), 0))}`} label="of which the backing adapter can release all escrow in one message (the Kelp pattern)" source="inbound probe, 2026-11-07" />
-        <Stat value={String(homeDrainable.length)} label="home-chain collateral whose adapter (backing other chains) can be emptied in one message" source="inbound probe, 2026-11-07" />
+        <Stat value={`${mintedDrainable.length} · ${usd(mintedDrainable.reduce((s, r) => s + (r.suppliedUsd ?? 0), 0))}`} label="of which the backing adapter can release all escrow in one message (the Kelp pattern)" source={PROBE_SOURCE} />
+        <Stat value={String(homeDrainable.length)} label="home-chain collateral whose adapter (backing other chains) can be emptied in one message" source={PROBE_SOURCE} />
       </div>
       <Card
         title={`Collateral (${shown.length})`}
@@ -128,6 +142,22 @@ export function LiveMarket() {
             </tbody>
           </table>
         </div>
+      </Card>
+      <Card title="Config watch (every 15 minutes)">
+        <p className="muted">
+          LayerZero config changes (verifier set, receive library, delegate) on every chain with an Aave V3 market, for every LayerZero deployment of an
+          Aave-listed token. {WATCH.updatedAt ? <>Last run: {ago(Date.parse(WATCH.updatedAt), now)}; chains checked: {Object.values(WATCH.chains).filter((c) => !c.error).length}/{Object.keys(WATCH.chains).length}.</> : "Not run yet."}
+        </p>
+        {EVENTS.length === 0 ? (
+          <p>No config changes on tracked bridges since the watch started. (Replaying Kelp's April 2025 block, the watch flags the rsETH change: one required verifier.)</p>
+        ) : (
+          <div className="tablebox">
+            <table>
+              <thead><tr><th>Chain</th><th>Block</th><th>Token</th><th>Change</th><th>Route</th><th>Verifiers after</th></tr></thead>
+              <tbody>{EVENTS.slice(0, 20).map((e) => <tr key={`${e.chainId}-${e.tx}-${e.block}-${e.event}`}><td>{e.chain}</td><td className="num">{e.block.toLocaleString("en-US")}</td><td><b>{e.symbol}</b></td><td>{e.event}</td><td className="num">{e.eid ?? "—"}</td><td>{e.requiredDVNs == null ? "—" : e.singleVerifier ? <b className="bad">{e.requiredDVNs} (single verifier)</b> : String(e.requiredDVNs)}</td></tr>)}</tbody>
+            </table>
+          </div>
+        )}
       </Card>
       <Card title="Markets">
         <div className="tablebox">
