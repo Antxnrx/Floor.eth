@@ -91,6 +91,7 @@ Never paste keys into files. Use a Foundry keystore (`cast wallet import`) and e
 
 Everything below is live and was checked onchain (full table with tx hashes: `docs/evidence/live-2026-11-07.md`).
 
+- **Web app (all screens, live Enforcement reads), served from Swarm:** https://bah5acgzaqd7ip6r62qfygexx6ue3nvzfme47guje2362bulcyxsusjk5w4ua.bzz.limo/ (`#/enforcement` for the live loop)
 - **Verify + dataset pages, served from Swarm:** https://bah5acgzaj4pea2h3q3knmuv4u2ng24wv4x3p5hbhlyi7n5dkbluwu6ejbv7q.bzz.limo/ (`dataset.html` for the Arkiv query)
 - **Ethereum Sepolia:** FloorRegistry `0xE69c3e47DdaB083D0Ba4D8aD2B2dA8531ec18220` (rsETH = BREACHED, written by the CRE workflow), FloorBroadcaster `0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4`
 - **Base Sepolia:** FloorMirror `0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6` (rating delivered by CCIP), Morpho Vault V2 `0xff5E3b49d94AA7C5213938c4B8FF1983456869Be`, FloorSentinel `0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4`. **Detected on Ethereum, protection fired on Base:** the sentinel cut the vault's rsETH cap 1,000,000 USDC → 0 (tx `0x2e02faf9…7908`)

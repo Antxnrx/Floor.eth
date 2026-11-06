@@ -3,6 +3,7 @@ import { Dashboard } from "./screens/Dashboard";
 import { Asset } from "./screens/Asset";
 import { Verify } from "./screens/Verify";
 import { About, Blast, Check, Enforcement, Kelp, Rules } from "./screens/Others";
+import { LIVE } from "./data/live";
 
 /** Hash router (works on static hosting and Swarm /bzz/ URLs without server rewrites). */
 const useHash = () => {
@@ -44,10 +45,11 @@ export function App() {
   })();
   return (
     <>
-      <div className="proto">Prototype for design handoff · REAL = actual onchain scans · MOCK = invented UI states</div>
+      <div className="proto">REAL = onchain scans and the live testnet deployment · MOCK = invented UI states, kept labelled</div>
       <nav>
         <a className="brand" href="#/">Floor</a>
         {NAV.map(([to, label]) => <a key={to} href={`#${to}`} className={(to === "/" ? root === "" : path.startsWith(to)) ? "on" : ""}>{label}</a>)}
+        <a href={`${LIVE.site}dataset.html`} target="_blank" rel="noopener">Bridge dataset ↗</a>
       </nav>
       <main>{screen}</main>
     </>

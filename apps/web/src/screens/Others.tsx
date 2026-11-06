@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
-import { ASSETS, EVENTS, KELP_TIMELINE, RULES } from "../data/mock";
+import { useEffect, useMemo, useState } from "react";
+import { ASSETS, KELP_TIMELINE, RULES } from "../data/mock";
+import { LIVE, readLive, STEPS, type LiveState } from "../data/live";
 import { Card, GradeChip, Link, Mock, Real } from "../components/ui";
 
 /** Screen 4 · Kelp replay: real timeline + fork replay result (side by side). */
@@ -10,7 +11,7 @@ export function Kelp() {
       <p className="lede">The attacked route sat on one verifier for 12.5 months. Replayed on a mainnet fork at block 24,908,284.</p>
       <div className="grid2">
         <Card title="Without Floor"><p className="big bad">Borrow succeeds</p><p className="muted">Attacker supplies forged rsETH and borrows WETH (block 24,908,307 in reality).</p></Card>
-        <Card title="With Floor (fork)"><p className="big ok">Borrow reverts · $0 borrowed on Aave</p><p className="muted">rsETH graded BREACHED → enforcer freezes new borrows. Repay and liquidations still work. <Mock /> until the fork replay is wired.</p></Card>
+        <Card title="With Floor (fork)"><p className="big ok">Borrow reverts · $0 borrowed on Aave</p><p className="muted">rsETH graded BREACHED → enforcer freezes new borrows. The attacker's real supply transaction reverts with <code>ReserveFrozen()</code>; repay and liquidations still work. Mainnet fork test <code>contracts/test/fork/KelpReplay.t.sol</code>.</p></Card>
       </div>
       <Card title="Timeline (onchain)">
         <table><tbody>{KELP_TIMELINE.map((e) => <tr key={e.block}><td>{e.t}</td><td className="num">{e.block}</td><td>{e.text}</td></tr>)}</tbody></table>
@@ -19,19 +20,48 @@ export function Kelp() {
   );
 }
 
-/** Screen 5 · Enforcement log: the live mainnet loop (rating → CRE → Sentinel → CCIP). */
+/** Screen 5 · Enforcement: the live testnet loop (CRE → registry → CCIP → mirror on Base → sentinel cuts a real Morpho cap). */
 export function Enforcement() {
+  const [live, setLive] = useState<LiveState | null>(null);
+  const [err, setErr] = useState("");
+  useEffect(() => { readLive().then(setLive, (e) => setErr(String(e?.message ?? e))); }, []);
+  const t = (s: number) => new Date(s * 1000).toISOString().slice(11, 19) + "Z";
+  const mins = (a: number, b: number) => ((b - a) / 60).toFixed(1);
   return (
     <>
-      <h1>Enforcement log <Mock /></h1>
-      <p className="lede">Our own TEST token and Morpho vault on mainnet. Floor only ever lowers risk: caps down, never funds moved.</p>
-      <Card title="Events">
+      <h1>Detected on Ethereum, protection fires on Base <Real /></h1>
+      <p className="lede">Live on testnets with real Chainlink CRE, CCIP and a real Morpho Vault V2. Floor only ever lowers risk: caps go down, funds never move.</p>
+      <div className="grid2">
+        <Card title="Now, read from the chains">
+          {err && <p className="bad">Could not read the chains: {err}</p>}
+          {!live && !err && <p className="muted">Reading Sepolia and Base Sepolia…</p>}
+          {live && (
+            <ul>
+              <li>FloorRegistry (Ethereum Sepolia): rsETH <GradeChip g={live.registry.grade as never} /> at scan block {live.registry.scanBlock.toLocaleString("en-US")}</li>
+              <li>FloorMirror (Base Sepolia, via CCIP): rsETH <GradeChip g={live.mirror.grade as never} />, evidence hash {live.mirror.hash === live.registry.hash ? "identical" : "DIFFERENT"}</li>
+              <li>Morpho Vault V2 cap for rsETH collateral: <b className={live.capUsdc === 0 ? "bad" : ""}>{live.capUsdc.toLocaleString("en-US")} USDC</b> (was 1,000,000)</li>
+              <li>FloorSentinel holds the vault's sentinel role: {live.sentinelSet ? "yes" : "no"}</li>
+            </ul>
+          )}
+        </Card>
+        <Card title="How long it took (block timestamps)">
+          <p className="big">{mins(STEPS[0]!.at, STEPS[2]!.at)} min <span className="muted">from the CRE write on Ethereum to the rating on Base</span></p>
+          <p className="muted">{mins(STEPS[1]!.at, STEPS[2]!.at)} min of that is CCIP waiting for Ethereum finality before delivering. The cap cut is a permissionless <code>poke</code>; in this run it was sent by hand {mins(STEPS[2]!.at, STEPS[3]!.at)} min after delivery. At Kelp, the attacked route sat on a single verifier for 381 days.</p>
+        </Card>
+      </div>
+      <Card title="What happened, transaction by transaction">
         <table>
-          <thead><tr><th>Time</th><th>Type</th><th>Event</th><th>Detail</th><th>Tx</th></tr></thead>
-          <tbody>{EVENTS.map((e) => <tr key={e.time + e.title}><td>{e.time}</td><td><span className={`chip chip-k-${e.kind}`}>{e.kind}</span></td><td>{e.title}</td><td>{e.detail}</td><td>{e.tx ?? "—"}</td></tr>)}</tbody>
+          <thead><tr><th>Time</th><th>Chain</th><th>Step</th><th>Detail</th><th>Tx</th></tr></thead>
+          <tbody>{STEPS.map((e) => <tr key={e.tx}><td className="num">{t(e.at)}</td><td>{e.chain}</td><td><span className={`chip chip-k-${e.kind}`}>{e.kind}</span> {e.title}</td><td>{e.detail}</td><td><a href={e.link} target="_blank" rel="noopener">{e.tx.slice(0, 10)}…</a></td></tr>)}</tbody>
         </table>
       </Card>
-      <Card title="Caught in"><p className="big">12 seconds <span className="muted">vs 12.5 months at Kelp</span></p></Card>
+      <Card title="What the sentinel can and cannot do">
+        <ul>
+          <li>Can: lower the vault's cap for the rated collateral (BREACHED → 0, DEGRADED/UNKNOWN → 10% ceiling).</li>
+          <li>Cannot: raise any cap, move funds, block withdrawals, repayments or liquidations. The vault owner opts in with <code>setIsSentinel</code>.</li>
+          <li>Contracts: registry <code>{LIVE.registry}</code>, mirror <code>{LIVE.mirror}</code>, vault <code>{LIVE.vault}</code>.</li>
+        </ul>
+      </Card>
     </>
   );
 }
