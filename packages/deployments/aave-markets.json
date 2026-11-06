@@ -1,0 +1,6088 @@
+{
+ "source": "Aave V3 markets: github.com/bgd-labs/aave-address-book (src/ts/AaveV3*.ts). Bridging: LayerZero OFT registry (metadata.layerzero-api.com/v1/metadata/experiment/ofts/list). RPCs: LayerZero chain metadata, kept only if they answer eth_chainId with CORS headers and have Multicall3.",
+ "generatedAt": "2026-11-06T23:06:47.828Z",
+ "multicall3": "0xcA11bde05977b3631167028862bE2a173976CA11",
+ "markets": [
+  {
+   "id": "Ethereum",
+   "name": "Ethereum Core",
+   "chainId": 1,
+   "pool": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+   "dataProvider": "0x0a16f2FCC0D44FaE41cc54e079281D84A363bECD",
+   "oracle": "0x54586bE62E3c3580375aE3723C145253060Ca0C2",
+   "rpcs": [
+    "https://eth-mainnet.public.blastapi.io",
+    "https://api.zan.top/eth-mainnet"
+   ]
+  },
+  {
+   "id": "EthereumLido",
+   "name": "Ethereum Prime",
+   "chainId": 1,
+   "pool": "0x4e033931ad43597d96D6bcc25c280717730B58B1",
+   "dataProvider": "0xB85B2bFEbeC4F5f401dbf92ac147A3076391fCD5",
+   "oracle": "0xE3C061981870C0C7b1f3C4F4bB36B95f1F260BE6",
+   "rpcs": [
+    "https://eth-mainnet.public.blastapi.io",
+    "https://api.zan.top/eth-mainnet"
+   ]
+  },
+  {
+   "id": "EthereumEtherFi",
+   "name": "Ethereum EtherFi",
+   "chainId": 1,
+   "pool": "0x0AA97c284e98396202b6A04024F5E2c65026F3c0",
+   "dataProvider": "0x7c8509591f9693D21280d96e149a08A3bf69Cd0c",
+   "oracle": "0x43b64f28A678944E0655404B0B98E443851cC34F",
+   "rpcs": [
+    "https://eth-mainnet.public.blastapi.io",
+    "https://api.zan.top/eth-mainnet"
+   ]
+  },
+  {
+   "id": "EthereumHorizon",
+   "name": "Ethereum Horizon",
+   "chainId": 1,
+   "pool": "0xAe05Cd22df81871bc7cC2a04BeCfb516bFe332C8",
+   "dataProvider": "0x53519c32f73fE1797d10210c4950fFeBa3b21504",
+   "oracle": "0x985BcfAB7e0f4EF2606CC5b64FC1A16311880442",
+   "rpcs": [
+    "https://eth-mainnet.public.blastapi.io",
+    "https://api.zan.top/eth-mainnet"
+   ]
+  },
+  {
+   "id": "Arbitrum",
+   "name": "Arbitrum",
+   "chainId": 42161,
+   "pool": "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+   "dataProvider": "0x243Aa95cAC2a25651eda86e80bEe66114413c43b",
+   "oracle": "0xb56c2F0B653B2e0b10C9b928C8580Ac5Df02C7C7",
+   "rpcs": [
+    "https://api.zan.top/arb-one",
+    "https://arbitrum.drpc.org"
+   ]
+  },
+  {
+   "id": "Base",
+   "name": "Base",
+   "chainId": 8453,
+   "pool": "0xA238Dd80C259a72e81d7e4664a9801593F98d1c5",
+   "dataProvider": "0x0F43731EB8d45A581f4a36DD74F5f358bc90C73A",
+   "oracle": "0x2Cc0Fc26eD4563A5ce5e8bdcfe1A2878676Ae156",
+   "rpcs": [
+    "https://api.zan.top/base-mainnet",
+    "https://gateway.tenderly.co/public/base"
+   ]
+  },
+  {
+   "id": "Optimism",
+   "name": "Optimism",
+   "chainId": 10,
+   "pool": "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+   "dataProvider": "0x243Aa95cAC2a25651eda86e80bEe66114413c43b",
+   "oracle": "0xD81eb3728a631871a7eBBaD631b5f424909f0c77",
+   "rpcs": [
+    "https://optimism.gateway.tenderly.co",
+    "https://gateway.tenderly.co/public/optimism"
+   ]
+  },
+  {
+   "id": "Polygon",
+   "name": "Polygon",
+   "chainId": 137,
+   "pool": "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+   "dataProvider": "0x243Aa95cAC2a25651eda86e80bEe66114413c43b",
+   "oracle": "0xb023e699F5a33916Ea823A16485e259257cA8Bd1",
+   "rpcs": [
+    "https://gateway.tenderly.co/public/polygon",
+    "https://api.zan.top/polygon-mainnet"
+   ]
+  },
+  {
+   "id": "Avalanche",
+   "name": "Avalanche",
+   "chainId": 43114,
+   "pool": "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+   "dataProvider": "0x243Aa95cAC2a25651eda86e80bEe66114413c43b",
+   "oracle": "0xEBd36016B3eD09D4693Ed4251c67Bd858c3c7C9C",
+   "rpcs": [
+    "https://api.zan.top/avax-mainnet/ext/bc/C/rpc",
+    "https://api.avax.network/ext/bc/C/rpc"
+   ]
+  },
+  {
+   "id": "BNB",
+   "name": "BNB Chain",
+   "chainId": 56,
+   "pool": "0x6807dc923806fE8Fd134338EABCA509979a7e0cB",
+   "dataProvider": "0xc90Df74A7c16245c5F5C5870327Ceb38Fe5d5328",
+   "oracle": "0x39bc1bfDa2130d6Bb6DBEfd366939b4c7aa7C697",
+   "rpcs": [
+    "https://api.zan.top/bsc-mainnet",
+    "https://bsc-rpc.publicnode.com"
+   ]
+  },
+  {
+   "id": "Gnosis",
+   "name": "Gnosis",
+   "chainId": 100,
+   "pool": "0xb50201558B00496A145fE76f7424749556E326D8",
+   "dataProvider": "0xF1F5acB596568895393cB5E4D0452D6592A2fA70",
+   "oracle": "0xeb0a051be10228213BAEb449db63719d6742F7c4",
+   "rpcs": [
+    "https://gnosis.drpc.org",
+    "https://gnosis-rpc.publicnode.com"
+   ]
+  },
+  {
+   "id": "Scroll",
+   "name": "Scroll",
+   "chainId": 534352,
+   "pool": "0x11fCfe756c05AD438e312a7fd934381537D3cFfe",
+   "dataProvider": "0xBEa2B648f05887eCbF1d115da8b7E4A317975A51",
+   "oracle": "0x04421D8C506E2fA2371a08EfAaBf791F624054F3",
+   "rpcs": [
+    "https://rpc.scroll.io",
+    "https://scroll.drpc.org"
+   ]
+  },
+  {
+   "id": "Linea",
+   "name": "Linea",
+   "chainId": 59144,
+   "pool": "0xc47b8C00b0f69a36fa203Ffeac0334874574a8Ac",
+   "dataProvider": "0x47cd4b507B81cB831669c71c7077f4daF6762FF4",
+   "oracle": "0xCFDAdA7DCd2e785cF706BaDBC2B8Af5084d595e9",
+   "rpcs": [
+    "https://linea.drpc.org",
+    "https://rpc.linea.build"
+   ]
+  },
+  {
+   "id": "Mantle",
+   "name": "Mantle",
+   "chainId": 5000,
+   "pool": "0x458F293454fE0d67EC0655f3672301301DD51422",
+   "dataProvider": "0x487c5c669D9eee6057C44973207101276cf73b68",
+   "oracle": "0x47a063CfDa980532267970d478EC340C0F80E8df",
+   "rpcs": [
+    "https://mantle.drpc.org",
+    "https://mantle-rpc.publicnode.com"
+   ]
+  },
+  {
+   "id": "Metis",
+   "name": "Metis",
+   "chainId": 1088,
+   "pool": "0x90df02551bB792286e8D4f13E0e357b4Bf1D6a57",
+   "dataProvider": "0x602BeF1d4c381e5a29f0C562A310416A73D8Be19",
+   "oracle": "0x38D36e85E47eA6ff0d18B0adF12E5fC8984A6f8e",
+   "rpcs": [
+    "https://metis.drpc.org",
+    "https://metis-rpc.publicnode.com"
+   ]
+  },
+  {
+   "id": "ZkSync",
+   "name": "zkSync",
+   "chainId": 324,
+   "pool": "0x78e30497a3c7527d953c6B1E3541b021A98Ac43c",
+   "dataProvider": "0x9057ac7b2D35606F8AD5aE2FCBafcD94E58D9927",
+   "oracle": "0xC7F58Fca663a8d377B6D0c9703C697f56dC40088",
+   "rpcs": [
+    "https://api.zan.top/zksync-mainnet",
+    "https://mainnet.era.zksync.io"
+   ]
+  },
+  {
+   "id": "Sonic",
+   "name": "Sonic",
+   "chainId": 146,
+   "pool": "0x5362dBb1e601abF3a4c14c22ffEdA64042E5eAA3",
+   "dataProvider": "0xc0a344397cfa89dF1e1d3e4fb330834D789cF2CD",
+   "oracle": "0xD63f7658C66B2934Bd234D79D06aEF5290734B30",
+   "rpcs": [
+    "https://sonic.drpc.org",
+    "https://sonic-rpc.publicnode.com"
+   ]
+  },
+  {
+   "id": "Celo",
+   "name": "Celo",
+   "chainId": 42220,
+   "pool": "0x3E59A31363E2ad014dcbc521c4a0d5757d9f3402",
+   "dataProvider": "0x2e0f8D3B1631296cC7c56538D6Eb6032601E15ED",
+   "oracle": "0x1e693D088ceFD1E95ba4c4a5F7EeA41a1Ec37e8b",
+   "rpcs": [
+    "https://rpc.ankr.com/celo",
+    "https://forno.celo.org"
+   ]
+  },
+  {
+   "id": "Soneium",
+   "name": "Soneium",
+   "chainId": 1868,
+   "pool": "0xDd3d7A7d03D9fD9ef45f3E587287922eF65CA38B",
+   "dataProvider": "0x4a24b44b252db149B5B9BCec4dc3c2752807d626",
+   "oracle": "0x20040a64612555042335926d72B4E5F667a67fA1",
+   "rpcs": [
+    "https://rpc.soneium.org"
+   ]
+  },
+  {
+   "id": "InkWhitelabel",
+   "name": "Ink",
+   "chainId": 57073,
+   "pool": "0x2816cf15F6d2A220E789aA011D5EE4eB6c47FEbA",
+   "dataProvider": "0x96086C25d13943C80Ff9a19791a40Df6aFC08328",
+   "oracle": "0x4758213271BFdC72224A7a8742dC865fC97756e1",
+   "rpcs": [
+    "https://ink.drpc.org",
+    "https://rpc-qnd.inkonchain.com"
+   ]
+  },
+  {
+   "id": "Plasma",
+   "name": "Plasma",
+   "chainId": 9745,
+   "pool": "0x925a2A7214Ed92428B5b1B090F80b25700095e12",
+   "dataProvider": "0xf2D6E38B407e31E7E7e4a16E6769728b76c7419F",
+   "oracle": "0x33E0b3fc976DC9C516926BA48CfC0A9E10a2aAA5",
+   "rpcs": [
+    "https://rpc.plasma.to"
+   ]
+  },
+  {
+   "id": "MegaEth",
+   "name": "MegaETH",
+   "chainId": 4326,
+   "pool": "0x7e324AbC5De01d112AfC03a584966ff199741C28",
+   "dataProvider": "0x9588b453A4EE24a420830CB3302195cA7aA3b403",
+   "oracle": "0x421117D7319E96d831972b3F7e970bbfe29C4F21",
+   "rpcs": [
+    "https://mainnet.megaeth.com/rpc"
+   ]
+  },
+  {
+   "id": "Monad",
+   "name": "Monad",
+   "chainId": 143,
+   "pool": "0x69a5F9AD4f96ebf0a0C792dD42a01cC5C0102fef",
+   "dataProvider": "0xB65A68B98274ef7D9a60E0C0747dD1BEc3D32fad",
+   "oracle": "0x0c02b2c2038066C10Eab8fe1D5Cdb73d5a78A1Bf",
+   "rpcs": [
+    "https://monad-mainnet.drpc.org",
+    "https://rpc.monad.xyz"
+   ]
+  },
+  {
+   "id": "XLayer",
+   "name": "X Layer",
+   "chainId": 196,
+   "pool": "0xE3F3Caefdd7180F884c01E57f65Df979Af84f116",
+   "dataProvider": "0x6C505C31714f14e8af2A03633EB2Cdfb4959138F",
+   "oracle": "0x91FC11136d5615575a0fC5981Ab5C0C54418E2C6",
+   "rpcs": [
+    "https://xlayer.drpc.org",
+    "https://xlayerrpc.okx.com"
+   ]
+  }
+ ],
+ "bridged": {
+  "1": {
+   "0x77a4b0bfe5c7257f67a1de1b99aa7e157035b1b2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x77a4b0bfe5c7257f67a1de1b99aa7e157035b1b2",
+    "symbol": "7007",
+    "lzVersion": "v2"
+   },
+   "0xe6828d65bf5023ae1851d90d8783cc821ba7eee1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe6828d65bf5023ae1851d90d8783cc821ba7eee1",
+    "symbol": "ABOND",
+    "lzVersion": "v1"
+   },
+   "0x0d37af9d8ae74f35f3a38bd2a08fcb29890ca6d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0d37af9d8ae74f35f3a38bd2a08fcb29890ca6d2",
+    "symbol": "AIXBT",
+    "lzVersion": "v2"
+   },
+   "0xa1faa113cbe53436df28ff0aee54275c13b40975": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x88b06c36fcba5a8cf53fa80cee7dc44e86f2d55a",
+    "symbol": "ALPHA",
+    "lzVersion": "v2"
+   },
+   "0x8457ca5040ad67fdebbcc8edce889a335bc0fbfb": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea",
+    "symbol": "ALT",
+    "lzVersion": "v2"
+   },
+   "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c",
+    "symbol": "Anon",
+    "lzVersion": "v2"
+   },
+   "0xfeac2eae96899709a43e252b6b92971d32f9c0f9": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xaa469fc353c0ccffc8fc192e021afbc4e5303892",
+    "symbol": "ANYONE",
+    "lzVersion": "v2"
+   },
+   "0x4d224452801aced8b2f0aebe155379bb5d594381": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5182fede730b31a9cf7f49c5781214b4a99f2370",
+    "symbol": "APE",
+    "lzVersion": "v2"
+   },
+   "0x594daad7d77592a2b97b725a7ad59d7e188b5bfa": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xce549fd1b93d9c3253394b67fae489d663862f21",
+    "symbol": "APU",
+    "lzVersion": "v2"
+   },
+   "0x9ba021b0a9b958b5e75ce9f6dff97c7ee52cb3e6": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe5ec9e3fa47d93a8a1062c983227f255bbeaf1f1",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0x59a529070fbb61e6d6c91f952ccb7f35c34cf8aa": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x4feb6c50a69d0cb29f77e307249c767607b04408",
+    "symbol": "ASF",
+    "lzVersion": "v2"
+   },
+   "0xad8c787992428cd158e451aab109f724b6bc36de": {
+    "kind": "layerzero-oft",
+    "oapp": "0xad8c787992428cd158e451aab109f724b6bc36de",
+    "symbol": "ASP",
+    "lzVersion": "v2"
+   },
+   "0xb51b97dd5569fab69495316b5a065cccff4b829d": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb51b97dd5569fab69495316b5a065cccff4b829d",
+    "symbol": "ASTRAFER",
+    "lzVersion": "v2"
+   },
+   "0xbe0ed4138121ecfc5c0e56b40517da27e6c5226b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5786c150609a4ef8957bc614a13e8e29558eaba4",
+    "symbol": "ATH",
+    "lzVersion": "v2"
+   },
+   "0x31ea904a7eca45122890deb8da3473a2081bc9d1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31ea904a7eca45122890deb8da3473a2081bc9d1",
+    "symbol": "BAI",
+    "lzVersion": "v2"
+   },
+   "0xba100000625a3754423978a60c9317c58a424e3d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3",
+    "symbol": "BAL",
+    "lzVersion": "v1"
+   },
+   "0xbe1a001fe942f96eea22ba08783140b9dcc09d28": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2a73f85024f101f3fac9fbcbce60707b6b3a6203",
+    "symbol": "BETA",
+    "lzVersion": "v2"
+   },
+   "0x94025780a1ab58868d9b2dbbb775f44b32e8e6e5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb92d5ba343396599076a52bb95d0029286b8f463",
+    "symbol": "BETS",
+    "lzVersion": "v1"
+   },
+   "0xa976d5fd510bc46cd09d53c126f05ceaa1afb510": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe060ab5483448b961fd0cf987c09574545e07bce",
+    "symbol": "BOMB",
+    "lzVersion": "v2"
+   },
+   "0x32b77729cd87f1ef2bea4c650c16f89f08472c69": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe3b60790607afe418adcaadcb5e07f8124ed4b26",
+    "symbol": "BOX",
+    "lzVersion": "v2"
+   },
+   "0xbeab712832112bd7664226db7cd025b153d3af55": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x781b40005b308ff254e891f1a552271dd1ed12a6",
+    "symbol": "BRIGHT",
+    "lzVersion": "v2"
+   },
+   "0x2297aebd383787a160dd0d9f71508148769342e3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
+    "symbol": "BTC.b",
+    "lzVersion": "v1"
+   },
+   "0x6c3ea9036406852006290770bedfcaba0e23a0e8": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfa0e06b54986ad96de87a8c56fea76fbd8d493f8",
+    "symbol": "PYUSD",
+    "lzVersion": "v2"
+   },
+   "0x152649ea73beab28c5b49b26eb48f7ead6d4c898": {
+    "kind": "layerzero-oft",
+    "oapp": "0x152649ea73beab28c5b49b26eb48f7ead6d4c898",
+    "symbol": "CAKE",
+    "lzVersion": "v1"
+   },
+   "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x59ea2825d8ad7d60cc6aa77ffbdd0e89c0fbf539",
+    "symbol": "cbBTC",
+    "lzVersion": "v2"
+   },
+   "0x2da719db753dfa10a62e140f436e1d67f2ddb0d6": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x721c5cb57f5db41ffa8b276cae5ed9d58e7fa1c2",
+    "symbol": "CERE",
+    "lzVersion": "v2"
+   },
+   "0xcc72a24452cdae7889c90f654db47f66b646931d": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcc72a24452cdae7889c90f654db47f66b646931d",
+    "symbol": "CHILLHOUSE",
+    "lzVersion": "v2"
+   },
+   "0xe6829d9a7ee3040e1276fa75293bde931859e8fa": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x4afa9620d0b79137383a7a9ab3477837d475e948",
+    "symbol": "cmETH",
+    "lzVersion": "v2"
+   },
+   "0x3d000462fb9826804a45c0ea869b83b69587f2db": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1883af6b51fb7f69577880004a82c9d68582022c",
+    "symbol": "CMPT",
+    "lzVersion": "v1"
+   },
+   "0x9f0c013016e8656bc256f948cd4b79ab25c7b94d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc14459931cf666dccad582d63288aefb9f0bdca9",
+    "symbol": "COOK",
+    "lzVersion": "v2"
+   },
+   "0x420fca0121dc28039145009570975747295f2329": {
+    "kind": "layerzero-oft",
+    "oapp": "0x420fca0121dc28039145009570975747295f2329",
+    "symbol": "COQ",
+    "lzVersion": "v2"
+   },
+   "0x44f49ff0da2498bcb1d3dc7c0f999578f67fd8c6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x44f49ff0da2498bcb1d3dc7c0f999578f67fd8c6",
+    "symbol": "CORN",
+    "lzVersion": "v2"
+   },
+   "0xd533a949740bb3306d119cc777fa900ba034cd52": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc7ae4ab742f6b0b203f6710c87677005bc45ad01",
+    "symbol": "CRV",
+    "lzVersion": "v1"
+   },
+   "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xaa798bf5ec09b6e3bc059ea4d36d4ca53e063ef7",
+    "symbol": "crvUSD",
+    "lzVersion": "v1"
+   },
+   "0x78d11e37e890af4589fc9d0f6f884fd165c5aa0a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x78d11e37e890af4589fc9d0f6f884fd165c5aa0a",
+    "symbol": "CRYPTO",
+    "lzVersion": "v2"
+   },
+   "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8",
+    "symbol": "CVAI",
+    "lzVersion": "v2"
+   },
+   "0x14778860e937f509e651192a90589de711fb88a9": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xcb07992de144bdee56fdb66fff2454b43243b052",
+    "symbol": "CYBER",
+    "lzVersion": "v2"
+   },
+   "0xd58826d2c0babf1a60d8b508160b52e9c19aff07": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd58826d2c0babf1a60d8b508160b52e9c19aff07",
+    "symbol": "CYBRO",
+    "lzVersion": "v2"
+   },
+   "0x5845684b49aef79a5c0f887f50401c247dca7ac6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5845684b49aef79a5c0f887f50401c247dca7ac6",
+    "symbol": "CYC",
+    "lzVersion": "v2"
+   },
+   "0x6b175474e89094c44da98b954eedeac495271d0f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x91a40c733c97a6e1bf876eaf9ed8c08102eb491f",
+    "symbol": "DAI",
+    "lzVersion": "v1"
+   },
+   "0x0fedba9178b70e8b54e2af08ebffcf28a1e5a43b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x40a341b76a766c56f54985285987dfe52fea237a",
+    "symbol": "DAM",
+    "lzVersion": "v2"
+   },
+   "0xfee293840d23b0b2de8c55e1cf7a9f01c157767c": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfee293840d23b0b2de8c55e1cf7a9f01c157767c",
+    "symbol": "DEGEN",
+    "lzVersion": "v2"
+   },
+   "0x6df0e641fc9847c0c6fde39be6253045440c14d3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x09d9420332bff75522a45fcff4855f82a0a3ff50",
+    "symbol": "DINERO",
+    "lzVersion": "v2"
+   },
+   "0xcc6f1e1b87cfcbe9221808d2d85c501aab0b5192": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcc6f1e1b87cfcbe9221808d2d85c501aab0b5192",
+    "symbol": "DMAIL",
+    "lzVersion": "v1"
+   },
+   "0x0b7f0e51cd1739d6c96982d55ad8fa634dd43a9c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0b7f0e51cd1739d6c96982d55ad8fa634dd43a9c",
+    "symbol": "DMT",
+    "lzVersion": "v1"
+   },
+   "0xd5eb7e91ae88ea2550f9bfd04208399c95df4dc7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa80f36ba18c7f721f3f7acdbcdefd3a86869a036",
+    "symbol": "DOGL",
+    "lzVersion": "v2"
+   },
+   "0x68ff002b30360d3c613c2d6bc7e8c3e1f94883b9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x68ff002b30360d3c613c2d6bc7e8c3e1f94883b9",
+    "symbol": "eATH",
+    "lzVersion": "v2"
+   },
+   "0xf8173a39c56a554837c4c7f104153a005d284d11": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf8173a39c56a554837c4c7f104153a005d284d11",
+    "symbol": "EDU",
+    "lzVersion": "v1"
+   },
+   "0x57e114b691db790c35207b2e685d4a43181e6061": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0xfe80d611c6403f70e5b1b9b722d2b3510b740b2b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0a50aff1977baa6b74fa74c3602b6b4556907ad9",
+    "symbol": "EQB",
+    "lzVersion": "v2"
+   },
+   "0xa35b1b31ce002fbf2058d22f30f95d405200a15b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x39d0ce7d1509a4f22619d0f666978fbe820665e9",
+    "symbol": "ETHx",
+    "lzVersion": "v2"
+   },
+   "0xd9fcd98c322942075a5c3860693e9f4f03aae07b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x4d7e09f73843bd4735aaf7a74b6d877bac75a531",
+    "symbol": "EUL",
+    "lzVersion": "v2"
+   },
+   "0x6e15a54b5ecac17e58dadeddbe8506a7560252f9": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc9ccbd76c2353e593cc975f13295e8289d04d3bb",
+    "symbol": "F",
+    "lzVersion": "v2"
+   },
+   "0xe0bceef36f3a6efdd5eebfacd591423f8549b9d5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xddb9a194722e8940f25adb87e343a100241ff8f6",
+    "symbol": "FACTR",
+    "lzVersion": "v2"
+   },
+   "0xf9fa60ef4f23f00cce403cc4d2c11baf4880a0d6": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf9fa60ef4f23f00cce403cc4d2c11baf4880a0d6",
+    "symbol": "FAR",
+    "lzVersion": "v2"
+   },
+   "0xc96de26018a54d51c097160568752c4e3bd6c364": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0b835f07a2a54c0e80c1f585e5b6dd732816da3f",
+    "symbol": "FBTC",
+    "lzVersion": "v2"
+   },
+   "0x3e12b9d6a4d12cd9b4a6d613872d0eb32f68b380": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x8f57f33e587004ce3caef213935e82e490fca460",
+    "symbol": "FLOWER",
+    "lzVersion": "v2"
+   },
+   "0x4e47951508fd4a4126f8ff9cf5e6fa3b7cc8e073": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x53028b435a62fda4fd6a199193922be9f6b8a9b7",
+    "symbol": "FLUID",
+    "lzVersion": "v1"
+   },
+   "0x853d955acef822db058eb8505911ed77f175b99e": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x909dbde1ebe906af95660033e478d59efe831fed",
+    "symbol": "FRAX",
+    "lzVersion": "v2"
+   },
+   "0x5e8422345238f34275888049021821e8e08caa1f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf010a7c8877043681d59ad125ebf575633505942",
+    "symbol": "frxETH",
+    "lzVersion": "v2"
+   },
+   "0xd6c7bb8531295e88d364ea67d5d1acc7d3f87454": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbcc9a0c41fc42d55270fe45d45e6af9cc31f71ff",
+    "symbol": "FTR",
+    "lzVersion": "v2"
+   },
+   "0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x23432452b720c80553458496d4d9d7c5003280d0",
+    "symbol": "FXS (old)",
+    "lzVersion": "v2"
+   },
+   "0x8a462e6a0051d006e33152fbeadfb9a14198de30": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x72527fec7d84764c405f28bd7e00e2693bbcb519",
+    "symbol": "FYDE",
+    "lzVersion": "v2"
+   },
+   "0x825459139c897d769339f295e962396c4f9e4a4d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb1f0cc7a1bfe763534a67f77562fde688a35fb30",
+    "symbol": "GAME",
+    "lzVersion": "v2"
+   },
+   "0x590830dfdf9a3f68afcdde2694773debdf267774": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0b0e004b88a9c37453ad75c450f1147e9dec97c3",
+    "symbol": "GIZA",
+    "lzVersion": "v2"
+   },
+   "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x66bd9b4a80a603a2bba8962bc210fe15a286426a",
+    "symbol": "GMEE",
+    "lzVersion": "v2"
+   },
+   "0x044e874f23f9a7e5dad696554a116c4bb62fecb7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc827828ad46f01f85aa1fa6c6bdcb83dde06e271",
+    "symbol": "GMI",
+    "lzVersion": "v2"
+   },
+   "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948",
+    "symbol": "GOD",
+    "lzVersion": "v2"
+   },
+   "0x9deb0fc809955b79c85e82918e8586d3b7d2695a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9deb0fc809955b79c85e82918e8586d3b7d2695a",
+    "symbol": "GOLD",
+    "lzVersion": "v1"
+   },
+   "0x64d3cae387405d91f7b0d91fb1d824a281719500": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64d3cae387405d91f7b0d91fb1d824a281719500",
+    "symbol": "GS",
+    "lzVersion": "v2"
+   },
+   "0x83e9f223e1edb3486f876ee888d76bfba26c475a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x7bab349ba33d37ce6b56c117a9d0214e67806336",
+    "symbol": "GUILD",
+    "lzVersion": "v1"
+   },
+   "0x6403af1267cacc0714c1bd916b12f80e179c0558": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6403af1267cacc0714c1bd916b12f80e179c0558",
+    "symbol": "HAI",
+    "lzVersion": "v2"
+   },
+   "0x63fe3eb27e98da740ee24ab5cc1a17ebd20fec1c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x63fe3eb27e98da740ee24ab5cc1a17ebd20fec1c",
+    "symbol": "HARD",
+    "lzVersion": "v2"
+   },
+   "0xa2c2c937333165d4c5f2dc5f31a43e1239fecfeb": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa2c2c937333165d4c5f2dc5f31a43e1239fecfeb",
+    "symbol": "HERA",
+    "lzVersion": "v1"
+   },
+   "0x6c6ee5e31d828de241282b9606c8e98ea48526e2": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc36c89fa76336180ffbdd6847378cce418da4cf6",
+    "symbol": "HOT",
+    "lzVersion": "v2"
+   },
+   "0x61fac5f038515572d6f42d4bcb6b581642753d50": {
+    "kind": "layerzero-oft",
+    "oapp": "0x61fac5f038515572d6f42d4bcb6b581642753d50",
+    "symbol": "IN",
+    "lzVersion": "v2"
+   },
+   "0x186ef81fd8e77eec8bffc3039e7ec41d5fc0b457": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x8d279274789ccec8af94a430a5996eaace9609a9",
+    "symbol": "INSP",
+    "lzVersion": "v1"
+   },
+   "0xa80221d067603e30060f75e2458aa361f8ee5402": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x02b88b31492c19d9e3145934cdb63a8a9b5b4b10",
+    "symbol": "IRL",
+    "lzVersion": "v1"
+   },
+   "0x157a6df6b74f4e5e45af4e4615fde7b49225a662": {
+    "kind": "layerzero-oft",
+    "oapp": "0x157a6df6b74f4e5e45af4e4615fde7b49225a662",
+    "symbol": "ISLAND",
+    "lzVersion": "v2"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x8cfa44e930b7743123738eb2d7e78beaa964732e",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0xfb072b42907da2bf7a8e8cb5dcaa790d45fd81a8": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x7a8c9efc8c04989f5d3f24db8124308ce0b51bec",
+    "symbol": "K",
+    "lzVersion": "v2"
+   },
+   "0x3f80b1c54ae920be41a77f8b902259d48cf24ccf": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2a1d74de3027cce18d31011518c571130a4cd513",
+    "symbol": "KERNEL",
+    "lzVersion": "v2"
+   },
+   "0xe3f28f11f76c62e965ffe5be8e62cde3e8e7a7cc": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd100f83d565f03c9e74f454a683201fc1a882d08",
+    "symbol": "KILO",
+    "lzVersion": "v2"
+   },
+   "0x285c48f6beb6b7476bc05b2b8cf3fab93578e466": {
+    "kind": "layerzero-oft",
+    "oapp": "0x285c48f6beb6b7476bc05b2b8cf3fab93578e466",
+    "symbol": "KIM",
+    "lzVersion": "v2"
+   },
+   "0x288741b45ad4042f7b124e38b53cec5e9cca0376": {
+    "kind": "layerzero-oft",
+    "oapp": "0x288741b45ad4042f7b124e38b53cec5e9cca0376",
+    "symbol": "KOLZ",
+    "lzVersion": "v2"
+   },
+   "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0x8236a87084f8b84306f72007f36f2618a5634494": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xacb11bc20b1945e59976e3307d2a805faa126c31",
+    "symbol": "LBTC",
+    "lzVersion": "v2"
+   },
+   "0x7138eb0d563f3f6722500936a11dcae99d738a2c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc31813c38b32c0f826c2dbf3360d5899740c9669",
+    "symbol": "LIF3",
+    "lzVersion": "v1"
+   },
+   "0x7ce89243cc0d9e746609c57845eccbd9bb4b7315": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb257f39ed1a8e195ff2cf69d477d53535e38160d",
+    "symbol": "LILY",
+    "lzVersion": "v2"
+   },
+   "0x514910771af9ca656af840dff83e8264ecf986ca": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x8b3157e78f4ea5ad124e16f8c9df5fa27a7b0b33",
+    "symbol": "LINK",
+    "lzVersion": "v2"
+   },
+   "0x0921799cb1d702148131024d18fcde022129dc73": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa14a10000bd3c2c3be3a6a1d151bfce1359dc4a6",
+    "symbol": "LL",
+    "lzVersion": "v2"
+   },
+   "0x8e01397163b21f64cec1f06ca6cc7d9aa8f718e9": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfcc421b4f8372d84124ea16a6146bc1c08d4c69d",
+    "symbol": "LSHARE",
+    "lzVersion": "v1"
+   },
+   "0x7c1156e515aa1a2e851674120074968c905aaf37": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2f12d09333a6be8cc7c2d3e11a83def02cf0cbfa",
+    "symbol": "lvlUSD",
+    "lzVersion": "v2"
+   },
+   "0xc690f7c7fcffa6a82b79fab7508c466fefdfc8c5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2dc2650ce5a4cc275403163f4a7681d7ec8ae8f0",
+    "symbol": "LYM",
+    "lzVersion": "v2"
+   },
+   "0x2f913c820ed3beb3a67391a6eff64e70c4b20b19": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa5dbd35bcd259f6a058b474d74b11432fdd591e3",
+    "symbol": "M-BTC",
+    "lzVersion": "v2"
+   },
+   "0x745407c86df8db893011912d3ab28e68b62e49b0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3a7b708e71ff72506afa674ea14881e39ce9fde2",
+    "symbol": "MAHA",
+    "lzVersion": "v2"
+   },
+   "0x4041381e947cfd3d483d67a25c6aa9dc924250c5": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4041381e947cfd3d483d67a25c6aa9dc924250c5",
+    "symbol": "Manta mBTC",
+    "lzVersion": "v2"
+   },
+   "0x8cdf550c04bc9b9f10938368349c9c8051a772b6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8cdf550c04bc9b9f10938368349c9c8051a772b6",
+    "symbol": "Manta mETH",
+    "lzVersion": "v2"
+   },
+   "0x7448c7456a97769f6cd04f1e83a4a23ccdc46abd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7448c7456a97769f6cd04f1e83a4a23ccdc46abd",
+    "symbol": "MAV",
+    "lzVersion": "v1"
+   },
+   "0x24fcfc492c1393274b6bcd568ac9e225bec93584": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe6c2b672b3eb64a1f460adcd9676a3b6c67abd4d",
+    "symbol": "MAVIA",
+    "lzVersion": "v2"
+   },
+   "0xc9e503562d0db0a2629288a5d3b1c94ea7741869": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3be3f3efc077f8dd519b052fba78515470bc4567",
+    "symbol": "MCG",
+    "lzVersion": "v2"
+   },
+   "0x0a9e3dde12e4519c9d89df69bd738490c9466bf4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0a9e3dde12e4519c9d89df69bd738490c9466bf4",
+    "symbol": "MD",
+    "lzVersion": "v2"
+   },
+   "0x99d8a9c45b2eca8864373a26d1459e3dff1e17f3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x439a5f0f5e8d149dda9a0ca367d4a8e4d6f83c10",
+    "symbol": "MIM",
+    "lzVersion": "v1"
+   },
+   "0x4591dbff62656e7859afe5e45f6f47d3669fbb28": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4591dbff62656e7859afe5e45f6f47d3669fbb28",
+    "symbol": "mkUSD",
+    "lzVersion": "v1"
+   },
+   "0xf944e35f95e819e752f3ccb5faf40957d311e8c5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2b11834ed1feaed4b4b3a86a6f571315e25a884d",
+    "symbol": "MOCA",
+    "lzVersion": "v2"
+   },
+   "0x084382d1cc4f4dfd1769b1cc1ac2a9b1f8365e90": {
+    "kind": "layerzero-oft",
+    "oapp": "0x084382d1cc4f4dfd1769b1cc1ac2a9b1f8365e90",
+    "symbol": "MODE",
+    "lzVersion": "v2"
+   },
+   "0x60dfbd030e454098d1d1a8ecb4c737a073ccef84": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x33ea60bad94becd5ba89343c684745b5314ff000",
+    "symbol": "MOFT",
+    "lzVersion": "v2"
+   },
+   "0x32af9ed768b48745a8e805fbce5616d0bd9868cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x32af9ed768b48745a8e805fbce5616d0bd9868cf",
+    "symbol": "MOFT2",
+    "lzVersion": "v2"
+   },
+   "0xc555d625828c4527d477e595ff1dd5801b4a600e": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3c4a6a026b6545d06ca1bc1111ef900942f826a9",
+    "symbol": "MON",
+    "lzVersion": "v2"
+   },
+   "0xcbb8f1bda10b9696c57e13bc128fe674769dcec0": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcbb8f1bda10b9696c57e13bc128fe674769dcec0",
+    "symbol": "MOR",
+    "lzVersion": "v2"
+   },
+   "0x58d97b57bb95320f9a05dc918aef65434969c2b2": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x50d3d6fd7518682155e3c1b65fdd50e1b35649d9",
+    "symbol": "MORPHO",
+    "lzVersion": "v2"
+   },
+   "0x64351fc9810adad17a690e4e1717df5e7e085160": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5c574153b195ae284c063a84fb9c73d9fd37955f",
+    "symbol": "msETH",
+    "lzVersion": "v1"
+   },
+   "0xab5eb14c09d416f0ac63661e57edb7aecdb9befa": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf37982e3f33ac007c690ed6266f3402d24aa27ea",
+    "symbol": "msUSD",
+    "lzVersion": "v1"
+   },
+   "0x3f24e1d7a973867fc2a03fe199e5502514e0e11e": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3f24e1d7a973867fc2a03fe199e5502514e0e11e",
+    "symbol": "mUSD",
+    "lzVersion": "v2"
+   },
+   "0x32b053f2cba79f80ada5078cb6b305da92bde6e1": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbe388e410136116f7a7c7cedd5b4822547419541",
+    "symbol": "NEURAL",
+    "lzVersion": "v2"
+   },
+   "0x1f57da732a77636d913c9a75d685b26cc85dcc3a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3f160760535eb715d5809a26cf55408a2d9844c1",
+    "symbol": "OL",
+    "lzVersion": "v2"
+   },
+   "0x1b6e9c73bee68102d9dd4a2627f97bff4183ab0a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1b6e9c73bee68102d9dd4a2627f97bff4183ab0a",
+    "symbol": "OLE",
+    "lzVersion": "v1"
+   },
+   "0x9e20461bc2c4c980f62f1b279d71734207a6a356": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa0aa943666b4309c1989e3a7ebe7dbe11de36212",
+    "symbol": "OMNI",
+    "lzVersion": "v1"
+   },
+   "0x5651fa7a726b9ec0cad00ee140179912b6e73599": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbd26aa1903b29101b48a27f2cb8a2889fbbef223",
+    "symbol": "OORT",
+    "lzVersion": "v2"
+   },
+   "0x33333333fede34409fb7f67c6585047e1f653333": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5e1f75388dc768f6129b9ee859bfb1361631a77e",
+    "symbol": "ORA",
+    "lzVersion": "v2"
+   },
+   "0xabd4c63d2616a5201454168269031355f4764337": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x17435cc940e03aa52c349738c72c7aa44ffa6525",
+    "symbol": "ORDER",
+    "lzVersion": "v2"
+   },
+   "0xa21af1050f7b26e0cff45ee51548254c41ed6b5c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x58ff71c056942600bc4acf8bdf48f82e6ad1f392",
+    "symbol": "OSAK",
+    "lzVersion": "v1"
+   },
+   "0x21bfbda47a0b4b5b1248c767ee49f7caa9b23697": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2699e194dfdb0d560928d6a41ed229ee0ac0b0cf",
+    "symbol": "OVR",
+    "lzVersion": "v2"
+   },
+   "0xba0dda8762c24da9487f5fa026a9b64b695a07ea": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x227dcc37d9a071d1a2adb7edc40b7ec38a2097b3",
+    "symbol": "OX",
+    "lzVersion": "v1"
+   },
+   "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xcd5f17b1fe981ba260c40c67e740b7290b50ea50",
+    "symbol": "OX.old",
+    "lzVersion": "v1"
+   },
+   "0x7528bd0f620d1568c307cc8d5db481a29e8d4e37": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7528bd0f620d1568c307cc8d5db481a29e8d4e37",
+    "symbol": "P33L",
+    "lzVersion": "v2"
+   },
+   "0xab846fb6c81370327e784ae7cbb6d6a6af6ff4bf": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x7d01da772ac7f9daaccde81c0d1a27fd419c65b2",
+    "symbol": "PAL",
+    "lzVersion": "v2"
+   },
+   "0x298d492e8c1d909d3f63bc4a36c66c64acb3d695": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5cc16c5bd87d68ad459e895e886cd851cc5709ff",
+    "symbol": "PBR",
+    "lzVersion": "v2"
+   },
+   "0xbe5acfd64358805616b5cbd5277b9a85011d7cf1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbe5acfd64358805616b5cbd5277b9a85011d7cf1",
+    "symbol": "PCH",
+    "lzVersion": "v2"
+   },
+   "0x1eef208926667594e5136e89d0e9dd6907959197": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1eef208926667594e5136e89d0e9dd6907959197",
+    "symbol": "PEAQ",
+    "lzVersion": "v2"
+   },
+   "0x808507121b80c02388fad14726482e061b8da827": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd7e67c97cc48253b28737ec3981b0a7ad6d7e0e4",
+    "symbol": "PENDLE",
+    "lzVersion": "v2"
+   },
+   "0x6418c0dd099a9fda397c766304cdd918233e8847": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6418c0dd099a9fda397c766304cdd918233e8847",
+    "symbol": "PENGU",
+    "lzVersion": "v2"
+   },
+   "0x6982508145454ce325ddbe47a25d4ec3d2311933": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x25d887ce7a35172c62febfd67a1856f20faebb00",
+    "symbol": "PEPE",
+    "lzVersion": "v1"
+   },
+   "0x60be1e1fe41c1370adaf5d8e66f07cf1c2df2268": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf598797d9c160aef2a14712c20b7731cbe5861da",
+    "symbol": "PERC",
+    "lzVersion": "v2"
+   },
+   "0xa73b792906c79509d73fdfaaa78561e195010706": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf11743e4b037543dfd6c277124b24f8f162ac57f",
+    "symbol": "PIPO",
+    "lzVersion": "v2"
+   },
+   "0x4c1746a800d224393fe2470c70a35717ed4ea5f1": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbda8a2285f4c3e75b37e467c4db9bc633ffbd29d",
+    "symbol": "PLUME",
+    "lzVersion": "v2"
+   },
+   "0x0b3eaead748facdb9d943d3407011f16eb17d0cf": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1c3f687a5fe3b52178455378c893e317711388f6",
+    "symbol": "PMX",
+    "lzVersion": "v2"
+   },
+   "0x7bbcf1b600565ae023a1806ef637af4739de3255": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7bbcf1b600565ae023a1806ef637af4739de3255",
+    "symbol": "PRFI",
+    "lzVersion": "v2"
+   },
+   "0x28d38df637db75533bd3f71426f3410a82041544": {
+    "kind": "layerzero-oft",
+    "oapp": "0x28d38df637db75533bd3f71426f3410a82041544",
+    "symbol": "PROMPT",
+    "lzVersion": "v2"
+   },
+   "0x915424ac489433130d92b04096f3b96c82e92a9d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x915424ac489433130d92b04096f3b96c82e92a9d",
+    "symbol": "PROS",
+    "lzVersion": "v2"
+   },
+   "0x6bef15d938d4e72056ac92ea4bdd0d76b1c4ad29": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x32c5d5099a684a781864a2cdc53db2f8a6b1dca0",
+    "symbol": "PROVE",
+    "lzVersion": "v2"
+   },
+   "0xd9a442856c234a39a81a089c06451ebaa4306a72": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa4931a9f9aaf79057334371d6f62164743f97b18",
+    "symbol": "pufETH",
+    "lzVersion": "v2"
+   },
+   "0x31b6100f5f4466e6daeb1edb2f2ce6e548cf8938": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31b6100f5f4466e6daeb1edb2f2ce6e548cf8938",
+    "symbol": "Puff",
+    "lzVersion": "v2"
+   },
+   "0x4d1c297d39c5c1277964d0e3f8aa901493664530": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3ea9bb9fcdcc1c37cb09175aecdb488a97edd83f",
+    "symbol": "PUFFER",
+    "lzVersion": "v2"
+   },
+   "0xadc9c900b05f39f48bb6f402a1bae60929f4f9a8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xadc9c900b05f39f48bb6f402a1bae60929f4f9a8",
+    "symbol": "pumpBTC.bera",
+    "lzVersion": "v2"
+   },
+   "0x04c154b66cb340f3ae24111cc767e0184ed00cc6": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1cd5b73d12cb23b2835c873e4faffe83bbcef208",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   },
+   "0x559b7bfc48a5274754b08819f75c5f27af53d53b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0x44709a920fccf795fbc57baa433cc3dd53c44dbe": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1713bd4cd1b8f0342c48fbd68658605346386324",
+    "symbol": "RADAR",
+    "lzVersion": "v2"
+   },
+   "0xe3944ab788a60ca266f1eec3c26925b95f6370ad": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1f1aa4d239002bb818536c95e9b762a1fc8484c1",
+    "symbol": "RAIN",
+    "lzVersion": "v1"
+   },
+   "0x1e44f98cc78d505a61f63b26d13b116cf51dbb87": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1e44f98cc78d505a61f63b26d13b116cf51dbb87",
+    "symbol": "RBTC",
+    "lzVersion": "v2"
+   },
+   "0x137ddb47ee24eaa998a535ab00378d6bfa84f893": {
+    "kind": "layerzero-oft",
+    "oapp": "0x137ddb47ee24eaa998a535ab00378d6bfa84f893",
+    "symbol": "RDNT",
+    "lzVersion": "v1"
+   },
+   "0xdd3b11ef34cd511a2da159034a05fcb94d806686": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x7130e2563974219f3dd152575c7468d7c2ad0d96",
+    "symbol": "REKT",
+    "lzVersion": "v2"
+   },
+   "0x259338656198ec7a76c729514d3cb45dfbf768a1": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1fc1bc7ef87ace92a3f2eed44581111eb1ffdeaf",
+    "symbol": "RESOLV",
+    "lzVersion": "v2"
+   },
+   "0x9ed7e4b1bff939ad473da5e7a218c771d1569456": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ed7e4b1bff939ad473da5e7a218c771d1569456",
+    "symbol": "REUNI",
+    "lzVersion": "v1"
+   },
+   "0x557b933a7c2c45672b610f8954a3deb39a51a8ca": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x87964551caf340e17b7b00dfc1db2f6b67b4d5b1",
+    "symbol": "REVV",
+    "lzVersion": "v2"
+   },
+   "0x01b603be3d545f096015741e6503440282bf45fb": {
+    "kind": "layerzero-oft",
+    "oapp": "0x01b603be3d545f096015741e6503440282bf45fb",
+    "symbol": "RIF",
+    "lzVersion": "v2"
+   },
+   "0x607f4c5bb672230e8672085532f7e901544a7375": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa8bc0b19b955c8ac38c8cbc9383866b834cd33d8",
+    "symbol": "RLC",
+    "lzVersion": "v2"
+   },
+   "0x4956b52ae2ff65d74ca2d61207523288e4528f96": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x234c908e749961d0329a0ed5916d55a99d1ad06c",
+    "symbol": "RLP",
+    "lzVersion": "v2"
+   },
+   "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x85d456b2dff1fd8245387c0bfb64dfb700e98ef3",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0xfae103dc9cf190ed75350761e95403b7b8afa6c0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1486d39646cdee84619bd05997319545a8575079",
+    "symbol": "rswETH",
+    "lzVersion": "v2"
+   },
+   "0x09d4214c03d01f49544c0448dbe3a27f768f2b34": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf0e9f6d9ba5d1b3f76e0f82f9dcdb9ebeef4b4da",
+    "symbol": "rUSD",
+    "lzVersion": "v2"
+   },
+   "0x8fe93f99c126d2dcc041f56dc3a6f1570dff9857": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x9223ee6698ffa0a66cafb0034141d931e393a67e",
+    "symbol": "rUSDC",
+    "lzVersion": "v2"
+   },
+   "0xb4444468e444f89e1c2cac2f1d3ee7e336cbd1f5": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb4444468e444f89e1c2cac2f1d3ee7e336cbd1f5",
+    "symbol": "RZR",
+    "lzVersion": "v2"
+   },
+   "0x3845badade8e6dff049820680d1f14bd3903a5d0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xac531eb26ca1d21b85126de8fb87e80e09002dcf",
+    "symbol": "SAND",
+    "lzVersion": "v2"
+   },
+   "0xf9fb20b8e097904f0ab7d12e9dbee88f2dcd0f16": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb9d852a3f9b3a82e243faab0272604102a111e1a",
+    "symbol": "SBC",
+    "lzVersion": "v2"
+   },
+   "0x55769490c825ccb09b2a6ae955203fabf04857fd": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc5ecb8c506898bd5eeec63c5f69c7819e37084b8",
+    "symbol": "sDINERO",
+    "lzVersion": "v2"
+   },
+   "0xbdf43ecadc5cef51b7d1772f722e40596bc1788b": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbdf43ecadc5cef51b7d1772f722e40596bc1788b",
+    "symbol": "SEI",
+    "lzVersion": "v2"
+   },
+   "0xa663b02cf0a4b149d2ad41910cb81e23e1c41c32": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe4796ccb6bb5de2290c417ac337f2b66ca2e770e",
+    "symbol": "sFRAX",
+    "lzVersion": "v2"
+   },
+   "0xac3e018457b222d93114458476f3e3416abbe38f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1f55a02a049033e3419a8e2975cf3f572f4e6e9a",
+    "symbol": "sfrxETH",
+    "lzVersion": "v2"
+   },
+   "0x560363bda52bc6a44ca6c8c9b4a5fadbda32fa60": {
+    "kind": "layerzero-oft",
+    "oapp": "0x560363bda52bc6a44ca6c8c9b4a5fadbda32fa60",
+    "symbol": "SFUND",
+    "lzVersion": "v1"
+   },
+   "0xf2c88757f8d03634671208935974b60a2a28bdb3": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf2c88757f8d03634671208935974b60a2a28bdb3",
+    "symbol": "SHELL",
+    "lzVersion": "v2"
+   },
+   "0x31e4efe290973ebe91b3a875a7994f650942d28f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31e4efe290973ebe91b3a875a7994f650942d28f",
+    "symbol": "SHRAP",
+    "lzVersion": "v1"
+   },
+   "0x61dbbbb552dc893ab3aad09f289f811e67cef285": {
+    "kind": "layerzero-oft",
+    "oapp": "0x61dbbbb552dc893ab3aad09f289f811e67cef285",
+    "symbol": "SKATE",
+    "lzVersion": "v2"
+   },
+   "0x51477a3002ee04b7542adfe63ccdb50c00ee5147": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x89da85a27fab76b5acacbeddd21b9b4370f99edb",
+    "symbol": "SLAY",
+    "lzVersion": "v2"
+   },
+   "0x7fa16ced60019ade15edd0cdb03d689d557b6d1e": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7fa16ced60019ade15edd0cdb03d689d557b6d1e",
+    "symbol": "SLC",
+    "lzVersion": "v2"
+   },
+   "0x4737d9b4592b40d51e110b94c9c043c6654067ae": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x180fcf9c9f5ecb75de90395d54cd7c69b3902fcd",
+    "symbol": "slvlUSD",
+    "lzVersion": "v2"
+   },
+   "0x82a605d6d9114f4ad6d5ee461027477eeed31e34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x82a605d6d9114f4ad6d5ee461027477eeed31e34",
+    "symbol": "SNSY",
+    "lzVersion": "v2"
+   },
+   "0xd3c68968137317a57a9babeacc7707ec433548b4": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3c68968137317a57a9babeacc7707ec433548b4",
+    "symbol": "SOCIAL",
+    "lzVersion": "v2"
+   },
+   "0x7a56e1c57c7475ccf742a1832b028f0456652f97": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb12979ff302ac903849948037a51792cf7186e8e",
+    "symbol": "SolvBTC",
+    "lzVersion": "v2"
+   },
+   "0x1b0f6590d21dc02b92ad3a7d00f8884dc4f1aed9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1b0f6590d21dc02b92ad3a7d00f8884dc4f1aed9",
+    "symbol": "SOMI",
+    "lzVersion": "v2"
+   },
+   "0x0bc37bea9068a86c221b8bd71ea6228260dad5a2": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc6c856ab43e76b304230a31ecd9ad916b8b6f8e1",
+    "symbol": "SPARKLET",
+    "lzVersion": "v2"
+   },
+   "0xc20059e0317de91738d13af027dfc4a50781b066": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xaff2e841851700d1fc101995ee6b81ae21bb87d7",
+    "symbol": "SPK",
+    "lzVersion": "v2"
+   },
+   "0x738d1115b90efa71ae468f1287fc864775e23a31": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x316cd39632cac4f4cdfc21757c4500fe12f64514",
+    "symbol": "srUSD",
+    "lzVersion": "v2"
+   },
+   "0xf6718b2701d4a6498ef77d7c152b2137ab28b8a3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbce9988376c6b9c0c035bdbc9060568031d51130",
+    "symbol": "stBTC",
+    "lzVersion": "v2"
+   },
+   "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6": {
+    "kind": "layerzero-oft",
+    "oapp": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0xc56b154d3be72101d7c82122ad41ce00da264467": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc56b154d3be72101d7c82122ad41ce00da264467",
+    "symbol": "stNIBI",
+    "lzVersion": "v2"
+   },
+   "0x2b66aade1e9c062ff411bd47c44e0ad696d43bd9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b66aade1e9c062ff411bd47c44e0ad696d43bd9",
+    "symbol": "sUSDa",
+    "lzVersion": "v2"
+   },
+   "0x9d39a5de30e57443bff2a8307a4256c8797a3497": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0xf951e335afb289353dc249e82926178eac7ded78": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5c6392a69dc11f254457716c682f70e4b2ed7b05",
+    "symbol": "swETH",
+    "lzVersion": "v1"
+   },
+   "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa": {
+    "kind": "layerzero-oft",
+    "oapp": "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa",
+    "symbol": "SWORLD",
+    "lzVersion": "v2"
+   },
+   "0x643c4e15d7d62ad0abec4a9bd4b001aa3ef52d66": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x688aee022aa544f150678b8e5720b6b96a9e9a2f",
+    "symbol": "SYRUP",
+    "lzVersion": "v2"
+   },
+   "0x835f2eb9b3dd2913f59019bfbc7b61a12ef96cd6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x835f2eb9b3dd2913f59019bfbc7b61a12ef96cd6",
+    "symbol": "TECH",
+    "lzVersion": "v2"
+   },
+   "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a",
+    "symbol": "TENET",
+    "lzVersion": "v1"
+   },
+   "0x5fa487bca6158c64046b2813623e20755091da0b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfdd22ce6d1f66bc0ec89b20bf16ccb6670f55a5a",
+    "symbol": "thBILL",
+    "lzVersion": "v2"
+   },
+   "0x193f4a4a6ea24102f49b931deeeb931f6e32405d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x193f4a4a6ea24102f49b931deeeb931f6e32405d",
+    "symbol": "TLOS",
+    "lzVersion": "v1"
+   },
+   "0x68ccaca9adf1552b3316d6067690ec27397c8ea8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x68ccaca9adf1552b3316d6067690ec27397c8ea8",
+    "symbol": "TOS",
+    "lzVersion": "v2"
+   },
+   "0xf7b4358d2c6b05a1bb98c947a56df64b5d6e6754": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf7b4358d2c6b05a1bb98c947a56df64b5d6e6754",
+    "symbol": "TRUMP",
+    "lzVersion": "v2"
+   },
+   "0x49cc578ae695a66c45eef728f2aaf22646363cc6": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x099c9a1f29822cfb01512db5ab4981cd0487c2c4",
+    "symbol": "T-USDY",
+    "lzVersion": "v2"
+   },
+   "0x8db253a1943dddf1af9bcf8706ac9a0ce939d922": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb2e787c6c83d6d75f466371a2966b27a8b700828",
+    "symbol": "UNB",
+    "lzVersion": "v1"
+   },
+   "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x50fa1411201e2ac0361fb893e903b80f141b8190",
+    "symbol": "uniBTC",
+    "lzVersion": "v2"
+   },
+   "0xddd6a0ecc3c6f6c102e5ea3d8af7b801d1a77ac8": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x6f97d3f120fbbdaacf1c9da61a8ad126b7426861",
+    "symbol": "UNIX",
+    "lzVersion": "v1"
+   },
+   "0x0ae38f7e10a43b5b2fb064b42a2f4514cba909ef": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x35f899ce6cc304aedfdb7835f623a30473b26457",
+    "symbol": "unshETH",
+    "lzVersion": "v1"
+   },
+   "0x6bede1c6009a78c222d9bdb7974bb67847fdb68c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6bede1c6009a78c222d9bdb7974bb67847fdb68c",
+    "symbol": "USBD",
+    "lzVersion": "v2"
+   },
+   "0x73a15fed60bf67631dc6cd7bc5b6e8da8190acf5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe14c486b93c3b62f76f88cf8fe4b36fb672f3b26",
+    "symbol": "USD0",
+    "lzVersion": "v2"
+   },
+   "0x35d8949372d46b7a3d5a56006ae77b215fc69bc0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd155d91009cbe9b0204b06ce1b62bf1d793d3111",
+    "symbol": "USD0++",
+    "lzVersion": "v2"
+   },
+   "0x8a60e489004ca22d775c5f2c657598278d17d9c2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8a60e489004ca22d775c5f2c657598278d17d9c2",
+    "symbol": "USDa",
+    "lzVersion": "v2"
+   },
+   "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x28a92dde19d9989f39a49905d7c9c2fac7799bdf",
+    "symbol": "USDC",
+    "lzVersion": "v1"
+   },
+   "0x4c9edd5852cd905f086c759e8383e09bff1e68b3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0xe343167631d89b6ffc58b88d6b7fb0228795491d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x147bde4f997f0d4c7544ed0c55eacf1e5e6bf9c4",
+    "symbol": "USDG",
+    "lzVersion": "v2"
+   },
+   "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1f748c76de468e9d11bd340fa9d5cbadf315dfb0",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0xc139190f447e929f090edeb554d95abb8b18ac1c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc708b6887db46005da033501f8aebee72d191a5d",
+    "symbol": "USDtb",
+    "lzVersion": "v2"
+   },
+   "0xecedb6f8108b9f7bbf499da843dced6c2bb6e270": {
+    "kind": "layerzero-oft",
+    "oapp": "0xecedb6f8108b9f7bbf499da843dced6c2bb6e270",
+    "symbol": "USDUC",
+    "lzVersion": "v2"
+   },
+   "0x96f6ef951840721adbf46ac996b59e0235cb985c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa6275720b3fb1efe3e6ef2b5bf2293148852307d",
+    "symbol": "USDY",
+    "lzVersion": "v2"
+   },
+   "0xa469b7ee9ee773642b3e93e842e5d9b5baa10067": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa469b7ee9ee773642b3e93e842e5d9b5baa10067",
+    "symbol": "USDz",
+    "lzVersion": "v2"
+   },
+   "0xe60779cc1b2c1d0580611c526a8df0e3f870ec48": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa8b326ca02650ac968c554d6c534412e49c92bc4",
+    "symbol": "USH",
+    "lzVersion": "v1"
+   },
+   "0x66a1e37c9b0eaddca17d3662d6c05f4decf3e110": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd2ee2776f34ef4e7325745b06e6d464b08d4be0e",
+    "symbol": "USR",
+    "lzVersion": "v2"
+   },
+   "0xc4441c2be5d8fa8126822b9929ca0b81ea0de38e": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd277cbcfe8cb37ca90129a33ec7ee590ee392b59",
+    "symbol": "USUAL",
+    "lzVersion": "v2"
+   },
+   "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+    "symbol": "VANA",
+    "lzVersion": "v2"
+   },
+   "0xb5ee887259f792e613edbd20dde8970c10fefda1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb5ee887259f792e613edbd20dde8970c10fefda1",
+    "symbol": "VDO",
+    "lzVersion": "v2"
+   },
+   "0xe81941c13678a6396e438490601a40a34bf90dd2": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe81941c13678a6396e438490601a40a34bf90dd2",
+    "symbol": "VITAI",
+    "lzVersion": "v2"
+   },
+   "0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x37016812a5c2c54793fd277b7f75086a47377d28",
+    "symbol": "waBTC",
+    "lzVersion": "v2"
+   },
+   "0x92cc36d66e9d739d50673d1f27929a371fb83a67": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf5ec00e770de25aef156d290c2504e163b22b4e4",
+    "symbol": "WAGMI",
+    "lzVersion": "v2"
+   },
+   "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+    "symbol": "WBTC",
+    "lzVersion": "v2"
+   },
+   "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xcd2eb13d6831d4602d80e5db9230a57596cdca63",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x695921034f0387eac4e11620ee91b1b15a6a09fe",
+    "symbol": "WETH",
+    "lzVersion": "v1"
+   },
+   "0x5c147e74d63b1d31aa3fd78eb229b65161983b2b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc1b45896b5fc9422a8f779653808297bb4f546f9",
+    "symbol": "WFLOW",
+    "lzVersion": "v2"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0xd83e3d560ba6f05094d9d8b3eb8aaea571d1864e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd83e3d560ba6f05094d9d8b3eb8aaea571d1864e",
+    "symbol": "WHYPE",
+    "lzVersion": "v2"
+   },
+   "0x2a3bff78b79a009976eea096a51a948a3dc00e34": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xafde2490236bc64950def5472296aa0d9758db0d",
+    "symbol": "WILD",
+    "lzVersion": "v2"
+   },
+   "0xf203ca1769ca8e9e8fe1da9d147db68b6c919817": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x885f0a0e5cd0bdb3e58995aad80e6c6bc2823dcb",
+    "symbol": "WNCG",
+    "lzVersion": "v1"
+   },
+   "0x8a47e412a865198b9d5f10ff2e54f788f1696195": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8a47e412a865198b9d5f10ff2e54f788f1696195",
+    "symbol": "WNIBI",
+    "lzVersion": "v2"
+   },
+   "0x6bc08509b36a98e829dffad49fde5e412645d0a3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x395b362d87fe1b2bd801546314a172e05c87e362",
+    "symbol": "WOOF",
+    "lzVersion": "v1"
+   },
+   "0xd3fd63209fa2d55b07a0f6db36c2f43900be3094": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbb431abd156b960e5b77cc45c75f107e3991258a",
+    "symbol": "wsrUSD",
+    "lzVersion": "v2"
+   },
+   "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x6cea302b297bb8c49e56d04cc080480822795848",
+    "symbol": "wstETH",
+    "lzVersion": "v2"
+   },
+   "0x1202f5c7b4b9e47a1a484e8b270be34dbbc75055": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xab17c1fe647c37ceb9b96d1c27dd189bf8451978",
+    "symbol": "wstUSR",
+    "lzVersion": "v2"
+   },
+   "0xc9b53ab2679f573e480d01e0f49e2b5cfb7a3eab": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc9b53ab2679f573e480d01e0f49e2b5cfb7a3eab",
+    "symbol": "WXTZ",
+    "lzVersion": "v2"
+   },
+   "0x171120219d3223e008558654ec3254a0f206edb2": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x147c0014bf053181ce92cef6b36b4f3992f9b0a8",
+    "symbol": "WXX",
+    "lzVersion": "v2"
+   },
+   "0x68749665ff8d2d112fa859aa293f07a622782f38": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb9c2321bb7d0db468f570d10a424d1cc8efd696c",
+    "symbol": "XAUT0",
+    "lzVersion": "v2"
+   },
+   "0x69b1ac639c0153b8eae75e4c19a176d07071683c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x69b1ac639c0153b8eae75e4c19a176d07071683c",
+    "symbol": "xavier",
+    "lzVersion": "v2"
+   },
+   "0x11a72d2a88468c09f1bb63fc729d8649e84275a9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x11a72d2a88468c09f1bb63fc729d8649e84275a9",
+    "symbol": "XDC",
+    "lzVersion": "v2"
+   },
+   "0x332dd4f170cdfc27756ee4159e7dbf034c84c65b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x332dd4f170cdfc27756ee4159e7dbf034c84c65b",
+    "symbol": "XPLA",
+    "lzVersion": "v2"
+   },
+   "0xd9d920aa40f578ab794426f5c90f6c731d159def": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x94dabd84cd36c4d364fcdd5cdabf41e73dbc99e6",
+    "symbol": "xSolvBTC",
+    "lzVersion": "v2"
+   },
+   "0xd3cc9d8f3689b83c91b7b59cab4946b063eb894a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x888e317606b4c590bbad88653863e8b345702633",
+    "symbol": "XVS",
+    "lzVersion": "v1"
+   },
+   "0x06903ae134cca527742fe138a7cb97fe08322000": {
+    "kind": "layerzero-oft",
+    "oapp": "0x06903ae134cca527742fe138a7cb97fe08322000",
+    "symbol": "Y2K",
+    "lzVersion": "v2"
+   },
+   "0xf970706063b7853877f39515c96932d49d5ac9cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf970706063b7853877f39515c96932d49d5ac9cd",
+    "symbol": "YALA",
+    "lzVersion": "v2"
+   },
+   "0x68589adc7687a23ff2b06fb032b997f09b44ed5d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfd72fbb61798f3bcb707f5ba98cb72a87cca02a2",
+    "symbol": "ynBTCk",
+    "lzVersion": "v2"
+   },
+   "0x7159cc276d7d17ab4b3beb19959e1f39368a45ba": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc099ab708e20e8b25c63ca156d7cc94404c55416",
+    "symbol": "YND",
+    "lzVersion": "v2"
+   },
+   "0x657d9aba1dbb59e53f9f3ecaa878447dcfc96dcb": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x79a5959cc1cbe4d08e7800bd16759d82e64169a1",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   },
+   "0xe868084cf08f3c3db11f4b73a95473762d9463f7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe868084cf08f3c3db11f4b73a95473762d9463f7",
+    "symbol": "YU",
+    "lzVersion": "v2"
+   },
+   "0x4274cd7277c7bb0806bd5fe84b9adae466a8da0a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xaf12b0ae5a72d7b8a8ec675f3e76e2db56143565",
+    "symbol": "YUSD",
+    "lzVersion": "v2"
+   },
+   "0x2fe9754d5d28bac0ea8971c0ca59428b8644c776": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x67c4fb7c4129342c0fcb95f5fab9908870f7af99",
+    "symbol": "zenBTC",
+    "lzVersion": "v2"
+   },
+   "0x2da17faf782ae884faf7db2208bbc66b6e085c22": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2da17faf782ae884faf7db2208bbc66b6e085c22",
+    "symbol": "ZERO",
+    "lzVersion": "v2"
+   },
+   "0xfd418e42783382e86ae91e445406600ba144d162": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb5eb63caad0ca6e068114c42794ada9b7757ebc1",
+    "symbol": "ZRC",
+    "lzVersion": "v2"
+   },
+   "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "symbol": "ZRO",
+    "lzVersion": "v2"
+   }
+  },
+  "10": {
+   "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea",
+    "symbol": "ALT",
+    "lzVersion": "v2"
+   },
+   "0x16ed8e219cde31e14a80dcb6c9127a5ec6e88e46": {
+    "kind": "layerzero-oft",
+    "oapp": "0x16ed8e219cde31e14a80dcb6c9127a5ec6e88e46",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0xb4bc46bc6cb217b59ea8f4530bae26bf69f677f0": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb4bc46bc6cb217b59ea8f4530bae26bf69f677f0",
+    "symbol": "BEETS",
+    "lzVersion": "v1"
+   },
+   "0x2297aebd383787a160dd0d9f71508148769342e3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
+    "symbol": "BTC.b",
+    "lzVersion": "v1"
+   },
+   "0x14778860e937f509e651192a90589de711fb88a9": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x9a9d5a29206dde4f70825032df32333de5f63921",
+    "symbol": "CYBER",
+    "lzVersion": "v2"
+   },
+   "0x09d9420332bff75522a45fcff4855f82a0a3ff50": {
+    "kind": "layerzero-oft",
+    "oapp": "0x09d9420332bff75522a45fcff4855f82a0a3ff50",
+    "symbol": "DINERO",
+    "lzVersion": "v2"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x5d1942345d63562fd38d17c28dcd22e7b3e9cfb4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d1942345d63562fd38d17c28dcd22e7b3e9cfb4",
+    "symbol": "KIM",
+    "lzVersion": "v2"
+   },
+   "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0xb153fb3d196a8eb25522705560ac152eeec57901": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x48686c24697fe9042531b64d792304e514e74339",
+    "symbol": "MIM",
+    "lzVersion": "v1"
+   },
+   "0x4591dbff62656e7859afe5e45f6f47d3669fbb28": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4591dbff62656e7859afe5e45f6f47d3669fbb28",
+    "symbol": "mkUSD",
+    "lzVersion": "v1"
+   },
+   "0x084382d1cc4f4dfd1769b1cc1ac2a9b1f8365e90": {
+    "kind": "layerzero-oft",
+    "oapp": "0x084382d1cc4f4dfd1769b1cc1ac2a9b1f8365e90",
+    "symbol": "MODE",
+    "lzVersion": "v2"
+   },
+   "0x32af9ed768b48745a8e805fbce5616d0bd9868cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x32af9ed768b48745a8e805fbce5616d0bd9868cf",
+    "symbol": "MOFT2",
+    "lzVersion": "v2"
+   },
+   "0x1610e3c85dd44af31ed7f33a63642012dca0c5a5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x95dcff2bfd19af97267b8c9d516206dcc87eecdd",
+    "symbol": "msETH",
+    "lzVersion": "v1"
+   },
+   "0x9dabae7274d28a45f0b65bf8ed201a5731492ca0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc2c433d36d7184192e442a243b351a9e3055fd5f",
+    "symbol": "msUSD",
+    "lzVersion": "v1"
+   },
+   "0x4200000000000000000000000000000000000042": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xac800fd6159c2a2cb8fc31ef74621eb430287a5a",
+    "symbol": "OP",
+    "lzVersion": "v2"
+   },
+   "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8",
+    "symbol": "ORDER",
+    "lzVersion": "v2"
+   },
+   "0xbfd5206962267c7b4b4a8b3d76ac2e1b2a5c4d5e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbfd5206962267c7b4b4a8b3d76ac2e1b2a5c4d5e",
+    "symbol": "OSAK",
+    "lzVersion": "v1"
+   },
+   "0x300d2c875c6fb8ce4bf5480b4d34b7c9ea8a33a4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x300d2c875c6fb8ce4bf5480b4d34b7c9ea8a33a4",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0x9ed7e4b1bff939ad473da5e7a218c771d1569456": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ed7e4b1bff939ad473da5e7a218c771d1569456",
+    "symbol": "REUNI",
+    "lzVersion": "v1"
+   },
+   "0x4186bfc76e2e237523cbc30fd220fe055156b41f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4186bfc76e2e237523cbc30fd220fe055156b41f",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0xf9fb20b8e097904f0ab7d12e9dbee88f2dcd0f16": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb9d852a3f9b3a82e243faab0272604102a111e1a",
+    "symbol": "SBC",
+    "lzVersion": "v2"
+   },
+   "0xc5ecb8c506898bd5eeec63c5f69c7819e37084b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc5ecb8c506898bd5eeec63c5f69c7819e37084b8",
+    "symbol": "sDINERO",
+    "lzVersion": "v2"
+   },
+   "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97": {
+    "kind": "layerzero-oft",
+    "oapp": "0x296f55f8fb28e498b858d0bcda06d955b2cb3f97",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a",
+    "symbol": "TENET",
+    "lzVersion": "v1"
+   },
+   "0x348fdfe2c35934a96c1353185f09d0f9efbada86": {
+    "kind": "layerzero-oft",
+    "oapp": "0x348fdfe2c35934a96c1353185f09d0f9efbada86",
+    "symbol": "TROVE",
+    "lzVersion": "v1"
+   },
+   "0x01bff41798a0bcf287b996046ca68b395dbc1071": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x8efbdff3bae9a3ed3c0ac7ad86bebf9aee46086f",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+    "symbol": "VANA",
+    "lzVersion": "v2"
+   },
+   "0xaf20f5f19698f1d19351028cd7103b63d30de7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xaf20f5f19698f1d19351028cd7103b63d30de7d7",
+    "symbol": "WAGMI",
+    "lzVersion": "v1"
+   },
+   "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc3f854b2970f8727d28527ece33176fac67fef48",
+    "symbol": "WBTC",
+    "lzVersion": "v2"
+   },
+   "0x5a7facb970d094b6c7ff1df0ea68d99e6e73cbff": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5a7facb970d094b6c7ff1df0ea68d99e6e73cbff",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0x3d63825b0d8669307366e6c8202f656b9e91d368": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d63825b0d8669307366e6c8202f656b9e91d368",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0x68589adc7687a23ff2b06fb032b997f09b44ed5d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfd72fbb61798f3bcb707f5ba98cb72a87cca02a2",
+    "symbol": "ynBTCk",
+    "lzVersion": "v2"
+   },
+   "0xdb8e54f39aff243b25a41e4747957ed517af0511": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc099ab708e20e8b25c63ca156d7cc94404c55416",
+    "symbol": "YND",
+    "lzVersion": "v2"
+   },
+   "0xe231db5f348d709239ef1741ea30961b3b635a61": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbe82cbe217bf4e0a87dd88c552e93054f4ef2c7c",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   },
+   "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "symbol": "ZRO",
+    "lzVersion": "v2"
+   }
+  },
+  "56": {
+   "0x34294afabcbaffc616ac6614f6d2e17260b78bed": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe6828d65bf5023ae1851d90d8783cc821ba7eee1",
+    "symbol": "ABOND",
+    "lzVersion": "v1"
+   },
+   "0xa1faa113cbe53436df28ff0aee54275c13b40975": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x88b06c36fcba5a8cf53fa80cee7dc44e86f2d55a",
+    "symbol": "ALPHA",
+    "lzVersion": "v2"
+   },
+   "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c",
+    "symbol": "Anon",
+    "lzVersion": "v2"
+   },
+   "0x16ed8e219cde31e14a80dcb6c9127a5ec6e88e46": {
+    "kind": "layerzero-oft",
+    "oapp": "0x16ed8e219cde31e14a80dcb6c9127a5ec6e88e46",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0x1d4268a58ee7ec2cc2af5d70a2fd2b3a896527a2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1d4268a58ee7ec2cc2af5d70a2fd2b3a896527a2",
+    "symbol": "ARKEN",
+    "lzVersion": "v1"
+   },
+   "0xad8c787992428cd158e451aab109f724b6bc36de": {
+    "kind": "layerzero-oft",
+    "oapp": "0xad8c787992428cd158e451aab109f724b6bc36de",
+    "symbol": "ASP",
+    "lzVersion": "v2"
+   },
+   "0xdb6f1f098b55e36b036603c8e54663a8d907d6e1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xdb6f1f098b55e36b036603c8e54663a8d907d6e1",
+    "symbol": "BEE",
+    "lzVersion": "v2"
+   },
+   "0x2a73f85024f101f3fac9fbcbce60707b6b3a6203": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2a73f85024f101f3fac9fbcbce60707b6b3a6203",
+    "symbol": "BETA",
+    "lzVersion": "v2"
+   },
+   "0x94025780a1ab58868d9b2dbbb775f44b32e8e6e5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xeb90e1256ab885067b4e3264ea431affbc8582e2",
+    "symbol": "BETS",
+    "lzVersion": "v1"
+   },
+   "0xfdc8cd47848c0c67df66f7120f4e3371181cfa5e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdc8cd47848c0c67df66f7120f4e3371181cfa5e",
+    "symbol": "BLUM",
+    "lzVersion": "v2"
+   },
+   "0x7d814b9ed370ec0a502edc3267393bf62d891b62": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7d814b9ed370ec0a502edc3267393bf62d891b62",
+    "symbol": "BMT",
+    "lzVersion": "v2"
+   },
+   "0x7e975d85714b11d862c7cffee3c88d565a139eb7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xff52a97e8e7b505190972d9b1fe7d5c59fe883bb",
+    "symbol": "BOMB",
+    "lzVersion": "v2"
+   },
+   "0x9a70815dfb644a24b57358e1041f8d0324c8f6e1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9a70815dfb644a24b57358e1041f8d0324c8f6e1",
+    "symbol": "BOOP",
+    "lzVersion": "v2"
+   },
+   "0x6386adc4bc9c21984e34fd916bb349dd861742af": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6386adc4bc9c21984e34fd916bb349dd861742af",
+    "symbol": "BOX",
+    "lzVersion": "v2"
+   },
+   "0x2297aebd383787a160dd0d9f71508148769342e3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
+    "symbol": "BTC.b",
+    "lzVersion": "v1"
+   },
+   "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5b7b01bebcdf408dd14429a9b12465ab45204b13",
+    "symbol": "BTCB",
+    "lzVersion": "v2"
+   },
+   "0xc32cc70741c3a8433dcbcb5ade071c299b55ffc8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc32cc70741c3a8433dcbcb5ade071c299b55ffc8",
+    "symbol": "C",
+    "lzVersion": "v2"
+   },
+   "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb274202daba6ae180c665b4fbe59857b7c3a8091",
+    "symbol": "CAKE",
+    "lzVersion": "v1"
+   },
+   "0x6894cde390a3f51155ea41ed24a33a4827d3063d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x27a2914fa4ba0ec60d42e2bc0726c3a8a6d7b000",
+    "symbol": "CAT",
+    "lzVersion": "v2"
+   },
+   "0xcefc79c16cd62cf0c35c1d16d23b9f266f2eda51": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcefc79c16cd62cf0c35c1d16d23b9f266f2eda51",
+    "symbol": "CATTON",
+    "lzVersion": "v2"
+   },
+   "0xdfbea88c4842d30c26669602888d746d30f9d60d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x74897ef1b152e5a733d797cab5cee383fe052c56",
+    "symbol": "CAW",
+    "lzVersion": "v2"
+   },
+   "0x9840652dc04fb9db2c43853633f0f62be6f00f98": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x25b107cac488d6af84a79c0c9b80865433a011f0",
+    "symbol": "CGPT",
+    "lzVersion": "v2"
+   },
+   "0xc0041ef357b183448b235a8ea73ce4e4ec8c265f": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc0041ef357b183448b235a8ea73ce4e4ec8c265f",
+    "symbol": "COOKIE",
+    "lzVersion": "v2"
+   },
+   "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8",
+    "symbol": "CVAI",
+    "lzVersion": "v2"
+   },
+   "0x14778860e937f509e651192a90589de711fb88a9": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x9a9d5a29206dde4f70825032df32333de5f63921",
+    "symbol": "CYBER",
+    "lzVersion": "v2"
+   },
+   "0xa9972b1fac35fdd8cbdbaa315a002b2ad91d2ad6": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa9972b1fac35fdd8cbdbaa315a002b2ad91d2ad6",
+    "symbol": "CYBRO",
+    "lzVersion": "v2"
+   },
+   "0x5845684b49aef79a5c0f887f50401c247dca7ac6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5845684b49aef79a5c0f887f50401c247dca7ac6",
+    "symbol": "CYC",
+    "lzVersion": "v2"
+   },
+   "0xf9ca3fe094212ffa705742d3626a8ab96aababf8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf9ca3fe094212ffa705742d3626a8ab96aababf8",
+    "symbol": "DAM",
+    "lzVersion": "v2"
+   },
+   "0x1a131f7b106d58f33eaf0fe5b47db2f2045e5732": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5e6adf21e76f9d4258fc68fd5c8fcb826185f8ef",
+    "symbol": "DegenReborn",
+    "lzVersion": "v1"
+   },
+   "0x23ccab1de32e06a6235a7997c266f86440c2cbe6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x23ccab1de32e06a6235a7997c266f86440c2cbe6",
+    "symbol": "DELABS",
+    "lzVersion": "v2"
+   },
+   "0xcc6f1e1b87cfcbe9221808d2d85c501aab0b5192": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcc6f1e1b87cfcbe9221808d2d85c501aab0b5192",
+    "symbol": "DMAIL",
+    "lzVersion": "v1"
+   },
+   "0xba2ae424d960c26247dd6c32edc70b295c744c43": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0e9a492bd9d4241028f794b9580847e5c3444776",
+    "symbol": "DOGE",
+    "lzVersion": "v2"
+   },
+   "0xbdeae1ca48894a1759a8374d63925f21f2ee2639": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x67fb304001ad03c282266b965b51e97aa54a2fab",
+    "symbol": "EDU",
+    "lzVersion": "v1"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0x2117e8b79e8e176a670c9fcf945d4348556bffad": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1633269308f154fbecbb15f91d72d2afa6af95b4",
+    "symbol": "EUL",
+    "lzVersion": "v2"
+   },
+   "0xc9ccbd76c2353e593cc975f13295e8289d04d3bb": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc9ccbd76c2353e593cc975f13295e8289d04d3bb",
+    "symbol": "F",
+    "lzVersion": "v2"
+   },
+   "0xdc816b6bd4786720e91eb17d4dabf0e1eef5ee91": {
+    "kind": "layerzero-oft",
+    "oapp": "0xdc816b6bd4786720e91eb17d4dabf0e1eef5ee91",
+    "symbol": "FAR",
+    "lzVersion": "v2"
+   },
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0x825459139c897d769339f295e962396c4f9e4a4d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x825459139c897d769339f295e962396c4f9e4a4d",
+    "symbol": "GAME",
+    "lzVersion": "v2"
+   },
+   "0xffffff9936bd58a008855b0812b44d2c8dffe2aa": {
+    "kind": "layerzero-oft",
+    "oapp": "0xffffff9936bd58a008855b0812b44d2c8dffe2aa",
+    "symbol": "GGUSD",
+    "lzVersion": "v2"
+   },
+   "0x30842a9c941d9de3af582c41ad12b11d776ba69e": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe99ae1beb4aae669f9c4ffcbb90263685fb4c8c3",
+    "symbol": "GPT",
+    "lzVersion": "v2"
+   },
+   "0x582a560b9f8eaa5b6c889d7674532bcd61f066ec": {
+    "kind": "layerzero-oft",
+    "oapp": "0x582a560b9f8eaa5b6c889d7674532bcd61f066ec",
+    "symbol": "HAI",
+    "lzVersion": "v2"
+   },
+   "0x2e72393a57287b1a09857db589b27bb0fd499922": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2e72393a57287b1a09857db589b27bb0fd499922",
+    "symbol": "HAPPY",
+    "lzVersion": "v2"
+   },
+   "0x0f1e2c34f688d68af730cbd0b79bb4b5519e00e0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0f1e2c34f688d68af730cbd0b79bb4b5519e00e0",
+    "symbol": "HARD",
+    "lzVersion": "v2"
+   },
+   "0x5ffd0eadc186af9512542d0d5e5eafc65d5afc5b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5ffd0eadc186af9512542d0d5e5eafc65d5afc5b",
+    "symbol": "HEMI",
+    "lzVersion": "v2"
+   },
+   "0x91da780bc7f4b7cf19abe90411a2a296ec5ff787": {
+    "kind": "layerzero-oft",
+    "oapp": "0x91da780bc7f4b7cf19abe90411a2a296ec5ff787",
+    "symbol": "HINT",
+    "lzVersion": "v2"
+   },
+   "0x4bfaa776991e85e5f8b1255461cbbd216cfc714f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4bfaa776991e85e5f8b1255461cbbd216cfc714f",
+    "symbol": "HOME",
+    "lzVersion": "v2"
+   },
+   "0x92516e0ddf1ddbf7fab1b79cac26689fdc5ba8e6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x92516e0ddf1ddbf7fab1b79cac26689fdc5ba8e6",
+    "symbol": "HUMA",
+    "lzVersion": "v2"
+   },
+   "0x0b15ddf19d47e6a86a56148fb4afffc6929bcb89": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xcf7d4b692c478b77aff32bb1493c54c84f27f85a",
+    "symbol": "IDIA",
+    "lzVersion": "v1"
+   },
+   "0x61fac5f038515572d6f42d4bcb6b581642753d50": {
+    "kind": "layerzero-oft",
+    "oapp": "0x61fac5f038515572d6f42d4bcb6b581642753d50",
+    "symbol": "IN",
+    "lzVersion": "v2"
+   },
+   "0x8d279274789ccec8af94a430a5996eaace9609a9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8d279274789ccec8af94a430a5996eaace9609a9",
+    "symbol": "INSP",
+    "lzVersion": "v1"
+   },
+   "0xa80221d067603e30060f75e2458aa361f8ee5402": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa80221d067603e30060f75e2458aa361f8ee5402",
+    "symbol": "IRL",
+    "lzVersion": "v1"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x371c7ec6d8039ff7933a2aa28eb827ffe1f52f07": {
+    "kind": "layerzero-oft",
+    "oapp": "0x371c7ec6d8039ff7933a2aa28eb827ffe1f52f07",
+    "symbol": "JOE",
+    "lzVersion": "v1"
+   },
+   "0x0a73d885cdd66adf69c6d64c0609e55c527db2be": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0a73d885cdd66adf69c6d64c0609e55c527db2be",
+    "symbol": "K",
+    "lzVersion": "v2"
+   },
+   "0x9bafc8d4b487cebff201721702507a3e2c67ad79": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9bafc8d4b487cebff201721702507a3e2c67ad79",
+    "symbol": "KAVA",
+    "lzVersion": "v2"
+   },
+   "0x9ecaf80c1303cca8791afbc0ad405c8a35e8d9f1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ecaf80c1303cca8791afbc0ad405c8a35e8d9f1",
+    "symbol": "KERNEL",
+    "lzVersion": "v2"
+   },
+   "0x9ff59ffc463736520aa465b2ca9c5d047be919ba": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ff59ffc463736520aa465b2ca9c5d047be919ba",
+    "symbol": "KILO",
+    "lzVersion": "v2"
+   },
+   "0x389ad4bb96d0d6ee5b6ef0efaf4b7db0ba2e02a0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x389ad4bb96d0d6ee5b6ef0efaf4b7db0ba2e02a0",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0x336f374198c872ba760e85af9c6331c3c5a535d3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x336f374198c872ba760e85af9c6331c3c5a535d3",
+    "symbol": "LIF3",
+    "lzVersion": "v1"
+   },
+   "0x0c08638473cafbca3beb113616a1871f4bfad4f9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0c08638473cafbca3beb113616a1871f4bfad4f9",
+    "symbol": "LSHARE",
+    "lzVersion": "v1"
+   },
+   "0x6a661312938d22a2a0e27f585073e4406903990a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6a661312938d22a2a0e27f585073e4406903990a",
+    "symbol": "MAHA",
+    "lzVersion": "v2"
+   },
+   "0xd691d9a68c887bdf34da8c36f63487333acfd103": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd691d9a68c887bdf34da8c36f63487333acfd103",
+    "symbol": "MAV",
+    "lzVersion": "v1"
+   },
+   "0xcecb301c2e2a04dd631428c386dd21db70716f8a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcecb301c2e2a04dd631428c386dd21db70716f8a",
+    "symbol": "METIS",
+    "lzVersion": "v1"
+   },
+   "0x3c6256f234ba638e5883c46b3fedb00ea2e66b8a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x08bf7f2005ab25a90d4f88efd70dbdf0ef6b7554",
+    "symbol": "MGT",
+    "lzVersion": "v2"
+   },
+   "0xfe19f0b51438fd612f6fd59c1dbb3ea319f433ba": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x41d5a04b4e03dc27dc1f5c5a576ad2187bc601af",
+    "symbol": "MIM",
+    "lzVersion": "v1"
+   },
+   "0x0fcfe33b46e5b21e5e96b722d4c85510198f9255": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fcfe33b46e5b21e5e96b722d4c85510198f9255",
+    "symbol": "MNSRY",
+    "lzVersion": "v2"
+   },
+   "0x6f00dade3201e88623e2ac1c943f7ed730c7cb76": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6f00dade3201e88623e2ac1c943f7ed730c7cb76",
+    "symbol": "MOFT",
+    "lzVersion": "v2"
+   },
+   "0xb92c5e0135a510a4a3a8803f143d2cb085bbaf73": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x76326791a0d491cdb24a349354ec024756816d12",
+    "symbol": "MTVT",
+    "lzVersion": "v1"
+   },
+   "0x3f160760535eb715d5809a26cf55408a2d9844c1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3f160760535eb715d5809a26cf55408a2d9844c1",
+    "symbol": "OL",
+    "lzVersion": "v2"
+   },
+   "0xb7e2713cf55cf4b469b5a8421ae6fc0ed18f1467": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb7e2713cf55cf4b469b5a8421ae6fc0ed18f1467",
+    "symbol": "OLE",
+    "lzVersion": "v1"
+   },
+   "0x9e20461bc2c4c980f62f1b279d71734207a6a356": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9e20461bc2c4c980f62f1b279d71734207a6a356",
+    "symbol": "OMNI",
+    "lzVersion": "v1"
+   },
+   "0x8ea5219a16c2dbf1d6335a6aa0c6bd45c50347c5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x9ba0b9c177846e6e447a5293c0f687e18df9da08",
+    "symbol": "OOE",
+    "lzVersion": "v1"
+   },
+   "0x5651fa7a726b9ec0cad00ee140179912b6e73599": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbd26aa1903b29101b48a27f2cb8a2889fbbef223",
+    "symbol": "OORT",
+    "lzVersion": "v2"
+   },
+   "0x333333c465a19c85f85c6cfbed7b16b0b26e3333": {
+    "kind": "layerzero-oft",
+    "oapp": "0x333333c465a19c85f85c6cfbed7b16b0b26e3333",
+    "symbol": "ORA",
+    "lzVersion": "v2"
+   },
+   "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8",
+    "symbol": "ORDER",
+    "lzVersion": "v2"
+   },
+   "0x11cd72f7a4b699c67f225ca8abb20bc9f8db90c7": {
+    "kind": "layerzero-oft",
+    "oapp": "0x11cd72f7a4b699c67f225ca8abb20bc9f8db90c7",
+    "symbol": "OSAK",
+    "lzVersion": "v1"
+   },
+   "0xba0dda8762c24da9487f5fa026a9b64b695a07ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0xba0dda8762c24da9487f5fa026a9b64b695a07ea",
+    "symbol": "OX",
+    "lzVersion": "v1"
+   },
+   "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f",
+    "symbol": "OX.old",
+    "lzVersion": "v1"
+   },
+   "0x7528bd0f620d1568c307cc8d5db481a29e8d4e37": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7528bd0f620d1568c307cc8d5db481a29e8d4e37",
+    "symbol": "P33L",
+    "lzVersion": "v2"
+   },
+   "0x3c1b057cb7aceb4f2c4d889a29febec30a6a3146": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3c1b057cb7aceb4f2c4d889a29febec30a6a3146",
+    "symbol": "PBR",
+    "lzVersion": "v2"
+   },
+   "0x8b9ee39195ea99d6ddd68030f44131116bc218f6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8b9ee39195ea99d6ddd68030f44131116bc218f6",
+    "symbol": "PEAQ",
+    "lzVersion": "v2"
+   },
+   "0x6418c0dd099a9fda397c766304cdd918233e8847": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6418c0dd099a9fda397c766304cdd918233e8847",
+    "symbol": "PENGU",
+    "lzVersion": "v2"
+   },
+   "0x25d887ce7a35172c62febfd67a1856f20faebb00": {
+    "kind": "layerzero-oft",
+    "oapp": "0x25d887ce7a35172c62febfd67a1856f20faebb00",
+    "symbol": "PEPE",
+    "lzVersion": "v1"
+   },
+   "0x0b3eaead748facdb9d943d3407011f16eb17d0cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0b3eaead748facdb9d943d3407011f16eb17d0cf",
+    "symbol": "PMX",
+    "lzVersion": "v2"
+   },
+   "0x915424ac489433130d92b04096f3b96c82e92a9d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x915424ac489433130d92b04096f3b96c82e92a9d",
+    "symbol": "PROS",
+    "lzVersion": "v2"
+   },
+   "0x7ddf164cecfddd0f992299d033b5a11279a15929": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ddf164cecfddd0f992299d033b5a11279a15929",
+    "symbol": "PROVE",
+    "lzVersion": "v2"
+   },
+   "0x87d00066cf131ff54b72b134a217d5401e5392b6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x87d00066cf131ff54b72b134a217d5401e5392b6",
+    "symbol": "PUFFER",
+    "lzVersion": "v2"
+   },
+   "0x300d2c875c6fb8ce4bf5480b4d34b7c9ea8a33a4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x300d2c875c6fb8ce4bf5480b4d34b7c9ea8a33a4",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0x489580eb70a50515296ef31e8179ff3e77e24965": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1713bd4cd1b8f0342c48fbd68658605346386324",
+    "symbol": "RADAR",
+    "lzVersion": "v2"
+   },
+   "0xa3500c36a8cc2b53a7d7e16a75148e0527f76eef": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa3500c36a8cc2b53a7d7e16a75148e0527f76eef",
+    "symbol": "RBTC",
+    "lzVersion": "v2"
+   },
+   "0xf7de7e8a6bd59ed41a4b5fe50278b3b7f31384df": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf7de7e8a6bd59ed41a4b5fe50278b3b7f31384df",
+    "symbol": "RDNT",
+    "lzVersion": "v1"
+   },
+   "0x20482b0b4d9d8f60d3ab432b92f4c4b901a0d10c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x20482b0b4d9d8f60d3ab432b92f4c4b901a0d10c",
+    "symbol": "REKT",
+    "lzVersion": "v2"
+   },
+   "0xda6cef7f667d992a60eb823ab215493aa0c6b360": {
+    "kind": "layerzero-oft",
+    "oapp": "0xda6cef7f667d992a60eb823ab215493aa0c6b360",
+    "symbol": "RESOLV",
+    "lzVersion": "v2"
+   },
+   "0x9ed7e4b1bff939ad473da5e7a218c771d1569456": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ed7e4b1bff939ad473da5e7a218c771d1569456",
+    "symbol": "REUNI",
+    "lzVersion": "v1"
+   },
+   "0x35e5db674d8e93a03d814fa0ada70731efe8a4b9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x35e5db674d8e93a03d814fa0ada70731efe8a4b9",
+    "symbol": "RLP",
+    "lzVersion": "v2"
+   },
+   "0x09d4214c03d01f49544c0448dbe3a27f768f2b34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x09d4214c03d01f49544c0448dbe3a27f768f2b34",
+    "symbol": "rUSD",
+    "lzVersion": "v2"
+   },
+   "0xe2b1dc2d4a3b4e59fdf0c47b71a7a86391a8b35a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe2b1dc2d4a3b4e59fdf0c47b71a7a86391a8b35a",
+    "symbol": "RWA",
+    "lzVersion": "v2"
+   },
+   "0xac531eb26ca1d21b85126de8fb87e80e09002dcf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac531eb26ca1d21b85126de8fb87e80e09002dcf",
+    "symbol": "SAND",
+    "lzVersion": "v2"
+   },
+   "0x477bc8d23c634c154061869478bce96be6045d12": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x560363bda52bc6a44ca6c8c9b4a5fadbda32fa60",
+    "symbol": "SFUND",
+    "lzVersion": "v1"
+   },
+   "0xf2c88757f8d03634671208935974b60a2a28bdb3": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf2c88757f8d03634671208935974b60a2a28bdb3",
+    "symbol": "SHELL",
+    "lzVersion": "v2"
+   },
+   "0x31e4efe290973ebe91b3a875a7994f650942d28f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31e4efe290973ebe91b3a875a7994f650942d28f",
+    "symbol": "SHRAP",
+    "lzVersion": "v1"
+   },
+   "0x61dbbbb552dc893ab3aad09f289f811e67cef285": {
+    "kind": "layerzero-oft",
+    "oapp": "0x61dbbbb552dc893ab3aad09f289f811e67cef285",
+    "symbol": "SKATE",
+    "lzVersion": "v2"
+   },
+   "0xfc5a743271672e91d77f0176e5cea581fbd5d834": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfc5a743271672e91d77f0176e5cea581fbd5d834",
+    "symbol": "SLAY",
+    "lzVersion": "v2"
+   },
+   "0xa9616e5e23ec1582c2828b025becf3ef610e266f": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa9616e5e23ec1582c2828b025becf3ef610e266f",
+    "symbol": "SOMI",
+    "lzVersion": "v2"
+   },
+   "0x31dba3c96481fde3cd81c2aaf51f2d8bf618c742": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31dba3c96481fde3cd81c2aaf51f2d8bf618c742",
+    "symbol": "SOPH",
+    "lzVersion": "v2"
+   },
+   "0xaff2e841851700d1fc101995ee6b81ae21bb87d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xaff2e841851700d1fc101995ee6b81ae21bb87d7",
+    "symbol": "SPK",
+    "lzVersion": "v2"
+   },
+   "0xf6718b2701d4a6498ef77d7c152b2137ab28b8a3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbce9988376c6b9c0c035bdbc9060568031d51130",
+    "symbol": "stBTC",
+    "lzVersion": "v2"
+   },
+   "0xb0d502e938ed5f4df2e681fe6e419ff29631d62b": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb0d502e938ed5f4df2e681fe6e419ff29631d62b",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0x73a325103935b0b5e7aa3aca6dba74ad22f82b03": {
+    "kind": "layerzero-oft",
+    "oapp": "0x73a325103935b0b5e7aa3aca6dba74ad22f82b03",
+    "symbol": "sUSDa",
+    "lzVersion": "v2"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa": {
+    "kind": "layerzero-oft",
+    "oapp": "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa",
+    "symbol": "SWORLD",
+    "lzVersion": "v2"
+   },
+   "0x539ae81a166e5e80aed211731563e549c411b140": {
+    "kind": "layerzero-oft",
+    "oapp": "0x539ae81a166e5e80aed211731563e549c411b140",
+    "symbol": "TA",
+    "lzVersion": "v2"
+   },
+   "0x1219c409fabe2c27bd0d1a565daeed9bd9f271de": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1219c409fabe2c27bd0d1a565daeed9bd9f271de",
+    "symbol": "TAC",
+    "lzVersion": "v2"
+   },
+   "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a",
+    "symbol": "TENET",
+    "lzVersion": "v1"
+   },
+   "0x193f4a4a6ea24102f49b931deeeb931f6e32405d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x193f4a4a6ea24102f49b931deeeb931f6e32405d",
+    "symbol": "TLOS",
+    "lzVersion": "v1"
+   },
+   "0x883cfbd30bd076a063a453335414909545186275": {
+    "kind": "layerzero-oft",
+    "oapp": "0x883cfbd30bd076a063a453335414909545186275",
+    "symbol": "TOS",
+    "lzVersion": "v2"
+   },
+   "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e",
+    "symbol": "UFD",
+    "lzVersion": "v2"
+   },
+   "0xb2e787c6c83d6d75f466371a2966b27a8b700828": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb2e787c6c83d6d75f466371a2966b27a8b700828",
+    "symbol": "UNB",
+    "lzVersion": "v1"
+   },
+   "0x0ae38f7e10a43b5b2fb064b42a2f4514cba909ef": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0ae38f7e10a43b5b2fb064b42a2f4514cba909ef",
+    "symbol": "unshETH",
+    "lzVersion": "v1"
+   },
+   "0x9356086146be5158e98ad827e21b5cf944699894": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9356086146be5158e98ad827e21b5cf944699894",
+    "symbol": "USDa",
+    "lzVersion": "v2"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0x91d6d6af7635b7b23a8ced9508117965180e2362": {
+    "kind": "layerzero-oft",
+    "oapp": "0x91d6d6af7635b7b23a8ced9508117965180e2362",
+    "symbol": "USH",
+    "lzVersion": "v1"
+   },
+   "0x2492d0006411af6c8bbb1c8afc1b0197350a79e9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2492d0006411af6c8bbb1c8afc1b0197350a79e9",
+    "symbol": "USR",
+    "lzVersion": "v2"
+   },
+   "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+    "symbol": "VANA",
+    "lzVersion": "v2"
+   },
+   "0xaf20f5f19698f1d19351028cd7103b63d30de7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xaf20f5f19698f1d19351028cd7103b63d30de7d7",
+    "symbol": "WAGMI",
+    "lzVersion": "v1"
+   },
+   "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa9004a5421372e1d83fb1f85b0fc986c912f91f3",
+    "symbol": "WBNB",
+    "lzVersion": "v1"
+   },
+   "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+    "symbol": "WBTC",
+    "lzVersion": "v2"
+   },
+   "0x04c0599ae5a44757c0af6f9ec3b93da8976c150a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x04c0599ae5a44757c0af6f9ec3b93da8976c150a",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0x2dce707c47fd9c0f1833a281f45e3e41ace2725b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2dce707c47fd9c0f1833a281f45e3e41ace2725b",
+    "symbol": "WIF",
+    "lzVersion": "v2"
+   },
+   "0x6685906b75c61c57772c335402f594f855c1b0e3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6685906b75c61c57772c335402f594f855c1b0e3",
+    "symbol": "WILD",
+    "lzVersion": "v2"
+   },
+   "0x52242cbab41e290e9e17ccc50cc437bb60020a9d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x52242cbab41e290e9e17ccc50cc437bb60020a9d",
+    "symbol": "WNCG",
+    "lzVersion": "v1"
+   },
+   "0x4809010926aec940b550d34a46a52739f996d75d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4809010926aec940b550d34a46a52739f996d75d",
+    "symbol": "wsrUSD",
+    "lzVersion": "v2"
+   },
+   "0x4254813524695def4163a169e901f3d7a1a55429": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4254813524695def4163a169e901f3d7a1a55429",
+    "symbol": "wstUSR",
+    "lzVersion": "v2"
+   },
+   "0x91f9cc2649ac70a071602cade9b0c1a5868af51d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x91f9cc2649ac70a071602cade9b0c1a5868af51d",
+    "symbol": "WXTZ",
+    "lzVersion": "v2"
+   },
+   "0x6eb8f07d04278330b90a196f21708165529db783": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6eb8f07d04278330b90a196f21708165529db783",
+    "symbol": "WXX",
+    "lzVersion": "v2"
+   },
+   "0x332dd4f170cdfc27756ee4159e7dbf034c84c65b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x332dd4f170cdfc27756ee4159e7dbf034c84c65b",
+    "symbol": "XPLA",
+    "lzVersion": "v2"
+   },
+   "0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf8f46791e3db29a029ec6c9d946226f3c613e854",
+    "symbol": "XVS",
+    "lzVersion": "v1"
+   },
+   "0xf970706063b7853877f39515c96932d49d5ac9cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf970706063b7853877f39515c96932d49d5ac9cd",
+    "symbol": "YALA",
+    "lzVersion": "v2"
+   },
+   "0x1b015705214bdcaaf43e8edeca13023143224ab7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x59f1f7c4a003c2ae7c4c6db24a831c92bb7ef9ae",
+    "symbol": "ynBfBTCk",
+    "lzVersion": "v2"
+   },
+   "0x32c830f5c34122c6afb8ae87aba541b7900a2c5f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x12a1ea4a8d6d698e4d6175f563957d1a55405947",
+    "symbol": "ynBNBx",
+    "lzVersion": "v2"
+   },
+   "0x78839ce14a8213779128ee4da6d75e1326606a56": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x18fc76b4ebb856af08ae041eca0c0b0881dfd058",
+    "symbol": "ynBTCk",
+    "lzVersion": "v2"
+   },
+   "0x132376b153d3cff94615fe25712db12caaadf547": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x89935d6db5f7bd0faf142b1bbcfb57ec44b255a3",
+    "symbol": "ynCoBTCk",
+    "lzVersion": "v2"
+   },
+   "0xdb8e54f39aff243b25a41e4747957ed517af0511": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc099ab708e20e8b25c63ca156d7cc94404c55416",
+    "symbol": "YND",
+    "lzVersion": "v2"
+   },
+   "0xe231db5f348d709239ef1741ea30961b3b635a61": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbe82cbe217bf4e0a87dd88c552e93054f4ef2c7c",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   },
+   "0xe868084cf08f3c3db11f4b73a95473762d9463f7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe868084cf08f3c3db11f4b73a95473762d9463f7",
+    "symbol": "YU",
+    "lzVersion": "v2"
+   },
+   "0xab3dbcd9b096c3ff76275038bf58eac10d22c61f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x539e46827c37a3ef11c7ce521cc56b4d59e602e3",
+    "symbol": "YUSD",
+    "lzVersion": "v2"
+   },
+   "0x458ad5b487f4442245e4c5ea7249009e607a5583": {
+    "kind": "layerzero-oft",
+    "oapp": "0x458ad5b487f4442245e4c5ea7249009e607a5583",
+    "symbol": "ZERO",
+    "lzVersion": "v2"
+   },
+   "0xdac991621fd8048d9f235324780abd6c3ad26421": {
+    "kind": "layerzero-oft",
+    "oapp": "0xdac991621fd8048d9f235324780abd6c3ad26421",
+    "symbol": "ZRC",
+    "lzVersion": "v2"
+   },
+   "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "symbol": "ZRO",
+    "lzVersion": "v2"
+   },
+   "0x9208d82f121806a34a39bb90733b4c5c54f3993e": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9208d82f121806a34a39bb90733b4c5c54f3993e",
+    "symbol": "AP3X",
+    "lzVersion": "v2"
+   }
+  },
+  "100": {
+   "0xef2a1bf104a9600eedefa9ace6877e51e5add29d": {
+    "kind": "layerzero-oft",
+    "oapp": "0xef2a1bf104a9600eedefa9ace6877e51e5add29d",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0xb7e10110eedca190da51b22e90a2caee014c8140": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb7e10110eedca190da51b22e90a2caee014c8140",
+    "symbol": "BRIGHT",
+    "lzVersion": "v2"
+   },
+   "0x01af04690d17dc27b891a7f67e9eee4d14de8ea8": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xac9da18c76d54a744612e72492838227df0308bb",
+    "symbol": "ETHx",
+    "lzVersion": "v2"
+   },
+   "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0xa7490a2d3e0fa0ffc461eadc465c19d370265d1b": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa7490a2d3e0fa0ffc461eadc465c19d370265d1b",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   }
+  },
+  "137": {
+   "0xe6828d65bf5023ae1851d90d8783cc821ba7eee1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe6828d65bf5023ae1851d90d8783cc821ba7eee1",
+    "symbol": "ABOND",
+    "lzVersion": "v1"
+   },
+   "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea",
+    "symbol": "ALT",
+    "lzVersion": "v2"
+   },
+   "0xaa3717090cddc9b227e49d0d84a28ac0a996e6ff": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbb146326778227a8498b105a18f84e0987a684b4",
+    "symbol": "ASK",
+    "lzVersion": "v2"
+   },
+   "0xdfce1e99a31c4597a3f8a8945cbfa9037655e335": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa7f18d7a493c80378253b8129cbcfdfa85ddb7c8",
+    "symbol": "ASTRAFER",
+    "lzVersion": "v2"
+   },
+   "0x94025780a1ab58868d9b2dbbb775f44b32e8e6e5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xcf3f8622319ace86f1e877f4bf3f586329cdded8",
+    "symbol": "BETS",
+    "lzVersion": "v1"
+   },
+   "0x3d2bd0e15829aa5c362a4144fdf4a1112fa29b5c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x303b63e785b656ca56ea5a5c1634ab20c98895e1",
+    "symbol": "BONSAI",
+    "lzVersion": "v2"
+   },
+   "0x2297aebd383787a160dd0d9f71508148769342e3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
+    "symbol": "BTC.b",
+    "lzVersion": "v1"
+   },
+   "0xbbbbbbbbb7949dcc7d1539c91b81a5bf09e37bdb": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x74897ef1b152e5a733d797cab5cee383fe052c56",
+    "symbol": "CAW",
+    "lzVersion": "v2"
+   },
+   "0x7b12598e3616261df1c05ec28de0d2fb10c1f206": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x283fba7a6e3a2fcf3a887f22ff6bdf202d446f5f",
+    "symbol": "COCA",
+    "lzVersion": "v2"
+   },
+   "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8",
+    "symbol": "CVAI",
+    "lzVersion": "v2"
+   },
+   "0x5f32abeebd3c2fac1e7459a27e1ae9f1c16cccca": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1a53f62a8eeee5cea2aa822dd0c8b5ed1ff20159",
+    "symbol": "FAR",
+    "lzVersion": "v2"
+   },
+   "0x3e12b9d6a4d12cd9b4a6d613872d0eb32f68b380": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3e12b9d6a4d12cd9b4a6d613872d0eb32f68b380",
+    "symbol": "FLOWER",
+    "lzVersion": "v2"
+   },
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0xffffff9936bd58a008855b0812b44d2c8dffe2aa": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xffffff003605c71c2981d0ded6182b762d25a6e5",
+    "symbol": "GGUSD",
+    "lzVersion": "v2"
+   },
+   "0xaff41da975501e5b71848c975834341777d1a473": {
+    "kind": "layerzero-oft",
+    "oapp": "0xaff41da975501e5b71848c975834341777d1a473",
+    "symbol": "GUILD",
+    "lzVersion": "v1"
+   },
+   "0x8255775bea425f910044ddfb7681d6d87fd5489d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8255775bea425f910044ddfb7681d6d87fd5489d",
+    "symbol": "IDIA",
+    "lzVersion": "v1"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0x110b25d2b21ee73eb401f3ae7833f7072912a0bf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x110b25d2b21ee73eb401f3ae7833f7072912a0bf",
+    "symbol": "LIF3",
+    "lzVersion": "v1"
+   },
+   "0x5eab32fe1d104ce0c5436fedc3433b646096e47c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5eab32fe1d104ce0c5436fedc3433b646096e47c",
+    "symbol": "LSHARE",
+    "lzVersion": "v1"
+   },
+   "0x49a0400587a7f65072c87c4910449fdcc5c47242": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xca0d86afc25c57a6d2acdf331cabd4c9cee05533",
+    "symbol": "MIM",
+    "lzVersion": "v1"
+   },
+   "0x32af9ed768b48745a8e805fbce5616d0bd9868cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x32af9ed768b48745a8e805fbce5616d0bd9868cf",
+    "symbol": "MOFT2",
+    "lzVersion": "v2"
+   },
+   "0xed2d13a70acbd61074fc56bd0d0845e35f793e5e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xed2d13a70acbd61074fc56bd0d0845e35f793e5e",
+    "symbol": "MOJO",
+    "lzVersion": "v2"
+   },
+   "0x9e20461bc2c4c980f62f1b279d71734207a6a356": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9e20461bc2c4c980f62f1b279d71734207a6a356",
+    "symbol": "OMNI",
+    "lzVersion": "v1"
+   },
+   "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8",
+    "symbol": "ORDER",
+    "lzVersion": "v2"
+   },
+   "0x11cd72f7a4b699c67f225ca8abb20bc9f8db90c7": {
+    "kind": "layerzero-oft",
+    "oapp": "0x11cd72f7a4b699c67f225ca8abb20bc9f8db90c7",
+    "symbol": "OSAK",
+    "lzVersion": "v1"
+   },
+   "0xba0dda8762c24da9487f5fa026a9b64b695a07ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0xba0dda8762c24da9487f5fa026a9b64b695a07ea",
+    "symbol": "OX",
+    "lzVersion": "v1"
+   },
+   "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f",
+    "symbol": "OX.old",
+    "lzVersion": "v1"
+   },
+   "0x0b3eaead748facdb9d943d3407011f16eb17d0cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0b3eaead748facdb9d943d3407011f16eb17d0cf",
+    "symbol": "PMX",
+    "lzVersion": "v2"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0xdcb72ae4d5dc6ae274461d57e65db8d50d0a33ad": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1713bd4cd1b8f0342c48fbd68658605346386324",
+    "symbol": "RADAR",
+    "lzVersion": "v2"
+   },
+   "0x9ed7e4b1bff939ad473da5e7a218c771d1569456": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ed7e4b1bff939ad473da5e7a218c771d1569456",
+    "symbol": "REUNI",
+    "lzVersion": "v1"
+   },
+   "0xfdcc3dd6671eab0709a4c0f3f53de9a333d80798": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb9d852a3f9b3a82e243faab0272604102a111e1a",
+    "symbol": "SBC",
+    "lzVersion": "v2"
+   },
+   "0xeb971fd26783f32694dbb392dd7289de23109148": {
+    "kind": "layerzero-oft",
+    "oapp": "0xeb971fd26783f32694dbb392dd7289de23109148",
+    "symbol": "SOPH",
+    "lzVersion": "v2"
+   },
+   "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0xf6bf87f1bfa46a5b840804450d85965951197bbe": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf6bf87f1bfa46a5b840804450d85965951197bbe",
+    "symbol": "stNIBI",
+    "lzVersion": "v2"
+   },
+   "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a",
+    "symbol": "TENET",
+    "lzVersion": "v1"
+   },
+   "0x193f4a4a6ea24102f49b931deeeb931f6e32405d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x193f4a4a6ea24102f49b931deeeb931f6e32405d",
+    "symbol": "TLOS",
+    "lzVersion": "v1"
+   },
+   "0x50aa659e6ab263b77d61ff44cf4a1090141e7111": {
+    "kind": "layerzero-oft",
+    "oapp": "0x50aa659e6ab263b77d61ff44cf4a1090141e7111",
+    "symbol": "TOS",
+    "lzVersion": "v2"
+   },
+   "0xb2e787c6c83d6d75f466371a2966b27a8b700828": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb2e787c6c83d6d75f466371a2966b27a8b700828",
+    "symbol": "UNB",
+    "lzVersion": "v1"
+   },
+   "0xc2132d05d31c914a87c6611c10748aeb04b58e8f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x6ba10300f0dc58b7a1e4c0e41f5dabb7d7829e13",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+    "symbol": "VANA",
+    "lzVersion": "v2"
+   },
+   "0x07ed33a242bd9c08ca3c198e01189e35265024da": {
+    "kind": "layerzero-oft",
+    "oapp": "0x07ed33a242bd9c08ca3c198e01189e35265024da",
+    "symbol": "WAGMI",
+    "lzVersion": "v1"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0xafde2490236bc64950def5472296aa0d9758db0d": {
+    "kind": "layerzero-oft",
+    "oapp": "0xafde2490236bc64950def5472296aa0d9758db0d",
+    "symbol": "WILD",
+    "lzVersion": "v2"
+   },
+   "0x02f6fd682027a148d73777034cb85d14f231a678": {
+    "kind": "layerzero-oft",
+    "oapp": "0x02f6fd682027a148d73777034cb85d14f231a678",
+    "symbol": "WNIBI",
+    "lzVersion": "v2"
+   },
+   "0x7abe9edf5c544a04da83e9110cf46dbc4759170c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf168376569850ab69501e8b13b42f261917a02c3",
+    "symbol": "WPAY",
+    "lzVersion": "v2"
+   },
+   "0xf1815bd50389c46847f0bda824ec8da914045d14": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5421cf4288d8007d3c43ac4246eafce5b049e352",
+    "symbol": "XAUT0",
+    "lzVersion": "v2"
+   },
+   "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "symbol": "ZRO",
+    "lzVersion": "v2"
+   }
+  },
+  "146": {
+   "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c",
+    "symbol": "Anon",
+    "lzVersion": "v2"
+   },
+   "0x1e5fe95fb90ac0530f581c617272cd0864626795": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1e5fe95fb90ac0530f581c617272cd0864626795",
+    "symbol": "BEETS",
+    "lzVersion": "v1"
+   },
+   "0x7a0c53f7eb34c5bc8b01691723669ada9d6cb384": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7a0c53f7eb34c5bc8b01691723669ada9d6cb384",
+    "symbol": "BOO",
+    "lzVersion": "v2"
+   },
+   "0x7a5c61047ad8fa4a743c75eb46a01300c7c9dada": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7a5c61047ad8fa4a743c75eb46a01300c7c9dada",
+    "symbol": "DAWAE",
+    "lzVersion": "v2"
+   },
+   "0x8e15c8d399e86d4fd7b427d42f06c60cdd9397e7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x31aa74232a0b0e50e5bf95780b2116710a34c7e9",
+    "symbol": "EUL",
+    "lzVersion": "v2"
+   },
+   "0xac9ef66dc75e5340304d5cc48e185ff5262ae3ac": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac9ef66dc75e5340304d5cc48e185ff5262ae3ac",
+    "symbol": "FUEGO",
+    "lzVersion": "v2"
+   },
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0x9fdbc3f8abc05fa8f3ad3c17d2f806c1230c4564": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9fdbc3f8abc05fa8f3ad3c17d2f806c1230c4564",
+    "symbol": "GOGLZ",
+    "lzVersion": "v2"
+   },
+   "0xf9f143705b2bbde9b4abfd0320f328ae59364f5e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf9f143705b2bbde9b4abfd0320f328ae59364f5e",
+    "symbol": "GS",
+    "lzVersion": "v2"
+   },
+   "0x3d75f2bb8abcdbd1e27443cb5cbce8a668046c81": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d75f2bb8abcdbd1e27443cb5cbce8a668046c81",
+    "symbol": "HLP0",
+    "lzVersion": "v2"
+   },
+   "0xd259c1ae13e4acd745556913d044f08542418875": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3dd729b37c3a6d0b6be0098a8b7e249b626b1d64",
+    "symbol": "MOTH",
+    "lzVersion": "v2"
+   },
+   "0xe4a4353cd8f008f1a70f1a564535990479e8ceb7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe4a4353cd8f008f1a70f1a564535990479e8ceb7",
+    "symbol": "PAL",
+    "lzVersion": "v2"
+   },
+   "0x4bba0693aa204c80229469d0c95034baeed57cda": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4bba0693aa204c80229469d0c95034baeed57cda",
+    "symbol": "RING",
+    "lzVersion": "v2"
+   },
+   "0xd75787ba9aba324420d522bda84c08c87e5099b1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd75787ba9aba324420d522bda84c08c87e5099b1",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0x09d4214c03d01f49544c0448dbe3a27f768f2b34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x09d4214c03d01f49544c0448dbe3a27f768f2b34",
+    "symbol": "rUSD",
+    "lzVersion": "v2"
+   },
+   "0xb4444468e444f89e1c2cac2f1d3ee7e336cbd1f5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x6419f05d56944dd140954be8ad9907304abb2f3a",
+    "symbol": "RZR",
+    "lzVersion": "v2"
+   },
+   "0xcc5d9cc0d781d7f41f6809c0e8356c15942b775e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcc5d9cc0d781d7f41f6809c0e8356c15942b775e",
+    "symbol": "SAM",
+    "lzVersion": "v2"
+   },
+   "0x6bede1c6009a78c222d9bdb7974bb67847fdb68c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6bede1c6009a78c222d9bdb7974bb67847fdb68c",
+    "symbol": "USBD",
+    "lzVersion": "v2"
+   },
+   "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+    "symbol": "WBTC",
+    "lzVersion": "v2"
+   },
+   "0xa3d68b74bf0528fdd07263c60d6488749044914b": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa3d68b74bf0528fdd07263c60d6488749044914b",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0x4809010926aec940b550d34a46a52739f996d75d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4809010926aec940b550d34a46a52739f996d75d",
+    "symbol": "wsrUSD",
+    "lzVersion": "v2"
+   }
+  },
+  "196": {
+   "0xdc685bf4b416f8d5cac64927e9c516be45b81d28": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc0a0fdd802b2750b7f972c2a7972c8942328099f",
+    "symbol": "ETHx",
+    "lzVersion": "v2"
+   },
+   "0xeed9de5e41b53d1c8fab8aab4b0e446f828c1483": {
+    "kind": "layerzero-oft",
+    "oapp": "0xeed9de5e41b53d1c8fab8aab4b0e446f828c1483",
+    "symbol": "FPI",
+    "lzVersion": "v2"
+   },
+   "0x80eede496655fb9047dd39d9f418d5483ed600df": {
+    "kind": "layerzero-oft",
+    "oapp": "0x80eede496655fb9047dd39d9f418d5483ed600df",
+    "symbol": "FRAX",
+    "lzVersion": "v2"
+   },
+   "0x43edd7f3831b08fe70b7555ddd373c8bf65a9050": {
+    "kind": "layerzero-oft",
+    "oapp": "0x43edd7f3831b08fe70b7555ddd373c8bf65a9050",
+    "symbol": "frxETH",
+    "lzVersion": "v2"
+   },
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0x1b3a9a689ba7555f9d7984d7ad4025574ed5a0f9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1b3a9a689ba7555f9d7984d7ad4025574ed5a0f9",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0x5bff88ca1442c2496f7e475e9e7786383bc070c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5bff88ca1442c2496f7e475e9e7786383bc070c0",
+    "symbol": "sFRAX",
+    "lzVersion": "v2"
+   },
+   "0x3ec3849c33291a9ef4c5db86de593eb4a37fde45": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3ec3849c33291a9ef4c5db86de593eb4a37fde45",
+    "symbol": "sfrxETH",
+    "lzVersion": "v2"
+   },
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x94bcca6bdfd6a61817ab0e960bfede4984505554",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0x98d56d03be3c0b9c58c67b209ca557d7da9eb611": {
+    "kind": "layerzero-oft",
+    "oapp": "0x98d56d03be3c0b9c58c67b209ca557d7da9eb611",
+    "symbol": "ZERO",
+    "lzVersion": "v2"
+   }
+  },
+  "324": {
+   "0x67154b6a149081e796049f2a3b17e1c356d2ba61": {
+    "kind": "layerzero-oft",
+    "oapp": "0x67154b6a149081e796049f2a3b17e1c356d2ba61",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0xb5a58c1d3542a65f93a5a504765cd2cd3155a418": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb5a58c1d3542a65f93a5a504765cd2cd3155a418",
+    "symbol": "ATH",
+    "lzVersion": "v2"
+   },
+   "0xb0588f9a9cade7cd5f194a5fe77acd6a58250f82": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb0588f9a9cade7cd5f194a5fe77acd6a58250f82",
+    "symbol": "BONSAI",
+    "lzVersion": "v2"
+   },
+   "0x3a287a06c66f9e95a56327185ca2bdf5f031cecd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3a287a06c66f9e95a56327185ca2bdf5f031cecd",
+    "symbol": "CAKE",
+    "lzVersion": "v1"
+   },
+   "0xd0fb453e03f128a35d7409135981c754170378a5": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd0fb453e03f128a35d7409135981c754170378a5",
+    "symbol": "DINERO",
+    "lzVersion": "v2"
+   },
+   "0x686b311f82b407f0be842652a98e5619f64cc25f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x686b311f82b407f0be842652a98e5619f64cc25f",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0xd03465338226ea0178337f4abb16fdd6df529f57": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd03465338226ea0178337f4abb16fdd6df529f57",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x787c09494ec8bcb24dcaf8659e7d5d69979ee508": {
+    "kind": "layerzero-oft",
+    "oapp": "0x787c09494ec8bcb24dcaf8659e7d5d69979ee508",
+    "symbol": "MAV",
+    "lzVersion": "v1"
+   },
+   "0x8ba0aae056de87aefcbc973623d9d43470eae248": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8ba0aae056de87aefcbc973623d9d43470eae248",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   },
+   "0x6be2425c381eb034045b527780d2bf4e21ab7236": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6be2425c381eb034045b527780d2bf4e21ab7236",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0x5088c7858019a5579a29d4bc2815e7475af3a551": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5088c7858019a5579a29d4bc2815e7475af3a551",
+    "symbol": "sDINERO",
+    "lzVersion": "v2"
+   },
+   "0xad17da2f6ac76746ef261e835c50b2651ce36da8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xad17da2f6ac76746ef261e835c50b2651ce36da8",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0x39fe7a0dacce31bd90418e3e659fb0b5f0b3db0d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x39fe7a0dacce31bd90418e3e659fb0b5f0b3db0d",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0x3613ad277df1d5935d41400a181aa9ec1dc2dc9e": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3613ad277df1d5935d41400a181aa9ec1dc2dc9e",
+    "symbol": "WAGMI",
+    "lzVersion": "v1"
+   },
+   "0xc1fa6e2e8667d9be0ca938a54c7e0285e9df924a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc1fa6e2e8667d9be0ca938a54c7e0285e9df924a",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0xd78abd81a3d57712a3af080dc4185b698fe9ac5a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x16a62b534e09a7534cd5847cfe5bf6a4b0c1b116",
+    "symbol": "XVS",
+    "lzVersion": "v1"
+   },
+   "0x5d0d7bca050e2e98fd4a5e8d3ba823b49f39868d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x541c302dc3ba63180abda3e53f632abc86a5ab5b",
+    "symbol": "ZFI",
+    "lzVersion": "v2"
+   }
+  },
+  "1088": {
+   "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c",
+    "symbol": "Anon",
+    "lzVersion": "v2"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0xe41228a455700caf09e551805a8ab37caa39d08c": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe41228a455700caf09e551805a8ab37caa39d08c",
+    "symbol": "FPI",
+    "lzVersion": "v2"
+   },
+   "0x909dbde1ebe906af95660033e478d59efe831fed": {
+    "kind": "layerzero-oft",
+    "oapp": "0x909dbde1ebe906af95660033e478d59efe831fed",
+    "symbol": "FRAX",
+    "lzVersion": "v2"
+   },
+   "0xf010a7c8877043681d59ad125ebf575633505942": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf010a7c8877043681d59ad125ebf575633505942",
+    "symbol": "frxETH",
+    "lzVersion": "v2"
+   },
+   "0x23432452b720c80553458496d4d9d7c5003280d0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x23432452b720c80553458496d4d9d7c5003280d0",
+    "symbol": "FXS (old)",
+    "lzVersion": "v2"
+   },
+   "0x6f05709bc91bad933346f9e159f0d3fdbc2c9dce": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x9c598da94c840147c9a1eabe1ae8df750674ddf6",
+    "symbol": "HERA",
+    "lzVersion": "v1"
+   },
+   "0x52b4fc2ca0d9b194769ab9a3dc36c2c6831f2520": {
+    "kind": "layerzero-oft",
+    "oapp": "0x52b4fc2ca0d9b194769ab9a3dc36c2c6831f2520",
+    "symbol": "MTVT",
+    "lzVersion": "v1"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0xe4796ccb6bb5de2290c417ac337f2b66ca2e770e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe4796ccb6bb5de2290c417ac337f2b66ca2e770e",
+    "symbol": "sFRAX",
+    "lzVersion": "v2"
+   },
+   "0x1f55a02a049033e3419a8e2975cf3f572f4e6e9a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1f55a02a049033e3419a8e2975cf3f572f4e6e9a",
+    "symbol": "sfrxETH",
+    "lzVersion": "v2"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   }
+  },
+  "1868": {
+   "0xa0aebd4ae5f256b72b7d43f67ed934237adb1aee": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa0aebd4ae5f256b72b7d43f67ed934237adb1aee",
+    "symbol": "BONSAICOIN",
+    "lzVersion": "v2"
+   },
+   "0x8cd846c404c7267350a2920576816603cd5c6539": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8cd846c404c7267350a2920576816603cd5c6539",
+    "symbol": "PIPO",
+    "lzVersion": "v2"
+   },
+   "0x35533f54740f1f1aa4179e57ba37039dfa16868b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x35533f54740f1f1aa4179e57ba37039dfa16868b",
+    "symbol": "RLP",
+    "lzVersion": "v2"
+   },
+   "0x102d758f688a4c1c5a80b116bd945d4455460282": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe09e8713e86b12af68b6f41237f3e9a57c064289",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0xb1b385542b6e80f77b94393ba8342c3af699f15c": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb1b385542b6e80f77b94393ba8342c3af699f15c",
+    "symbol": "USR",
+    "lzVersion": "v2"
+   },
+   "0x60336f9296c79da4294a19153ec87f8e52158e5f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x60336f9296c79da4294a19153ec87f8e52158e5f",
+    "symbol": "vASTR",
+    "lzVersion": "v1"
+   },
+   "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+    "symbol": "WBTC",
+    "lzVersion": "v2"
+   },
+   "0x3d63825b0d8669307366e6c8202f656b9e91d368": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d63825b0d8669307366e6c8202f656b9e91d368",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0x2a52b289ba68bbd02676640aa9f605700c9e5699": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2a52b289ba68bbd02676640aa9f605700c9e5699",
+    "symbol": "wstUSR",
+    "lzVersion": "v2"
+   }
+  },
+  "5000": {
+   "0xc3d4e9ac47d7f37bb07c2f8355bb4940dea3bbc3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd115c0e156fe1cea7645de017dd215cec5d86cb7",
+    "symbol": "BOMB",
+    "lzVersion": "v2"
+   },
+   "0x3d142cdb27b537af57a55ee8f54ada953b4b9ecd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d142cdb27b537af57a55ee8f54ada953b4b9ecd",
+    "symbol": "BOX",
+    "lzVersion": "v2"
+   },
+   "0xe6829d9a7ee3040e1276fa75293bde931859e8fa": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe6829d9a7ee3040e1276fa75293bde931859e8fa",
+    "symbol": "cmETH",
+    "lzVersion": "v2"
+   },
+   "0x9f0c013016e8656bc256f948cd4b79ab25c7b94d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9f0c013016e8656bc256f948cd4b79ab25c7b94d",
+    "symbol": "COOK",
+    "lzVersion": "v2"
+   },
+   "0x420fca0121dc28039145009570975747295f2329": {
+    "kind": "layerzero-oft",
+    "oapp": "0x420fca0121dc28039145009570975747295f2329",
+    "symbol": "COQ",
+    "lzVersion": "v2"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0x08d1099101de99b14c68975222a235b63e6b8c91": {
+    "kind": "layerzero-oft",
+    "oapp": "0x08d1099101de99b14c68975222a235b63e6b8c91",
+    "symbol": "IDIA",
+    "lzVersion": "v1"
+   },
+   "0x371c7ec6d8039ff7933a2aa28eb827ffe1f52f07": {
+    "kind": "layerzero-oft",
+    "oapp": "0x371c7ec6d8039ff7933a2aa28eb827ffe1f52f07",
+    "symbol": "JOE",
+    "lzVersion": "v1"
+   },
+   "0x6f00dade3201e88623e2ac1c943f7ed730c7cb76": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6f00dade3201e88623e2ac1c943f7ed730c7cb76",
+    "symbol": "MOFT",
+    "lzVersion": "v2"
+   },
+   "0xbe5acfd64358805616b5cbd5277b9a85011d7cf1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbe5acfd64358805616b5cbd5277b9a85011d7cf1",
+    "symbol": "PCH",
+    "lzVersion": "v2"
+   },
+   "0x26a6b0dcdcfb981362afa56d581e4a7dba3be140": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe6fa1be9daa660c99268f3f47fc193ba066a3aac",
+    "symbol": "Puff",
+    "lzVersion": "v2"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0x8731d54e9d02c286767d56ac03e8037c07e01e98": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0xc752f7ceffd8a52e541b256d2c73e65f8bac60c7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc752f7ceffd8a52e541b256d2c73e65f8bac60c7",
+    "symbol": "TECH",
+    "lzVersion": "v2"
+   },
+   "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e",
+    "symbol": "UFD",
+    "lzVersion": "v2"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0x5be26527e817998a7206475496fde1e68957c5a6": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0be393dc46248e4285dc5caca3084bc7e9bfbb41",
+    "symbol": "USDY",
+    "lzVersion": "v2"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0xe231db5f348d709239ef1741ea30961b3b635a61": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbe82cbe217bf4e0a87dd88c552e93054f4ef2c7c",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   }
+  },
+  "8453": {
+   "0x77a4b0bfe5c7257f67a1de1b99aa7e157035b1b2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x77a4b0bfe5c7257f67a1de1b99aa7e157035b1b2",
+    "symbol": "7007",
+    "lzVersion": "v2"
+   },
+   "0x4f9fd6be4a90f2620860d680c0d4d5fb53d1a825": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0d37af9d8ae74f35f3a38bd2a08fcb29890ca6d2",
+    "symbol": "AIXBT",
+    "lzVersion": "v2"
+   },
+   "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea",
+    "symbol": "ALT",
+    "lzVersion": "v2"
+   },
+   "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c",
+    "symbol": "Anon",
+    "lzVersion": "v2"
+   },
+   "0xe67f39fbe8c24ef8b3542efed1ee9963cefc1f2a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe67f39fbe8c24ef8b3542efed1ee9963cefc1f2a",
+    "symbol": "ANYONE",
+    "lzVersion": "v2"
+   },
+   "0xed97d39448d1c3891aafcb28c9cf63f893d65743": {
+    "kind": "layerzero-oft",
+    "oapp": "0xed97d39448d1c3891aafcb28c9cf63f893d65743",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0x7543e3829ecdd61a5fd7c187ff88c4cf46e30f73": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7543e3829ecdd61a5fd7c187ff88c4cf46e30f73",
+    "symbol": "ASF",
+    "lzVersion": "v2"
+   },
+   "0xbb146326778227a8498b105a18f84e0987a684b4": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbb146326778227a8498b105a18f84e0987a684b4",
+    "symbol": "ASK",
+    "lzVersion": "v2"
+   },
+   "0xad8c787992428cd158e451aab109f724b6bc36de": {
+    "kind": "layerzero-oft",
+    "oapp": "0xad8c787992428cd158e451aab109f724b6bc36de",
+    "symbol": "ASP",
+    "lzVersion": "v2"
+   },
+   "0xf9569cfb8fd265e91aa478d86ae8c78b8af55df4": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x67c89da66cc7e007a3302541daee899837bd8bcc",
+    "symbol": "AUKI",
+    "lzVersion": "v2"
+   },
+   "0x80ca9edce4583b8043351a1046f18244b24ef869": {
+    "kind": "layerzero-oft",
+    "oapp": "0x80ca9edce4583b8043351a1046f18244b24ef869",
+    "symbol": "AVA",
+    "lzVersion": "v2"
+   },
+   "0x31ea904a7eca45122890deb8da3473a2081bc9d1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31ea904a7eca45122890deb8da3473a2081bc9d1",
+    "symbol": "BAI",
+    "lzVersion": "v2"
+   },
+   "0x1f1ba52c445755c92caffe7b608b87dcdaf9d825": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x7360183b9d0332ae266a9310599195ba1c6c4dfb",
+    "symbol": "BEE",
+    "lzVersion": "v2"
+   },
+   "0x88eb9a522aab8491b41a4cb9e869e064c2cc3502": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x37e8ca1050b22ea75110adefc71979ee3617ee02",
+    "symbol": "BOMB",
+    "lzVersion": "v2"
+   },
+   "0x474f4cb764df9da079d94052fed39625c147c12c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x474f4cb764df9da079d94052fed39625c147c12c",
+    "symbol": "BONSAI",
+    "lzVersion": "v2"
+   },
+   "0xa0aebd4ae5f256b72b7d43f67ed934237adb1aee": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa0aebd4ae5f256b72b7d43f67ed934237adb1aee",
+    "symbol": "BONSAICOIN",
+    "lzVersion": "v2"
+   },
+   "0x37d2adc008118d04f259fc0c16ff66bf5a637d20": {
+    "kind": "layerzero-oft",
+    "oapp": "0x37d2adc008118d04f259fc0c16ff66bf5a637d20",
+    "symbol": "BOX",
+    "lzVersion": "v2"
+   },
+   "0xa26a4611b8313bbb25ccb1a9e227ecc536a2f8f7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa26a4611b8313bbb25ccb1a9e227ecc536a2f8f7",
+    "symbol": "BRIGHT",
+    "lzVersion": "v2"
+   },
+   "0xab10e517f3138b17108b32129e8c8446ad44a267": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe66d6054cd609a53669b6f09727ea9388ad84077",
+    "symbol": "BTA",
+    "lzVersion": "v2"
+   },
+   "0xba12bc7b210e61e5d3110b997a63ea216e0e18f7": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3ade69d08ac3c7c0cc3654eeedbe899f109f7181",
+    "symbol": "C",
+    "lzVersion": "v2"
+   },
+   "0x3055913c90fcc1a6ce9a358911721eeb942013a1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3055913c90fcc1a6ce9a358911721eeb942013a1",
+    "symbol": "CAKE",
+    "lzVersion": "v1"
+   },
+   "0xdfbea88c4842d30c26669602888d746d30f9d60d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x74897ef1b152e5a733d797cab5cee383fe052c56",
+    "symbol": "CAW",
+    "lzVersion": "v2"
+   },
+   "0x9886447ff4c350f4600e4bf95db756bdc629b1ca": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9886447ff4c350f4600e4bf95db756bdc629b1ca",
+    "symbol": "CERE",
+    "lzVersion": "v2"
+   },
+   "0x1883af6b51fb7f69577880004a82c9d68582022c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1883af6b51fb7f69577880004a82c9d68582022c",
+    "symbol": "CMPT",
+    "lzVersion": "v1"
+   },
+   "0x959fc04dbf97a27073f89237cd62605f4d1b906d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x959fc04dbf97a27073f89237cd62605f4d1b906d",
+    "symbol": "COCA",
+    "lzVersion": "v2"
+   },
+   "0xc0041ef357b183448b235a8ea73ce4e4ec8c265f": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc0041ef357b183448b235a8ea73ce4e4ec8c265f",
+    "symbol": "COOKIE",
+    "lzVersion": "v2"
+   },
+   "0x420fca0121dc28039145009570975747295f2329": {
+    "kind": "layerzero-oft",
+    "oapp": "0x420fca0121dc28039145009570975747295f2329",
+    "symbol": "COQ",
+    "lzVersion": "v2"
+   },
+   "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8",
+    "symbol": "CVAI",
+    "lzVersion": "v2"
+   },
+   "0x4ed4e862860bed51a9570b96d89af5e1b0efefed": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xdb8e759859058952c34953c8469f464109826e52",
+    "symbol": "DEGEN",
+    "lzVersion": "v2"
+   },
+   "0xbcf1d3bf77f4d29d9c54ae5dc51d8c2acea5be3c": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbcf1d3bf77f4d29d9c54ae5dc51d8c2acea5be3c",
+    "symbol": "degenai",
+    "lzVersion": "v2"
+   },
+   "0x940a319b75861014a220d9c6c144d108552b089b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x940a319b75861014a220d9c6c144d108552b089b",
+    "symbol": "DEUS",
+    "lzVersion": "v2"
+   },
+   "0x09d9420332bff75522a45fcff4855f82a0a3ff50": {
+    "kind": "layerzero-oft",
+    "oapp": "0x09d9420332bff75522a45fcff4855f82a0a3ff50",
+    "symbol": "DINERO",
+    "lzVersion": "v2"
+   },
+   "0xb757977bc882a14db86b048f2abb2f2a14d33184": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb757977bc882a14db86b048f2abb2f2a14d33184",
+    "symbol": "DOGL",
+    "lzVersion": "v2"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0xa153ad732f831a79b5575fa02e793ec4e99181b0": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x9ff7ea0cf94b8665c2f5d17560bd34ab9bbacd21",
+    "symbol": "EUL",
+    "lzVersion": "v2"
+   },
+   "0x3e12b9d6a4d12cd9b4a6d613872d0eb32f68b380": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3e12b9d6a4d12cd9b4a6d613872d0eb32f68b380",
+    "symbol": "FLOWER",
+    "lzVersion": "v2"
+   },
+   "0xe41228a455700caf09e551805a8ab37caa39d08c": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe41228a455700caf09e551805a8ab37caa39d08c",
+    "symbol": "FPI",
+    "lzVersion": "v2"
+   },
+   "0x909dbde1ebe906af95660033e478d59efe831fed": {
+    "kind": "layerzero-oft",
+    "oapp": "0x909dbde1ebe906af95660033e478d59efe831fed",
+    "symbol": "FRAX",
+    "lzVersion": "v2"
+   },
+   "0xf010a7c8877043681d59ad125ebf575633505942": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf010a7c8877043681d59ad125ebf575633505942",
+    "symbol": "frxETH",
+    "lzVersion": "v2"
+   },
+   "0x36912b5cf63e509f18e53ac98b3012fa79e77bf5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x6f756c0437a8c2193456a5bf09a61185a56dcc76",
+    "symbol": "FUEGO",
+    "lzVersion": "v2"
+   },
+   "0x0ceac003b0d2479bebec9f4b2ebad0a803759bbf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0ceac003b0d2479bebec9f4b2ebad0a803759bbf",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0x23432452b720c80553458496d4d9d7c5003280d0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x23432452b720c80553458496d4d9d7c5003280d0",
+    "symbol": "FXS (old)",
+    "lzVersion": "v2"
+   },
+   "0xac80e841cb4ed3f85436de84ee1e92cdf00144e6": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac80e841cb4ed3f85436de84ee1e92cdf00144e6",
+    "symbol": "FYDE",
+    "lzVersion": "v2"
+   },
+   "0x590830dfdf9a3f68afcdde2694773debdf267774": {
+    "kind": "layerzero-oft",
+    "oapp": "0x590830dfdf9a3f68afcdde2694773debdf267774",
+    "symbol": "GIZA",
+    "lzVersion": "v2"
+   },
+   "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948",
+    "symbol": "GOD",
+    "lzVersion": "v2"
+   },
+   "0xbefd5c25a59ef2c1316c5a4944931171f30cd3e4": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xdee1b2dab488b0d71677200ea1330fdced01e144",
+    "symbol": "GOLD",
+    "lzVersion": "v1"
+   },
+   "0xc4d44c155f95fd4e94600d191a4a01bb571df7df": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc4d44c155f95fd4e94600d191a4a01bb571df7df",
+    "symbol": "GS",
+    "lzVersion": "v2"
+   },
+   "0x7002987e5f63716273e77b51e12a578143c222aa": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7002987e5f63716273e77b51e12a578143c222aa",
+    "symbol": "HAI",
+    "lzVersion": "v2"
+   },
+   "0x91da780bc7f4b7cf19abe90411a2a296ec5ff787": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc8de92105c01af3a58791cdbaf14f232621dbe17",
+    "symbol": "HINT",
+    "lzVersion": "v2"
+   },
+   "0x4bfaa776991e85e5f8b1255461cbbd216cfc714f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4bfaa776991e85e5f8b1255461cbbd216cfc714f",
+    "symbol": "HOME",
+    "lzVersion": "v2"
+   },
+   "0xf3dd141109dfe8e4c006f88a2a8747a086e7c1f8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf3dd141109dfe8e4c006f88a2a8747a086e7c1f8",
+    "symbol": "HOT",
+    "lzVersion": "v2"
+   },
+   "0x12c26138b666360ab2b7a1b149df9cf6642cdfbf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x12c26138b666360ab2b7a1b149df9cf6642cdfbf",
+    "symbol": "ICL",
+    "lzVersion": "v2"
+   },
+   "0x8255775bea425f910044ddfb7681d6d87fd5489d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8255775bea425f910044ddfb7681d6d87fd5489d",
+    "symbol": "IDIA",
+    "lzVersion": "v1"
+   },
+   "0x5a7a2bf9ffae199f088b25837dcd7e115cf8e1bb": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5a7a2bf9ffae199f088b25837dcd7e115cf8e1bb",
+    "symbol": "IMO",
+    "lzVersion": "v2"
+   },
+   "0x42e07fa3d31190731368ca2f88d12d80139dca42": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd97e1d6051a2c36fd9cfd2e1640c699c29724860",
+    "symbol": "INTOS",
+    "lzVersion": "v2"
+   },
+   "0x157a6df6b74f4e5e45af4e4615fde7b49225a662": {
+    "kind": "layerzero-oft",
+    "oapp": "0x157a6df6b74f4e5e45af4e4615fde7b49225a662",
+    "symbol": "ISLAND",
+    "lzVersion": "v2"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x5dc25aa049837b696d1dc0f966ac8df1491f819b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5dc25aa049837b696d1dc0f966ac8df1491f819b",
+    "symbol": "KIM",
+    "lzVersion": "v2"
+   },
+   "0x50ce4129ca261ccde4eb100c170843c2936bc11b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x50ce4129ca261ccde4eb100c170843c2936bc11b",
+    "symbol": "KOLZ",
+    "lzVersion": "v2"
+   },
+   "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0x519d3443cacc61bd844546edaea48e5502021802": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x5a1deef18e1ddb939bb298787896e45b5988243c",
+    "symbol": "LL",
+    "lzVersion": "v2"
+   },
+   "0xa8cf99f2572500a9df5cd794c0e24f132448adde": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa8cf99f2572500a9df5cd794c0e24f132448adde",
+    "symbol": "lvlUSD",
+    "lzVersion": "v2"
+   },
+   "0x554bba833518793056cf105e66abea330672c0de": {
+    "kind": "layerzero-oft",
+    "oapp": "0x554bba833518793056cf105e66abea330672c0de",
+    "symbol": "MAHA",
+    "lzVersion": "v2"
+   },
+   "0x64b88c73a5dfa78d1713fe1b4c69a22d7e0faaa7": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64b88c73a5dfa78d1713fe1b4c69a22d7e0faaa7",
+    "symbol": "MAV",
+    "lzVersion": "v1"
+   },
+   "0x24fcfc492c1393274b6bcd568ac9e225bec93584": {
+    "kind": "layerzero-oft",
+    "oapp": "0x24fcfc492c1393274b6bcd568ac9e225bec93584",
+    "symbol": "MAVIA",
+    "lzVersion": "v2"
+   },
+   "0x813f392d21a55819be5e78157bfcdbd25530f4e8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x813f392d21a55819be5e78157bfcdbd25530f4e8",
+    "symbol": "MELANIA",
+    "lzVersion": "v2"
+   },
+   "0x08bf7f2005ab25a90d4f88efd70dbdf0ef6b7554": {
+    "kind": "layerzero-oft",
+    "oapp": "0x08bf7f2005ab25a90d4f88efd70dbdf0ef6b7554",
+    "symbol": "MGT",
+    "lzVersion": "v2"
+   },
+   "0x4a3a6dd60a34bb2aba60d73b4c88315e9ceb6a3d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x4035957323fc05ad9704230e3dc1e7663091d262",
+    "symbol": "MIM",
+    "lzVersion": "v1"
+   },
+   "0x4591dbff62656e7859afe5e45f6f47d3669fbb28": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4591dbff62656e7859afe5e45f6f47d3669fbb28",
+    "symbol": "mkUSD",
+    "lzVersion": "v1"
+   },
+   "0x2b11834ed1feaed4b4b3a86a6f571315e25a884d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b11834ed1feaed4b4b3a86a6f571315e25a884d",
+    "symbol": "MOCA",
+    "lzVersion": "v2"
+   },
+   "0x084382d1cc4f4dfd1769b1cc1ac2a9b1f8365e90": {
+    "kind": "layerzero-oft",
+    "oapp": "0x084382d1cc4f4dfd1769b1cc1ac2a9b1f8365e90",
+    "symbol": "MODE",
+    "lzVersion": "v2"
+   },
+   "0x32af9ed768b48745a8e805fbce5616d0bd9868cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x32af9ed768b48745a8e805fbce5616d0bd9868cf",
+    "symbol": "MOFT2",
+    "lzVersion": "v2"
+   },
+   "0xed2d13a70acbd61074fc56bd0d0845e35f793e5e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xed2d13a70acbd61074fc56bd0d0845e35f793e5e",
+    "symbol": "MOJO",
+    "lzVersion": "v2"
+   },
+   "0x7431ada8a591c955a994a21710752ef9b882b8e3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7431ada8a591c955a994a21710752ef9b882b8e3",
+    "symbol": "MOR",
+    "lzVersion": "v2"
+   },
+   "0xb722f0d7da6c7b5e964404df591ebc505d88e9f8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb722f0d7da6c7b5e964404df591ebc505d88e9f8",
+    "symbol": "MOTH",
+    "lzVersion": "v2"
+   },
+   "0xc227717ef4ae4d982e14789eb33ba942243c3fee": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc227717ef4ae4d982e14789eb33ba942243c3fee",
+    "symbol": "MOZ",
+    "lzVersion": "v2"
+   },
+   "0x7ba6f01772924a82d9626c126347a28299e98c98": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x30eac06d1e495411ee15cb59714eb9da29fc200e",
+    "symbol": "msETH",
+    "lzVersion": "v1"
+   },
+   "0x526728dbc96689597f85ae4cd716d4f7fccbae9d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2af13bf84f8b452cb86839330f514cc5c2899217",
+    "symbol": "msUSD",
+    "lzVersion": "v1"
+   },
+   "0xc48e605c7b722a57277e087a6170b9e227e5ac0a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc48e605c7b722a57277e087a6170b9e227e5ac0a",
+    "symbol": "OMNI",
+    "lzVersion": "v1"
+   },
+   "0x333333c465a19c85f85c6cfbed7b16b0b26e3333": {
+    "kind": "layerzero-oft",
+    "oapp": "0x333333c465a19c85f85c6cfbed7b16b0b26e3333",
+    "symbol": "ORA",
+    "lzVersion": "v2"
+   },
+   "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8",
+    "symbol": "ORDER",
+    "lzVersion": "v2"
+   },
+   "0xbfd5206962267c7b4b4a8b3d76ac2e1b2a5c4d5e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbfd5206962267c7b4b4a8b3d76ac2e1b2a5c4d5e",
+    "symbol": "OSAK",
+    "lzVersion": "v1"
+   },
+   "0xba0dda8762c24da9487f5fa026a9b64b695a07ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0xba0dda8762c24da9487f5fa026a9b64b695a07ea",
+    "symbol": "OX",
+    "lzVersion": "v1"
+   },
+   "0xf6dc6b3c80179c88290548ad077160249abdf8e3": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf7c00443512feca11f0982c2b778d1c38480b634",
+    "symbol": "PADD",
+    "lzVersion": "v2"
+   },
+   "0xf598797d9c160aef2a14712c20b7731cbe5861da": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf598797d9c160aef2a14712c20b7731cbe5861da",
+    "symbol": "PERC",
+    "lzVersion": "v2"
+   },
+   "0x0b3eaead748facdb9d943d3407011f16eb17d0cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0b3eaead748facdb9d943d3407011f16eb17d0cf",
+    "symbol": "PMX",
+    "lzVersion": "v2"
+   },
+   "0xa0820613976b441e2c6a90e4877e2fb5f7d72552": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa0820613976b441e2c6a90e4877e2fb5f7d72552",
+    "symbol": "POLTER",
+    "lzVersion": "v2"
+   },
+   "0x7bbcf1b600565ae023a1806ef637af4739de3255": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7bbcf1b600565ae023a1806ef637af4739de3255",
+    "symbol": "PRFI",
+    "lzVersion": "v2"
+   },
+   "0x30c7235866872213f68cb1f08c37cb9eccb93452": {
+    "kind": "layerzero-oft",
+    "oapp": "0x30c7235866872213f68cb1f08c37cb9eccb93452",
+    "symbol": "PROMPT",
+    "lzVersion": "v2"
+   },
+   "0x915424ac489433130d92b04096f3b96c82e92a9d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x915424ac489433130d92b04096f3b96c82e92a9d",
+    "symbol": "PROS",
+    "lzVersion": "v2"
+   },
+   "0x823c9e9f4c51c1a169cef4bf7922f46beb493d11": {
+    "kind": "layerzero-oft",
+    "oapp": "0x823c9e9f4c51c1a169cef4bf7922f46beb493d11",
+    "symbol": "Puff",
+    "lzVersion": "v2"
+   },
+   "0x8da0bae597ac15fb0924713b1e3c1f624474f3e4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8da0bae597ac15fb0924713b1e3c1f624474f3e4",
+    "symbol": "PUFFER",
+    "lzVersion": "v2"
+   },
+   "0x58ade43a276ddf3e101941571ede398a32492ed7": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58ade43a276ddf3e101941571ede398a32492ed7",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0x1f1aa4d239002bb818536c95e9b762a1fc8484c1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1f1aa4d239002bb818536c95e9b762a1fc8484c1",
+    "symbol": "RAIN",
+    "lzVersion": "v1"
+   },
+   "0x441fcb23dfe8289cf572126fedcf450974adc891": {
+    "kind": "layerzero-oft",
+    "oapp": "0x441fcb23dfe8289cf572126fedcf450974adc891",
+    "symbol": "RBTC",
+    "lzVersion": "v2"
+   },
+   "0xd722e55c1d9d9fa0021a5215cbb904b92b3dc5d4": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd722e55c1d9d9fa0021a5215cbb904b92b3dc5d4",
+    "symbol": "RDNT",
+    "lzVersion": "v1"
+   },
+   "0xe642657e4f43e6dcf0bd73ef24008394574dee28": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3c48130227b657630e5d30f136a8cbb110640aa5",
+    "symbol": "RECORD",
+    "lzVersion": "v2"
+   },
+   "0xe5e851b01dd3eda24fde709a407db44555b6d1e0": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe5e851b01dd3eda24fde709a407db44555b6d1e0",
+    "symbol": "RIF",
+    "lzVersion": "v2"
+   },
+   "0xc31389794ffac23331e0d9f611b7953f90aa5fdc": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc31389794ffac23331e0d9f611b7953f90aa5fdc",
+    "symbol": "RLP",
+    "lzVersion": "v2"
+   },
+   "0x1bc71130a0e39942a7658878169764bbd8a45993": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1bc71130a0e39942a7658878169764bbd8a45993",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0x09d4214c03d01f49544c0448dbe3a27f768f2b34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x09d4214c03d01f49544c0448dbe3a27f768f2b34",
+    "symbol": "rUSD",
+    "lzVersion": "v2"
+   },
+   "0xe2b1dc2d4a3b4e59fdf0c47b71a7a86391a8b35a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe2b1dc2d4a3b4e59fdf0c47b71a7a86391a8b35a",
+    "symbol": "RWA",
+    "lzVersion": "v2"
+   },
+   "0xe0023e73aab4fe9a22f059a9d27e857e027ee3dc": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x8c47a7cc943f1c53102d226239f431b6f0133fec",
+    "symbol": "RWAX",
+    "lzVersion": "v2"
+   },
+   "0xb4444468e444f89e1c2cac2f1d3ee7e336cbd1f5": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb4444468e444f89e1c2cac2f1d3ee7e336cbd1f5",
+    "symbol": "RZR",
+    "lzVersion": "v2"
+   },
+   "0xed1779845520339693cdbffec49a74246e7d671b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x705a91029c2a1432bd75ddea9bae2c04e8b7b077",
+    "symbol": "SAM",
+    "lzVersion": "v2"
+   },
+   "0xac531eb26ca1d21b85126de8fb87e80e09002dcf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac531eb26ca1d21b85126de8fb87e80e09002dcf",
+    "symbol": "SAND",
+    "lzVersion": "v2"
+   },
+   "0xfdcc3dd6671eab0709a4c0f3f53de9a333d80798": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb9d852a3f9b3a82e243faab0272604102a111e1a",
+    "symbol": "SBC",
+    "lzVersion": "v2"
+   },
+   "0x49d803d2df2295185610f44961f2dcd40326f25c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x49d803d2df2295185610f44961f2dcd40326f25c",
+    "symbol": "SC",
+    "lzVersion": "v2"
+   },
+   "0xc5ecb8c506898bd5eeec63c5f69c7819e37084b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc5ecb8c506898bd5eeec63c5f69c7819e37084b8",
+    "symbol": "sDINERO",
+    "lzVersion": "v2"
+   },
+   "0x9bde70bad05b7d84dac03024dae15aace8c9cca2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9bde70bad05b7d84dac03024dae15aace8c9cca2",
+    "symbol": "SEILOR",
+    "lzVersion": "v2"
+   },
+   "0x2b8263a470a6f55bfd3af2ad907d4c286eb0e3f4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b8263a470a6f55bfd3af2ad907d4c286eb0e3f4",
+    "symbol": "SFG",
+    "lzVersion": "v2"
+   },
+   "0xe4796ccb6bb5de2290c417ac337f2b66ca2e770e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe4796ccb6bb5de2290c417ac337f2b66ca2e770e",
+    "symbol": "sFRAX",
+    "lzVersion": "v2"
+   },
+   "0x1f55a02a049033e3419a8e2975cf3f572f4e6e9a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1f55a02a049033e3419a8e2975cf3f572f4e6e9a",
+    "symbol": "sfrxETH",
+    "lzVersion": "v2"
+   },
+   "0x633e254585ade6e9d40d2a4b8cc2f3769b94cb48": {
+    "kind": "layerzero-oft",
+    "oapp": "0x633e254585ade6e9d40d2a4b8cc2f3769b94cb48",
+    "symbol": "SFUND",
+    "lzVersion": "v1"
+   },
+   "0x161e113b8e9bbaefb846f73f31624f6f9607bd44": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x12ac01e564a01f07948e20ca0674cc444965ea53",
+    "symbol": "SIMMI",
+    "lzVersion": "v2"
+   },
+   "0x3e248ab4554cfdec8fc4f18f569fe6f46de61db1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3e248ab4554cfdec8fc4f18f569fe6f46de61db1",
+    "symbol": "SLAY",
+    "lzVersion": "v2"
+   },
+   "0x6bd83abc39391af1e24826e90237c4bd3468b5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6bd83abc39391af1e24826e90237c4bd3468b5d2",
+    "symbol": "SLC",
+    "lzVersion": "v2"
+   },
+   "0x2d175c43c58e57cceb38b9bd204ee73db25c66e8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2d175c43c58e57cceb38b9bd204ee73db25c66e8",
+    "symbol": "slvlUSD",
+    "lzVersion": "v2"
+   },
+   "0x3124678d62d2aa1f615b54525310fbfda6dcf7ae": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3124678d62d2aa1f615b54525310fbfda6dcf7ae",
+    "symbol": "SNSY",
+    "lzVersion": "v2"
+   },
+   "0xd3c68968137317a57a9babeacc7707ec433548b4": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3c68968137317a57a9babeacc7707ec433548b4",
+    "symbol": "SOCIAL",
+    "lzVersion": "v2"
+   },
+   "0x47636b3188774a3e7273d85a537b9ba4ee7b2535": {
+    "kind": "layerzero-oft",
+    "oapp": "0x47636b3188774a3e7273d85a537b9ba4ee7b2535",
+    "symbol": "SOMI",
+    "lzVersion": "v2"
+   },
+   "0x31dba3c96481fde3cd81c2aaf51f2d8bf618c742": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31dba3c96481fde3cd81c2aaf51f2d8bf618c742",
+    "symbol": "SOPH",
+    "lzVersion": "v2"
+   },
+   "0x9cd44eca3d1e0ada6fbdaf5793031c3a500089b1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9cd44eca3d1e0ada6fbdaf5793031c3a500089b1",
+    "symbol": "SPARKLET",
+    "lzVersion": "v2"
+   },
+   "0xe3b53af74a4bf62ae5511055290838050bf764df": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe3b53af74a4bf62ae5511055290838050bf764df",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0x75ce54301374e194edaa6ca2e3c118cf01d3a76b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x75ce54301374e194edaa6ca2e3c118cf01d3a76b",
+    "symbol": "stNIBI",
+    "lzVersion": "v2"
+   },
+   "0x40461291347e1ecbb09499f3371d3f17f10d7159": {
+    "kind": "layerzero-oft",
+    "oapp": "0x40461291347e1ecbb09499f3371d3f17f10d7159",
+    "symbol": "SUEDE",
+    "lzVersion": "v2"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa": {
+    "kind": "layerzero-oft",
+    "oapp": "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa",
+    "symbol": "SWORLD",
+    "lzVersion": "v2"
+   },
+   "0x688aee022aa544f150678b8e5720b6b96a9e9a2f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x688aee022aa544f150678b8e5720b6b96a9e9a2f",
+    "symbol": "SYRUP",
+    "lzVersion": "v2"
+   },
+   "0xe9a3b326c5b06fa848b11e07080c3ac926fbe787": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe9a3b326c5b06fa848b11e07080c3ac926fbe787",
+    "symbol": "TECH",
+    "lzVersion": "v2"
+   },
+   "0xfdd22ce6d1f66bc0ec89b20bf16ccb6670f55a5a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdd22ce6d1f66bc0ec89b20bf16ccb6670f55a5a",
+    "symbol": "thBILL",
+    "lzVersion": "v2"
+   },
+   "0x883cfbd30bd076a063a453335414909545186275": {
+    "kind": "layerzero-oft",
+    "oapp": "0x883cfbd30bd076a063a453335414909545186275",
+    "symbol": "TOS",
+    "lzVersion": "v2"
+   },
+   "0x348fdfe2c35934a96c1353185f09d0f9efbada86": {
+    "kind": "layerzero-oft",
+    "oapp": "0x348fdfe2c35934a96c1353185f09d0f9efbada86",
+    "symbol": "TROVE",
+    "lzVersion": "v1"
+   },
+   "0xe223ba1e03b10ae9f930fcc0de59248a1d7d8c15": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe223ba1e03b10ae9f930fcc0de59248a1d7d8c15",
+    "symbol": "TRUMP",
+    "lzVersion": "v2"
+   },
+   "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e",
+    "symbol": "UFD",
+    "lzVersion": "v2"
+   },
+   "0x102d758f688a4c1c5a80b116bd945d4455460282": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xeab8fa7ab28f05d7600558b873d5c7f805412304",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0xc708b6887db46005da033501f8aebee72d191a5d": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc708b6887db46005da033501f8aebee72d191a5d",
+    "symbol": "USDtb",
+    "lzVersion": "v2"
+   },
+   "0xecedb6f8108b9f7bbf499da843dced6c2bb6e270": {
+    "kind": "layerzero-oft",
+    "oapp": "0xecedb6f8108b9f7bbf499da843dced6c2bb6e270",
+    "symbol": "USDUC",
+    "lzVersion": "v2"
+   },
+   "0x04d5ddf5f3a8939889f11e97f8c4bb48317f1938": {
+    "kind": "layerzero-oft",
+    "oapp": "0x04d5ddf5f3a8939889f11e97f8c4bb48317f1938",
+    "symbol": "USDz",
+    "lzVersion": "v2"
+   },
+   "0x35e5db674d8e93a03d814fa0ada70731efe8a4b9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x35e5db674d8e93a03d814fa0ada70731efe8a4b9",
+    "symbol": "USR",
+    "lzVersion": "v2"
+   },
+   "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+    "symbol": "VANA",
+    "lzVersion": "v2"
+   },
+   "0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa5a1afbff720f79f1f7833aafbdcee87770bbc93",
+    "symbol": "VIRTUAL",
+    "lzVersion": "v2"
+   },
+   "0xe81941c13678a6396e438490601a40a34bf90dd2": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe81941c13678a6396e438490601a40a34bf90dd2",
+    "symbol": "VITAI",
+    "lzVersion": "v2"
+   },
+   "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+    "symbol": "WBTC",
+    "lzVersion": "v2"
+   },
+   "0x04c0599ae5a44757c0af6f9ec3b93da8976c150a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x04c0599ae5a44757c0af6f9ec3b93da8976c150a",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0x3d63825b0d8669307366e6c8202f656b9e91d368": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d63825b0d8669307366e6c8202f656b9e91d368",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0x1fba65de0a9cbd2d1df82d141897042d36bb6c86": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1fba65de0a9cbd2d1df82d141897042d36bb6c86",
+    "symbol": "WIF",
+    "lzVersion": "v2"
+   },
+   "0xafde2490236bc64950def5472296aa0d9758db0d": {
+    "kind": "layerzero-oft",
+    "oapp": "0xafde2490236bc64950def5472296aa0d9758db0d",
+    "symbol": "WILD",
+    "lzVersion": "v2"
+   },
+   "0x3ade6652f203d919697f8577f75eebb989a5c586": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3ade6652f203d919697f8577f75eebb989a5c586",
+    "symbol": "WNIBI",
+    "lzVersion": "v2"
+   },
+   "0xb3a9bd4861454ba94931ebff410c3d828525dce2": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb3a9bd4861454ba94931ebff410c3d828525dce2",
+    "symbol": "WOOF",
+    "lzVersion": "v1"
+   },
+   "0x35e0966208f518371e79cc9fd35559112068ddad": {
+    "kind": "layerzero-oft",
+    "oapp": "0x35e0966208f518371e79cc9fd35559112068ddad",
+    "symbol": "WPAY",
+    "lzVersion": "v2"
+   },
+   "0x62344be8ca1c339b46274a4017dd87af436900b1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x62344be8ca1c339b46274a4017dd87af436900b1",
+    "symbol": "wsrUSD",
+    "lzVersion": "v2"
+   },
+   "0xb67675158b412d53fe6b68946483ba920b135ba1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb67675158b412d53fe6b68946483ba920b135ba1",
+    "symbol": "wstUSR",
+    "lzVersion": "v2"
+   },
+   "0xc27468b12ffa6d714b1b5fbc87ef403f38b82ad4": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc27468b12ffa6d714b1b5fbc87ef403f38b82ad4",
+    "symbol": "WTRUMP",
+    "lzVersion": "v2"
+   },
+   "0x91f9cc2649ac70a071602cade9b0c1a5868af51d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x91f9cc2649ac70a071602cade9b0c1a5868af51d",
+    "symbol": "WXTZ",
+    "lzVersion": "v2"
+   },
+   "0x11a72d2a88468c09f1bb63fc729d8649e84275a9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x11a72d2a88468c09f1bb63fc729d8649e84275a9",
+    "symbol": "XDC",
+    "lzVersion": "v2"
+   },
+   "0xf970706063b7853877f39515c96932d49d5ac9cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf970706063b7853877f39515c96932d49d5ac9cd",
+    "symbol": "YALA",
+    "lzVersion": "v2"
+   },
+   "0x68589adc7687a23ff2b06fb032b997f09b44ed5d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfd72fbb61798f3bcb707f5ba98cb72a87cca02a2",
+    "symbol": "ynBTCk",
+    "lzVersion": "v2"
+   },
+   "0xdb8e54f39aff243b25a41e4747957ed517af0511": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc099ab708e20e8b25c63ca156d7cc94404c55416",
+    "symbol": "YND",
+    "lzVersion": "v2"
+   },
+   "0xe231db5f348d709239ef1741ea30961b3b635a61": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbe82cbe217bf4e0a87dd88c552e93054f4ef2c7c",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   },
+   "0xe868084cf08f3c3db11f4b73a95473762d9463f7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe868084cf08f3c3db11f4b73a95473762d9463f7",
+    "symbol": "YU",
+    "lzVersion": "v2"
+   },
+   "0xca2671dcd031a72359f456c212f62a9bda737cd7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xca2671dcd031a72359f456c212f62a9bda737cd7",
+    "symbol": "YUSD",
+    "lzVersion": "v2"
+   },
+   "0xd2e92077ad4d7d50d7d60be13fffe3fb52cc0b9f": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd2e92077ad4d7d50d7d60be13fffe3fb52cc0b9f",
+    "symbol": "ZEREBRO",
+    "lzVersion": "v2"
+   },
+   "0x458ad5b487f4442245e4c5ea7249009e607a5583": {
+    "kind": "layerzero-oft",
+    "oapp": "0x458ad5b487f4442245e4c5ea7249009e607a5583",
+    "symbol": "ZERO",
+    "lzVersion": "v2"
+   },
+   "0xd080ed3c74a20250a2c9821885203034acd2d5ae": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd080ed3c74a20250a2c9821885203034acd2d5ae",
+    "symbol": "ZFI",
+    "lzVersion": "v2"
+   },
+   "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "symbol": "ZRO",
+    "lzVersion": "v2"
+   },
+   "0x9208d82f121806a34a39bb90733b4c5c54f3993e": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9208d82f121806a34a39bb90733b4c5c54f3993e",
+    "symbol": "AP3X",
+    "lzVersion": "v2"
+   }
+  },
+  "42161": {
+   "0x75ec618a817eb0a4a7e44ac3dfc64c963daf921a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa4889a7023e375344f7fc42ca164d8aadf5e8dcc",
+    "symbol": "7007",
+    "lzVersion": "v2"
+   },
+   "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0x85af271d1dfcbf53486d996f61d7ff0bba5582ea",
+    "symbol": "ALT",
+    "lzVersion": "v2"
+   },
+   "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c",
+    "symbol": "Anon",
+    "lzVersion": "v2"
+   },
+   "0x7f9fbf9bdd3f4105c478b996b648fe6e828a1e98": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7f9fbf9bdd3f4105c478b996b648fe6e828a1e98",
+    "symbol": "APE",
+    "lzVersion": "v2"
+   },
+   "0x16ed8e219cde31e14a80dcb6c9127a5ec6e88e46": {
+    "kind": "layerzero-oft",
+    "oapp": "0x16ed8e219cde31e14a80dcb6c9127a5ec6e88e46",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0xaf5db6e1cc585ca312e8c8f7c499033590cf5c98": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x64f282290e8d0196c2929a9119250c361e025bab",
+    "symbol": "ARKEN",
+    "lzVersion": "v1"
+   },
+   "0x94025780a1ab58868d9b2dbbb775f44b32e8e6e5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x63a28da45373619400f8df9a2f9858a845374864",
+    "symbol": "BETS",
+    "lzVersion": "v1"
+   },
+   "0xdbae615958708c0bc61234d2624b95077b017eb7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xdbae615958708c0bc61234d2624b95077b017eb7",
+    "symbol": "BPRO",
+    "lzVersion": "v2"
+   },
+   "0x2297aebd383787a160dd0d9f71508148769342e3": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
+    "symbol": "BTC.b",
+    "lzVersion": "v1"
+   },
+   "0x1b896893dfc86bb67cf57767298b9073d2c1ba2c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1b896893dfc86bb67cf57767298b9073d2c1ba2c",
+    "symbol": "CAKE",
+    "lzVersion": "v1"
+   },
+   "0x16f1967565aad72dd77588a332ce445e7cef752b": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x74897ef1b152e5a733d797cab5cee383fe052c56",
+    "symbol": "CAW",
+    "lzVersion": "v2"
+   },
+   "0x1883af6b51fb7f69577880004a82c9d68582022c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1883af6b51fb7f69577880004a82c9d68582022c",
+    "symbol": "CMPT",
+    "lzVersion": "v1"
+   },
+   "0x6b43732a9ae9f8654d496c0a075aa4aa43057a0b": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6b43732a9ae9f8654d496c0a075aa4aa43057a0b",
+    "symbol": "CNDY",
+    "lzVersion": "v2"
+   },
+   "0x420fca0121dc28039145009570975747295f2329": {
+    "kind": "layerzero-oft",
+    "oapp": "0x420fca0121dc28039145009570975747295f2329",
+    "symbol": "COQ",
+    "lzVersion": "v2"
+   },
+   "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6b34d1c35689dba179c2eddf6a01530bbb1d28a8",
+    "symbol": "CVAI",
+    "lzVersion": "v2"
+   },
+   "0x9f07f8a82cb1af1466252e505b7b7ddee103bc91": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9f07f8a82cb1af1466252e505b7b7ddee103bc91",
+    "symbol": "DEGEN",
+    "lzVersion": "v2"
+   },
+   "0x881ee52679537c6834fdeeb3673da2e3ecb50df6": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xcbd78fb59cdae1cd70e4d27c2d9ceb8691589715",
+    "symbol": "DegenReborn",
+    "lzVersion": "v1"
+   },
+   "0x8b0e6f19ee57089f7649a455d89d7bc6314d04e8": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xa9aa07f082d9c15d0b6d7e9e5b68b1f898399c29",
+    "symbol": "DMT",
+    "lzVersion": "v1"
+   },
+   "0x2ad62eb9744c720364f6ac856360a43e8a2229b5": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2ad62eb9744c720364f6ac856360a43e8a2229b5",
+    "symbol": "DOC",
+    "lzVersion": "v2"
+   },
+   "0x1903aa5b603819b9debd2f4b202b686e9e393aff": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1903aa5b603819b9debd2f4b202b686e9e393aff",
+    "symbol": "eATH",
+    "lzVersion": "v2"
+   },
+   "0xf8173a39c56a554837c4c7f104153a005d284d11": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf8173a39c56a554837c4c7f104153a005d284d11",
+    "symbol": "EDU",
+    "lzVersion": "v1"
+   },
+   "0xda71ea8ef58d015de8c5cea8f7b890db3a103e67": {
+    "kind": "layerzero-oft",
+    "oapp": "0xda71ea8ef58d015de8c5cea8f7b890db3a103e67",
+    "symbol": "EMDX",
+    "lzVersion": "v2"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0x462cd9e0247b2e63831c3189ae738e5e9a5a4b64": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x174834a9de4c2f0c13c7353e62c229e8d607c808",
+    "symbol": "EUL",
+    "lzVersion": "v2"
+   },
+   "0xab24c63bee518ac956c8123389fc538c7e36d82c": {
+    "kind": "layerzero-oft",
+    "oapp": "0xab24c63bee518ac956c8123389fc538c7e36d82c",
+    "symbol": "FACTR",
+    "lzVersion": "v2"
+   },
+   "0x4e47951508fd4a4126f8ff9cf5e6fa3b7cc8e073": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4e47951508fd4a4126f8ff9cf5e6fa3b7cc8e073",
+    "symbol": "FLUID",
+    "lzVersion": "v1"
+   },
+   "0xac9ef66dc75e5340304d5cc48e185ff5262ae3ac": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac9ef66dc75e5340304d5cc48e185ff5262ae3ac",
+    "symbol": "FUEGO",
+    "lzVersion": "v2"
+   },
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0xa4eaec0b1d564061a4951816fd5b1ba8cfbc425c": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa4eaec0b1d564061a4951816fd5b1ba8cfbc425c",
+    "symbol": "GIZA",
+    "lzVersion": "v2"
+   },
+   "0xe9a5af50874c0ef2748b5db70104b5ccb5557f6d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x236626887687bf6a102269207f8f0a08549ae4f4",
+    "symbol": "GMBL",
+    "lzVersion": "v1"
+   },
+   "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948",
+    "symbol": "GOD",
+    "lzVersion": "v2"
+   },
+   "0x8b5e4c9a188b1a187f2d1e80b1c2fb17fa2922e1": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8b5e4c9a188b1a187f2d1e80b1c2fb17fa2922e1",
+    "symbol": "GOLD",
+    "lzVersion": "v1"
+   },
+   "0xb08d8becab1bf76a9ce3d2d5fa946f65ec1d3e83": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb08d8becab1bf76a9ce3d2d5fa946f65ec1d3e83",
+    "symbol": "GS",
+    "lzVersion": "v2"
+   },
+   "0x3d75f2bb8abcdbd1e27443cb5cbce8a668046c81": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d75f2bb8abcdbd1e27443cb5cbce8a668046c81",
+    "symbol": "HLP0",
+    "lzVersion": "v2"
+   },
+   "0x17e1e5c6bc9ebb11647c94e1c5e3ba619f2781ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0x17e1e5c6bc9ebb11647c94e1c5e3ba619f2781ea",
+    "symbol": "HOT",
+    "lzVersion": "v2"
+   },
+   "0x6db8b088c4d41d622b44cd81b900ba690f2d496c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6db8b088c4d41d622b44cd81b900ba690f2d496c",
+    "symbol": "IDIA",
+    "lzVersion": "v1"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x371c7ec6d8039ff7933a2aa28eb827ffe1f52f07": {
+    "kind": "layerzero-oft",
+    "oapp": "0x371c7ec6d8039ff7933a2aa28eb827ffe1f52f07",
+    "symbol": "JOE",
+    "lzVersion": "v1"
+   },
+   "0x6e401189c8a68d05562c9bab7f674f910821eacf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6e401189c8a68d05562c9bab7f674f910821eacf",
+    "symbol": "KERNEL",
+    "lzVersion": "v2"
+   },
+   "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0x7448c7456a97769f6cd04f1e83a4a23ccdc46abd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7448c7456a97769f6cd04f1e83a4a23ccdc46abd",
+    "symbol": "MAV",
+    "lzVersion": "v1"
+   },
+   "0xfea7a6a0b346362bf88a9e4a88416b77a57d6c2a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x957a8af7894e76e16db17c2a913496a4e60b7090",
+    "symbol": "MIM",
+    "lzVersion": "v1"
+   },
+   "0x4591dbff62656e7859afe5e45f6f47d3669fbb28": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4591dbff62656e7859afe5e45f6f47d3669fbb28",
+    "symbol": "mkUSD",
+    "lzVersion": "v1"
+   },
+   "0x6a4db980360fc55762e32f6921610601e1882846": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6a4db980360fc55762e32f6921610601e1882846",
+    "symbol": "MOC",
+    "lzVersion": "v2"
+   },
+   "0x32af9ed768b48745a8e805fbce5616d0bd9868cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x32af9ed768b48745a8e805fbce5616d0bd9868cf",
+    "symbol": "MOFT2",
+    "lzVersion": "v2"
+   },
+   "0xfc87d55bc8bf441abfc24d04b2068a8f77bcfcc0": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfc87d55bc8bf441abfc24d04b2068a8f77bcfcc0",
+    "symbol": "MON",
+    "lzVersion": "v2"
+   },
+   "0x092baadb7def4c3981454dd9c0a0d7ff07bcfc86": {
+    "kind": "layerzero-oft",
+    "oapp": "0x092baadb7def4c3981454dd9c0a0d7ff07bcfc86",
+    "symbol": "MOR",
+    "lzVersion": "v2"
+   },
+   "0x40bd670a58238e6e230c430bbb5ce6ec0d40df48": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfc3329363cd51adbbaa52e389bee389981ccaae0",
+    "symbol": "MORPHO",
+    "lzVersion": "v2"
+   },
+   "0x20547341e58fb558637fa15379c92e11f7b7f710": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x80cf6a0dcfe90a2c8f89b842a7f71da78fe92c6e",
+    "symbol": "MOZ",
+    "lzVersion": "v2"
+   },
+   "0x7be5dd337cc6ce3e474f64e2a92a566445290864": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7be5dd337cc6ce3e474f64e2a92a566445290864",
+    "symbol": "OLE",
+    "lzVersion": "v1"
+   },
+   "0x9e20461bc2c4c980f62f1b279d71734207a6a356": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9e20461bc2c4c980f62f1b279d71734207a6a356",
+    "symbol": "OMNI",
+    "lzVersion": "v1"
+   },
+   "0xdcbf4cb83d27c408b30dd7f39bfcabd7176b1ba3": {
+    "kind": "layerzero-oft",
+    "oapp": "0xdcbf4cb83d27c408b30dd7f39bfcabd7176b1ba3",
+    "symbol": "OOE",
+    "lzVersion": "v1"
+   },
+   "0xac800fd6159c2a2cb8fc31ef74621eb430287a5a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac800fd6159c2a2cb8fc31ef74621eb430287a5a",
+    "symbol": "OP",
+    "lzVersion": "v2"
+   },
+   "0x333333c465a19c85f85c6cfbed7b16b0b26e3333": {
+    "kind": "layerzero-oft",
+    "oapp": "0x333333c465a19c85f85c6cfbed7b16b0b26e3333",
+    "symbol": "ORA",
+    "lzVersion": "v2"
+   },
+   "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8",
+    "symbol": "ORDER",
+    "lzVersion": "v2"
+   },
+   "0xbfd5206962267c7b4b4a8b3d76ac2e1b2a5c4d5e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbfd5206962267c7b4b4a8b3d76ac2e1b2a5c4d5e",
+    "symbol": "OSAK",
+    "lzVersion": "v1"
+   },
+   "0xba0dda8762c24da9487f5fa026a9b64b695a07ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0xba0dda8762c24da9487f5fa026a9b64b695a07ea",
+    "symbol": "OX",
+    "lzVersion": "v1"
+   },
+   "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f",
+    "symbol": "OX.old",
+    "lzVersion": "v1"
+   },
+   "0xbe5acfd64358805616b5cbd5277b9a85011d7cf1": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbe5acfd64358805616b5cbd5277b9a85011d7cf1",
+    "symbol": "PCH",
+    "lzVersion": "v2"
+   },
+   "0x25d887ce7a35172c62febfd67a1856f20faebb00": {
+    "kind": "layerzero-oft",
+    "oapp": "0x25d887ce7a35172c62febfd67a1856f20faebb00",
+    "symbol": "PEPE",
+    "lzVersion": "v1"
+   },
+   "0x0b3eaead748facdb9d943d3407011f16eb17d0cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0b3eaead748facdb9d943d3407011f16eb17d0cf",
+    "symbol": "PMX",
+    "lzVersion": "v2"
+   },
+   "0x7bbcf1b600565ae023a1806ef637af4739de3255": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7bbcf1b600565ae023a1806ef637af4739de3255",
+    "symbol": "PRFI",
+    "lzVersion": "v2"
+   },
+   "0x300d2c875c6fb8ce4bf5480b4d34b7c9ea8a33a4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x300d2c875c6fb8ce4bf5480b4d34b7c9ea8a33a4",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   },
+   "0x46850ad61c2b7d64d08c9c754f45254596696984": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfab5891ed867a1195303251912013b92c4fc3a1d",
+    "symbol": "PYUSD",
+    "lzVersion": "v2"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0x441fcb23dfe8289cf572126fedcf450974adc891": {
+    "kind": "layerzero-oft",
+    "oapp": "0x441fcb23dfe8289cf572126fedcf450974adc891",
+    "symbol": "RBTC",
+    "lzVersion": "v2"
+   },
+   "0x3082cc23568ea640225c2467653db90e9250aaa0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3082cc23568ea640225c2467653db90e9250aaa0",
+    "symbol": "RDNT",
+    "lzVersion": "v1"
+   },
+   "0x9ed7e4b1bff939ad473da5e7a218c771d1569456": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ed7e4b1bff939ad473da5e7a218c771d1569456",
+    "symbol": "REUNI",
+    "lzVersion": "v1"
+   },
+   "0xe5e851b01dd3eda24fde709a407db44555b6d1e0": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe5e851b01dd3eda24fde709a407db44555b6d1e0",
+    "symbol": "RIF",
+    "lzVersion": "v2"
+   },
+   "0xe649e6a1f2afc63ca268c2363691cecaf75cf47c": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x7000e96d0bfc74cf5259aedae6065b39b3888699",
+    "symbol": "RLC",
+    "lzVersion": "v2"
+   },
+   "0x35e5db674d8e93a03d814fa0ada70731efe8a4b9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x35e5db674d8e93a03d814fa0ada70731efe8a4b9",
+    "symbol": "RLP",
+    "lzVersion": "v2"
+   },
+   "0x4186bfc76e2e237523cbc30fd220fe055156b41f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4186bfc76e2e237523cbc30fd220fe055156b41f",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0xb1fe27b32ffb5ce54e272c096547f1e86c19e72f": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb1fe27b32ffb5ce54e272c096547f1e86c19e72f",
+    "symbol": "rswETH",
+    "lzVersion": "v2"
+   },
+   "0x09d4214c03d01f49544c0448dbe3a27f768f2b34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x09d4214c03d01f49544c0448dbe3a27f768f2b34",
+    "symbol": "rUSD",
+    "lzVersion": "v2"
+   },
+   "0xe2b1dc2d4a3b4e59fdf0c47b71a7a86391a8b35a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe2b1dc2d4a3b4e59fdf0c47b71a7a86391a8b35a",
+    "symbol": "RWA",
+    "lzVersion": "v2"
+   },
+   "0xb4444468e444f89e1c2cac2f1d3ee7e336cbd1f5": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb4444468e444f89e1c2cac2f1d3ee7e336cbd1f5",
+    "symbol": "RZR",
+    "lzVersion": "v2"
+   },
+   "0xfdcc3dd6671eab0709a4c0f3f53de9a333d80798": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb9d852a3f9b3a82e243faab0272604102a111e1a",
+    "symbol": "SBC",
+    "lzVersion": "v2"
+   },
+   "0x560363bda52bc6a44ca6c8c9b4a5fadbda32fa60": {
+    "kind": "layerzero-oft",
+    "oapp": "0x560363bda52bc6a44ca6c8c9b4a5fadbda32fa60",
+    "symbol": "SFUND",
+    "lzVersion": "v1"
+   },
+   "0x61dbbbb552dc893ab3aad09f289f811e67cef285": {
+    "kind": "layerzero-oft",
+    "oapp": "0x61dbbbb552dc893ab3aad09f289f811e67cef285",
+    "symbol": "SKATE",
+    "lzVersion": "v2"
+   },
+   "0x3124678d62d2aa1f615b54525310fbfda6dcf7ae": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3124678d62d2aa1f615b54525310fbfda6dcf7ae",
+    "symbol": "SNSY",
+    "lzVersion": "v2"
+   },
+   "0x31dba3c96481fde3cd81c2aaf51f2d8bf618c742": {
+    "kind": "layerzero-oft",
+    "oapp": "0x31dba3c96481fde3cd81c2aaf51f2d8bf618c742",
+    "symbol": "SOPH",
+    "lzVersion": "v2"
+   },
+   "0x6694340fc020c5e6b96567843da2df01b2ce1eb6": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6694340fc020c5e6b96567843da2df01b2ce1eb6",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0xf6bf87f1bfa46a5b840804450d85965951197bbe": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf6bf87f1bfa46a5b840804450d85965951197bbe",
+    "symbol": "stNIBI",
+    "lzVersion": "v2"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0xbc011a12da28e8f0f528d9ee5e7039e22f91cf18": {
+    "kind": "layerzero-oft",
+    "oapp": "0xbc011a12da28e8f0f528d9ee5e7039e22f91cf18",
+    "symbol": "swETH",
+    "lzVersion": "v1"
+   },
+   "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa": {
+    "kind": "layerzero-oft",
+    "oapp": "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa",
+    "symbol": "SWORLD",
+    "lzVersion": "v2"
+   },
+   "0x488ef48ff9d803087cc96b347fc250244a9e8260": {
+    "kind": "layerzero-oft",
+    "oapp": "0x488ef48ff9d803087cc96b347fc250244a9e8260",
+    "symbol": "TECH",
+    "lzVersion": "v2"
+   },
+   "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a",
+    "symbol": "TENET",
+    "lzVersion": "v1"
+   },
+   "0xfdd22ce6d1f66bc0ec89b20bf16ccb6670f55a5a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdd22ce6d1f66bc0ec89b20bf16ccb6670f55a5a",
+    "symbol": "thBILL",
+    "lzVersion": "v2"
+   },
+   "0x193f4a4a6ea24102f49b931deeeb931f6e32405d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x193f4a4a6ea24102f49b931deeeb931f6e32405d",
+    "symbol": "TLOS",
+    "lzVersion": "v1"
+   },
+   "0x982239d38af50b0168da33346d85fb12929c4c07": {
+    "kind": "layerzero-oft",
+    "oapp": "0x982239d38af50b0168da33346d85fb12929c4c07",
+    "symbol": "TROVE",
+    "lzVersion": "v1"
+   },
+   "0x62d4cd9de94fac3755b1513aaf67c31ec1b3d77f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1d6b6450cf6d969027c74e94cd81c5b026c44fa7",
+    "symbol": "T-USDY",
+    "lzVersion": "v2"
+   },
+   "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e",
+    "symbol": "UFD",
+    "lzVersion": "v2"
+   },
+   "0xb2e787c6c83d6d75f466371a2966b27a8b700828": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb2e787c6c83d6d75f466371a2966b27a8b700828",
+    "symbol": "UNB",
+    "lzVersion": "v1"
+   },
+   "0x0ae38f7e10a43b5b2fb064b42a2f4514cba909ef": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0ae38f7e10a43b5b2fb064b42a2f4514cba909ef",
+    "symbol": "unshETH",
+    "lzVersion": "v1"
+   },
+   "0x35f1c5cb7fb977e669fd244c567da99d8a3a6850": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe14c486b93c3b62f76f88cf8fe4b36fb672f3b26",
+    "symbol": "USD0",
+    "lzVersion": "v2"
+   },
+   "0x2b65f9d2e4b84a2df6ff0525741b75d1276a9c2f": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd155d91009cbe9b0204b06ce1b62bf1d793d3111",
+    "symbol": "USD0++",
+    "lzVersion": "v2"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0x8eef5ed361c6823156d936209e23a8e0349e5c61": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8eef5ed361c6823156d936209e23a8e0349e5c61",
+    "symbol": "USDRIF",
+    "lzVersion": "v2"
+   },
+   "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x77652d5aba086137b595875263fc200182919b92",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0xc708b6887db46005da033501f8aebee72d191a5d": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc708b6887db46005da033501f8aebee72d191a5d",
+    "symbol": "USDtb",
+    "lzVersion": "v2"
+   },
+   "0x35e050d3c0ec2d29d269a8ecea763a183bdf9a9d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x0be393dc46248e4285dc5caca3084bc7e9bfbb41",
+    "symbol": "USDY",
+    "lzVersion": "v2"
+   },
+   "0x51a80238b5738725128d3a3e06ab41c1d4c05c74": {
+    "kind": "layerzero-oft",
+    "oapp": "0x51a80238b5738725128d3a3e06ab41c1d4c05c74",
+    "symbol": "USH",
+    "lzVersion": "v1"
+   },
+   "0x2492d0006411af6c8bbb1c8afc1b0197350a79e9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2492d0006411af6c8bbb1c8afc1b0197350a79e9",
+    "symbol": "USR",
+    "lzVersion": "v2"
+   },
+   "0x6a5d904519a2b605da2d5da7137ed5f4184f6513": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd277cbcfe8cb37ca90129a33ec7ee590ee392b59",
+    "symbol": "USUAL",
+    "lzVersion": "v2"
+   },
+   "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+    "symbol": "VANA",
+    "lzVersion": "v2"
+   },
+   "0x1b7ad346b6ff2d196daa8e78aed86baa6d7e3b02": {
+    "kind": "layerzero-oft",
+    "oapp": "0x1b7ad346b6ff2d196daa8e78aed86baa6d7e3b02",
+    "symbol": "VITAI",
+    "lzVersion": "v2"
+   },
+   "0xaf20f5f19698f1d19351028cd7103b63d30de7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xaf20f5f19698f1d19351028cd7103b63d30de7d7",
+    "symbol": "WAGMI",
+    "lzVersion": "v1"
+   },
+   "0xa9004a5421372e1d83fb1f85b0fc986c912f91f3": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa9004a5421372e1d83fb1f85b0fc986c912f91f3",
+    "symbol": "WBNB",
+    "lzVersion": "v1"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0x80cf4350c702d466ef65305a73726349e98d7f57": {
+    "kind": "layerzero-oft",
+    "oapp": "0x80cf4350c702d466ef65305a73726349e98d7f57",
+    "symbol": "WNIBI",
+    "lzVersion": "v2"
+   },
+   "0x4809010926aec940b550d34a46a52739f996d75d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4809010926aec940b550d34a46a52739f996d75d",
+    "symbol": "wsrUSD",
+    "lzVersion": "v2"
+   },
+   "0x66cfbd79257dc5217903a36293120282548e2254": {
+    "kind": "layerzero-oft",
+    "oapp": "0x66cfbd79257dc5217903a36293120282548e2254",
+    "symbol": "wstUSR",
+    "lzVersion": "v2"
+   },
+   "0x7424f00845777a06e21f0bd8873f814a8a814b2d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7424f00845777a06e21f0bd8873f814a8a814b2d",
+    "symbol": "WXTZ",
+    "lzVersion": "v2"
+   },
+   "0x40461291347e1ecbb09499f3371d3f17f10d7159": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf40542a7b66ad7c68c459ee3679635d2fdb6df39",
+    "symbol": "XAUT0",
+    "lzVersion": "v2"
+   },
+   "0x11a72d2a88468c09f1bb63fc729d8649e84275a9": {
+    "kind": "layerzero-oft",
+    "oapp": "0x11a72d2a88468c09f1bb63fc729d8649e84275a9",
+    "symbol": "XDC",
+    "lzVersion": "v2"
+   },
+   "0xc1eb7689147c81ac840d4ff0d298489fc7986d52": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x20cea49b5f7a6dbd78cae772ca5973ef360aa1e6",
+    "symbol": "XVS",
+    "lzVersion": "v1"
+   },
+   "0x68589adc7687a23ff2b06fb032b997f09b44ed5d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xfd72fbb61798f3bcb707f5ba98cb72a87cca02a2",
+    "symbol": "ynBTCk",
+    "lzVersion": "v2"
+   },
+   "0xdb8e54f39aff243b25a41e4747957ed517af0511": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc099ab708e20e8b25c63ca156d7cc94404c55416",
+    "symbol": "YND",
+    "lzVersion": "v2"
+   },
+   "0xe231db5f348d709239ef1741ea30961b3b635a61": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbe82cbe217bf4e0a87dd88c552e93054f4ef2c7c",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   },
+   "0xf07781182b47e728b040f9e35321260e359ff9f7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xf07781182b47e728b040f9e35321260e359ff9f7",
+    "symbol": "YUSD",
+    "lzVersion": "v2"
+   },
+   "0x0bd27617e20f09a8e7ffdae281e383b4b2f7a742": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0bd27617e20f09a8e7ffdae281e383b4b2f7a742",
+    "symbol": "ZERO",
+    "lzVersion": "v2"
+   },
+   "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "symbol": "ZRO",
+    "lzVersion": "v2"
+   }
+  },
+  "42220": {
+   "0xde093684c796204224bc081f937aa059d903c52a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb9d852a3f9b3a82e243faab0272604102a111e1a",
+    "symbol": "SBC",
+    "lzVersion": "v2"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   }
+  },
+  "43114": {
+   "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c",
+    "symbol": "Anon",
+    "lzVersion": "v2"
+   },
+   "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3": {
+    "kind": "layerzero-oft",
+    "oapp": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3",
+    "symbol": "BAL",
+    "lzVersion": "v1"
+   },
+   "0x94025780a1ab58868d9b2dbbb775f44b32e8e6e5": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x73ddb67cb110012676fa3770fe595f85b9ee1ac3",
+    "symbol": "BETS",
+    "lzVersion": "v1"
+   },
+   "0x152b9d0fdc40c096757f570a51e494bd4b943e50": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
+    "symbol": "BTC.b",
+    "lzVersion": "v1"
+   },
+   "0x420fca0121dc28039145009570975747295f2329": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x347f7268ad43f3f7b68c4d64a8c0523830100c8b",
+    "symbol": "COQ",
+    "lzVersion": "v2"
+   },
+   "0xe533b81297b820d2eb2cd837263926596328e8d2": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x3cb9aebe6c9097135e8421b4c7a93e2c0b99200f",
+    "symbol": "EMDX",
+    "lzVersion": "v2"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0x9ceed3a7f753608372eeab300486cc7c2f38ac68": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xf1a5f97ab84158cf6d8ba8def68780fc2fd64310",
+    "symbol": "EUL",
+    "lzVersion": "v2"
+   },
+   "0x61f23250451305f6c4426e81c50ae535edf94a02": {
+    "kind": "layerzero-oft",
+    "oapp": "0x61f23250451305f6c4426e81c50ae535edf94a02",
+    "symbol": "FTR",
+    "lzVersion": "v2"
+   },
+   "0xac9ef66dc75e5340304d5cc48e185ff5262ae3ac": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac9ef66dc75e5340304d5cc48e185ff5262ae3ac",
+    "symbol": "FUEGO",
+    "lzVersion": "v2"
+   },
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0x236626887687bf6a102269207f8f0a08549ae4f4": {
+    "kind": "layerzero-oft",
+    "oapp": "0x236626887687bf6a102269207f8f0a08549ae4f4",
+    "symbol": "GMBL",
+    "lzVersion": "v1"
+   },
+   "0x3d75f2bb8abcdbd1e27443cb5cbce8a668046c81": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d75f2bb8abcdbd1e27443cb5cbce8a668046c81",
+    "symbol": "HLP0",
+    "lzVersion": "v2"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x371c7ec6d8039ff7933a2aa28eb827ffe1f52f07",
+    "symbol": "JOE",
+    "lzVersion": "v1"
+   },
+   "0xcecb301c2e2a04dd631428c386dd21db70716f8a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcecb301c2e2a04dd631428c386dd21db70716f8a",
+    "symbol": "METIS",
+    "lzVersion": "v1"
+   },
+   "0x130966628846bfd36ff31a822705796e8cb8c18d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xb3a66127ccb143bfb01d3aecd3ce9d17381b130d",
+    "symbol": "MIM",
+    "lzVersion": "v1"
+   },
+   "0x32af9ed768b48745a8e805fbce5616d0bd9868cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0x32af9ed768b48745a8e805fbce5616d0bd9868cf",
+    "symbol": "MOFT2",
+    "lzVersion": "v2"
+   },
+   "0xac800fd6159c2a2cb8fc31ef74621eb430287a5a": {
+    "kind": "layerzero-oft",
+    "oapp": "0xac800fd6159c2a2cb8fc31ef74621eb430287a5a",
+    "symbol": "OP",
+    "lzVersion": "v2"
+   },
+   "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4e200fe2f3efb977d5fd9c430a41531fb04d97b8",
+    "symbol": "ORDER",
+    "lzVersion": "v2"
+   },
+   "0x96e1056a8814de39c8c3cd0176042d6cecd807d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0x96e1056a8814de39c8c3cd0176042d6cecd807d7",
+    "symbol": "OSAK",
+    "lzVersion": "v1"
+   },
+   "0xba0dda8762c24da9487f5fa026a9b64b695a07ea": {
+    "kind": "layerzero-oft",
+    "oapp": "0xba0dda8762c24da9487f5fa026a9b64b695a07ea",
+    "symbol": "OX",
+    "lzVersion": "v1"
+   },
+   "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x78a0a62fba6fb21a83fe8a3433d44c73a4017a6f",
+    "symbol": "OX.old",
+    "lzVersion": "v1"
+   },
+   "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7",
+    "symbol": "QI",
+    "lzVersion": "v1"
+   },
+   "0x0f875ae3eb1fc8a3289657676fc2a288585982a5": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0f875ae3eb1fc8a3289657676fc2a288585982a5",
+    "symbol": "REKT",
+    "lzVersion": "v2"
+   },
+   "0x9ed7e4b1bff939ad473da5e7a218c771d1569456": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9ed7e4b1bff939ad473da5e7a218c771d1569456",
+    "symbol": "REUNI",
+    "lzVersion": "v1"
+   },
+   "0x9b732365d6406c42e54c6b1d71cf835a257b350f": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9b732365d6406c42e54c6b1d71cf835a257b350f",
+    "symbol": "RING",
+    "lzVersion": "v2"
+   },
+   "0xc430c78da6e4af49bd115f0329d154bb135f1363": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc430c78da6e4af49bd115f0329d154bb135f1363",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0x09d4214c03d01f49544c0448dbe3a27f768f2b34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x09d4214c03d01f49544c0448dbe3a27f768f2b34",
+    "symbol": "rUSD",
+    "lzVersion": "v2"
+   },
+   "0xf9fb20b8e097904f0ab7d12e9dbee88f2dcd0f16": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1bf472c38b00f6070abb61628d76870561890bba",
+    "symbol": "SBC",
+    "lzVersion": "v2"
+   },
+   "0xb02f37a282c028958de65711158422199a61e9ae": {
+    "kind": "layerzero-oft",
+    "oapp": "0xb02f37a282c028958de65711158422199a61e9ae",
+    "symbol": "SFUND",
+    "lzVersion": "v1"
+   },
+   "0xd402298a793948698b9a63311404fbbee944eafd": {
+    "kind": "layerzero-oft",
+    "oapp": "0xd402298a793948698b9a63311404fbbee944eafd",
+    "symbol": "SHRAP",
+    "lzVersion": "v1"
+   },
+   "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa": {
+    "kind": "layerzero-oft",
+    "oapp": "0x968be3f7bfef0f8edc3c1ad90232ebb0da0867aa",
+    "symbol": "SWORLD",
+    "lzVersion": "v2"
+   },
+   "0x5ac04b69bde6f67c0bd5d6ba6fd5d816548b066a": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xe9a3b326c5b06fa848b11e07080c3ac926fbe787",
+    "symbol": "TECH",
+    "lzVersion": "v2"
+   },
+   "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x788d86e00ab31db859c3d6b80d5a9375801d7f2a",
+    "symbol": "TENET",
+    "lzVersion": "v1"
+   },
+   "0xed667dc80a45b77305cc395db56d997597dc6ddd": {
+    "kind": "layerzero-oft",
+    "oapp": "0xed667dc80a45b77305cc395db56d997597dc6ddd",
+    "symbol": "TLOS",
+    "lzVersion": "v1"
+   },
+   "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e": {
+    "kind": "layerzero-oft",
+    "oapp": "0xfdfdfd005f127334f7c4eefef2252d2bf4b6e79e",
+    "symbol": "UFD",
+    "lzVersion": "v2"
+   },
+   "0x6f97d3f120fbbdaacf1c9da61a8ad126b7426861": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6f97d3f120fbbdaacf1c9da61a8ad126b7426861",
+    "symbol": "UNIX",
+    "lzVersion": "v1"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0": {
+    "kind": "layerzero-oft",
+    "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
+    "symbol": "VANA",
+    "lzVersion": "v2"
+   },
+   "0xaf20f5f19698f1d19351028cd7103b63d30de7d7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xaf20f5f19698f1d19351028cd7103b63d30de7d7",
+    "symbol": "WAGMI",
+    "lzVersion": "v1"
+   },
+   "0xa9004a5421372e1d83fb1f85b0fc986c912f91f3": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa9004a5421372e1d83fb1f85b0fc986c912f91f3",
+    "symbol": "WBNB",
+    "lzVersion": "v1"
+   },
+   "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+    "symbol": "WBTC",
+    "lzVersion": "v2"
+   },
+   "0xa3d68b74bf0528fdd07263c60d6488749044914b": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa3d68b74bf0528fdd07263c60d6488749044914b",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0x153374c6d6786b6ca2c4bc96f9c3a471428f2bc7": {
+    "kind": "layerzero-oft",
+    "oapp": "0x153374c6d6786b6ca2c4bc96f9c3a471428f2bc7",
+    "symbol": "WILD",
+    "lzVersion": "v2"
+   },
+   "0x4809010926aec940b550d34a46a52739f996d75d": {
+    "kind": "layerzero-oft",
+    "oapp": "0x4809010926aec940b550d34a46a52739f996d75d",
+    "symbol": "wsrUSD",
+    "lzVersion": "v2"
+   },
+   "0xa80f36ba18c7f721f3f7acdbcdefd3a86869a036": {
+    "kind": "layerzero-oft",
+    "oapp": "0xa80f36ba18c7f721f3f7acdbcdefd3a86869a036",
+    "symbol": "WTRUMP",
+    "lzVersion": "v2"
+   },
+   "0x824d8fcdc36e81618377d140bec12c3b7e4e4cba": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x7e7866bc840aff9f517a49afdbfc9e7c7aba9a68",
+    "symbol": "XAUT0",
+    "lzVersion": "v2"
+   },
+   "0xca2671dcd031a72359f456c212f62a9bda737cd7": {
+    "kind": "layerzero-oft",
+    "oapp": "0xca2671dcd031a72359f456c212f62a9bda737cd7",
+    "symbol": "YUSD",
+    "lzVersion": "v2"
+   },
+   "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+    "kind": "layerzero-oft",
+    "oapp": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+    "symbol": "ZRO",
+    "lzVersion": "v2"
+   }
+  },
+  "57073": {
+   "0x64445f0aecc51e94ad52d8ac56b7190e764e561a": {
+    "kind": "layerzero-oft",
+    "oapp": "0x64445f0aecc51e94ad52d8ac56b7190e764e561a",
+    "symbol": "FXS",
+    "lzVersion": "v2"
+   },
+   "0xe343167631d89b6ffc58b88d6b7fb0228795491d": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x9e12c058a20c5b0eebaa00e44a712ec54b838971",
+    "symbol": "USDG",
+    "lzVersion": "v2"
+   },
+   "0x0200c29006150606b650577bbe7b6248f58470c1": {
+    "kind": "layerzero-adapter",
+    "oapp": "0x1cb6de532588fca4a21b7209de7c456af8434a65",
+    "symbol": "USDT0",
+    "lzVersion": "v2"
+   },
+   "0x3d63825b0d8669307366e6c8202f656b9e91d368": {
+    "kind": "layerzero-oft",
+    "oapp": "0x3d63825b0d8669307366e6c8202f656b9e91d368",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0xdb8e54f39aff243b25a41e4747957ed517af0511": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xc099ab708e20e8b25c63ca156d7cc94404c55416",
+    "symbol": "YND",
+    "lzVersion": "v2"
+   },
+   "0x0ce01de4e7c4dc6531f251ee6a64a4d449bc1576": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xd47e06ed020f86197193781260b2e2913bff65ab",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   }
+  },
+  "534352": {
+   "0xcd615270ab3a7a3a262a4e49935d002278c76b78": {
+    "kind": "layerzero-oft",
+    "oapp": "0xcd615270ab3a7a3a262a4e49935d002278c76b78",
+    "symbol": "apxETH",
+    "lzVersion": "v2"
+   },
+   "0x58538e6a46e07434d7e7375bc268d3cb839c0133": {
+    "kind": "layerzero-oft",
+    "oapp": "0x58538e6a46e07434d7e7375bc268d3cb839c0133",
+    "symbol": "ENA",
+    "lzVersion": "v2"
+   },
+   "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31": {
+    "kind": "layerzero-oft",
+    "oapp": "0x2b1d36f5b61addaf7da7ebbd11b35fd8cfb0de31",
+    "symbol": "ITP",
+    "lzVersion": "v1"
+   },
+   "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467": {
+    "kind": "layerzero-oft",
+    "oapp": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+    "symbol": "LA",
+    "lzVersion": "v2"
+   },
+   "0x9e0d7d79735e1c63333128149c7b616a0dc0bbdb": {
+    "kind": "layerzero-oft",
+    "oapp": "0x9e0d7d79735e1c63333128149c7b616a0dc0bbdb",
+    "symbol": "pxETH",
+    "lzVersion": "v2"
+   },
+   "0x65421ba909200b81640d98b979d07487c9781b66": {
+    "kind": "layerzero-oft",
+    "oapp": "0x65421ba909200b81640d98b979d07487c9781b66",
+    "symbol": "rsETH",
+    "lzVersion": "v2"
+   },
+   "0x89f17ab70cafb1468d633056161573efefea0713": {
+    "kind": "layerzero-oft",
+    "oapp": "0x89f17ab70cafb1468d633056161573efefea0713",
+    "symbol": "rswETH",
+    "lzVersion": "v2"
+   },
+   "0x8731d54e9d02c286767d56ac03e8037c07e01e98": {
+    "kind": "layerzero-oft",
+    "oapp": "0x8731d54e9d02c286767d56ac03e8037c07e01e98",
+    "symbol": "STG",
+    "lzVersion": "v1"
+   },
+   "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2": {
+    "kind": "layerzero-oft",
+    "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
+    "symbol": "sUSDe",
+    "lzVersion": "v2"
+   },
+   "0x850cdf416668210ed0c36bfff5d21921c7ada3b8": {
+    "kind": "layerzero-oft",
+    "oapp": "0x850cdf416668210ed0c36bfff5d21921c7ada3b8",
+    "symbol": "swETH",
+    "lzVersion": "v1"
+   },
+   "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34": {
+    "kind": "layerzero-oft",
+    "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+    "symbol": "USDe",
+    "lzVersion": "v2"
+   },
+   "0x01f0a31698c4d065659b9bdc21b3610292a1c506": {
+    "kind": "layerzero-oft",
+    "oapp": "0x01f0a31698c4d065659b9bdc21b3610292a1c506",
+    "symbol": "weETH",
+    "lzVersion": "v2"
+   },
+   "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf": {
+    "kind": "layerzero-oft",
+    "oapp": "0xc53ac24320e3a54c7211e4993c8095078a0cb3cf",
+    "symbol": "WGC",
+    "lzVersion": "v2"
+   },
+   "0xe231db5f348d709239ef1741ea30961b3b635a61": {
+    "kind": "layerzero-adapter",
+    "oapp": "0xbe82cbe217bf4e0a87dd88c552e93054f4ef2c7c",
+    "symbol": "ynETHx",
+    "lzVersion": "v2"
+   }
+  }
+ }
+}

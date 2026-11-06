@@ -5,7 +5,17 @@
   "type": "module",
   "description": "Single source of truth for Floor's deployed addresses, RPCs and the Kelp simulation record.",
   "main": "./src/index.ts",
-  "exports": { ".": "./src/index.ts", "./testnet.json": "./testnet.json" },
-  "scripts": { "typecheck": "tsc --noEmit -p .", "test": "vitest run" },
-  "devDependencies": { "typescript": "^5.9.3", "vitest": "^3.2.4" }
+  "exports": {
+    ".": "./src/index.ts",
+    "./testnet.json": "./testnet.json",
+    "./aave-markets.json": "./aave-markets.json"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
 }
