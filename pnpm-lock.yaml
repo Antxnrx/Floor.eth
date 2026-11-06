@@ -29,6 +29,9 @@ importers:
       '@floor/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@floor/publish':
+        specifier: workspace:*
+        version: link:../../packages/publish
       '@floor/resolver':
         specifier: workspace:*
         version: link:../../packages/resolver

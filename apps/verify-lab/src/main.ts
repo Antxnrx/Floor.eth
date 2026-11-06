@@ -7,10 +7,13 @@
  */
 import { AnonRpcWorker } from "@anon-rpc/browser-harness";
 import type { EvidenceBundle } from "@floor/core";
+import { arkivReader, EvidenceHashMismatch, fetchBundle, findRating, RABDI_PUBLIC_RPC, SWARM_PUBLIC_GATEWAY } from "@floor/publish/browser";
 import { operatorMap } from "@floor/resolver/operators";
 import { fromAnonRpc, jsonRpcReader, TrafficMeter, verifyBundle, type FetchFn, type VerifyReport } from "@floor/verifier";
-import type { Hex } from "viem";
+import { decodeFunctionResult, encodeFunctionData, parseAbi, stringToBytes, type Address, type Hex } from "viem";
 import fixture from "../../../packages/resolver/fixtures/rseth-24908284.json";
+
+type Source = "arkiv" | "swarm" | "fixture";
 
 type Net = "tor-js" | "nym" | "passthrough" | "direct";
 
@@ -33,7 +36,16 @@ const DEFAULTS = {
   rpc: "https://eth-mainnet.public.blastapi.io, https://rpc.mevblocker.io",
   boot: "https://ethereum-rpc.publicnode.com",
   hash: "0x385b1ae424c9c5d46bb22a0081d358385a7dda8bd76f314baa42242acda86561",
+  // Floor's writer wallet (also the deployer); README "Writer wallet and query". Override with ?writer=
+  writer: "0x70EAF6D7ba278168Da557B81A3026605cF9EfDa0",
+  token: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7", // rsETH
+  arkiv: RABDI_PUBLIC_RPC,
+  gateway: SWARM_PUBLIC_GATEWAY,
+  registryRpc: "https://ethereum-sepolia-rpc.publicnode.com",
 };
+
+const REGISTRY_ABI = parseAbi(["function ratingOf(address asset) view returns ((uint8 grade, bool known, uint64 scanBlock, uint32 ruleVersion, uint64 updatedAt, bytes32 bundleHash))"]);
+const GRADES = ["UNKNOWN", "OK", "DEGRADED", "BREACHED"]; // FloorTypes order; only used for display
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const logEl = $<HTMLPreElement>("log");
@@ -92,21 +104,118 @@ function bootstrapProvider(meter: TrafficMeter, url: string) {
   };
 }
 
-async function makeTransport(net: Net, meter: TrafficMeter, bootUrl: string): Promise<{ fetchFn: FetchFn; label: string; close(): void }> {
-  if (net === "direct") return { fetchFn: meter.wrap("direct", instrument(directFetch)), label: "direct", close() {} };
+type AnyWorker = { fetch(url: string, init: Record<string, unknown>): Promise<{ ok: boolean; status: number; arrayBuffer?(): Promise<ArrayBuffer>; text(): Promise<string> }> };
+type Transport = { raw: FetchFn; label: string; worker?: AnyWorker; close(): void };
+
+async function makeTransport(net: Net, meter: TrafficMeter, bootUrl: string): Promise<Transport> {
+  if (net === "direct") return { raw: instrument(directFetch), label: "direct", close() {} };
   const spec = NETWORKS[net];
   const worker = new AnonRpcWorker({ address: spec.address, config: spec.config as never, preExisting: { rpcProvider: bootstrapProvider(meter, bootUrl) } });
   const t0 = performance.now();
-  await worker.ready;
+  // A second Nym worker in the same page sometimes never becomes ready (seen 2026-11-06); fail clearly instead of hanging.
+  let startTimer: ReturnType<typeof setTimeout> | undefined;
+  await Promise.race([worker.ready, new Promise<never>((_, rej) => { startTimer = setTimeout(() => { worker.close(); rej(new Error(`${net} worker not ready after 90 s; reload the page and try again`)); }, 90_000); })]).finally(() => clearTimeout(startTimer));
   log(`${net} worker ready in ${((performance.now() - t0) / 1000).toFixed(1)} s (bundle hash-pinned by specifier ${spec.address})`);
   const label = spec.anonymising ? `anon-rpc:${net}` : `anon-rpc:${net} (NOT anonymising)`;
-  return { fetchFn: meter.wrap(label, instrument(fromAnonRpc(worker as never))), label, close: () => worker.close() };
+  return { raw: instrument(fromAnonRpc(worker as never)), label, worker: worker as unknown as AnyWorker, close: () => worker.close() };
+}
+
+/** Swarm GET through the Anon-RPC worker when there is one (the gateway then can't link the download to you); direct otherwise. */
+async function swarmGet(url: string, t: Transport, meter: TrafficMeter) {
+  if (t.worker) {
+    try {
+      const r = await Promise.race([t.worker.fetch(url, { method: "GET" }), new Promise<never>((_, rej) => setTimeout(() => rej(new Error("no answer in 30 s")), 30_000))]);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      meter.count(`swarm · ${t.label}`);
+      return { ok: r.ok, status: r.status, arrayBuffer: async () => (r.arrayBuffer ? r.arrayBuffer() : stringToBytes(await r.text()).buffer as ArrayBuffer) };
+    } catch (e) {
+      log(`swarm GET through ${t.label} failed (${(e as Error).message}); falling back to a direct GET (counted as direct)`);
+    }
+  }
+  meter.count("swarm · direct");
+  return fetch(url);
+}
+
+/** One JSON-RPC call through a fetch function (used for the registry read). */
+async function rpcCall(f: FetchFn, url: string, method: string, params: unknown[]) {
+  const res = await f(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }) });
+  const j = (await res.json()) as { result?: unknown; error?: { message: string } };
+  if (j.error) throw new Error(j.error.message);
+  return j.result;
+}
+
+const stepsEl = $<HTMLOListElement>("steps");
+function step(text: string, cls: "ok" | "bad" | "skip" = "ok") {
+  const li = document.createElement("li");
+  li.className = cls;
+  li.textContent = text;
+  stepsEl.append(li);
+  log(`step: ${text}`);
+}
+const v = (id: string) => $<HTMLInputElement>(id).value.trim();
+
+/** Where the evidence comes from, with each hop checked. Returns the bundle and the hash it must match. */
+async function loadEvidence(src: Source, t: Transport, meter: TrafficMeter): Promise<{ bundle: EvidenceBundle; expected: Hex }> {
+  if (src === "fixture") {
+    step("source: local copy shipped with the page (offline fallback, not fetched from Arkiv/Swarm)", "skip");
+    return { bundle: JSON.parse(JSON.stringify(fixture)) as EvidenceBundle, expected: v("hash") as Hex };
+  }
+  let ref = v("ref"), expected = v("hash") as Hex;
+  if (src === "arkiv") {
+    const writer = v("writer") as Address, token = v("token") as Address;
+    const t0 = performance.now();
+    // Nym's worker drops the Content-Type header (measured 2026-11-06 with a header echo), and Arkiv's RPC answers
+    // 415 without it; Nym requests can also time out. On any failure, fall back to a direct Arkiv read, counted
+    // separately on the meter (never hidden). The Arkiv lookup only reveals which asset is being checked.
+    const anonArkiv = meter.wrap(`arkiv · ${t.label}`, t.raw);
+    const directArkiv = meter.wrap("arkiv · direct (fallback)", instrument(directFetch));
+    let arkivDirect = !t.worker;
+    const arkivFetch: FetchFn = async (u, init) => {
+      if (!arkivDirect) {
+        let why = "";
+        try {
+          const r = await Promise.race([anonArkiv(u, init), new Promise<never>((_, rej) => setTimeout(() => rej(new Error("no answer in 20 s")), 20_000))]);
+          if (r.ok) return r;
+          why = `HTTP ${r.status}`;
+        } catch (e) {
+          why = (e as Error).message.slice(0, 80);
+        }
+        arkivDirect = true;
+        log(`Arkiv read through ${t.label} failed (${why}; Nym drops the Content-Type header, Arkiv then answers 415); reading Arkiv directly`);
+      }
+      return directArkiv(u, init);
+    };
+    const client = arkivReader(t.worker ? arkivFetch : meter.wrap("arkiv · direct", t.raw), v("arkiv"));
+    const r = await findRating(client, writer, token);
+    if (!r) throw new Error(`Arkiv: no floor.rating for ${token} created by ${writer}. Nothing published yet? (README step 8) Use source "local copy" until then.`);
+    step(`Arkiv: rating ${r.grade} at block ${r.block} (${r.ruleVersion}), created by the writer ${writer}, entity ${r.entityKey ?? "?"} · ${((performance.now() - t0) / 1000).toFixed(1)} s via ${t.label}`);
+    ref = r.swarmRef;
+    expected = r.bundleHash;
+  }
+  const gateway = v("gateway").replace(/\/$/, "");
+  const t1 = performance.now();
+  const bundle = await fetchBundle(gateway, ref, expected, (u) => swarmGet(u, t, meter));
+  step(`Swarm: downloaded ${ref.slice(0, 12)}… from ${new URL(gateway).host}; keccak256(bytes) = ${expected.slice(0, 14)}… matches · ${((performance.now() - t1) / 1000).toFixed(1)} s`);
+  return { bundle, expected };
+}
+
+/** Optional: the CRE-signed rating in FloorRegistry must carry the same bundle hash. */
+async function checkRegistry(expected: Hex, t: Transport, meter: TrafficMeter) {
+  const registry = v("registry");
+  if (!registry) { step("onchain: skipped (no FloorRegistry address given; deploy step 2 in the README)", "skip"); return true; }
+  const data = encodeFunctionData({ abi: REGISTRY_ABI, functionName: "ratingOf", args: [v("token") as Address] });
+  const out = (await rpcCall(meter.wrap(`registry · ${t.label}`, t.raw), v("registryRpc"), "eth_call", [{ to: registry, data }, "latest"])) as Hex;
+  const r = decodeFunctionResult({ abi: REGISTRY_ABI, functionName: "ratingOf", data: out });
+  const ok = r.known && r.bundleHash.toLowerCase() === expected.toLowerCase();
+  step(`onchain: FloorRegistry ${registry.slice(0, 10)}… says ${GRADES[r.grade] ?? r.grade} at scan block ${r.scanBlock}, hash ${r.bundleHash.slice(0, 14)}… ${ok ? "matches" : r.known ? "DOES NOT match" : "(no rating stored)"}`, ok ? "ok" : "bad");
+  return ok;
 }
 
 function renderMeter(meter: TrafficMeter, label: string) {
   const s = meter.snapshot;
-  const parts = Object.entries(s.byRoute).map(([k, v]) => `${k}: ${v}`);
-  $("meter").textContent = `Chain reads: ${s.total} · ${parts.join(" · ")} · share via ${label}: ${(s.share(label) * 100).toFixed(1)}%`;
+  const parts = Object.entries(s.byRoute).map(([k, n]) => `${k}: ${n}`);
+  const anon = Object.entries(s.byRoute).filter(([k]) => k.includes("anon-rpc")).reduce((a, [, n]) => a + n, 0);
+  $("meter").textContent = `Requests: ${s.total} · ${parts.join(" · ")} · share via Anon-RPC${label.includes("NOT") ? " (passthrough, NOT anonymising)" : ""}: ${s.total ? ((anon / s.total) * 100).toFixed(1) : "0"}%`;
 }
 
 async function run() {
@@ -117,26 +226,29 @@ async function run() {
   logEl.textContent = "";
   Object.assign(stats, { requests: 0, ms: [], http: {}, rpcErrors: {}, thrown: {} });
   const net = (document.querySelector("input[name=net]:checked") as HTMLInputElement).value as Net;
+  const src = (document.querySelector("input[name=src]:checked") as HTMLInputElement).value as Source;
+  stepsEl.textContent = "";
   const rpc = $<HTMLInputElement>("rpc").value.split(",").map((x) => x.trim()).filter(Boolean);
   const boot = $<HTMLInputElement>("boot").value.trim();
-  const expected = $<HTMLInputElement>("hash").value.trim() as Hex;
-  const bundle = JSON.parse(JSON.stringify(fixture)) as EvidenceBundle;
-  if ($<HTMLInputElement>("tamper").checked) {
-    const c = bundle.state.calls.find((x) => x.ok && x.result.length > 4)!;
-    const last = c.result.slice(-1);
-    c.result = (c.result.slice(0, -1) + (last === "0" ? "1" : "0")) as Hex;
-    log(`tampered: flipped the last nibble of read ${c.id}`);
-  }
   const meter = new TrafficMeter();
-  let transport: Awaited<ReturnType<typeof makeTransport>> | undefined;
+  let transport: Transport | undefined;
   const t0 = performance.now();
   try {
     $("phase").textContent = `starting ${net}…`;
     transport = await makeTransport(net, meter, boot);
+    $("phase").textContent = `fetching evidence (${src})…`;
+    const { bundle, expected } = await loadEvidence(src, transport, meter);
+    const onchainOk = await checkRegistry(expected, transport, meter);
+    if ($<HTMLInputElement>("tamper").checked) {
+      const c = bundle.state.calls.find((x) => x.ok && x.result.length > 4)!;
+      const last = c.result.slice(-1);
+      c.result = (c.result.slice(0, -1) + (last === "0" ? "1" : "0")) as Hex;
+      log(`tampered: flipped the last nibble of read ${c.id}`);
+    }
     const qs = new URLSearchParams(location.search);
     // measured over Nym 2026-11-06: batch 10 x 6 parallel ~70 s; batch 50 x 2 was 100 s to 6+ min
     const batch = Number(qs.get("batch") ?? 10), concurrency = Number(qs.get("conc") ?? 6);
-    const reader = jsonRpcReader(transport.fetchFn, rpc, { batch, concurrency, timeoutMs: Number(qs.get("timeout") ?? 20_000) });
+    const reader = jsonRpcReader(meter.wrap(`chain · ${transport.label}`, transport.raw), rpc, { batch, concurrency, timeoutMs: Number(qs.get("timeout") ?? 20_000) });
     log(`batch=${batch} concurrency=${concurrency}`);
     log(`replaying ${bundle.state.calls.length} recorded reads at block ${bundle.state.calls[0]?.block} via ${transport.label}`);
     const tick = setInterval(() => renderMeter(meter, transport!.label), 500);
@@ -148,17 +260,23 @@ async function run() {
     clearInterval(tick);
     renderMeter(meter, transport.label);
     const secs = ((performance.now() - t0) / 1000).toFixed(1);
-    $("status").textContent = `${report.status} in ${secs} s`;
-    $("status").className = `status ${report.status}`;
+    step(`replay: ${report.raw.matched}/${report.raw.total} recorded reads match mainnet at block ${bundle.state.scan.block} via ${transport.label}; grade claimed ${report.grade.claimed}, recomputed ${report.grade.recomputed}`, report.status === "VERIFIED" ? "ok" : "bad");
+    // the onchain hash check can only make the result worse, never better
+    const status = report.status === "VERIFIED" && !onchainOk ? "MISMATCH" : report.status;
+    $("status").textContent = `${status} in ${secs} s${src === "fixture" ? " (local copy; Arkiv/Swarm not used)" : ""}`;
+    $("status").className = `status ${status}`;
     log(`hash ok=${report.hash.ok} · raw ${report.raw.matched}/${report.raw.total} matched, ${report.raw.mismatched.length} mismatched, ${report.raw.failed.length} failed · state ok=${report.state.ok} · grade claimed=${report.grade.claimed} recomputed=${report.grade.recomputed}`);
     if (report.raw.mismatched.length) log(`mismatched: ${report.raw.mismatched.slice(0, 5).join(", ")}`);
     if (report.raw.failed.length) log(`failed: ${report.raw.failed.slice(0, 5).join(", ")}`);
-    (window as unknown as { __floorLab: unknown }).__floorLab = { net, secs, report, meter: meter.snapshot.byRoute, stats: statsLine() };
+    (window as unknown as { __floorLab: unknown }).__floorLab = { net, src, secs, status, report, meter: meter.snapshot.byRoute, stats: statsLine(), steps: [...stepsEl.children].map((li) => li.textContent) };
   } catch (e) {
-    $("status").textContent = `ERROR: ${(e as Error).message}`;
-    $("status").className = "status MISMATCH";
+    // a bundle whose bytes don't hash to the published hash is a MISMATCH, not an infrastructure error
+    const mismatch = e instanceof EvidenceHashMismatch || (e as Error).message.includes("DOES NOT match");
+    $("status").textContent = `${mismatch ? "MISMATCH" : "ERROR"}: ${(e as Error).message}`;
+    $("status").className = mismatch ? "status MISMATCH" : "status UNVERIFIED_RPC";
     log(`error: ${(e as Error).stack ?? e}`);
-    (window as unknown as { __floorLab: unknown }).__floorLab = { net, error: String(e) };
+    step(`stopped: ${(e as Error).message}`, "bad");
+    (window as unknown as { __floorLab: unknown }).__floorLab = { net, src, error: String(e), meter: meter.snapshot.byRoute, steps: [...stepsEl.children].map((li) => li.textContent) };
   } finally {
     $("phase").textContent = "";
     transport?.close();
@@ -169,7 +287,12 @@ async function run() {
 $<HTMLInputElement>("rpc").value = DEFAULTS.rpc;
 $<HTMLInputElement>("boot").value = DEFAULTS.boot;
 $<HTMLInputElement>("hash").value = DEFAULTS.hash;
-const q = new URLSearchParams(location.search).get("net");
+const qs0 = new URLSearchParams(location.search);
+for (const k of ["writer", "token", "arkiv", "gateway", "registryRpc"] as const) $<HTMLInputElement>(k).value = qs0.get(k) ?? DEFAULTS[k];
+for (const k of ["ref", "registry", "hash"]) if (qs0.get(k)) $<HTMLInputElement>(k).value = qs0.get(k)!;
+const qsrc = qs0.get("src");
+if (qsrc) (document.querySelector(`input[name=src][value="${qsrc}"]`) as HTMLInputElement | null)?.click();
+const q = qs0.get("net");
 if (q) (document.querySelector(`input[name=net][value="${q}"]`) as HTMLInputElement | null)?.click();
 const qrpc = new URLSearchParams(location.search).get("rpc");
 if (qrpc) $<HTMLInputElement>("rpc").value = qrpc;

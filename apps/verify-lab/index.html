@@ -21,6 +21,9 @@
       .status { font-size:22px; font-weight:700; }
       .VERIFIED { color:var(--ok); } .MISMATCH { color:var(--bad); } .UNVERIFIED_RPC, .warn { color:var(--warn); }
       .meter { font-family:ui-monospace, monospace; }
+      .steps { font-family:ui-monospace, monospace; font-size:13px; padding-left:20px; }
+      .steps li { margin:2px 0; overflow-wrap:anywhere; }
+      .steps .ok::marker { color:var(--ok); } .steps .bad { color:var(--bad); } .steps .skip { color:var(--muted); }
     </style>
   </head>
   <body>
@@ -37,15 +40,29 @@
       </fieldset>
 
       <fieldset>
-        <legend>Inputs</legend>
+        <legend>Where the evidence comes from</legend>
+        <label><input type="radio" name="src" value="arkiv" checked /> Arkiv → Swarm: find the latest rating on Arkiv (created by the writer), download the bundle from Swarm · default</label>
+        <label><input type="radio" name="src" value="swarm" /> Swarm reference + hash given by hand</label>
+        <label><input type="radio" name="src" value="fixture" /> Local copy shipped with this page (offline fallback)</label>
+        <label>Writer address (Floor's Arkiv writer; only entities it created are accepted)<input id="writer" type="text" /></label>
+        <label>Asset (token address)<input id="token" type="text" /></label>
+        <label>Arkiv RPC (Rabdi testnet; reads need no key)<input id="arkiv" type="text" /></label>
+        <label>Swarm gateway (any Bee node or public gateway)<input id="gateway" type="text" /></label>
+        <label>Swarm reference (source "by hand" only)<input id="ref" type="text" /></label>
+        <label>Expected bundle hash (sources "by hand" and "local copy"; Arkiv mode takes it from Arkiv)<input id="hash" type="text" /></label>
+        <label>Optional onchain check: FloorRegistry address and its chain RPC (the CRE-signed hash must match)<input id="registry" type="text" placeholder="0x… (empty = skipped)" /><input id="registryRpc" type="text" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Chain reads</legend>
         <label>Mainnet RPCs, comma-separated (archive, accept JSON-RPC batches; reads rotate across them)<input id="rpc" type="text" /></label>
         <label>Bootstrap RPC (one read of the specifier contract; not anonymised by design)<input id="boot" type="text" /></label>
-        <label>Expected bundle hash (from Arkiv / the CRE report)<input id="hash" type="text" /></label>
         <label><input id="tamper" type="checkbox" /> Tamper: flip one byte of one recorded read (must give MISMATCH)</label>
       </fieldset>
 
       <div class="row"><button id="go">Verify</button><span id="phase" class="warn"></span></div>
       <p class="status" id="status"></p>
+      <ol id="steps" class="steps"></ol>
       <p class="meter" id="meter"></p>
       <pre id="log"></pre>
     </main>

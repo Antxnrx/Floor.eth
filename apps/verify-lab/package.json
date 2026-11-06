@@ -13,6 +13,7 @@
   "dependencies": {
     "@anon-rpc/browser-harness": "0.4.0",
     "@floor/core": "workspace:*",
+    "@floor/publish": "workspace:*",
     "@floor/resolver": "workspace:*",
     "@floor/verifier": "workspace:*",
     "viem": "^2.38.6"
