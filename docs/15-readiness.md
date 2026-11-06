@@ -55,7 +55,7 @@ Credential-dependent steps are listed as ready-to-run commands in the root `READ
 8. Kelp replay on a fork: borrow reverts on Aave.
 9. Swarm evidence bundles linked from Arkiv (`swarmRef` + `bundleHash`), and the browser verifier reading them from Swarm, plus `/arkiv/swarm.md` ([20](20-swarm-design.md)).
 
-**Should have:** mainnet loop with Morpho Sentinel on our own vault; site hosted on Swarm behind a feed + per-asset "latest" feed; `floor check` CLI pre-sign simulation.
+**Should have (status 2026-11-07: done on testnets, see `docs/evidence/live-2026-11-07.md`; mainnet is a post-hackathon milestone):** mainnet loop with Morpho Sentinel on our own vault; site hosted on Swarm behind a feed + per-asset "latest" feed; `floor check` CLI pre-sign simulation.
 
 **Stretch:** blast-radius query; CCIP 2.0 CCV scoring; guard on testnet; Compound III / Euler legs of the replay.
 
