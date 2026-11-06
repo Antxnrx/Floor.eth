@@ -32,8 +32,8 @@ const DEFAULTS = {
   arkiv: RABDI_PUBLIC_RPC,
   gateway: SWARM_PUBLIC_GATEWAY,
   registryRpc: "https://ethereum-sepolia-rpc.publicnode.com",
-  // FloorRegistry on Ethereum Sepolia: the deployer's first contract (nonce 0), README step 2. Override with ?registry=
-  registry: "0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6",
+  // FloorRegistry on Ethereum Sepolia (deployer nonce 2: nonces 0-1 were the out-of-gas attempt), README step 2. ?registry= overrides
+  registry: "0xE69c3e47DdaB083D0Ba4D8aD2B2dA8531ec18220",
 };
 
 const REGISTRY_ABI = parseAbi(["function ratingOf(address asset) view returns ((uint8 grade, bool known, uint64 scanBlock, uint32 ruleVersion, uint64 updatedAt, bytes32 bundleHash))"]);

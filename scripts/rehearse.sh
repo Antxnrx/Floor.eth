@@ -6,6 +6,8 @@
 #   scripts/rehearse.sh            # needs: anvil, forge, cast, cre (logged in), bun
 #
 # Exit code 0 = every check passed.
+# LIMIT: anvil uses Foundry's gas rules, not Sepolia's Glamsterdam repricing (EIP-8037). Gas is checked separately
+# against the real nodes (eth_estimateGas on the dry-run transactions); see scripts/preflight-gas.sh.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT=$PWD
@@ -45,14 +47,15 @@ check "base sepolia fork chain id" "$(cast chain-id --rpc-url $BASE)" 84532
 # the real wallet's real balances are copied by the fork; top up so the rehearsal never depends on them
 cast rpc anvil_setBalance $DEPLOYER 0x8AC7230489E80000 --rpc-url $SEP >/dev/null
 cast rpc anvil_setBalance $DEPLOYER 0x8AC7230489E80000 --rpc-url $BASE >/dev/null
-check "deployer nonce on sepolia (must be 0 for the predicted addresses)" "$(cast nonce $DEPLOYER --rpc-url $SEP)" 0
+SEP_NONCE=$(cast nonce $DEPLOYER --rpc-url $SEP); echo "    deployer nonce on sepolia: $SEP_NONCE (0-1 were the out-of-gas attempt)"
 check "deployer nonce on base sepolia" "$(cast nonce $DEPLOYER --rpc-url $BASE)" 0
-REG_PRED=$(cast compute-address $DEPLOYER --nonce 0 | awk '{print $NF}')
-BC_PRED=$(cast compute-address $DEPLOYER --nonce 1 | awk '{print $NF}')
+REG_PRED=$(cast compute-address $DEPLOYER --nonce $SEP_NONCE | awk '{print $NF}')
+BC_PRED=$(cast compute-address $DEPLOYER --nonce $((SEP_NONCE + 1)) | awk '{print $NF}')
+MIR_PRED=$(cast compute-address $DEPLOYER --nonce $(cast nonce $DEPLOYER --rpc-url $BASE) | awk '{print $NF}')
 
 echo "== 1. deploy FloorRegistry + FloorBroadcaster (Sepolia)  [README step 2]"
 (cd contracts && CRE_FORWARDER=$FORWARDER CCIP_ROUTER=$SEP_ROUTER forge script script/Deploy.s.sol:DeployHome \
-  --rpc-url $SEP --broadcast --unlocked --sender $DEPLOYER > /tmp/floor-rehearse-1.log 2>&1) || { bad "DeployHome failed (see /tmp/floor-rehearse-1.log)"; }
+  --rpc-url $SEP --broadcast --unlocked --sender $DEPLOYER --gas-estimate-multiplier 900 > /tmp/floor-rehearse-1.log 2>&1) || { bad "DeployHome failed (see /tmp/floor-rehearse-1.log)"; }
 REG=$(grep -E "FloorRegistry +0x" /tmp/floor-rehearse-1.log | awk '{print $NF}' | tail -1)
 BC=$(grep -E "FloorBroadcaster 0x" /tmp/floor-rehearse-1.log | awk '{print $NF}' | tail -1)
 check "registry address = predicted" "$(echo $REG | lc)" "$(echo $REG_PRED | lc)"
@@ -62,9 +65,9 @@ check "broadcaster router" "$(cast call $BC 'router()(address)' --rpc-url $SEP |
 
 echo "== 2. deploy FloorMirror (Base Sepolia)  [README step 3]"
 (cd contracts && CCIP_ROUTER=$BASE_ROUTER SOURCE_CHAIN_SELECTOR=$SEP_SELECTOR SOURCE_BROADCASTER=$BC forge script script/Deploy.s.sol:DeployMirror \
-  --rpc-url $BASE --broadcast --unlocked --sender $DEPLOYER > /tmp/floor-rehearse-2.log 2>&1) || bad "DeployMirror failed (see /tmp/floor-rehearse-2.log)"
+  --rpc-url $BASE --broadcast --unlocked --sender $DEPLOYER --gas-estimate-multiplier 300 > /tmp/floor-rehearse-2.log 2>&1) || bad "DeployMirror failed (see /tmp/floor-rehearse-2.log)"
 MIR=$(grep -E "FloorMirror 0x" /tmp/floor-rehearse-2.log | awk '{print $NF}' | tail -1)
-check "mirror address = predicted" "$(echo $MIR | lc)" "$(echo $REG_PRED | lc)"
+check "mirror address = predicted" "$(echo $MIR | lc)" "$(echo $MIR_PRED | lc)"
 check "mirror trusts the broadcaster" "$(cast call $MIR 'sourceSender()(address)' --rpc-url $BASE | lc)" "$(echo $BC | lc)"
 check "mirror source selector" "$(cast call $MIR 'sourceChainSelector()(uint64)' --rpc-url $BASE | awk '{print $1}')" $SEP_SELECTOR
 
@@ -78,19 +81,10 @@ check "grade BREACHED (3)" "$(echo "$R" | tr -d '()' | cut -d, -f1 | tr -d ' ')"
 check "known" "$(echo "$R" | tr -d '()' | cut -d, -f2 | tr -d ' ')" true
 check "bundle hash" "$(echo "$R" | grep -oE '0x[0-9a-f]{64}')" 0x385b1ae424c9c5d46bb22a0081d358385a7dda8bd76f314baa42242acda86561
 
-echo "== 4. Morpho Vault V2 + FloorSentinel on Sepolia (reads the registry), then poke  [README step 9]"
-(cd contracts && FLOOR_RATING=$REG forge script script/MorphoDemo.s.sol:MorphoDemo --rpc-url $SEP --broadcast --unlocked --sender $DEPLOYER > /tmp/floor-rehearse-4.log 2>&1) || bad "MorphoSepolia failed (see /tmp/floor-rehearse-4.log)"
-VAULT=$(grep -E "MorphoVaultV2 +0x" /tmp/floor-rehearse-4.log | awk '{print $NF}' | tail -1)
-SENT=$(grep -E "FloorSentinel +0x" /tmp/floor-rehearse-4.log | awk '{print $NF}' | tail -1)
 ID=$(cast keccak "$(cast abi-encode 'f(string,address)' collateralToken $RSETH)")
-check "vault cap before poke" "$(cast call $VAULT 'absoluteCap(bytes32)(uint256)' $ID --rpc-url $SEP | awk '{print $1}')" 1000000000000
-check "sentinel role set" "$(cast call $VAULT 'isSentinel(address)(bool)' $SENT --rpc-url $SEP)" true
-cast send $SENT 'poke(address)' $RSETH --rpc-url $SEP --unlocked --from $DEPLOYER >/dev/null
-check "vault cap after poke" "$(cast call $VAULT 'absoluteCap(bytes32)(uint256)' $ID --rpc-url $SEP | awk '{print $1}')" 0
-cast send $SENT 'poke(address)' $RSETH --rpc-url $SEP --unlocked --from $DEPLOYER >/dev/null && ok "second poke is a no-op (does not revert)" || bad "second poke reverted"
-
-echo "== 4b. Morpho Vault V2 + FloorSentinel on Base Sepolia (reads the MIRROR)  [README step 9b]"
-(cd contracts && FLOOR_RATING=$MIR VAULT_V2_FACTORY=$BASE_VAULT_FACTORY VAULT_ASSET=$BASE_USDC forge script script/MorphoDemo.s.sol:MorphoDemo --rpc-url $BASE --broadcast --unlocked --sender $DEPLOYER > /tmp/floor-rehearse-4b.log 2>&1) || bad "MorphoDemo on Base failed (see /tmp/floor-rehearse-4b.log)"
+echo "== 4. Morpho Vault V2 + FloorSentinel on Base Sepolia (reads the MIRROR)  [README step 9]"
+# (No Sepolia vault: since Glamsterdam, createVaultV2 costs ~34M gas on Sepolia; the Sepolia flow is proven in test/fork/MorphoDemoSepoliaFork.t.sol)
+(cd contracts && FLOOR_RATING=$MIR VAULT_V2_FACTORY=$BASE_VAULT_FACTORY VAULT_ASSET=$BASE_USDC forge script script/MorphoDemo.s.sol:MorphoDemo --rpc-url $BASE --broadcast --unlocked --sender $DEPLOYER --gas-estimate-multiplier 300 > /tmp/floor-rehearse-4b.log 2>&1) || bad "MorphoDemo on Base failed (see /tmp/floor-rehearse-4b.log)"
 BVAULT=$(grep -E "MorphoVaultV2 +0x" /tmp/floor-rehearse-4b.log | awk '{print $NF}' | tail -1)
 BSENT=$(grep -E "FloorSentinel +0x" /tmp/floor-rehearse-4b.log | awk '{print $NF}' | tail -1)
 check "base vault cap set" "$(cast call $BVAULT 'absoluteCap(bytes32)(uint256)' $ID --rpc-url $BASE | awk '{print $1}')" 1000000000000
