@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Floor verify lab</title>
+    <style>
+      :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#9aa0a6; --ok:#3fb950; --bad:#f85149; --warn:#d29922; --card:#171a21; --line:#2a2f3a; }
+      @media (prefers-color-scheme: light) { :root { --bg:#fff; --fg:#111; --muted:#555; --card:#f6f8fa; --line:#d0d7de; } }
+      body { background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, sans-serif; margin:0; padding:16px; }
+      main { max-width:860px; margin:0 auto; }
+      h1 { font-size:20px; margin:0 0 4px; }
+      p.sub { color:var(--muted); margin:0 0 16px; }
+      fieldset { border:1px solid var(--line); border-radius:8px; background:var(--card); margin:0 0 12px; padding:12px; }
+      label { display:block; margin:6px 0; }
+      input[type=text] { width:100%; box-sizing:border-box; padding:6px; background:var(--bg); color:var(--fg); border:1px solid var(--line); border-radius:6px; font-family:ui-monospace, monospace; font-size:13px; }
+      button { padding:8px 14px; border-radius:6px; border:1px solid var(--line); background:var(--fg); color:var(--bg); font-weight:600; cursor:pointer; }
+      button:disabled { opacity:.5; cursor:default; }
+      .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+      pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; overflow:auto; font-size:12px; max-height:420px; }
+      .status { font-size:22px; font-weight:700; }
+      .VERIFIED { color:var(--ok); } .MISMATCH { color:var(--bad); } .UNVERIFIED_RPC, .warn { color:var(--warn); }
+      .meter { font-family:ui-monospace, monospace; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Floor verify lab</h1>
+      <p class="sub">Re-checks a Floor evidence bundle against Ethereum mainnet, with every chain read routed through EF Anon-RPC. No Floor server is involved.</p>
+
+      <fieldset>
+        <legend>Anon-RPC network</legend>
+        <label><input type="radio" name="net" value="tor-js" checked /> tor-js: fetch over Tor (anonymising)</label>
+        <label><input type="radio" name="net" value="nym" /> Nym mixnet (anonymising, ~18 MB bundle)</label>
+        <label><input type="radio" name="net" value="passthrough" /> Passthrough: sandbox only, <b>not anonymous</b> (testing)</label>
+        <label><input type="radio" name="net" value="direct" /> Direct fetch, no Anon-RPC (baseline)</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Inputs</legend>
+        <label>Mainnet RPCs, comma-separated (archive, accept JSON-RPC batches; reads rotate across them)<input id="rpc" type="text" /></label>
+        <label>Bootstrap RPC (one read of the specifier contract; not anonymised by design)<input id="boot" type="text" /></label>
+        <label>Expected bundle hash (from Arkiv / the CRE report)<input id="hash" type="text" /></label>
+        <label><input id="tamper" type="checkbox" /> Tamper: flip one byte of one recorded read (must give MISMATCH)</label>
+      </fieldset>
+
+      <div class="row"><button id="go">Verify</button><span id="phase" class="warn"></span></div>
+      <p class="status" id="status"></p>
+      <p class="meter" id="meter"></p>
+      <pre id="log"></pre>
+    </main>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

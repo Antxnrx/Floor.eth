@@ -1,0 +1,24 @@
+{
+  "name": "@floor/verify-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal browser page that runs the Floor verifier through EF Anon-RPC (integration reference for apps/web).",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p . && vite build",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "echo 'browser-only; see README for the manual check'"
+  },
+  "dependencies": {
+    "@anon-rpc/browser-harness": "0.4.0",
+    "@floor/core": "workspace:*",
+    "@floor/resolver": "workspace:*",
+    "@floor/verifier": "workspace:*",
+    "viem": "^2.38.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}
