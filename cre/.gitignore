@@ -1,3 +1,4 @@
 .env
 secrets.yaml
 *.wasm
+.cre_build_tmp.js
