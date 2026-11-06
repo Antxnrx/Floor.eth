@@ -1,0 +1,2137 @@
+/*
+ * The public site — landing page and docs.
+ *
+ * Two surfaces, one system. The page opens black, runs ghost white through the
+ * argument, and closes black again; the live readout is a dark instrument panel
+ * inset into the paper, which is where the grade colours from theme.css are
+ * legible at full saturation. Nothing chromatic appears anywhere else.
+ *
+ * Scoped under `.fl` because it is page furniture, not a reusable primitive —
+ * the app screens in screens/ keep theme.css and styles.css untouched.
+ *
+ * Fonts are self-hosted latin subsets in public/fonts (84KB for four faces).
+ * A <link> to Google would make the page depend on a third-party host at
+ * runtime, which it cannot when it is served off a Swarm /bzz/<ref>/ URL.
+ */
+
+/*
+ * Geist Pixel sets the wordmark, Inter italic the mark on the photo plate, and
+ * Lato everything else. A humanist sans against a pixel display face is a
+ * contrast pairing rather than two near-identical grotesques.
+ *
+ * `swap` on all four: every one of them is decoration or display type over a
+ * system fallback that is already readable, so a blocking period buys nothing.
+ */
+@font-face {
+  font-family: "Geist Pixel";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/geist-pixel-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/lato-400-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/lato-italic-300-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter-italic-500-latin.woff2") format("woff2");
+}
+
+/* ---------- tokens ---------- */
+
+.fl {
+  /*
+   * theme.css sets `color-scheme: dark` on :root for the app. The light bands
+   * here would otherwise get a dark UA rendering for scrollbars and any native
+   * control that lands in them.
+   */
+  color-scheme: light;
+
+  /*
+   * --color-* rather than --fl-*: the five vendored effect stylesheets in
+   * effects/ read these names, and were written against them. Keeping the names
+   * means those files need no edit to run here.
+   *
+   * --color-void matches the WebGL clear colour in components/VolumetricLight,
+   * so the hero section and its canvas agree on black.
+   */
+  --color-ghost: #f8f8ff;
+  --color-void: #010204;
+  --color-ink: #0e0e14;
+  --color-rule: #dcdce8;
+
+  /*
+   * Ink on ghost white, as explicit steps rather than ad-hoc alphas, because
+   * the contrast ratio is the thing being chosen: 60% is 4.90:1, 65% is 5.84:1
+   * and 70% is 7.01:1 against #f8f8ff. Nothing below 60 exists here — 55% is
+   * 4.14:1 and fails body text.
+   */
+  --ink-60: rgb(14 14 20 / 0.6);
+  --ink-65: rgb(14 14 20 / 0.65);
+  --ink-70: rgb(14 14 20 / 0.7);
+
+  /* Ghost on void, the same way: 55% is 7.4:1 and 70% is 12.0:1. */
+  --ghost-55: rgb(248 248 255 / 0.55);
+  --ghost-70: rgb(248 248 255 / 0.7);
+  --ghost-rule: rgb(248 248 255 / 0.15);
+
+  /*
+   * The page's measure and gutters. Fluid: 1.5rem on a phone, 5vw through the
+   * middle sizes, capped at 6rem so a very wide display does not push the
+   * content into a column floating in the centre of the screen.
+   */
+  --fl-measure: 96rem;
+  --fl-gutter: clamp(1.5rem, 5vw, 6rem);
+  /* Width of the sticky label rail from `lg` up. */
+  --fl-label: 13rem;
+
+  background: var(--color-ghost);
+  color: var(--color-ink);
+  font-family: "Lato", ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.fl *,
+.fl *::before,
+.fl *::after {
+  box-sizing: border-box;
+}
+
+.fl a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+ * styles.css — the prototype shell's stylesheet — styles bare `nav`, `nav a`
+ * and `a:hover` for the app chrome, and it is bundled after this file. Those
+ * rules otherwise reach every <nav> on these two pages: the header bar, the
+ * docs contents list, the footer columns and the reference index. Undone here
+ * rather than by not using <nav>, because a list of links to sections is a
+ * navigation and should say so.
+ *
+ * It has to out-specify `nav` (0,0,1) and `nav a` (0,0,2), so it is written as
+ * a descendant of `.fl`. The page's own rules are further down this file and
+ * either match that specificity — where a tie goes to the later rule — or
+ * repeat `.fl` to win outright.
+ */
+.fl nav {
+  position: static;
+  z-index: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  backdrop-filter: none;
+}
+
+.fl nav a {
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+.fl nav a:hover {
+  background: none;
+  color: inherit;
+}
+
+.fl a:hover {
+  text-decoration: none;
+}
+
+/*
+ * Semantic z-index scale. The hero canvas and the fluid trail sit below their
+ * own content; everything above is page chrome.
+ */
+.fl {
+  --z-under: -1;
+  --z-art: 1;
+  --z-copy: 2;
+  --z-head: 20;
+}
+
+/* ---------- frame ---------- */
+
+.fl-band {
+  padding-inline: var(--fl-gutter);
+}
+
+/*
+ * The ghost-white run of the page, and the host the fluid trail mounts into:
+ * the canvas is absolute inside this box, the pointer is read from its bounds,
+ * and the solver parks when the band scrolls away. `isolation` is load-bearing
+ * — the canvas sits at a negative z-index so the copy paints over it, and that
+ * needs a stacking context here to sit inside of, or it goes looking further up
+ * the tree and disappears behind the page.
+ *
+ * The photo plate is deliberately outside this element. Two canvas effects over
+ * one box would overlap, and each band owning its own motion is the rule the
+ * hero follows too.
+ */
+.fl-paper {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-ghost);
+}
+
+.fl-rail {
+  max-width: var(--fl-measure);
+  margin-inline: auto;
+}
+
+/*
+ * From the laptop width up, a band that carries a label splits into a label
+ * rail and a content rail. The label stays with the reader while the content
+ * scrolls past it, so the page always answers "which part of the argument is
+ * this" without an eyebrow over every heading — and the content gets the full
+ * remaining width instead of a centred column with air on both sides.
+ *
+ * Gated on the aside being present, so a band with its own internal columns
+ * (the footer) can share the measure without inheriting the split.
+ */
+@media (min-width: 1024px) {
+  .fl-rail:has(.fl-aside) {
+    display: grid;
+    grid-template-columns: var(--fl-label) minmax(0, 1fr);
+    column-gap: clamp(2.5rem, 5vw, 6rem);
+  }
+
+  .fl-aside {
+    position: sticky;
+    /* Clears the 4rem sticky header, with air. */
+    top: 5.5rem;
+    align-self: start;
+  }
+}
+
+.fl-aside {
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .fl-aside {
+    margin-bottom: 0;
+  }
+}
+
+/* A content band. Ruled rather than tinted: the paper is one surface and the
+   rules are what divide the argument. */
+.fl-sec {
+  border-bottom: 1px solid var(--color-rule);
+  padding-block: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .fl-sec {
+    padding-block: 7.5rem;
+  }
+}
+
+/* Clears the sticky header when an in-page anchor scrolls a section into view. */
+.fl-sec[id],
+.fl-hero[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ---------- type ---------- */
+
+.fl-kicker {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+/* The label rail's second line: what this part of the argument is for. */
+.fl-aside-note {
+  margin: 0.75rem 0 0;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ink-60);
+}
+
+.fl-h2 {
+  margin: 0;
+  max-width: 24ch;
+  font-size: clamp(1.875rem, 3.6vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  /* Off the -0.04em floor where the exits of a humanist sans start to touch. */
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.fl-h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+/*
+ * A second movement inside one band — the timeline under the argument, the
+ * measurement under the rule list. Far enough below what it follows to read as
+ * a new heading rather than as one more row of the list above it.
+ */
+.fl-next {
+  margin-top: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .fl-next {
+    margin-top: 5.5rem;
+  }
+}
+
+/*
+ * A list that belongs to the heading directly above it. Both the ruled rows and
+ * the four-up grid carry the top margin they need when they follow body copy;
+ * after a heading of their own that gap reads as a missing paragraph.
+ */
+.fl-headrow + .fl-rows,
+.fl-headrow + .fl-quad {
+  margin-top: 2rem;
+}
+
+/* A heading and the scope it applies to, on one line until they stop fitting. */
+.fl-headrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+}
+
+.fl-headrow h3 {
+  margin: 0;
+  max-width: 30ch;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+/*
+ * The state of the implementation, in the page's smallest voice. Mono and
+ * tracked because it is a build note rather than an argument, and a reader
+ * scanning the section should be able to tell that before reading it.
+ */
+.fl-build {
+  margin: 2.25rem 0 0;
+  max-width: 64ch;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  line-height: 1.8;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+/* The lede under a section heading. 68ch, inside the 65-75 band. */
+.fl-lede {
+  margin: 1.5rem 0 0;
+  max-width: 68ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-70);
+  text-wrap: pretty;
+}
+
+.fl-body {
+  margin: 1rem 0 0;
+  max-width: 72ch;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--ink-70);
+  text-wrap: pretty;
+}
+
+/*
+ * A closing paragraph under a grid or a ruled list. Those end on a rule or a
+ * cell edge, so the sentence that draws the conclusion needs its own air or it
+ * reads as one more entry.
+ */
+.fl-close {
+  margin-top: 2.5rem;
+}
+
+/* Scope, caveat, provenance. Quieter than body copy but still above 4.5:1. */
+.fl-note {
+  margin: 1rem 0 0;
+  max-width: 72ch;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--ink-65);
+}
+
+.fl-src {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-60);
+}
+
+/* ---------- marks ---------- */
+
+/*
+ * The wordmark, in a pixel display face. Geist Pixel is drawn on a grid and
+ * carries its own sidebearings, so the page's negative tracking is cancelled
+ * here — closing them further runs the stems of two letters together.
+ */
+.fl-wordmark {
+  margin: 0;
+  font-family: "Geist Pixel", ui-monospace, monospace;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+/*
+ * The sign-off. The hero's wordmark is this face read small at the top of a
+ * black screen; this is the same face read as large as the page allows, at the
+ * bottom of another one. Nothing else is set at this size, so it ends the
+ * document rather than labelling the footer.
+ */
+.fl-signoff {
+  margin: 4rem 0 0;
+  font-family: "Geist Pixel", ui-monospace, monospace;
+  /* 20vw rather than a fixed step: at 390px wide a 3.5rem floor rendered the
+     mark smaller than the heading above it. */
+  font-size: clamp(4.5rem, 20vw, 11rem);
+  line-height: 0.82;
+  letter-spacing: 0.02em;
+  color: var(--color-ghost);
+}
+
+@media (min-width: 768px) {
+  .fl-signoff {
+    margin-top: 5rem;
+  }
+}
+
+/* ---------- buttons ---------- */
+
+/*
+ * `.fl a` sets `color: inherit`, which outranks a bare class, so these stay
+ * qualified with `a` or the solid button loses its light label.
+ */
+.fl a.fl-cta,
+.fl button.fl-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: 1px solid var(--color-rule);
+  background: none;
+  padding: 0.75rem 1.125rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The arrow leads the gesture: it slides before the button has changed state. */
+.fl .fl-cta__arrow {
+  display: inline-block;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .fl a.fl-cta:hover,
+  .fl button.fl-cta:hover {
+    border-color: var(--color-ink);
+  }
+
+  .fl a.fl-cta:hover .fl-cta__arrow,
+  .fl button.fl-cta:hover .fl-cta__arrow {
+    transform: translateX(0.25rem);
+  }
+}
+
+.fl a.fl-cta--solid,
+.fl button.fl-cta--solid {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-ghost);
+}
+
+@media (hover: hover) {
+  .fl a.fl-cta--solid:hover,
+  .fl button.fl-cta--solid:hover {
+    background: #26263a;
+    border-color: #26263a;
+  }
+}
+
+/* On the dark bands the same two buttons invert. */
+.fl .fl-dark a.fl-cta,
+.fl .fl-dark button.fl-cta {
+  border-color: var(--ghost-rule);
+  color: var(--color-ghost);
+}
+
+.fl .fl-dark a.fl-cta--solid,
+.fl .fl-dark button.fl-cta--solid {
+  border-color: var(--color-ghost);
+  background: var(--color-ghost);
+  color: var(--color-void);
+}
+
+@media (hover: hover) {
+  .fl .fl-dark a.fl-cta:hover,
+  .fl .fl-dark button.fl-cta:hover {
+    border-color: var(--color-ghost);
+  }
+
+  .fl .fl-dark a.fl-cta--solid:hover,
+  .fl .fl-dark button.fl-cta--solid:hover {
+    background: #fff;
+    border-color: #fff;
+  }
+}
+
+.fl :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- site header ---------- */
+
+.fl-head {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-head);
+  border-bottom: 1px solid var(--color-rule);
+  background: rgb(248 248 255 / 0.86);
+  backdrop-filter: blur(10px);
+}
+
+.fl-head__row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 4rem;
+}
+
+.fl-head__brand {
+  font-family: "Geist Pixel", ui-monospace, monospace;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+}
+
+.fl-head__nav {
+  display: none;
+  margin-left: auto;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .fl-head__nav {
+    display: flex;
+  }
+}
+
+.fl-head__nav a {
+  font-size: 0.8125rem;
+  color: var(--ink-65);
+  transition: color 200ms ease;
+}
+
+.fl-head__nav a:hover,
+.fl-head__nav a[aria-current="true"] {
+  color: var(--color-ink);
+}
+
+/* Pushes the CTA right on the narrow layout, where the nav is hidden. */
+.fl-head__row > .fl-cta:last-child {
+  margin-left: auto;
+}
+
+@media (min-width: 900px) {
+  .fl-head__row > .fl-cta:last-child {
+    margin-left: 1.5rem;
+  }
+}
+
+/* ---------- hero ---------- */
+
+.fl-hero {
+  position: relative;
+  height: 100svh;
+  min-height: 34rem;
+  overflow: hidden;
+  background: var(--color-void);
+  color: var(--color-ghost);
+}
+
+/* Cursor-steered Three.js scene from the landing-page source project. */
+.fl-hero__scene {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-art);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fl-hero__scene canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Faint technical grid, masked so it fades before it reaches the copy. */
+.fl-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(248 248 255 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(248 248 255 / 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 72% 24%, #000, transparent 76%);
+  mask-image: radial-gradient(ellipse 80% 60% at 72% 24%, #000, transparent 76%);
+  pointer-events: none;
+}
+
+/*
+ * Legibility scrim for the hero copy. An ellipse centred on the copy rather
+ * than a full-width linear gradient: a linear one has to stay strong out to the
+ * paragraph's right edge, and by then it is also dimming the light shafts the
+ * section is built on.
+ */
+.fl-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-art);
+  background: radial-gradient(
+    ellipse 62rem 30rem at 4% 52%,
+    rgb(1 2 4 / 0.9) 0%,
+    rgb(1 2 4 / 0.58) 44%,
+    transparent 74%
+  );
+  pointer-events: none;
+}
+
+.fl-hero__inner {
+  position: relative;
+  z-index: var(--z-copy);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  /* Clears the ticker pinned to the section's foot. */
+  padding-block: 1.75rem 5.25rem;
+}
+
+@media (min-width: 768px) {
+  .fl-hero__inner {
+    padding-block: 2.5rem 6rem;
+  }
+}
+
+.fl-hero__mark {
+  display: flex;
+  justify-content: center;
+}
+
+.fl-hero__mark .fl-wordmark {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--color-ghost);
+}
+
+.fl-hero__copy {
+  max-width: 48rem;
+}
+
+.fl-hero h1 {
+  margin: 0;
+  /* Ceiling at 4rem: this is a product statement read at arm's length, not a
+     campaign headline. */
+  font-size: clamp(1.875rem, 4.2vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+
+.fl-hero h1 .fl-line {
+  display: block;
+}
+
+.fl-hero h1 .fl-line--soft {
+  font-weight: 300;
+  font-style: italic;
+  color: rgb(255 255 255 / 0.78);
+}
+
+/*
+ * 26rem rather than the measure: past that the last words of each line run
+ * under the bright core of the warm shaft, where white text drops below 4.5:1
+ * against the art.
+ */
+.fl-hero__sub {
+  margin: 1.5rem 0 0;
+  max-width: 26rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: rgb(255 255 255 / 0.82);
+}
+
+.fl-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.fl-hero__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.fl-hero__stages {
+  margin: 0 0 0.5rem;
+  color: rgb(255 255 255 / 0.72);
+}
+
+.fl-hero__stages span {
+  color: rgb(255 255 255 / 0.4);
+}
+
+.fl-hero__foot p {
+  margin: 0;
+}
+
+/* ---------- the headline catching, character by character ---------- */
+
+/*
+ * Stands in for the WebGL filament effect the design prototype used, which
+ * needed a renderer this page does not ship. Same read: each character arrives
+ * out of the dark with a warm bloom that decays as it settles, left to right
+ * along the line, so the headline lights like lamps along a wall.
+ *
+ * Words are inline-block so a line still breaks between them; the characters
+ * inside a word are inline-block so blur and transform apply to them at all.
+ *
+ * The animation runs on paint rather than waiting for a scroll observer. A
+ * reveal gated on a class never fires in a headless renderer or a background
+ * tab, and `both` leaves the finished state as the resting one either way.
+ */
+.fl-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.fl-char {
+  display: inline-block;
+  animation: fl-catch 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 26ms + 120ms);
+}
+
+@keyframes fl-catch {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(0.12em);
+    text-shadow: 0 0 1.4em rgb(255 176 112 / 0);
+  }
+
+  42% {
+    opacity: 1;
+    filter: blur(0.5px);
+    transform: translateY(0);
+    text-shadow: 0 0 0.7em rgb(255 186 124 / 0.9);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+    text-shadow: 0 0 0 rgb(255 186 124 / 0);
+  }
+}
+
+/* The copy under the headline arrives as the first characters catch, so the
+   block reads top to bottom rather than appearing all at once around them. */
+.fl-fade {
+  animation: fl-rise 1s ease-out both;
+}
+
+.fl-fade--1 {
+  animation-delay: 540ms;
+}
+
+.fl-fade--2 {
+  animation-delay: 760ms;
+}
+
+.fl-fade--3 {
+  animation-delay: 940ms;
+}
+
+@keyframes fl-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+}
+
+/* ---------- marquee ---------- */
+
+/*
+ * A scrolling list of the inputs a grade is computed from. Two identical groups
+ * and a translate of half the track, so the second group is exactly where the
+ * first started when the loop restarts and there is no seam to see.
+ *
+ * Masked at both edges rather than faded with an overlay, because the strip
+ * sits over the WebGL scene and an overlay would have to match a moving
+ * background.
+ */
+.fl-marquee {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: var(--z-copy);
+  overflow: hidden;
+  border-top: 1px solid var(--ghost-rule);
+  padding-block: 0.875rem;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.fl-marquee__track {
+  display: flex;
+  width: max-content;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.5);
+}
+
+.fl-marquee__group {
+  padding-right: 2.5rem;
+  white-space: nowrap;
+}
+
+/* Only while the hero is on screen; see effects/inView.js. */
+.fl-marquee.is-inview .fl-marquee__track {
+  animation: fl-drift 54s linear infinite;
+}
+
+@keyframes fl-drift {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ---------- route tape ---------- */
+
+/*
+ * Every item is a real receive route from the pinned scan. Same two-group
+ * trick, on the paper rather than over the art, so the mask is a plain
+ * gradient against a known colour.
+ */
+.fl-tape {
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-rule);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.fl-tape__track {
+  display: flex;
+  width: max-content;
+}
+
+.fl-tape.is-inview .fl-tape__track {
+  animation: fl-drift 72s linear infinite;
+}
+
+/* Reading one route is worth more than watching them all go past. */
+.fl-tape:hover .fl-tape__track {
+  animation-play-state: paused;
+}
+
+.fl-tape__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  border-right: 1px solid var(--color-rule);
+  padding: 0.875rem 1.375rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-60);
+}
+
+.fl-tape__item b {
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+/* One effective verifier is the finding. Everything else should not look
+   alarming, so only this state is marked, and it is marked with a glyph as
+   well as a weight — colour is not the only channel. */
+.fl-tape__item em {
+  font-style: normal;
+  color: var(--color-ink);
+}
+
+.fl-tape__item em::before {
+  content: "\2715\00a0";
+}
+
+/* ---------- the live instrument ---------- */
+
+/*
+ * The one dark object on the paper. The app is a dark monitoring surface and
+ * the four grade colours in theme.css are only legible against it, so the live
+ * readout is rendered as the instrument it is rather than restyled for the
+ * page it sits on.
+ */
+.fl-inst {
+  margin-top: 2.5rem;
+  border: 1px solid #22262d;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+}
+
+.fl-inst__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+}
+
+.fl .fl-inst__tab {
+  flex: 1 1 12rem;
+  border: 0;
+  border-radius: 0;
+  border-right: 1px solid var(--line);
+  background: none;
+  padding: 0.875rem 1.125rem;
+  font-family: inherit;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    color 220ms ease,
+    background-color 220ms ease;
+}
+
+.fl .fl-inst__tab:last-child {
+  border-right: 0;
+}
+
+.fl .fl-inst__tab:hover {
+  color: var(--dim);
+}
+
+.fl .fl-inst__tab[aria-selected="true"] {
+  background: var(--panel-2);
+  color: var(--ink);
+}
+
+.fl-inst__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  border-bottom: 1px solid var(--line);
+  padding: 0.875rem 1.125rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.fl-inst__head b {
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+}
+
+.fl-inst__head .fl-inst__spacer {
+  margin-left: auto;
+}
+
+.fl-inst__body {
+  display: grid;
+  gap: 2rem;
+  padding: 1.5rem 1.125rem;
+}
+
+@media (min-width: 900px) {
+  .fl-inst__body {
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    gap: 2.5rem;
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+.fl-inst__grade {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+/* The bar is the grade restated as a quantity, so the state reads before the
+   word does. Colour is never the only channel: the word is right beside it. */
+.fl-inst__grade i {
+  width: 0.75rem;
+  height: 2rem;
+  background: currentColor;
+}
+
+.fl-grade-ok {
+  color: var(--ok);
+}
+
+.fl-grade-degraded {
+  color: var(--degraded);
+}
+
+.fl-grade-unknown {
+  color: var(--unknown);
+}
+
+.fl-grade-breached {
+  color: var(--breached);
+}
+
+.fl-inst__why {
+  margin: 1rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--dim);
+}
+
+.fl-inst__why b {
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.fl-inst__facts {
+  margin: 1.25rem 0 0;
+  border-top: 1px dashed var(--line-2);
+  padding-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.fl-inst__facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0;
+}
+
+.fl-inst__facts dd {
+  margin: 0;
+  color: var(--dim);
+}
+
+/*
+ * The route list, filling in row by row the first time the panel is read and
+ * again whenever the scan is switched. It is the scan arriving: the rows are
+ * real reads off the fixture, and the stagger is the only thing about them that
+ * is a decision rather than a measurement.
+ */
+.fl-inst__routes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.75rem;
+}
+
+.fl-inst__routes li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--line);
+  padding: 0.4375rem 0;
+  color: var(--dim);
+  animation: fl-row 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 34ms);
+}
+
+@keyframes fl-row {
+  from {
+    opacity: 0;
+    transform: translateX(-0.5rem);
+  }
+}
+
+.fl-inst__routes b {
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* The count, and the reason it matters, in the same cell. */
+.fl-inst__routes var {
+  font-style: normal;
+  text-align: right;
+  color: var(--muted);
+}
+
+.fl-inst__routes .fl-flag {
+  min-width: 5.5rem;
+  text-align: right;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--breached);
+}
+
+.fl-inst__routes .fl-flag--ok {
+  color: var(--muted);
+}
+
+.fl-inst__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  border-top: 1px solid var(--line);
+  padding: 0.875rem 1.125rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.fl-inst__foot a {
+  color: var(--accent);
+}
+
+.fl-inst__foot a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- figures ---------- */
+
+.fl-figures {
+  display: grid;
+  gap: 1px;
+  margin-top: 3.5rem;
+  background: var(--color-rule);
+  border-block: 1px solid var(--color-rule);
+}
+
+@media (min-width: 640px) {
+  .fl-figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .fl-figures {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.fl-figure {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-ghost);
+  padding: 1.75rem 1.5rem 1.5rem;
+}
+
+.fl-figure b {
+  font-family: var(--mono);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.fl-figure p {
+  margin: 0.625rem 0 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ink-70);
+}
+
+.fl-figure .fl-src {
+  margin-top: auto;
+}
+
+/* ---------- the incident rule ---------- */
+
+/*
+ * One pulse travelling a hairline. The rule is the twelve and a half months and
+ * the pulse crossing it is the only moving thing in the band. The pulse is 22%
+ * of the rule's width, so a translate of 455% of its own width carries it from
+ * just off the left edge to just off the right — expressed in the element's own
+ * width so nothing here has to know how wide the section is.
+ */
+.fl-rule {
+  position: relative;
+  /* Always sits under the heading of the span it stands for, so the gap is the
+     element's own rather than something each page has to pass in. */
+  margin-top: 2rem;
+  height: 1px;
+  overflow: hidden;
+  background: var(--color-rule);
+}
+
+.fl-rule__pulse {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 22%;
+  background: linear-gradient(90deg, transparent, var(--color-ink), transparent);
+  transform: translate3d(-100%, 0, 0);
+}
+
+.fl-rule.is-inview .fl-rule__pulse {
+  animation: fl-run 4.2s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+}
+
+@keyframes fl-run {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(455%, 0, 0);
+  }
+}
+
+/*
+ * One moment on the timeline. The square is the tick: the rule above the row is
+ * the whole span, and these are the points on it where something is known to
+ * have happened.
+ */
+.fl-moments {
+  display: grid;
+  gap: 3rem 2.5rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .fl-moments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .fl-moments {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.fl-moment {
+  position: relative;
+  padding-top: 1.75rem;
+}
+
+.fl-moment::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-ink);
+}
+
+/* The moment the page is actually about. */
+.fl-moment--break::before {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--color-ink);
+}
+
+.fl-moment__when {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+.fl-moment__what {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ink-70);
+}
+
+/* ---------- grade meter ---------- */
+
+/*
+ * Four cells of headroom, filled from the left, under each grade name. Squares
+ * rather than a bar so the row belongs to the same pixel grid as the wordmark,
+ * the trail and the shapes; aria-hidden, because the grade's name and the
+ * sentence beside it already say everything it does.
+ */
+.fl-meter {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.fl-meter i {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-ink);
+}
+
+.fl-meter i.is-off {
+  background: var(--color-rule);
+}
+
+/* UNKNOWN is not zero headroom — it is no reading at all, so its cells are
+   outlines rather than empty fills. */
+.fl-meter i.is-void {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--color-rule);
+}
+
+/* The grade's name, in the same mono the app labels it with. */
+.fl-grade-name {
+  margin: 1rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+}
+
+/* ---------- the pipeline diagram ---------- */
+
+/*
+ * Three columns from `lg` up: what gets read, what decides, and what the
+ * decision is allowed to do. The wires between them are drawn from the
+ * laid-out boxes by effects/beams.js, which also owns .beam-node and .beam-pin.
+ */
+.fl-diagram {
+  display: grid;
+  row-gap: 3rem;
+  margin-top: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .fl-diagram {
+    grid-template-columns: 11rem minmax(0, 1fr) 11rem;
+    column-gap: 2.5rem;
+  }
+}
+
+/* The side columns stretch so their two captions sit on one line; only the
+   spine is centred against them. */
+.fl-diagram__side {
+  display: flex;
+  flex-direction: column;
+}
+
+.fl-diagram__pins {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.fl-diagram__spine {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 1024px) {
+  .fl-diagram__spine {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-self: center;
+  }
+}
+
+.fl-node__tag {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+/* The box the wireframe solid is measured into and drawn in. */
+.fl-node__shape {
+  width: 100%;
+  max-width: 9rem;
+  height: 5rem;
+  margin: 1.25rem auto;
+}
+
+.fl-node h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- ruled lists ---------- */
+
+/* A row of claims that are one statement in several parts. Ruled rather than
+   boxed: cards would say they were several things. */
+.fl-claims {
+  display: grid;
+  margin: 4rem 0 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+@media (min-width: 640px) {
+  .fl-claims {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fl-claims > div {
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--color-rule);
+}
+
+.fl-claims > div:first-child {
+  border-top: 0;
+}
+
+@media (min-width: 640px) {
+  .fl-claims > div {
+    border-top: 0;
+    border-left: 1px solid var(--color-rule);
+    padding-inline: 2rem;
+  }
+
+  .fl-claims > div:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .fl-claims > div:last-child {
+    padding-right: 0;
+  }
+}
+
+.fl-claims dt {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+.fl-claims dd {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ink-70);
+}
+
+/* A term and its definition on one line from `sm` up, stacked below it. */
+.fl-rows {
+  margin: 3rem 0 0;
+  border-top: 1px solid var(--color-rule);
+  font-size: 0.875rem;
+}
+
+.fl-rows > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--color-rule);
+  padding-block: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .fl-rows > div {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2.5rem;
+  }
+}
+
+.fl-rows dt {
+  margin: 0;
+  color: var(--ink-65);
+}
+
+.fl-rows dd {
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* The package behind the row, on its own line: the rows are right-aligned from
+   `sm` up, which runs a trailing mono tag straight into the full stop. */
+.fl-rows dd .fl-src {
+  display: block;
+  margin-top: 0.375rem;
+}
+
+@media (min-width: 640px) {
+  .fl-rows dd {
+    max-width: 52ch;
+    text-align: right;
+  }
+}
+
+/* Two-up prose, for stages and audiences. */
+.fl-pair {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .fl-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 4rem;
+  }
+}
+
+.fl-quad {
+  display: grid;
+  gap: 2.25rem 2.5rem;
+  margin: 4rem 0 0;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .fl-quad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .fl-quad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.fl-quad dt {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.fl-quad dd {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ink-70);
+}
+
+/*
+ * Each enforcement point with both halves stated — what it catches, and what it
+ * is blind to. A monitoring product that publishes only the left half is the
+ * thing this page argues against, so the layout makes the right half
+ * structural rather than a footnote.
+ */
+.fl-limits {
+  margin: 2rem 0 0;
+  border-top: 1px solid var(--color-rule);
+  font-size: 0.875rem;
+}
+
+.fl-limits > div {
+  display: grid;
+  gap: 0.75rem 2.5rem;
+  border-bottom: 1px solid var(--color-rule);
+  padding-block: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .fl-limits > div {
+    grid-template-columns: 13rem minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.fl-limits dt {
+  margin: 0;
+  font-weight: 700;
+}
+
+.fl-limits dd {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--ink-70);
+}
+
+.fl-limits dd + dd {
+  color: var(--ink-65);
+}
+
+/* ---------- scan invitation ---------- */
+
+/*
+ * The page's one loud band. It is the product's front door: everything above it
+ * argues that standing state needs grading, and this is where a reader runs
+ * one. Inverted rather than enlarged — the shift to black is what marks it,
+ * not a bigger heading.
+ */
+.fl-invite {
+  background: var(--color-void);
+  color: var(--color-ghost);
+  padding-block: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .fl-invite {
+    padding-block: 7rem;
+  }
+}
+
+.fl-invite__grid {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .fl-invite__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    column-gap: 5rem;
+    align-items: end;
+  }
+}
+
+.fl-invite h2 {
+  margin: 0;
+  max-width: 26ch;
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.fl-invite p {
+  margin: 1.5rem 0 0;
+  max-width: 54ch;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ghost-70);
+}
+
+.fl-invite__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+}
+
+/* Provenance is a line of its own here rather than an inline tail, because the
+   claim above it is the one on the page a reader is most likely to check. */
+.fl-dark .fl-src {
+  display: block;
+  margin-top: 1.5rem;
+  color: var(--ghost-55);
+}
+
+/* Jump straight to a scan that already exists, so the CTA is not the only way
+   in. Both of the top two are real fixtures. */
+.fl-invite__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ghost-rule);
+}
+
+.fl-invite__list a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--ghost-rule);
+  padding-block: 0.875rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ghost-70);
+  transition:
+    color 220ms ease,
+    padding-left 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .fl-invite__list a:hover {
+    padding-left: 0.5rem;
+    color: var(--color-ghost);
+  }
+}
+
+.fl-invite__list b {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* ---------- photo plate ---------- */
+
+/*
+ * 5:2 is a band on a phone and 6:1 on a desktop. The crop opens up as the
+ * viewport narrows; the magnifier cover-fits the photo, so it needs no notice
+ * of the change. No rule under it: the plate is black and so is the footer, so
+ * the page's last two bands read as one closing field.
+ */
+.fl-plate {
+  /* The host is the <figure> itself: effects/gridImage.js positions its canvas
+     against it, and .fl-plate-mark is a sibling of that canvas. */
+  margin: 0;
+  aspect-ratio: 5 / 2;
+  width: 100%;
+  background: var(--color-void);
+}
+
+@media (min-width: 768px) {
+  .fl-plate {
+    aspect-ratio: 6 / 1;
+  }
+}
+
+/*
+ * The plate's wordmark, over the photo rather than in it. A sibling of the
+ * magnifier canvas with a z-index above it, so the photo goes on resolving
+ * underneath while the letterforms stay type — and `pointer-events: none`
+ * keeps the host, not this, as the element under the cursor, so moving across
+ * the word drives the effect exactly as moving across the photo does.
+ *
+ * Inter italic against the hero's Geist Pixel: the two marks are the same word
+ * at opposite ends of the page and should not be the same drawing of it.
+ */
+.fl-plate-mark {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-copy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  /* The plate is a 6:1 band, so its height is the ceiling here, not the
+     measure. */
+  font-size: clamp(2.25rem, 7vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  pointer-events: none;
+  /*
+   * The photo is long-exposure streaks on black, bright enough in places to
+   * take the word down to grey-on-yellow. A soft shadow the size of the type
+   * rather than a plate behind it: it only shows where the photo is light,
+   * which is the only place it is needed.
+   */
+  text-shadow: 0 0 2.5rem rgb(1 2 4 / 0.85);
+}
+
+/* ---------- footer ---------- */
+
+.fl-foot {
+  background: var(--color-void);
+  color: var(--color-ghost);
+  padding-block: 5rem 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .fl-foot {
+    padding-top: 6rem;
+  }
+}
+
+.fl-foot__cols {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 640px) {
+  .fl-foot__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .fl-foot__cols {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.fl-foot__head {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ghost-55);
+}
+
+.fl-foot p.fl-foot__body {
+  margin: 1rem 0 0;
+  max-width: 22rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ghost-70);
+}
+
+.fl-foot ul {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+  color: var(--ghost-70);
+}
+
+.fl-foot li {
+  padding-block: 0.25rem;
+}
+
+.fl-foot li a:hover {
+  color: var(--color-ghost);
+  text-decoration: underline;
+}
+
+.fl-foot__end {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 4rem;
+  border-top: 1px solid var(--ghost-rule);
+  padding-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  color: var(--ghost-55);
+}
+
+@media (min-width: 640px) {
+  .fl-foot__end {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2.5rem;
+  }
+}
+
+/* ---------- docs ---------- */
+
+/*
+ * The docs page is the same system with the argument put back. Its label rail
+ * carries a table of contents instead of a caption, because a reader who has
+ * come here has come for one of the sections rather than for the whole of it.
+ */
+.fl-toc {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-rule);
+  font-size: 0.8125rem;
+}
+
+.fl-toc li {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.fl .fl-toc a {
+  display: block;
+  padding-block: 0.625rem;
+  color: var(--ink-65);
+  transition:
+    color 200ms ease,
+    padding-left 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .fl .fl-toc a:hover {
+    padding-left: 0.375rem;
+    color: var(--color-ink);
+  }
+}
+
+/* The docs lede band: no rule under it, because the first section's own rule
+   is immediately below. */
+.fl-docs-top {
+  padding-block: 4rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .fl-docs-top {
+    padding-block: 5.5rem 2rem;
+  }
+}
+
+.fl-docs-top h1 {
+  margin: 1.5rem 0 0;
+  max-width: 30ch;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+/* The statement a reader should leave with, set at reading-aloud size. */
+.fl-statement {
+  margin: 0;
+  max-width: 56rem;
+  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+
+.fl-statement span {
+  color: var(--ink-60);
+}
+
+.fl-two {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .fl-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 4rem;
+  }
+}
+
+/* A figure whose caption is the claim and whose body is its scope. */
+.fl-replay {
+  margin: 5rem 0 0;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 2rem;
+}
+
+.fl-replay__claim {
+  margin: 1.5rem 0 0;
+  font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+.fl-replay__claim strong {
+  font-weight: 400;
+}
+
+.fl-measured {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .fl-measured {
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    column-gap: 2.5rem;
+  }
+}
+
+.fl-ledger {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.fl-ledger > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--color-rule);
+  padding-block: 0.75rem;
+}
+
+.fl-ledger > div:first-child {
+  padding-top: 0;
+}
+
+.fl-ledger > div:last-child {
+  border-bottom: 0;
+}
+
+.fl-ledger dt {
+  margin: 0;
+  color: var(--ink-65);
+}
+
+.fl-ledger dd {
+  margin: 0;
+  text-align: right;
+}
+
+/* The reference index: the prototype screens and the written record. */
+.fl .fl-index {
+  display: grid;
+  gap: 1px;
+  margin-top: 3rem;
+  background: var(--color-rule);
+  border: 1px solid var(--color-rule);
+}
+
+@media (min-width: 640px) {
+  .fl-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .fl-index {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fl-index a {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-ghost);
+  padding: 1.5rem 1.375rem;
+  transition: background-color 260ms ease;
+}
+
+@media (hover: hover) {
+  .fl .fl-index a:hover {
+    background: #f1f1fa;
+  }
+}
+
+.fl-index b {
+  font-weight: 400;
+  font-size: 0.9375rem;
+  letter-spacing: -0.02em;
+}
+
+.fl-index span {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ink-70);
+}
+
+.fl-index .fl-src {
+  margin-top: 1rem;
+}
+
+/* ---------- scroll reveal ---------- */
+
+/*
+ * An enhancement over an already-visible default: `.rv` only hides its target
+ * once the page has told us the observer is up (`.fl--js`), so a renderer with
+ * no IntersectionObserver, a disabled-JS visitor and a headless screenshot all
+ * get the finished page rather than a blank one.
+ */
+.fl--js .fl-rv {
+  opacity: 0;
+  transform: translateY(0.875rem);
+}
+
+.fl .fl-rv {
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fl--js .fl-rv.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fl--js .fl-rv {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* The headline is plain text at rest, so there is nothing to wait for. */
+  .fl-char,
+  .fl-fade,
+  .fl-inst__routes li {
+    animation: none;
+  }
+
+  /*
+   * Both of these are infinite loops with no end state to land on, and neither
+   * carries information the stopped version loses: the marquee is a list of
+   * terms, the rule is a rule. So they stop rather than crossfade.
+   */
+  .fl-marquee.is-inview .fl-marquee__track,
+  .fl-tape.is-inview .fl-tape__track,
+  .fl-rule.is-inview .fl-rule__pulse {
+    animation: none;
+  }
+
+  /* Off the left edge is where the pulse rests; centred is where it reads as a
+     deliberate highlight on a still rule. */
+  .fl-rule__pulse {
+    transform: translate3d(195%, 0, 0);
+  }
+
+  .fl .fl-cta__arrow,
+  .fl-invite__list a,
+  .fl-toc a {
+    transition: none;
+  }
+}

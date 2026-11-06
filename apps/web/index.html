@@ -3,7 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Floor</title>
+    <title>Floor — security ratings for onchain collateral</title>
+    <meta
+      name="description"
+      content="Floor continuously rates the effective security of onchain collateral and gives lenders evidence to reduce exposure with bounded enforcement."
+    />
+    <!-- The page opens on a black hero, so the UA chrome should not flash white. -->
+    <meta name="theme-color" content="#010204" />
+    <!--
+      The three faces the first screen needs, self-hosted (see src/site.css).
+      They are declared in a stylesheet the browser only discovers after the
+      bundle, so without these the wordmark and the headline swap in late.
+      Inter italic is deliberately absent: it sets the mark on the photo plate
+      at the very bottom of the page.
+    -->
+    <link rel="preload" href="/fonts/geist-pixel-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/lato-italic-300-latin.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>
