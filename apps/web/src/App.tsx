@@ -60,7 +60,7 @@ export function App() {
     <>
       <div className="proto">Prototype for design handoff · REAL = actual onchain scans · MOCK = invented UI states</div>
       <nav>
-        <a className="brand" href="#/">Floor</a>
+        <a className="brand" href="#/">FLOOR</a>
         {NAV.map(([to, label]) => <a key={to} href={`#${to}`} className={path.startsWith(to) ? "on" : ""}>{label}</a>)}
       </nav>
       <main>{screen}</main>

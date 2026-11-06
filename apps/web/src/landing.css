@@ -1,30 +1,13 @@
 /*
  * Landing page — "evidence terminal".
  *
- * Scoped under .lp so none of it reaches the wireframe prototype in styles.css,
- * which stays deliberately plain. System font stacks only: the page has to
- * render identically off a Swarm /bzz/ URL with no webfont fetch.
+ * Tokens come from theme.css, shared with the app screens. Everything here is
+ * scoped under .lp because it is page furniture, not a reusable primitive.
+ * System font stacks only: the page has to render identically off a Swarm
+ * /bzz/ URL with no webfont fetch.
  */
 
 .lp {
-  --bg: #08090b;
-  --panel: #0e1013;
-  --panel-2: #121519;
-  --line: #1d2127;
-  --line-2: #2a3038;
-  --ink: #e8ebef;
-  --dim: #9aa3ae;
-  --muted: #6f7883;
-  --breached: #ff453a;
-  --degraded: #ffd60a;
-  --ok: #30d158;
-
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-
-  --page: 1120px;
-  --gut: 24px;
-
   background: var(--bg);
   color: var(--ink);
   font-family: var(--sans);

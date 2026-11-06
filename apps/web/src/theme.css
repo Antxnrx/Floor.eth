@@ -1,0 +1,40 @@
+/*
+ * One token set for the landing page and the app.
+ *
+ * Dark only, on purpose: the product is a monitoring surface and the grade
+ * colours only read correctly against a dark ground. Everything chromatic on
+ * either surface is a grade — if something is coloured, it means something.
+ */
+:root {
+  color-scheme: dark;
+
+  --bg: #08090b;
+  --panel: #0e1013;
+  --panel-2: #121519;
+  --line: #1d2127;
+  --line-2: #2a3038;
+
+  --ink: #e8ebef;
+  --dim: #9aa3ae;
+  --muted: #6f7883;
+
+  /* Grades. These four are the only saturated colours in the product. */
+  --ok: #30d158;
+  --degraded: #ffd60a;
+  --unknown: #8e949d;
+  --breached: #ff453a;
+
+  /* Provenance badges: whether a row is a real scan or a UI placeholder. */
+  --real: #22d3ee;
+  --mock: #a78bfa;
+
+  --accent: #6ea8ff;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --page: 1120px;
+  --gut: 24px;
+  --r: 8px;
+  --head: 58px;
+}

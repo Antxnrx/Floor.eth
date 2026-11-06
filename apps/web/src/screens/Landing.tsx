@@ -44,16 +44,6 @@ function Decode({ text }: { text: string }) {
   return <span ref={ref}>{out}</span>;
 }
 
-/** styles.css paints the body for the light prototype; the landing owns the page
- *  while it is mounted so overscroll does not flash white. */
-const useDarkBody = () => {
-  useEffect(() => {
-    const prev = document.body.style.background;
-    document.body.style.background = "#08090b";
-    return () => { document.body.style.background = prev; };
-  }, []);
-};
-
 /** The router owns the hash, so scrolling to a section anchor is ours to do. */
 const useAnchorScroll = () => {
   useEffect(() => {
@@ -104,7 +94,6 @@ const Band = ({ id, n, label, children }: { id?: string; n: string; label: strin
 
 export function Landing() {
   const root = useReveal();
-  useDarkBody();
   useAnchorScroll();
 
   return (
