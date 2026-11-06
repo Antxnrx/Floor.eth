@@ -1,0 +1,649 @@
+/*
+ * Landing page — "evidence terminal".
+ *
+ * Scoped under .lp so none of it reaches the wireframe prototype in styles.css,
+ * which stays deliberately plain. System font stacks only: the page has to
+ * render identically off a Swarm /bzz/ URL with no webfont fetch.
+ */
+
+.lp {
+  --bg: #08090b;
+  --panel: #0e1013;
+  --panel-2: #121519;
+  --line: #1d2127;
+  --line-2: #2a3038;
+  --ink: #e8ebef;
+  --dim: #9aa3ae;
+  --muted: #6f7883;
+  --breached: #ff453a;
+  --degraded: #ffd60a;
+  --ok: #30d158;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --page: 1120px;
+  --gut: 24px;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.lp *,
+.lp *::before,
+.lp *::after { box-sizing: border-box; }
+
+/* Film grain. Inline SVG turbulence rather than a PNG so it costs no request
+   and survives being served off a Swarm /bzz/ URL. Desaturated, or the noise
+   reads as colour speckle on near-black. */
+.lp::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.lp a { color: inherit; text-decoration: none; }
+
+.lp-wrap {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+}
+
+/* Small uppercase label used to title every band. Carries the section number
+   so the page reads like a report rather than a brochure. */
+.lp-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lp-eyebrow::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.lp-src {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- header ---------- */
+
+.lp-head {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(8, 9, 11, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.lp-head .lp-wrap {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.lp-brand {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+}
+.lp-head nav {
+  display: flex;
+  gap: 22px;
+  margin-left: auto;
+}
+.lp-head nav a {
+  font-size: 13px;
+  color: var(--dim);
+  transition: color 0.15s;
+}
+.lp-head nav a:hover { color: var(--ink); }
+
+/* Specificity note: `.lp a { color: inherit }` above outranks a bare `.lp-cta`,
+   so these stay qualified with `a` or the solid button loses its dark label. */
+.lp a.lp-cta {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.lp a.lp-cta:hover { background: var(--panel-2); border-color: #3a424c; }
+.lp a.lp-cta-solid {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+  font-weight: 600;
+}
+.lp a.lp-cta-solid:hover { background: #fff; border-color: #fff; color: var(--bg); }
+
+/* ---------- hero ---------- */
+
+.lp-hero {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+/* Two dark blooms: ember behind the BREACHED card, violet under the headline.
+   Kept under ~15% alpha so the grade colours stay the only saturated thing
+   on the page. Drifts slowly; stopped entirely under reduced motion. */
+.lp-glow {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 46% at 76% 22%, rgba(255, 69, 58, 0.15), transparent 62%),
+    radial-gradient(40% 44% at 10% 86%, rgba(109, 40, 217, 0.17), transparent 64%);
+  animation: lp-drift 26s ease-in-out infinite alternate;
+}
+@keyframes lp-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-2.5%, 2%, 0) scale(1.08); }
+}
+/* Faint technical grid. Masked so it fades before it reaches the text. */
+.lp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 70% 20%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 70% 20%, #000, transparent 75%);
+  pointer-events: none;
+}
+.lp-hero .lp-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+  padding-top: 92px;
+  padding-bottom: 92px;
+}
+
+.lp-h1 {
+  font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  margin: 18px 0 0;
+  text-wrap: balance;
+}
+.lp-h1 em {
+  font-style: normal;
+  color: var(--muted);
+}
+.lp-quote {
+  margin: 26px 0 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--breached);
+  color: var(--dim);
+  font-size: 16px;
+  max-width: 46ch;
+}
+.lp-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+/* ---------- verdict card: the artifact the page is built around ---------- */
+
+.lp-verdict {
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  font-family: var(--mono);
+  overflow: hidden;
+}
+.lp-verdict-top {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+.lp-verdict-top b { color: var(--ink); font-size: 13px; letter-spacing: 0.04em; }
+.lp-verdict-top span { margin-left: auto; }
+
+.lp-verdict-body { padding: 22px 16px 18px; }
+
+.lp-grade {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(26px, 3.4vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--breached);
+}
+.lp-grade i {
+  width: 14px;
+  height: 34px;
+  background: var(--breached);
+  border-radius: 2px;
+  box-shadow: 0 0 22px rgba(255, 69, 58, 0.5);
+}
+
+/* The binding constraint. The whole point: say why, not just what. */
+.lp-capped {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+.lp-capped b { color: var(--ink); font-weight: 600; }
+
+.lp-verdict ul {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px dashed var(--line-2);
+  font-size: 12px;
+  color: var(--muted);
+}
+.lp-verdict li { display: flex; gap: 10px; padding: 3px 0; }
+.lp-verdict li::before { content: "\2014"; color: var(--line-2); }
+
+/* ---------- figures strip ---------- */
+
+.lp-figures {
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+.lp-figures .lp-wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 0;
+}
+.lp-fig {
+  padding: 28px var(--gut);
+  border-left: 1px solid var(--line);
+}
+.lp-fig:first-child { border-left: 0; }
+.lp-fig b {
+  display: block;
+  font-family: var(--mono);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.lp-fig p {
+  margin: 8px 0 10px;
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.45;
+}
+
+/* ---------- route ticker ---------- */
+
+/* Every item is a real receive route from the pinned scan. The track holds two
+   copies of the list and slides exactly half its width, so the loop is seamless. */
+.lp-marquee {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.lp-track {
+  display: flex;
+  width: max-content;
+  animation: lp-slide 64s linear infinite;
+}
+.lp-marquee:hover .lp-track { animation-play-state: paused; }
+@keyframes lp-slide {
+  to { transform: translateX(-50%); }
+}
+.lp-tick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--dim);
+  border-right: 1px solid var(--line);
+}
+.lp-tick b {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+/* One effective verifier is the finding; anything else should not look alarming. */
+.lp-tick .lp-one { color: var(--breached); }
+.lp-tick .lp-many { color: var(--muted); }
+
+/* ---------- generic band ---------- */
+
+/* Clears the 58px sticky header when an anchor scrolls a section into view. */
+.lp-band[id] { scroll-margin-top: 58px; }
+
+.lp-band { border-bottom: 1px solid var(--line); }
+.lp-band .lp-wrap { padding-top: 76px; padding-bottom: 76px; }
+.lp-h2 {
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 18px 0 0;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+.lp-sub {
+  margin: 12px 0 0;
+  color: var(--dim);
+  max-width: 62ch;
+}
+
+/* ---------- the gap ---------- */
+
+.lp-gap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 44px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+/* Flex so the source line sits on a common baseline across cards of
+   different body lengths. */
+.lp-gap > div {
+  background: var(--bg);
+  padding: 26px 24px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.lp-gap .lp-src { margin-top: auto; }
+.lp-gap h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+.lp-gap p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.6;
+}
+
+/* ---------- replay ---------- */
+
+.lp-replay {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+.lp-side {
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  padding: 24px;
+  background: var(--panel);
+}
+.lp-side-on {
+  border-color: rgba(48, 209, 88, 0.35);
+  background: linear-gradient(180deg, rgba(48, 209, 88, 0.06), transparent 60%), var(--panel);
+}
+.lp-side h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.lp-outcome {
+  font-family: var(--mono);
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 700;
+  margin: 14px 0 0;
+  letter-spacing: -0.01em;
+  color: var(--breached);
+}
+.lp-side-on .lp-outcome { color: var(--ok); }
+.lp-side p.lp-note {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.6;
+}
+
+/* ---------- pipeline ---------- */
+
+.lp-pipe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 44px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  counter-reset: pipe;
+}
+.lp-pipe > div {
+  background: var(--bg);
+  padding: 24px;
+  counter-increment: pipe;
+  display: flex;
+  flex-direction: column;
+}
+.lp-pipe .lp-src { margin-top: auto; }
+.lp-pipe h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.lp-pipe h3::before {
+  content: "0" counter(pipe);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.lp-pipe p {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.6;
+}
+
+/* ---------- built table ---------- */
+
+.lp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  font-size: 14px;
+}
+.lp-table th {
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  padding: 0 16px 12px 0;
+  border-bottom: 1px solid var(--line-2);
+}
+.lp-table td {
+  padding: 15px 16px 15px 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.lp-table td:first-child {
+  font-family: var(--mono);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.lp-table td:nth-child(2) { color: var(--dim); width: 100%; }
+.lp-table td:last-child {
+  font-family: var(--mono);
+  font-size: 13px;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--ok);
+  padding-right: 0;
+}
+
+/* ---------- verify ---------- */
+
+.lp-verify .lp-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.lp-meter {
+  font-family: var(--mono);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 22px;
+}
+.lp-meter-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+  color: var(--muted);
+}
+.lp-meter-top b { color: var(--ok); font-size: 22px; letter-spacing: -0.01em; }
+.lp-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line-2);
+  overflow: hidden;
+  margin: 16px 0 18px;
+}
+.lp-bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--ok);
+  box-shadow: 0 0 16px rgba(48, 209, 88, 0.45);
+  transform-origin: left;
+  animation: lp-fill 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes lp-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.lp-steps { list-style: none; margin: 0; padding: 0; font-size: 12px; color: var(--dim); }
+.lp-steps li { display: flex; gap: 10px; padding: 5px 0; }
+.lp-steps li::before { content: "\2713"; color: var(--ok); }
+
+/* ---------- footer ---------- */
+
+.lp-foot { background: var(--panel); }
+.lp-foot .lp-wrap { padding-top: 52px; padding-bottom: 52px; }
+.lp-stack {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.lp-stack b { display: block; font-size: 14px; font-weight: 600; }
+.lp-stack span { font-size: 13px; color: var(--muted); }
+.lp-foot-end {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.lp-foot-end a { color: var(--dim); }
+.lp-foot-end a:hover { color: var(--ink); }
+.lp-foot-end .lp-spacer { margin-left: auto; }
+
+/* ---------- scroll reveal ---------- */
+
+.rv {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rv.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  .lp-bar i,
+  .lp-glow,
+  .lp-track { animation: none; }
+  .lp { scroll-behavior: auto; }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .lp-hero .lp-wrap { grid-template-columns: 1fr; gap: 40px; padding-top: 56px; padding-bottom: 56px; }
+  .lp-figures .lp-wrap { grid-template-columns: repeat(2, 1fr); }
+  .lp-fig:nth-child(3) { border-left: 0; }
+  .lp-fig:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .lp-gap, .lp-pipe { grid-template-columns: 1fr; }
+  .lp-replay { grid-template-columns: 1fr; }
+  .lp-verify .lp-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .lp-stack { grid-template-columns: repeat(2, 1fr); }
+  .lp-head nav { display: none; }
+}
+
+@media (max-width: 560px) {
+  .lp-figures .lp-wrap { grid-template-columns: 1fr; }
+  .lp-fig { border-left: 0; border-top: 1px solid var(--line); }
+  .lp-fig:first-child { border-top: 0; }
+  .lp-band .lp-wrap { padding-top: 52px; padding-bottom: 52px; }
+
+  /* The mono path and test columns are nowrap and cannot shrink past ~385px,
+     so the table restacks into rows rather than scrolling sideways. */
+  .lp-table thead { display: none; }
+  .lp-table tr { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .lp-table td { display: block; border: 0; padding: 0; }
+  .lp-table td:nth-child(2) { font-size: 13px; margin: 6px 0; }
+  .lp-table td:last-child { text-align: left; }
+  .lp-table td:last-child::before { content: "tests "; color: var(--muted); }
+}
