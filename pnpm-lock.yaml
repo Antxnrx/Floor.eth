@@ -60,6 +60,9 @@ importers:
       '@floor/deployments':
         specifier: workspace:*
         version: link:../../packages/deployments
+      '@floor/live':
+        specifier: workspace:*
+        version: link:../../packages/live
       react:
         specifier: ^19.2.0
         version: 19.3.1

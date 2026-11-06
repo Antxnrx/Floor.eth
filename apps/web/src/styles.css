@@ -50,3 +50,8 @@ code { font-family: ui-monospace, monospace; font-size: 12px; }
 .meter { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; } .meter div { height: 100%; background: var(--ok); transition: width .4s; }
 blockquote { margin: 0; padding-left: 12px; border-left: 3px solid var(--accent); }
 textarea, select { width: 100%; font-family: ui-monospace, monospace; font-size: 13px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+nav a.main { color: var(--ink); font-weight: 600; }
+nav .spacer { flex: 1; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.tablebox { overflow-x: auto; }
+select { background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; }
