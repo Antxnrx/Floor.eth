@@ -8,13 +8,13 @@ export function Asset({ id }: { id: string }) {
   const a = findAsset(id);
   const [dir, setDir] = useState<"receive" | "send">("receive");
   const [showCalls, setShowCalls] = useState(false);
-  if (!a?.bundle) return <p>Asset not found. <Link to="/">Back</Link></p>;
+  if (!a?.bundle) return <p>Asset not found. <Link to="/scan">Back</Link></p>;
   const { state, verdict } = a.bundle;
   const routes = verdict.routes.filter((r) => r.direction === dir);
   const stateRoute = (eid: number) => state.routes.find((r) => r.eid === eid && r.direction === dir)!;
   return (
     <>
-      <p><Link to="/">← Live scan</Link></p>
+      <p><Link to="/scan">← Live scan</Link></p>
       <div className="title-row">
         <h1>{a.symbol} <span className="muted">{a.label}</span></h1>
         <GradeChip g={verdict.grade} /> <Real />

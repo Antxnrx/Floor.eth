@@ -21,7 +21,7 @@ export function Verify({ id }: { id: string }) {
     const t = setTimeout(() => setStep(step + 1), 700);
     return () => clearTimeout(t);
   }, [step]);
-  if (!a?.bundle) return <p>Asset not found. <Link to="/">Back</Link></p>;
+  if (!a?.bundle) return <p>Asset not found. <Link to="/scan">Back</Link></p>;
   const done = step >= STEPS.length;
   return (
     <>

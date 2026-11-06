@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
+import { Landing } from "./screens/Landing";
 import { Dashboard } from "./screens/Dashboard";
 import { Asset } from "./screens/Asset";
 import { Verify } from "./screens/Verify";
 import { About, Blast, Check, Enforcement, Kelp, Rules } from "./screens/Others";
 
+/** The landing page's in-page anchors (`#gap`, `#replay`, …) live in the same
+ *  hash as the router. Routes are the ones that start with a slash. */
+const isRoute = (h: string) => h.startsWith("/");
+
 /** Hash router (works on static hosting and Swarm /bzz/ URLs without server rewrites). */
 const useHash = () => {
   const [h, setH] = useState(() => location.hash.slice(1) || "/");
   useEffect(() => {
-    const on = () => { setH(location.hash.slice(1) || "/"); window.scrollTo(0, 0); };
+    // Only reset scroll for real route changes; a bare #section is the landing
+    // page scrolling within itself (see isRoute).
+    const on = () => {
+      const next = location.hash.slice(1) || "/";
+      setH(next);
+      if (isRoute(next)) window.scrollTo(0, 0);
+    };
     addEventListener("hashchange", on);
     return () => removeEventListener("hashchange", on);
   }, []);
@@ -16,7 +27,7 @@ const useHash = () => {
 };
 
 const NAV = [
-  ["/", "Live scan"],
+  ["/scan", "Live scan"],
   ["/kelp", "Kelp replay"],
   ["/enforcement", "Enforcement"],
   ["/blast", "Blast radius"],
@@ -27,10 +38,13 @@ const NAV = [
 
 export function App() {
   const path = useHash();
+  // The landing page brings its own chrome and dark theme, so it bypasses the
+  // prototype banner and nav below. It also owns every non-route hash.
+  if (path === "/" || !isRoute(path)) return <Landing />;
   const [, root, arg = ""] = path.split("/");
   const screen = (() => {
     switch (root) {
-      case "": return <Dashboard />;
+      case "scan": return <Dashboard />;
       case "asset": return <Asset id={arg} />;
       case "verify": return <Verify id={arg} />;
       case "kelp": return <Kelp />;
@@ -47,7 +61,7 @@ export function App() {
       <div className="proto">Prototype for design handoff · REAL = actual onchain scans · MOCK = invented UI states</div>
       <nav>
         <a className="brand" href="#/">Floor</a>
-        {NAV.map(([to, label]) => <a key={to} href={`#${to}`} className={(to === "/" ? root === "" : path.startsWith(to)) ? "on" : ""}>{label}</a>)}
+        {NAV.map(([to, label]) => <a key={to} href={`#${to}`} className={path.startsWith(to) ? "on" : ""}>{label}</a>)}
       </nav>
       <main>{screen}</main>
     </>
