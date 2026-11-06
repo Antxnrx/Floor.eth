@@ -77,7 +77,7 @@ Rules:
 
 ## Arkiv ↔ Swarm link
 
-Arkiv schema `floor.rating` (owned by Floor's writer wallet; queries always `.ownedBy(writer)`):
+Arkiv schema `floor.rating` (owned by Floor's writer wallet; queries always `.createdBy(writer)`):
 
 | Field | Type | Indexed | Purpose |
 |---|---|---|---|

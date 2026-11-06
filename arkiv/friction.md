@@ -7,7 +7,7 @@
 3. **Indexer: yes or no?** The prize page lists `https://indexer.rabdi.db-chain.testnet.arkiv.network`, while the docs say "No external indexer" (queries go to the node). We used the node only.
 4. **Access keys for reads are unclear.** Raw `arkiv_query` worked with no key, and the SDK accepted `rabdi({ accessKey: "" })` for reads. The docs suggest a key is always needed. *Ask:* state per method whether a key is required.
 5. **128-byte strings.** Our `operators` field (e.g. `layerzero-labs,nethermind,canary,…`) can exceed 128 bytes, so we clip it and point to the full list on Swarm. *Ask:* a list/array column type, or longer non-indexed strings.
-6. **Anyone can write to a schema name.** Forgetting `.ownedBy(writer)` returns attacker-written rows as if they were ours. *Ask:* an option to bind a schema name to an owner, or make the SDK warn when a query has no owner/creator filter.
+6. **Anyone can write to a schema name.** Forgetting a writer filter returns attacker-written rows as if they were ours, and `.ownedBy(writer)` alone is not enough: an attacker can create an entity and transfer it to the writer, so filter with `.createdBy(writer)`. *Ask:* an option to bind a schema name to an owner, or make the SDK warn when a query has no owner/creator filter.
 
 ## Swarm
 

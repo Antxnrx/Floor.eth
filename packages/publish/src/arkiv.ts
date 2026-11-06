@@ -106,14 +106,18 @@ export async function publishRoutes(wallet: WalletArkivClient, values: ReturnTyp
   return out;
 }
 
-/** Latest rating for a token, written by Floor's writer wallet only (anyone can write to a schema name). */
+/**
+ * Latest rating for a token, created by Floor's writer wallet. Anyone can write to a schema name, and an owner can
+ * be changed by transfer (someone could create a fake rating and transfer it to the writer), so we filter on the
+ * creator, which never changes.
+ */
 export async function latestRating(client: PublicArkivClient, writer: Address, token: Address) {
-  const { entities } = await client.select().from(FloorRating).where(eq("token", addr(token))).ownedBy(writer).orderBy(desc("block")).fetch();
+  const { entities } = await client.select().from(FloorRating).where(eq("token", addr(token))).createdBy(writer).orderBy(desc("block")).fetch();
   return entities[0] ?? null;
 }
 
 /** The Mirror-track query: every route that resolves to a single effective verifier. */
 export async function singleVerifierRoutes(client: PublicArkivClient, writer: Address) {
-  const { entities } = await client.select().from(FloorRoute).where(and(eq("direction", "receive"), eq("independent", u64(1)))).ownedBy(writer).fetch();
+  const { entities } = await client.select().from(FloorRoute).where(and(eq("direction", "receive"), eq("independent", u64(1)))).createdBy(writer).fetch();
   return entities;
 }

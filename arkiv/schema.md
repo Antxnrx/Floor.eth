@@ -38,7 +38,7 @@ Network: Arkiv Rabdi testnet. RPC `https://rpc.rabdi.db-chain.testnet.arkiv.netw
 
 ## Ownership and expiry
 
-- **Owner:** Floor's writer wallet (address in the README once created). **Every query filters `.ownedBy(writer)`**, because anyone can write to a schema name.
+- **Owner:** Floor's writer wallet (address in the README once created). **Every query filters `.createdBy(writer)`**, because anyone can write to a schema name, and an owner can change by transfer (a fake entity could be transferred to the writer); the creator never changes.
 - **Expiry:** `ExpirationTime.fromDays(180)`. Risk data older than ~6 months is stale. The importer re-creates on each scan, so history is a series of entities keyed by `block`.
 - **Creator:** `$creator` = writer; it never changes.
 
@@ -46,9 +46,9 @@ Network: Arkiv Rabdi testnet. RPC `https://rpc.rabdi.db-chain.testnet.arkiv.netw
 
 ```ts
 // latest rating of a token (packages/publish/src/arkiv.ts latestRating)
-client.select().from(FloorRating).where(eq("token", addr(token))).ownedBy(writer).orderBy(desc("block")).fetch()
+client.select().from(FloorRating).where(eq("token", addr(token))).createdBy(writer).orderBy(desc("block")).fetch()
 // the Mirror query: every inbound route that resolves to one effective verifier
-client.select().from(FloorRoute).where(and(eq("direction", "receive"), eq("independent", u64(1)))).ownedBy(writer).fetch()
+client.select().from(FloorRoute).where(and(eq("direction", "receive"), eq("independent", u64(1)))).createdBy(writer).fetch()
 ```
 
 Raw JSON-RPC (no SDK, no access key needed for reads, checked 2026-11-06):
