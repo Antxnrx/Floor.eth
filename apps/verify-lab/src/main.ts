@@ -209,15 +209,17 @@ async function loadEvidence(src: Source, t: Transport, meter: TrafficMeter): Pro
 }
 
 /** Optional: the CRE-signed rating in FloorRegistry must carry the same bundle hash. */
-async function checkRegistry(expected: Hex, t: Transport, meter: TrafficMeter) {
+type Onchain = "skipped" | "match" | "differs" | "none";
+async function checkRegistry(expected: Hex, t: Transport, meter: TrafficMeter): Promise<Onchain> {
   const registry = v("registry");
-  if (!registry) { step("onchain: skipped (no FloorRegistry address given; deploy step 2 in the README)", "skip"); return true; }
+  if (!registry) { step("onchain: skipped (no FloorRegistry address given; deploy step 2 in the README)", "skip"); return "skipped"; }
   const data = encodeFunctionData({ abi: REGISTRY_ABI, functionName: "ratingOf", args: [v("token") as Address] });
   const out = (await rpcCall(meter.wrap(`registry · ${t.label}`, t.raw), v("registryRpc"), "eth_call", [{ to: registry, data }, "latest"])) as Hex;
   const r = decodeFunctionResult({ abi: REGISTRY_ABI, functionName: "ratingOf", data: out });
-  const ok = r.known && r.bundleHash.toLowerCase() === expected.toLowerCase();
-  step(`onchain: FloorRegistry ${registry.slice(0, 10)}… says ${GRADES[r.grade] ?? r.grade} at scan block ${r.scanBlock}, hash ${r.bundleHash.slice(0, 14)}… ${ok ? "matches" : r.known ? "DOES NOT match" : "(no rating stored)"}`, ok ? "ok" : "bad");
-  return ok;
+  if (!r.known) { step(`onchain: FloorRegistry ${registry.slice(0, 10)}… has no rating for this asset yet`, "bad"); return "none"; }
+  const ok = r.bundleHash.toLowerCase() === expected.toLowerCase();
+  step(`onchain: FloorRegistry ${registry.slice(0, 10)}… says ${GRADES[r.grade] ?? r.grade} at scan block ${r.scanBlock}, hash ${r.bundleHash.slice(0, 14)}… ${ok ? "matches" : "DOES NOT match"}`, ok ? "ok" : "bad");
+  return ok ? "match" : "differs";
 }
 
 function renderMeter(meter: TrafficMeter, label: string) {
@@ -247,7 +249,7 @@ async function run() {
     transport = await makeTransport(net, meter, boot);
     $("phase").textContent = `fetching evidence (${src})…`;
     const { bundle, expected } = await loadEvidence(src, transport, meter);
-    const onchainOk = await checkRegistry(expected, transport, meter);
+    const onchain = await checkRegistry(expected, transport, meter);
     if ($<HTMLInputElement>("tamper").checked) {
       const c = bundle.state.calls.find((x) => x.ok && x.result.length > 4)!;
       const last = c.result.slice(-1);
@@ -270,8 +272,9 @@ async function run() {
     renderMeter(meter, transport.label);
     const secs = ((performance.now() - t0) / 1000).toFixed(1);
     step(`replay: ${report.raw.matched}/${report.raw.total} recorded reads match mainnet at block ${bundle.state.scan.block} via ${transport.label}; grade claimed ${report.grade.claimed}, recomputed ${report.grade.recomputed}`, report.status === "VERIFIED" ? "ok" : "bad");
-    // the onchain hash check can only make the result worse, never better
-    const status = report.status === "VERIFIED" && !onchainOk ? "MISMATCH" : report.status;
+    // The onchain check can only make the result worse, never better: a different hash onchain is a MISMATCH even if
+    // some reads also failed; a registry with no rating leaves the result unconfirmed onchain.
+    const status = onchain === "differs" ? "MISMATCH" : onchain === "none" && report.status === "VERIFIED" ? "UNVERIFIED_ONCHAIN" : report.status;
     $("status").textContent = `${status} in ${secs} s${src === "fixture" ? " (local copy; Arkiv/Swarm not used)" : ""}`;
     $("status").className = `status ${status}`;
     log(`hash ok=${report.hash.ok} · raw ${report.raw.matched}/${report.raw.total} matched, ${report.raw.mismatched.length} mismatched, ${report.raw.failed.length} failed · state ok=${report.state.ok} · grade claimed=${report.grade.claimed} recomputed=${report.grade.recomputed}`);
