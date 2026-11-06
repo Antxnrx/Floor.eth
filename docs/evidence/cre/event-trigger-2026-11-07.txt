@@ -1,0 +1,10 @@
+# CRE log trigger on Kelp's real config change, 2026-11-06T21:55Z, CRE CLI v1.39.0
+
+Command: cre workflow simulate floor-rating --target staging-settings --non-interactive --trigger-index 1 --evm-tx-hash 0x2d48d9331d96c46f8b4a9f7a7bdcf256d2034dadb42f039d27dc28077d520592 --evm-event-index 0
+Trigger: UlnConfigSet log from LayerZero ReceiveUln302 0xc02Ab410f0734EFa3F14628780e6e695156024C2 on Ethereum mainnet (Kelp's Apr 2 2025 tx, block 22,179,964). The handler re-reads getUlnConfig(rsETH adapter, 30320) at that block and grades the bytes it read.
+
+2026-11-07T03:25:46Z [SIMULATION] Running trigger trigger=evm:ChainSelector:5009297550715157269@1.0.0
+2026-11-07T03:25:47Z [USER LOG] 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7: route 30320 changed in tx 0x2d48d9331d96c46f8b4a9f7a7bdcf256d2034dadb42f039d27dc28077d520592 at block 22179964; config read at that block needs ONE verifier -> BREACHED
+  "written": 1
+
+Simulation without --broadcast: the live registry already holds a newer scan (24,908,284), and FloorRegistry ignores older scan blocks by design.

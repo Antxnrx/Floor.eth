@@ -14,6 +14,8 @@ import {
   getNetwork,
   handler,
   HTTPClient,
+  logTriggerConfig,
+  protoBigIntToBigint,
   type HTTPSendRequester,
   ok,
   prepareReportRequest,
@@ -24,7 +26,7 @@ import {
 } from "@chainlink/cre-sdk";
 import { type Address, type Hex, zeroAddress } from "viem";
 import { z } from "zod";
-import { encodeReport, feedSchema, planReads, verifyEntry, type Feed } from "./logic";
+import { decodeUlnConfigSet, encodeReport, eventEntry, feedSchema, planReads, ulnConfigCall, ULN_CONFIG_SET_TOPIC, verifyEntry, type Feed } from "./logic";
 
 export const configSchema = z.object({
   schedule: z.string(),
@@ -37,6 +39,10 @@ export const configSchema = z.object({
   registryAddress: z.string(),
   gasLimit: z.string(),
   isTestnet: z.boolean(),
+  /** Event path: LayerZero receive library to watch on the source chain, and which adapter maps to which rated asset. */
+  receiveLib: z.string(),
+  watch: z.array(z.object({ oapp: z.string(), asset: z.string() })),
+  ruleVersion: z.number(),
 });
 export type Config = z.infer<typeof configSchema>;
 
@@ -86,7 +92,56 @@ export const onCron = (runtime: Runtime<Config>) => {
   return { written: accepted.length };
 };
 
-export const initWorkflow = (config: Config) => [handler(new CronCapability().trigger({ schedule: config.schedule }), onCron)];
+/**
+ * Event path: a LayerZero UlnConfigSet log on the source chain (someone changed a route's verifier config).
+ * The log only says WHICH route changed; every node re-reads that route's config onchain at the log's block and
+ * grades the bytes it read (same lower-bound rule as the feed path). A change that leaves one verifier is written
+ * as BREACHED immediately; anything else waits for the full re-scan.
+ */
+export const onConfigChange = (runtime: Runtime<Config>, log: { address: Uint8Array; data: Uint8Array; blockNumber?: { absVal: Uint8Array; sign: bigint } | unknown; txHash: Uint8Array }) => {
+  const cfg = runtime.config;
+  const { oapp, eid } = decodeUlnConfigSet(bytesToHex(log.data) as Hex);
+  const watched = cfg.watch.find((w) => w.oapp.toLowerCase() === oapp.toLowerCase());
+  const tx = bytesToHex(log.txHash);
+  if (!watched) {
+    runtime.log(`config change for ${oapp} eid ${eid} (tx ${tx}): not a watched adapter, ignored`);
+    return { written: 0 };
+  }
+  const block = protoBigIntToBigint(log.blockNumber as never);
+  const lib = bytesToHex(log.address) as Address;
+  const src = getNetwork({ chainFamily: "evm", chainSelectorName: cfg.sourceChainSelectorName, isTestnet: false });
+  const dst = getNetwork({ chainFamily: "evm", chainSelectorName: cfg.registryChainSelectorName, isTestnet: cfg.isTestnet });
+  if (!src || !dst) throw new Error("unknown chain selector name");
+  const read = new EVMClient(src.chainSelector.selector)
+    .callContract(runtime, { call: encodeCallMsg({ from: zeroAddress, to: lib, data: ulnConfigCall(oapp, eid) }), blockNumber: blockNumber(block) })
+    .result();
+  const entry = eventEntry({ asset: watched.asset as Address, lib, oapp, eid, block: Number(block), read: bytesToHex(read.data) as Hex, ruleVersion: cfg.ruleVersion });
+  if (!entry) {
+    runtime.log(`${watched.asset}: route ${eid} changed in tx ${tx} at block ${block}; config read at that block keeps more than one verifier: no downgrade, full re-scan decides`);
+    return { written: 0 };
+  }
+  runtime.log(`${watched.asset}: route ${eid} changed in tx ${tx} at block ${block}; config read at that block needs ONE verifier -> BREACHED`);
+  const report = runtime.report(prepareReportRequest(encodeReport([entry]))).result();
+  const res = new EVMClient(dst.chainSelector.selector)
+    .writeReport(runtime, { receiver: cfg.registryAddress, report, gasConfig: { gasLimit: cfg.gasLimit } })
+    .result();
+  if (res.txStatus !== TxStatus.SUCCESS) throw new Error(`writeReport failed: ${res.errorMessage || res.txStatus}`);
+  return { written: 1 };
+};
+
+export const initWorkflow = (config: Config) => {
+  const src = getNetwork({ chainFamily: "evm", chainSelectorName: config.sourceChainSelectorName, isTestnet: false });
+  if (!src) throw new Error("unknown source chain");
+  return [
+    handler(new CronCapability().trigger({ schedule: config.schedule }), onCron), // trigger index 0
+    handler(
+      new EVMClient(src.chainSelector.selector).logTrigger(
+        logTriggerConfig({ addresses: [config.receiveLib as Hex], topics: [[ULN_CONFIG_SET_TOPIC]], confidence: "FINALIZED" }),
+      ),
+      onConfigChange as never,
+    ), // trigger index 1
+  ];
+};
 
 export async function main() {
   const runner = await Runner.newRunner<Config>({ configSchema });

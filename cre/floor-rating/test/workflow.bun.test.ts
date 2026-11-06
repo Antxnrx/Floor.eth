@@ -21,6 +21,9 @@ const config: Config = {
   registryAddress: "0x000000000000000000000000000000000000F100",
   gasLimit: "500000",
   isTestnet: true,
+  receiveLib: "0xc02Ab410f0734EFa3F14628780e6e695156024C2",
+  watch: [{ oapp: "0x85d456B2DfF1fd8245387C0BfB64Dfb700e98Ef3", asset: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7" }],
+  ruleVersion: 100,
 };
 
 const b64 = (bytes: Uint8Array) => Buffer.from(bytes).toString("base64");

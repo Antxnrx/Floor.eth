@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { createPublicClient, decodeAbiParameters, http, type Hex } from "viem";
 import { mainnet } from "viem/chains";
 import feedJson from "../fixtures/feed-rseth-prehack.json" with { type: "json" };
-import { encodeReport, feedSchema, GRADE, impliedFloor, planReads, verifyEntry, type Entry } from "../logic";
+import { decodeUlnConfigSet, encodeReport, eventEntry, feedSchema, GRADE, impliedFloor, planReads, verifyEntry, type Entry } from "../logic";
 
 const feed = feedSchema.parse(feedJson);
 const entry = feed.entries[0]!;
@@ -85,5 +85,25 @@ describe("demo lies are rejected", () => {
   });
   it("the honest feed is accepted against the same chain", () => {
     expect(verifyEntry(honest, chain).accepted).toBe(true);
+  });
+});
+
+describe("event path: CRE reacts to Kelp's real Apr 2 2025 config change", () => {
+  const fx = JSON.parse(readFileSync(new URL("../fixtures/kelp-config-event.json", import.meta.url), "utf8"));
+  const RSETH = "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7" as const;
+  it("decodes the UlnConfigSet log: rsETH adapter, Unichain route (eid 30320)", () => {
+    const e = decodeUlnConfigSet(fx.logData);
+    expect(e.oapp.toLowerCase()).toBe("0x85d456b2dff1fd8245387c0bfb64dfb700e98ef3");
+    expect(e.eid).toBe(30320);
+  });
+  it("the config read at that block grades BREACHED (one required verifier)", () => {
+    const e = decodeUlnConfigSet(fx.logData);
+    const entry = eventEntry({ asset: RSETH, lib: fx.lib, oapp: e.oapp, eid: e.eid, block: fx.block, read: fx.readAt, ruleVersion: 100 });
+    expect(entry?.grade).toBe("BREACHED");
+    expect(entry?.scanBlock).toBe(22179964);
+  });
+  it("after Kelp's fix (4 required verifiers) the same route is not a downgrade", () => {
+    const e = decodeUlnConfigSet(fx.logData);
+    expect(eventEntry({ asset: RSETH, lib: fx.lib, oapp: e.oapp, eid: e.eid, block: 24941900, read: fx.readAfterFix, ruleVersion: 100 })).toBeNull();
   });
 });
