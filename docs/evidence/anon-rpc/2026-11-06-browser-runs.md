@@ -82,3 +82,22 @@ Same request the Nym worker sends: archive `eth_getCode` at block 24,908,284, he
 | lava | ❌ discontinued | — | — |
 
 The verify page now defaults to the four that pass (rotating, with benching). Not yet re-measured through Nym itself: Tenderly and ZAN.
+
+## tor-js through the alternative gateway (2026-11-06, ~22:30)
+
+The anon-rpc maintainers sent a temporary second gateway (`159.89.167.167:12298`, "up for a day or so"); the page lists it first, then the demo gateway. Local copy of the rsETH bundle, RPCs blastapi + MEV Blocker + ZAN.
+
+| Run | Change | Result | Time |
+|---|---|---|---|
+| 1 | 4 RPCs incl. Tenderly | 616/624, 8 failed → UNVERIFIED_RPC | 110 s |
+| 2 | Tenderly removed (it answers Tor exits with 403 / 429) | 611/624, 13 failed (23 "Tor: operation timed out at exit") | 120 s |
+| 3 | 5 retry rounds instead of 3 | 619/624, 5 failed (blastapi per-second limit, retries back to back) | 48 s |
+| 4 | backoff between retry rounds (1, 2, 4, 8 s) | **VERIFIED 624/624**, grade BREACHED reproduced | **50 s** |
+
+Worker start: 5.5–20.6 s. Median request 1.4–2.2 s (Nym: ~11 s today).
+
+**The Arkiv lookup works over Tor** (answered in ~3 s, no fallback): Tor keeps the `Content-Type` header that the Nym worker drops. With tor-js, the Arkiv read, the Swarm download and all chain reads go through Anon-RPC; only the 2 bootstrap reads are direct.
+
+Changes from these runs: tor-js is the page default (Nym stays selectable); a provider answering 403 is benched for the rest of the check; 5 retry rounds with backoff (`verifyBundle(..., { retryBackoffMs })`, off by default).
+
+Caveat: both tor-js gateways are run by others and temporary. A production deployment runs its own gateway.

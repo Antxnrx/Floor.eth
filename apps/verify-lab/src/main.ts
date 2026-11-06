@@ -21,8 +21,15 @@ type Net = "tor-js" | "nym" | "passthrough" | "direct";
 const NETWORKS: Record<Exclude<Net, "direct">, { address: string; config?: unknown; anonymising: boolean }> = {
   "tor-js": {
     address: "0x700dA3193D35fA54Cd3fBf29B66f2a2A0385659e",
-    // demonstration gateway published by the anon-rpc repo; limited capacity
-    config: { gateways: ["152.236.3.22:12298:uEiCH0VdbhryzJcMtCfB0vLA4sOvHdQ4hq5w7CopcwU59bQ"] },
+    // Gateways are blind relays into Tor. The first is a temporary alternative from the anon-rpc maintainers
+    // (2026-11-06, "only up for a day or so"); the second is the demonstration gateway in the anon-rpc repo.
+    // Override with ?torgw=host:port:id[,host:port:id].
+    config: {
+      gateways: new URLSearchParams(location.search).get("torgw")?.split(",") ?? [
+        "159.89.167.167:12298:uEiA-2gShJvf4zebUOQElPY_y46cFeECnyn1TqOfnIQMeTg",
+        "152.236.3.22:12298:uEiCH0VdbhryzJcMtCfB0vLA4sOvHdQ4hq5w7CopcwU59bQ",
+      ],
+    },
     anonymising: true,
   },
   nym: { address: "0x3aCD9742C68F6d993066Ae25533e09b9e1f60eD0", anonymising: true },
@@ -257,7 +264,7 @@ async function run() {
     const report: VerifyReport = await verifyBundle(bundle, expected, reader, operatorMap("ethereum"), (stage, done, total) => {
       $("phase").textContent = `${stage}: ${done}/${total}`;
       if (stage === "raw" && done === total) log(`first pass done at ${((performance.now() - t0) / 1000).toFixed(1)} s · ${statsLine()}`);
-    });
+    }, { retryBackoffMs: 1000 });
     log(`final · ${statsLine()}`);
     clearInterval(tick);
     renderMeter(meter, transport.label);
@@ -280,13 +287,20 @@ async function run() {
     step(`stopped: ${(e as Error).message}`, "bad");
     (window as unknown as { __floorLab: unknown }).__floorLab = { net, src, error: String(e), meter: meter.snapshot.byRoute, steps: [...stepsEl.children].map((li) => li.textContent) };
   } finally {
+    if (transport) renderMeter(meter, transport.label);
     $("phase").textContent = "";
     transport?.close();
     btn.disabled = false;
   }
 }
 
-$<HTMLInputElement>("rpc").value = DEFAULTS.rpc;
+// Tenderly's public gateway refuses Tor exits (403 / 429, measured 2026-11-06), so it is left out for tor-js.
+const TOR_RPC = "https://eth-mainnet.public.blastapi.io, https://rpc.mevblocker.io, https://api.zan.top/eth-mainnet";
+{ const n = new URLSearchParams(location.search).get("net") ?? "tor-js"; $<HTMLInputElement>("rpc").value = n === "tor-js" ? TOR_RPC : DEFAULTS.rpc; }
+document.querySelectorAll<HTMLInputElement>("input[name=net]").forEach((r) => r.addEventListener("change", () => {
+  const cur = $<HTMLInputElement>("rpc").value;
+  if (cur === DEFAULTS.rpc || cur === TOR_RPC) $<HTMLInputElement>("rpc").value = r.value === "tor-js" ? TOR_RPC : DEFAULTS.rpc;
+}));
 $<HTMLInputElement>("boot").value = DEFAULTS.boot;
 $<HTMLInputElement>("hash").value = DEFAULTS.hash;
 const qs0 = new URLSearchParams(location.search);

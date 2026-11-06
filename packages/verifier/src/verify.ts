@@ -79,6 +79,8 @@ export async function verifyBundle(
   reader: ChainReader & { flush?: () => Promise<void> },
   operators: OperatorMap,
   onProgress?: VerifyProgress,
+  /** Wait retryBackoffMs * 2^(attempt-1) before each retry round after the first (lets rate limits reset). */
+  opts: { retryBackoffMs?: number } = {},
 ): Promise<VerifyReport> {
   const actual = bundleHash(bundle);
   const hashOk = actual.toLowerCase() === expectedHash.toLowerCase();
@@ -109,8 +111,8 @@ export async function verifyBundle(
   await reader.flush?.();
   await Promise.all(pending);
 
-  // Retry failed reads (providers throttle, mixnets drop packets). First retries go in parallel through the reader's
-  // own batching, which matters on slow transports (Nym: ~1-2 s per round trip); the last attempt goes one at a time
+  // Retry failed reads (providers throttle, mixnets drop packets, Tor exits time out). Retries go in parallel through the reader's
+  // own batching, which matters on slow transports (Nym: ~1-2 s per round trip); only the last attempt goes one at a time
   // for providers that cap batch sizes. A retry never upgrades a mismatch.
   const retryOne = async (id: string, sequential: boolean) => {
     const c = calls.find((x) => x.id === id)!;
@@ -124,9 +126,13 @@ export async function verifyBundle(
       failed.push(id);
     }
   };
-  for (let attempt = 0; attempt < 3 && failed.length; attempt++) {
+  // 5 attempts: Tor exits time out at random (25 of ~140 requests in one run, 2026-11-06), so a read can need
+  // several fresh circuits. Only failures are retried; a mismatch is final.
+  const ATTEMPTS = 5;
+  for (let attempt = 0; attempt < ATTEMPTS && failed.length; attempt++) {
     const again = failed.splice(0, failed.length);
-    if (attempt < 2) {
+    if (attempt > 0 && opts.retryBackoffMs) await new Promise((r) => setTimeout(r, opts.retryBackoffMs! * 2 ** (attempt - 1)));
+    if (attempt < ATTEMPTS - 1) {
       const ps = again.map((id) => retryOne(id, false));
       await reader.flush?.();
       await Promise.all(ps);

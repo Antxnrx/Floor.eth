@@ -62,7 +62,7 @@ export function jsonRpcReader(fetchFn: FetchFn, url: string | string[], opts: { 
     }
     return urls[next++ % urls.length]!; // everyone benched: keep trying in rotation
   };
-  const bench = (u: string) => { if (urls.length > 1) benchedUntil.set(u, now() + cooldownMs); };
+  const bench = (u: string, ms = cooldownMs) => { if (urls.length > 1) benchedUntil.set(u, now() + ms); };
   const LIMIT = /rate|limit|capacity|quota|too many|exceeded|throttl|usage/i;
   const batchSize = opts.batch ?? 1;
   let id = 1;
@@ -82,7 +82,8 @@ export function jsonRpcReader(fetchFn: FetchFn, url: string | string[], opts: { 
       });
       const res = await Promise.race([fetchFn(u, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(batchSize === 1 ? body[0] : body) }), timeout]).finally(() => clearTimeout(timer));
       if (!res.ok) {
-        bench(u);
+        // 403 = this provider refuses us (e.g. it blocks Tor exits): don't come back to it during this check
+        bench(u, res.status === 403 ? Number.POSITIVE_INFINITY : cooldownMs);
         throw new Error(`HTTP ${res.status}`);
       }
       const json = (await res.json()) as { id: number; result?: Hex; error?: { message: string } } | { id: number; result?: Hex; error?: { message: string } }[];
