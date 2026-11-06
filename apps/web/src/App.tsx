@@ -49,7 +49,7 @@ export function App() {
       <nav>
         <a className="brand" href="#/">Floor</a>
         {NAV.map(([to, label]) => <a key={to} href={`#${to}`} className={(to === "/" ? root === "" : path.startsWith(to)) ? "on" : ""}>{label}</a>)}
-        <a href={`${LIVE.site}dataset.html`} target="_blank" rel="noopener">Bridge dataset ↗</a>
+        <a href={`${LIVE.verifyPage}dataset.html`}>Bridge dataset</a>
       </nav>
       <main>{screen}</main>
     </>

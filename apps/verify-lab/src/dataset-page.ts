@@ -5,14 +5,15 @@
  * page is usable before the Arkiv write and as an offline check of what was published.
  */
 import { AnonRpcWorker } from "@anon-rpc/browser-harness";
-import { adaptersBy, adapterValues, arkivReader, eventValues, RABDI_PUBLIC_RPC, timeline, unboundedAdapters } from "@floor/publish/browser";
+import { DEPLOYMENT } from "@floor/deployments";
+import { adaptersBy, adapterValues, arkivReader, eventValues, timeline, unboundedAdapters } from "@floor/publish/browser";
 import type { Address } from "viem";
 import registry from "../../../packages/resolver/data/adapters-all-chains.json";
 import tl from "../../../packages/publish/data/rseth-timeline.json";
 import { NETWORKS } from "./networks";
 
-const RSETH = "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7" as Address;
-const DEFAULT_WRITER = "0x563567A5788820093f71951DA383838D71ad2360";
+const RSETH = DEPLOYMENT.kelp.token as Address;
+const DEFAULT_WRITER = DEPLOYMENT.writer;
 const evidence = import.meta.glob("../../../docs/evidence/inbound/2026-11-07-*.json", { eager: true, import: "default" }) as Record<string, { block: number; rows: never[] }>;
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -73,7 +74,7 @@ async function live() {
       let id = 1;
       const rpcProvider = {
         async request({ method, params }: { method: string; params?: unknown }) {
-          const r = await fetch("https://ethereum-rpc.publicnode.com", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: id++, method, params: params ?? [] }) });
+          const r = await fetch(DEPLOYMENT.chains.ethereum.bootstrapRpc, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: id++, method, params: params ?? [] }) });
           const j = (await r.json()) as { result?: unknown; error?: { message: string } };
           if (j.error) throw new Error(j.error.message);
           return j.result;
@@ -125,7 +126,7 @@ function preview() {
 }
 
 $<HTMLInputElement>("writer").value = new URLSearchParams(location.search).get("writer") ?? DEFAULT_WRITER;
-$<HTMLInputElement>("arkiv").value = new URLSearchParams(location.search).get("arkiv") ?? RABDI_PUBLIC_RPC;
+$<HTMLInputElement>("arkiv").value = new URLSearchParams(location.search).get("arkiv") ?? DEPLOYMENT.chains.arkiv.rpc;
 if (new URLSearchParams(location.search).get("net") === "direct") (document.querySelector("input[name=net][value=direct]") as HTMLInputElement).checked = true;
 $("go").addEventListener("click", () => void live());
 $("preview").addEventListener("click", preview);

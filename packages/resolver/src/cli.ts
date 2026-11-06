@@ -3,6 +3,7 @@
  * floor scan --oapp <address> --block <n|latest> [--symbol rsETH] [--out file.json]
  * Resolves effective LayerZero state for an OApp on Ethereum, grades it, and writes an evidence bundle.
  */
+import { DEPLOYMENT } from "@floor/deployments";
 import { evaluate, makeBundle } from "@floor/core";
 import { writeFileSync } from "node:fs";
 import { getAddress } from "viem";
@@ -17,7 +18,7 @@ if (!args.oapp) {
   console.error("usage: floor scan --oapp <address> --block <n|latest> [--symbol S] [--out file.json]");
   process.exit(2);
 }
-const rpcs = makeRpcs((process.env.ETH_RPC_URLS ?? "https://eth.drpc.org,https://eth-mainnet.public.blastapi.io,https://gateway.tenderly.co/public/mainnet").split(",").filter(Boolean));
+const rpcs = makeRpcs((process.env.ETH_RPC_URLS ?? DEPLOYMENT.chains.ethereum.rpcs.join(",")).split(",").filter(Boolean));
 const block = !args.block || args.block === "latest" ? await rpcs[0]!.client.getBlockNumber() : BigInt(args.block);
 
 const t0 = Date.now();

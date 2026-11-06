@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@floor/core": "workspace:*",
+    "@floor/deployments": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "viem": "^2.38.6"

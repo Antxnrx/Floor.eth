@@ -1,5 +1,6 @@
 import { findAsset } from "../data/mock";
 import { LIVE } from "../data/live";
+import { DEPLOYMENT } from "@floor/deployments";
 import { Card, GradeChip, Link, Real } from "../components/ui";
 
 /** The steps the live verifier runs, in order (apps/verify-lab, served from Swarm). */
@@ -16,7 +17,7 @@ export function Verify({ id }: { id: string }) {
   const a = findAsset(id);
   if (!a?.bundle) return <p>Asset not found. <Link to="/">Back</Link></p>;
   const total = a.bundle.state.calls.length;
-  const url = `${LIVE.site}?token=${a.bundle.state.asset.symbol === "rsETH" ? "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7" : ""}`;
+  const url = `${LIVE.verifyPage}?token=${a.bundle.state.asset.oapp === DEPLOYMENT.kelp.adapter.toLowerCase() || a.symbol === "rsETH" ? DEPLOYMENT.kelp.token : ""}`;
   return (
     <>
       <p><Link to={`/asset/${id}`}>← {a.symbol}</Link></p>
@@ -25,7 +26,7 @@ export function Verify({ id }: { id: string }) {
       <div className="grid2">
         <Card title="What it checks">
           <ol className="steps">{STEPS.map((s) => <li key={s}>{s}</li>)}</ol>
-          <p><a className="btn" href={url} target="_blank" rel="noopener">Run the verifier (opens the Swarm-hosted page)</a></p>
+          <p><a className="btn" href={url}>Run the verifier</a></p>
           <p className="muted">Tick "Tamper" there to flip one byte of one recorded read: the result must be MISMATCH.</p>
         </Card>
         <Card title="Last live run (2026-11-07, Chrome, over Tor)">

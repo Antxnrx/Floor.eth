@@ -19,6 +19,7 @@
     "@arkiv-network/sdk": "1.0.1",
     "@ethersphere/bee-js": "13.2.0",
     "@floor/core": "workspace:*",
+    "@floor/deployments": "workspace:*",
     "viem": "^2.38.6"
   }
 }

@@ -50,8 +50,9 @@ export function jsonRpcReader(fetchFn: FetchFn, url: string | string[], opts: { 
   const urls = Array.isArray(url) ? url : [url];
   if (urls.length === 0) throw new Error("jsonRpcReader: no RPC url");
   let next = 0;
-  // A provider that answers with a rate-limit / quota error (or a non-2xx) is benched for `cooldownMs`, as long as
-  // another provider is available. "execution reverted" is an answer, not a provider failure.
+  // A provider that answers with a rate-limit / quota error, a non-2xx, no answer in time, or a network-level failure
+  // is benched for `cooldownMs`, as long as another provider is available. "execution reverted" is an answer, not a
+  // provider failure.
   const cooldownMs = opts.cooldownMs ?? 30_000;
   const benchedUntil = new Map<string, number>();
   const now = () => Date.now();
@@ -86,16 +87,26 @@ export function jsonRpcReader(fetchFn: FetchFn, url: string | string[], opts: { 
         bench(u, res.status === 403 ? Number.POSITIVE_INFINITY : cooldownMs);
         throw new Error(`HTTP ${res.status}`);
       }
-      const json = (await res.json()) as { id: number; result?: Hex; error?: { message: string } } | { id: number; result?: Hex; error?: { message: string } }[];
+      type Rpc = { id?: number; result?: Hex; error?: { message?: string } | string };
+      const json = (await res.json()) as Rpc | Rpc[];
       const arr = Array.isArray(json) ? json : [json];
-      if (arr.some((r) => r.error && LIMIT.test(r.error.message))) bench(u);
+      const msg = (r?: Rpc) => (typeof r?.error === "string" ? r.error : r?.error?.message) ?? "no result";
+      // A body that is not JSON-RPC (no id, error as a plain string: ZAN's "cu limit exceeded", measured 2026-11-07)
+      // answers nothing: treat it as a provider failure and bench the provider.
+      const malformed = arr.every((r) => r == null || typeof r !== "object" || r.id === undefined);
+      if (malformed || arr.some((r) => r.error && LIMIT.test(msg(r)))) bench(u);
+      if (malformed) throw new Error(`malformed JSON-RPC response from ${u}: ${msg(arr[0]).slice(0, 120)}`);
       const byId = new Map(arr.map((r) => [r.id, r]));
       body.forEach((b, i) => {
         const r = byId.get(b.id);
-        if (!r || r.error || r.result === undefined) items[i]!.reject(new Error(r?.error?.message ?? "no result"));
+        if (!r || r.error || r.result === undefined) items[i]!.reject(new Error(msg(r)));
         else items[i]!.resolve(r.result);
       });
     } catch (e) {
+      // A fetch that fails at the network level is a provider failure too: some providers send their 429 without CORS
+      // headers, which a browser reports as "Failed to fetch" (MEV Blocker, measured 2026-11-07). Bench it like a
+      // rate-limit answer so retries go elsewhere.
+      bench(u);
       for (const it of items) it.reject(e as Error);
     }
   }

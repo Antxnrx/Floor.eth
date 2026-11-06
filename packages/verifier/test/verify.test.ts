@@ -168,6 +168,36 @@ describe("jsonRpcReader with several providers", () => {
     expect(seen).toEqual(["a", "b", "b", "b", "b"]);
   });
 
+  it("benches a provider whose fetch fails at the network level (e.g. a 429 sent without CORS headers)", async () => {
+    const seen: string[] = [];
+    const f: FetchFn = async (url, init) => {
+      seen.push(url);
+      if (url === "a") throw new TypeError("Failed to fetch");
+      const r = JSON.parse(init.body) as { id: number };
+      return { ok: true, status: 200, json: async () => ({ jsonrpc: "2.0", id: r.id, result: "0x01" }) };
+    };
+    const reader = jsonRpcReader(f, ["a", "b"], { batch: 1, concurrency: 1 });
+    const first = await reader.call("0x0000000000000000000000000000000000000001", "0x", 1).catch((e: Error) => e.message);
+    expect(first).toMatch(/Failed to fetch/);
+    for (let i = 0; i < 4; i++) await reader.call("0x0000000000000000000000000000000000000001", "0x", 1);
+    expect(seen).toEqual(["a", "b", "b", "b", "b"]);
+  });
+
+  it("benches a provider that answers with a non-JSON-RPC body (ZAN's {error: 'cu limit exceeded'} with no id)", async () => {
+    const seen: string[] = [];
+    const f: FetchFn = async (url, init) => {
+      seen.push(url);
+      const r = JSON.parse(init.body) as { id: number };
+      if (url === "a") return { ok: true, status: 200, json: async () => ({ status: 200, error: "cu limit exceeded; Request too fast per second" }) };
+      return { ok: true, status: 200, json: async () => ({ jsonrpc: "2.0", id: r.id, result: "0x01" }) };
+    };
+    const reader = jsonRpcReader(f, ["a", "b"], { batch: 1, concurrency: 1 });
+    const first = await reader.call("0x0000000000000000000000000000000000000001", "0x", 1).catch((e: Error) => e.message);
+    expect(first).toMatch(/cu limit exceeded/);
+    for (let i = 0; i < 4; i++) await reader.call("0x0000000000000000000000000000000000000001", "0x", 1);
+    expect(seen).toEqual(["a", "b", "b", "b", "b"]);
+  });
+
   it("times out a provider that never answers, benches it, and the retry pass verifies via another provider", async () => {
     const b = clone();
     const honest = honestReader(b);

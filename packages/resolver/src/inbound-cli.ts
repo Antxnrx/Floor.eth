@@ -7,6 +7,7 @@
 import { writeFileSync } from "node:fs";
 import { encodeFunctionData, getAddress, type Address, type Hex } from "viem";
 import { readFileSync } from "node:fs";
+import { DEPLOYMENT } from "@floor/deployments";
 import ethRegistry from "../data/adapters-ethereum.json" with { type: "json" };
 import { oappAbi } from "./abis.js";
 import { confirmOutcome, harnessSelfCheck, probeInbound, useEndpoint } from "./inbound.js";
@@ -21,7 +22,7 @@ const chainReg: ChainReg | null = args.registry ? (JSON.parse(readFileSync(args.
 if (args.registry && !chainReg) throw new Error(`chain ${args.chain} not in ${args.registry}`);
 const registry: { adapters: Entry[] } = chainReg ?? ethRegistry;
 if (chainReg) useEndpoint(getAddress(chainReg.endpoint));
-const defaultRpcs = chainReg ? chainReg.rpcs.join(",") : "https://eth.drpc.org,https://eth-mainnet.public.blastapi.io,https://gateway.tenderly.co/public/mainnet";
+const defaultRpcs = chainReg ? chainReg.rpcs.join(",") : DEPLOYMENT.chains.ethereum.rpcs.join(",");
 const rpcs = makeRpcs((process.env.ETH_RPC_URLS ?? defaultRpcs).split(",").filter(Boolean));
 const block = !args.block || args.block === "latest" ? await rpcs[0]!.client.getBlockNumber() : BigInt(args.block);
 const only = args.only ? new Set(args.only.toLowerCase().split(",")) : null;

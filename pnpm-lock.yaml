@@ -29,6 +29,9 @@ importers:
       '@floor/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@floor/deployments':
+        specifier: workspace:*
+        version: link:../../packages/deployments
       '@floor/publish':
         specifier: workspace:*
         version: link:../../packages/publish
@@ -54,6 +57,9 @@ importers:
       '@floor/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@floor/deployments':
+        specifier: workspace:*
+        version: link:../../packages/deployments
       react:
         specifier: ^19.2.0
         version: 19.3.1
@@ -102,6 +108,15 @@ importers:
         specifier: ^2.38.6
         version: 2.57.16(typescript@5.9.3)(zod@4.6.7)
 
+  packages/deployments:
+    devDependencies:
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@24.19.2)(tsx@4.23.15)
+
   packages/publish:
     dependencies:
       '@arkiv-network/sdk':
@@ -113,6 +128,9 @@ importers:
       '@floor/core':
         specifier: workspace:*
         version: link:../core
+      '@floor/deployments':
+        specifier: workspace:*
+        version: link:../deployments
       viem:
         specifier: ^2.38.6
         version: 2.57.16(typescript@5.9.3)(zod@4.6.7)
@@ -122,6 +140,9 @@ importers:
       '@floor/core':
         specifier: workspace:*
         version: link:../core
+      '@floor/deployments':
+        specifier: workspace:*
+        version: link:../deployments
       viem:
         specifier: ^2.38.6
         version: 2.57.16(typescript@5.9.3)(zod@4.6.7)

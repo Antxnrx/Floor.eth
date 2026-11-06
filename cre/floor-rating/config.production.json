@@ -3,7 +3,7 @@
   "feedUrl": "https://raw.githubusercontent.com/MeghVyas3132/Floor.eth/main/cre/floor-rating/fixtures/feed-rseth-prehack.json",
   "sourceChainSelectorName": "ethereum-mainnet",
   "registryChainSelectorName": "ethereum-testnet-sepolia",
-  "registryAddress": "0x0000000000000000000000000000000000000000",
+  "registryAddress": "0xE69c3e47DdaB083D0Ba4D8aD2B2dA8531ec18220",
   "gasLimit": "500000",
   "isTestnet": true,
   "receiveLib": "0xc02Ab410f0734EFa3F14628780e6e695156024C2",

@@ -7,7 +7,8 @@
  */
 import { AnonRpcWorker } from "@anon-rpc/browser-harness";
 import type { EvidenceBundle } from "@floor/core";
-import { arkivReader, EvidenceHashMismatch, fetchBundle, findRating, RABDI_PUBLIC_RPC, SWARM_PUBLIC_GATEWAY } from "@floor/publish/browser";
+import { DEPLOYMENT } from "@floor/deployments";
+import { arkivReader, EvidenceHashMismatch, fetchBundle, findRating } from "@floor/publish/browser";
 import { operatorMap } from "@floor/resolver/operators";
 import { fromAnonRpc, jsonRpcReader, TrafficMeter, verifyBundle, type FetchFn, type VerifyReport } from "@floor/verifier";
 import { decodeFunctionResult, encodeFunctionData, parseAbi, stringToBytes, type Address, type Hex } from "viem";
@@ -17,23 +18,20 @@ type Source = "arkiv" | "swarm" | "fixture";
 
 import { NETWORKS, type Net } from "./networks";
 
+// All defaults come from the deployment manifest (packages/deployments/testnet.json); URL parameters override them.
+// Mainnet RPCs: free, keyless providers that passed archive reads, batches of 10, CORS for the sandbox and requests
+// WITHOUT a Content-Type header (the Nym worker drops it), measured 2026-11-06 (docs/evidence/anon-rpc). Tenderly
+// refuses Tor exits, so tor-js uses `torRpcs`.
 const DEFAULTS = {
-  // Free, keyless providers that pass all four checks (measured 2026-11-06): archive reads at the pinned block,
-  // batches of 10, CORS for the sandbox, and requests WITHOUT a Content-Type header (the Nym worker drops it).
-  // Fail: Nodies + 1rpc (415 without Content-Type), dRPC (batches > 3 refused), publicnode/ankr/blockpi (key for
-  // archive), flashbots (pruned), cloudflare (internal error), merkle/onfinality/thirdweb (rate limited).
-  // Reads rotate across all of them; a rate-limited one is benched for 30 s. Add your own keyed RPC in the page.
-  rpc: "https://eth-mainnet.public.blastapi.io, https://rpc.mevblocker.io, https://gateway.tenderly.co/public/mainnet, https://api.zan.top/eth-mainnet",
-  boot: "https://ethereum-rpc.publicnode.com",
-  hash: "0x385b1ae424c9c5d46bb22a0081d358385a7dda8bd76f314baa42242acda86561",
-  // Floor's writer wallet (also the deployer); README "Writer wallet and query". Override with ?writer=
-  writer: "0x563567A5788820093f71951DA383838D71ad2360",
-  token: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7", // rsETH
-  arkiv: RABDI_PUBLIC_RPC,
-  gateway: SWARM_PUBLIC_GATEWAY,
-  registryRpc: "https://ethereum-sepolia-rpc.publicnode.com",
-  // FloorRegistry on Ethereum Sepolia (deployer nonce 2: nonces 0-1 were the out-of-gas attempt), README step 2. ?registry= overrides
-  registry: "0xE69c3e47DdaB083D0Ba4D8aD2B2dA8531ec18220",
+  rpc: DEPLOYMENT.chains.ethereum.rpcs.join(", "),
+  boot: DEPLOYMENT.chains.ethereum.bootstrapRpc,
+  hash: DEPLOYMENT.kelp.bundleHash,
+  writer: DEPLOYMENT.writer,
+  token: DEPLOYMENT.kelp.token,
+  arkiv: DEPLOYMENT.chains.arkiv.rpc,
+  gateway: DEPLOYMENT.swarm.gateway,
+  registryRpc: DEPLOYMENT.chains.sepolia.rpcs[0]!,
+  registry: DEPLOYMENT.contracts.registry.address,
 };
 
 const REGISTRY_ABI = parseAbi(["function ratingOf(address asset) view returns ((uint8 grade, bool known, uint64 scanBlock, uint32 ruleVersion, uint64 updatedAt, bytes32 bundleHash))"]);
@@ -282,7 +280,7 @@ async function run() {
 }
 
 // Tenderly's public gateway refuses Tor exits (403 / 429, measured 2026-11-06), so it is left out for tor-js.
-const TOR_RPC = "https://eth-mainnet.public.blastapi.io, https://rpc.mevblocker.io, https://api.zan.top/eth-mainnet";
+const TOR_RPC = DEPLOYMENT.chains.ethereum.torRpcs.join(", ");
 { const n = new URLSearchParams(location.search).get("net") ?? "tor-js"; $<HTMLInputElement>("rpc").value = n === "tor-js" ? TOR_RPC : DEFAULTS.rpc; }
 document.querySelectorAll<HTMLInputElement>("input[name=net]").forEach((r) => r.addEventListener("change", () => {
   const cur = $<HTMLInputElement>("rpc").value;

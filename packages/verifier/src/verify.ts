@@ -120,10 +120,13 @@ export async function verifyBundle(
       const p = replay(c, reader);
       if (sequential) await reader.flush?.();
       const got = await p;
-      if (got.toLowerCase() === c.result.toLowerCase()) matched++;
+      // same rules as the first pass: a recorded revert that now succeeds is a mismatch
+      if (c.ok && got.toLowerCase() === c.result.toLowerCase()) matched++;
       else mismatched.push(id);
     } catch {
-      failed.push(id);
+      // a recorded revert that reverts again is a match; otherwise it is still an RPC failure
+      if (!c.ok) matched++;
+      else failed.push(id);
     }
   };
   // 5 attempts: Tor exits time out at random (25 of ~140 requests in one run, 2026-11-06), so a read can need

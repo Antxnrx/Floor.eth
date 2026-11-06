@@ -4,15 +4,17 @@
 # Needed because Sepolia runs Glamsterdam (EIP-8037 state-creation repricing), which Forge 1.8.1's EVM does not model.
 set -euo pipefail
 cd "$(dirname "$0")/../contracts"
+set +u
 export PATH="$HOME/.foundry/bin:$PATH"
-W=0x563567A5788820093f71951DA383838D71ad2360
-SEP=https://ethereum-sepolia-rpc.publicnode.com
-BASE=https://sepolia.base.org
+. "$(dirname "$0")/manifest.sh"
+W=$(m .writer)
+SEP=$(m '.chains.sepolia.rpcs[0]')
+BASE=$(m '.chains.baseSepolia.rpcs[0]')
 N=$(cast nonce $W --rpc-url $SEP)
 BC=$(cast compute-address $W --nonce $((N + 1)) | awk '{print $NF}')
-CRE_FORWARDER=0x15fC6ae953E024d975e77382eEeC56A9101f9F88 CCIP_ROUTER=0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59 \
+CRE_FORWARDER=$(m .chains.sepolia.creForwarder) CCIP_ROUTER=$(m .chains.sepolia.ccipRouter) \
   forge script script/Deploy.s.sol:DeployHome --rpc-url $SEP --sender $W --gas-estimate-multiplier 900 >/dev/null 2>&1
-CCIP_ROUTER=0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93 SOURCE_CHAIN_SELECTOR=16015286601757825753 SOURCE_BROADCASTER=$BC \
+CCIP_ROUTER=$(m .chains.baseSepolia.ccipRouter) SOURCE_CHAIN_SELECTOR=$(m .chains.sepolia.ccipSelector) SOURCE_BROADCASTER=$BC \
   forge script script/Deploy.s.sol:DeployMirror --rpc-url $BASE --sender $W --gas-estimate-multiplier 300 >/dev/null 2>&1
 python3 -I - "$W" "$SEP" "$BASE" <<'PY'
 import json, subprocess, sys

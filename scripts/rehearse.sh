@@ -13,19 +13,20 @@ cd "$(dirname "$0")/.."
 ROOT=$PWD
 export PATH="$HOME/.foundry/bin:$HOME/.cre/bin:$HOME/.bun/bin:$PATH"
 
-DEPLOYER=0x563567A5788820093f71951DA383838D71ad2360
-RSETH=0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7
+. "$(dirname "$0")/manifest.sh"
+DEPLOYER=$(m .writer)
+RSETH=$(m .kelp.token)
 SEP_UP=${SEPOLIA_RPC_URL:-https://sepolia.gateway.tenderly.co}
-BASE_UP=${BASE_SEPOLIA_RPC_URL:-https://sepolia.base.org}
+BASE_UP=${BASE_SEPOLIA_RPC_URL:-$(m '.chains.baseSepolia.rpcs[0]')}
 SEP=http://127.0.0.1:8546
 BASE=http://127.0.0.1:8547
-FORWARDER=0x15fC6ae953E024d975e77382eEeC56A9101f9F88
-SEP_ROUTER=0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59
-BASE_ROUTER=0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93
-BASE_VAULT_FACTORY=0xE3a2CEbca662d99D0F279aF13a6bb8c9825D2ea0
-BASE_USDC=0x036CbD53842c5426634e7929541eC2318f3dCF7e
-SEP_SELECTOR=16015286601757825753
-BASE_SELECTOR=10344971235874465080
+FORWARDER=$(m .chains.sepolia.creForwarder)
+SEP_ROUTER=$(m .chains.sepolia.ccipRouter)
+BASE_ROUTER=$(m .chains.baseSepolia.ccipRouter)
+BASE_VAULT_FACTORY=$(m .chains.baseSepolia.morphoVaultV2Factory)
+BASE_USDC=$(m .chains.baseSepolia.usdc)
+SEP_SELECTOR=$(m .chains.sepolia.ccipSelector)
+BASE_SELECTOR=$(m .chains.baseSepolia.ccipSelector)
 ANVIL0_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 # anvil's public dev key, local forks only
 
 pass=0; fail=0
@@ -107,8 +108,8 @@ check "paid exactly the fee (overpayment refunded)" "$(python3 -c "print($B0-$B1
 echo "    (delivery to Base Sepolia, and the cap cut there, need the real CCIP network; proven in contracts/test/fork/CCIPToBaseEnforcementFork.t.sol)"
 
 echo "== 6. Arkiv write preflight  [README step 8, estimate only, no key]"
-(cd packages/publish && SWARM_GATEWAY=${SWARM_GATEWAY:-https://api.gateway.ethswarm.org} npx tsx src/importer.ts --bundle ../resolver/fixtures/rseth-24908284.json:$RSETH \
-  --swarm-ref ${SWARM_REF:-ca035fbdfa74bfd611af912e4a7debb53f38047a78bcd181a20c1490e8419778} --arkiv-estimate $DEPLOYER > /tmp/floor-rehearse-6.log 2>&1) \
+(cd packages/publish && SWARM_GATEWAY=${SWARM_GATEWAY:-$(m .swarm.gateway)} npx tsx src/importer.ts --bundle ../resolver/fixtures/rseth-24908284.json:$RSETH \
+  --swarm-ref ${SWARM_REF:-$(m .kelp.swarmRef)} --arkiv-estimate $DEPLOYER > /tmp/floor-rehearse-6.log 2>&1) \
   && grep -q "estimate, nothing sent" /tmp/floor-rehearse-6.log && ok "$(grep 'estimate, nothing sent' /tmp/floor-rehearse-6.log | sed 's/^ *//')" || bad "Arkiv preflight failed (see /tmp/floor-rehearse-6.log)"
 
 (cd packages/publish && npx tsx src/importer.ts --dataset --arkiv-estimate $DEPLOYER > /tmp/floor-rehearse-6b.log 2>&1) \

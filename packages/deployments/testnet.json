@@ -1,0 +1,108 @@
+{
+  "$comment": "Single source of truth for the live testnet deployment. Code, scripts and CRE configs read from here (scripts/sync-config.mjs writes the CRE configs; CI checks they match). Evidence for every entry: docs/evidence/live-2026-11-07.md.",
+  "network": "testnet",
+  "site": "https://floor.aexiz.in",
+  "writer": "0x563567A5788820093f71951DA383838D71ad2360",
+  "chains": {
+    "ethereum": {
+      "chainId": 1,
+      "rpcs": [
+        "https://eth-mainnet.public.blastapi.io",
+        "https://api.zan.top/eth-mainnet",
+        "https://rpc.mevblocker.io"
+      ],
+      "torRpcs": [
+        "https://eth-mainnet.public.blastapi.io",
+        "https://rpc.mevblocker.io",
+        "https://api.zan.top/eth-mainnet"
+      ],
+      "bootstrapRpc": "https://ethereum-rpc.publicnode.com",
+      "$comment": "Keyless archive RPCs that pass batches of 10, browser CORS and requests without Content-Type (docs/evidence/anon-rpc). Tenderly's public gateway is left out: it answers 429 under load and refuses Tor exits."
+    },
+    "sepolia": {
+      "chainId": 11155111,
+      "rpcs": [
+        "https://ethereum-sepolia-rpc.publicnode.com",
+        "https://sepolia.gateway.tenderly.co"
+      ],
+      "explorerTx": "https://sepolia.etherscan.io/tx/",
+      "ccipSelector": "16015286601757825753",
+      "ccipRouter": "0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59",
+      "creForwarder": "0x15fC6ae953E024d975e77382eEeC56A9101f9F88"
+    },
+    "baseSepolia": {
+      "chainId": 84532,
+      "rpcs": [
+        "https://sepolia.base.org",
+        "https://base-sepolia-rpc.publicnode.com"
+      ],
+      "explorerTx": "https://sepolia.basescan.org/tx/",
+      "ccipSelector": "10344971235874465080",
+      "ccipRouter": "0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93",
+      "morphoVaultV2Factory": "0xE3a2CEbca662d99D0F279aF13a6bb8c9825D2ea0",
+      "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
+    },
+    "arkiv": {
+      "chainId": 7794095,
+      "rpc": "https://rpc.rabdi.db-chain.testnet.arkiv.network"
+    }
+  },
+  "contracts": {
+    "registry": {
+      "chain": "sepolia",
+      "address": "0xE69c3e47DdaB083D0Ba4D8aD2B2dA8531ec18220"
+    },
+    "broadcaster": {
+      "chain": "sepolia",
+      "address": "0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4"
+    },
+    "mirror": {
+      "chain": "baseSepolia",
+      "address": "0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6"
+    },
+    "vault": {
+      "chain": "baseSepolia",
+      "address": "0xff5E3b49d94AA7C5213938c4B8FF1983456869Be"
+    },
+    "sentinel": {
+      "chain": "baseSepolia",
+      "address": "0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4"
+    }
+  },
+  "swarm": {
+    "gateway": "https://api.gateway.ethswarm.org"
+  },
+  "kelp": {
+    "$comment": "The Kelp simulation: rsETH the day before the hack (block 24,908,284) and the live loop it drove.",
+    "token": "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+    "adapter": "0x85d456B2DfF1fd8245387C0BfB64Dfb700e98Ef3",
+    "scanBlock": 24908284,
+    "bundleHash": "0x385b1ae424c9c5d46bb22a0081d358385a7dda8bd76f314baa42242acda86561",
+    "swarmRef": "ca035fbdfa74bfd611af912e4a7debb53f38047a78bcd181a20c1490e8419778",
+    "capId": "0x09fbda71b8f952b0a095484d57b80eb47dc31aba9c40515dd56ac3f662772a74",
+    "configTx": "0x2d48d9331d96c46f8b4a9f7a7bdcf256d2034dadb42f039d27dc28077d520592",
+    "liveTxs": {
+      "creWrite": {
+        "chain": "sepolia",
+        "hash": "0x00aafcff100d5e7ed26ff80038b6d0ac5a75c28015364a39aae47fcb8f66b3dd",
+        "at": 1793999136
+      },
+      "ccipSend": {
+        "chain": "sepolia",
+        "hash": "0xd1b846b607431cbee123983b94c6dc8a5606212ac8c433b49352903e3c4acd3e",
+        "at": 1793999436,
+        "messageId": "0xd088dbeb921c1973d65910c005616e3884a7f9ccefee9072b5ff248c30fcc9f5"
+      },
+      "ccipDelivery": {
+        "chain": "baseSepolia",
+        "hash": "0xe8994fb000134afb6c305ca2e4922c363a1765db9133aebe001d8c741200cdf9",
+        "at": 1794000497
+      },
+      "capCut": {
+        "chain": "baseSepolia",
+        "hash": "0x2e02faf98aa30336d7b802b5a3f3176e48231c025e4877095731bad9a3697908",
+        "at": 1794001698
+      }
+    }
+  }
+}
