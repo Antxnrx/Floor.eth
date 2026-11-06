@@ -92,7 +92,7 @@ cre workflow simulate my-workflow --target staging-settings              # dry-r
 cre workflow simulate my-workflow --broadcast --target staging-settings  # real testnet tx
 cre workflow simulate my-workflow --non-interactive --trigger-index 0 --target staging-settings
 ```
-Simulation writes supported on ~33 testnets (Sepolia, Arb/Base/OP/Unichain Sepolia, …).
+Simulation writes supported on ~33 testnets (Sepolia, Arb/Base/OP/Unichain Sepolia, …) **and on mainnets**: `cre workflow supported-chains` lists a `MockKeystoneForwarder` for Ethereum, Base, Arbitrum, Optimism and others, deployed onchain (checked 2026-11-07, `typeAndVersion` = "MockKeystoneForwarder 1.0.0"). `cre workflow simulate --broadcast` to a Base-mainnet fork wrote our registry through it. No deploy access needed; the mock checks no signatures, so anyone can deliver a report through it.
 
 **Deploy access:** `cre account access` → "Hackathon"; email approval; `cre whoami` shows `Deploy Access: Enabled`. Only needed for `cre workflow deploy`.
 
