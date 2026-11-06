@@ -1,0 +1,13 @@
+# CRE refuses lies, 2026-11-06T20:36Z, CRE CLI CRE CLI version v1.39.0
+
+## target lie-grade-settings (feed: cre/floor-rating/fixtures/feed-rseth-lie-grade.json)
+2026-11-07T02:06:33Z [USER LOG] 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7: REJECT (feed understates risk: claims OK, raw evidence implies BREACHED)
+  "written": 0
+
+## target lie-evidence-settings (feed: cre/floor-rating/fixtures/feed-rseth-lie-evidence.json)
+2026-11-07T02:06:40Z [USER LOG] 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7: REJECT (read c505 mismatch at block 24908284)
+  "written": 0
+
+## control: staging-settings (honest feed)
+2026-11-07T02:06:48Z [USER LOG] 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7: ACCEPT (4 read(s) matched; lower bound respected)
+  "written": 1
