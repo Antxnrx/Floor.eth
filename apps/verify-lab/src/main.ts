@@ -46,7 +46,7 @@ const DEFAULTS = {
   boot: "https://ethereum-rpc.publicnode.com",
   hash: "0x385b1ae424c9c5d46bb22a0081d358385a7dda8bd76f314baa42242acda86561",
   // Floor's writer wallet (also the deployer); README "Writer wallet and query". Override with ?writer=
-  writer: "0x70EAF6D7ba278168Da557B81A3026605cF9EfDa0",
+  writer: "0x563567A5788820093f71951DA383838D71ad2360",
   token: "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7", // rsETH
   arkiv: RABDI_PUBLIC_RPC,
   gateway: SWARM_PUBLIC_GATEWAY,
