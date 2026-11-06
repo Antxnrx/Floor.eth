@@ -57,3 +57,22 @@ Raw JSON-RPC (no SDK, no access key needed for reads, checked 2026-11-06):
 curl -s -X POST -H 'content-type: application/json' https://rpc.rabdi.db-chain.testnet.arkiv.network \
   --data '{"jsonrpc":"2.0","id":1,"method":"arkiv_query","params":["arkiv.schema = str('"'"'floor.route'"'"') AND independent = u64(1)", {}]}'
 ```
+
+## floor.adapter (public dataset, 64 entities)
+
+One entity per LayerZero adapter over an Aave-listed token, on 8 chains, from the inbound-limit probe (`docs/09` "All-chain rerun", `docs/evidence/inbound/2026-11-07-*.json`). Indexed: `chain`, `chainId`, `eid`, `token`, `adapter`, `outcome` (NO_INBOUND_LIMIT / INBOUND_LIMIT / TEST_ERROR / UNKNOWN / NO_PEERS / LZ_V1), `routes`, `unboundedRoutes`, `limitedRoutes`, `mints`, `escrowWhole`, `capWhole`, `block`. Not indexed: `escrow`, `crossCheck`, `evidence`.
+
+```ts
+// "every adapter backing Aave collateral that can release everything in one message", widest exposure first
+client.select().from(FloorAdapter).where(eq("outcome", "NO_INBOUND_LIMIT")).createdBy(writer).orderBy(desc("routes")).fetch()
+```
+
+## floor.event (flight recorder)
+
+One entity per sourced event in a token's bridge history (`packages/publish/data/rseth-timeline.json`, from `docs/03`; timestamps read from mainnet blocks). Indexed: `token`, `block`, `time`, `kind`. Not indexed: `detail`, `tx`. The dataset page computes "381 days on a single verifier before the drain" from these entities.
+
+```ts
+client.select().from(FloorEvent).where(eq("token", addr(rsETH))).createdBy(writer).orderBy(asc("block")).fetch()
+```
+
+Published by `importer --dataset --arkiv` in 8 batched transactions (10 creates each, Rabdi's block gas limit is 30M). Live: `docs/evidence/live-2026-11-07.md`. Page: `apps/verify-lab/dataset.html` (also served from Swarm).

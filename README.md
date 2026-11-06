@@ -28,12 +28,12 @@ browser verifier: Arkiv -> Swarm -> hash check -> replay every read via Anon-RPC
 | `packages/core` | Types, Aave rule pack v0, effective-independence math, canonical hashing | 17 |
 | `packages/resolver` | LayerZero effective-state scanner (3-RPC cross-check), inbound-limit probe, CRE feed builder | 12 (live) |
 | `packages/verifier` | Browser verifier: raw replay, state-vs-raw, grade reproduction, multi-RPC rotation with rate-limit benching and timeouts, Anon-RPC traffic meter | 14 (live: 624/624 reads verified on mainnet) |
-| `apps/verify-lab` | Minimal browser page: the verifier through EF Anon-RPC (Nym / tor-js / passthrough / direct); integration reference for `apps/web` | manual, in Chrome (results in `docs/evidence/anon-rpc/`) |
-| `packages/publish` | Arkiv schemas + queries, Swarm upload/fetch, re-runnable importer | 6 (live Arkiv read) + Swarm round trip |
-| `cre/floor-rating` | Chainlink CRE workflow (TypeScript); compiles to WASM with `cre-compile` | 8 (live) + 3 end-to-end in the CRE SDK runtime |
-| `contracts` | FloorRegistry, FloorBroadcaster, FloorMirror (CCIP 2.0), FloorSentinel, AaveFreezeEnforcer, deploy scripts | 35 (incl. fuzz, invariants, Base + mainnet forks) |
+| `apps/verify-lab` | Verify page (Arkiv → Swarm → registry → replay through EF Anon-RPC, Tor by default) and dataset page (live Arkiv query); served from Swarm | live runs in Chrome (`docs/evidence/anon-rpc/`, `docs/evidence/live-2026-11-07.md`) |
+| `packages/publish` | Arkiv schemas (rating, route, adapter dataset, flight recorder) + queries, Swarm upload/fetch, re-runnable importer with a no-key Arkiv preflight | 13 (+3 live) |
+| `cre/floor-rating` | Chainlink CRE workflow (TypeScript): cron path (feed re-verified onchain) + log-trigger path (bridge config changes); compiles to WASM | 13 (+1 live) + 3 end-to-end in the CRE SDK runtime |
+| `contracts` | FloorRegistry, FloorBroadcaster, FloorMirror (CCIP 2.0), FloorSentinel, AaveFreezeEnforcer, deploy + Morpho demo scripts | 56: 27 unit (fuzz, invariants) + 29 fork (Kelp replay, Morpho on Base and Sepolia, CRE forwarder, CCIP Sepolia→Arbitrum and →Base enforcement) |
 | `arkiv/` | Arkiv judging files: schema, friction, reach, why-arkiv, data-quality, swarm | — |
-| `apps/web` | UI prototype (design handoff) | — |
+| `apps/web` | Web app; Enforcement screen reads the live chains; served from Swarm | — |
 | `docs/` | Research, evidence, design; corrections log in `docs/00` | — |
 
 ## Headline results (all reproducible)
@@ -43,6 +43,8 @@ browser verifier: Arkiv -> Swarm -> hash check -> replay every read via Anon-RPC
 - **Inbound limits, 64 LayerZero adapters over Aave-listed tokens on 8 chains (2026-11-07):** 31 release their full escrow, or mint without a cap, on one inbound message; 4 are inbound rate-limited (EtherFi weETH, PYUSD `0xa2c3`, USDG `0x147b` on Ethereum, USDG on Ink); 8 undetermined (custom codecs / empty escrow); 21 inactive or LayerZero v1. Every decisive result cross-checked on a second RPC. `docs/09`, `docs/evidence/inbound/`
 - **Real Morpho Vault V2 (Base fork):** a BREACHED rating makes FloorSentinel cut the collateral cap to 0; the sentinel cannot raise caps. `contracts/test/fork/MorphoBaseFork.t.sol`
 - **CCIP 2.0:** registry → broadcaster → mirror state change on the CCIP 2.0 local simulator; Sepolia → Arbitrum Sepolia is a v2.0 lane (checked with `@chainlink/ccip-sdk`).
+- **CRE refuses lies:** fed a feed claiming rsETH is OK, every node re-reads the chain and the workflow outputs REJECT ("feed understates risk"); with forged evidence too, REJECT ("read c505 mismatch"). `docs/evidence/cre/lies-2026-11-07.txt`
+- **CRE reacts to the transaction that set up the hack:** a log trigger on LayerZero's `UlnConfigSet`, simulated on Kelp's real Apr 2 2025 tx: the handler re-reads the route at block 22,179,964 and writes BREACHED. `docs/evidence/cre/event-trigger-2026-11-07.txt`
 - **CRE:** the workflow passes `cre workflow simulate` (CRE CLI v1.39.0): fetches the feed, re-reads the evidence on Ethereum mainnet at the pinned block, 4/4 reads match. `docs/evidence/cre/simulate-2026-11-06.txt`
 - **Anon-RPC:** in Chrome, the verifier re-checked all 624 reads of the rsETH bundle over **Tor (tor-js): VERIFIED in 50 s**, and over the **Nym mixnet**: VERIFIED in 70–103 s; **99.7–99.8% of requests through Anon-RPC** (the other 2 are the harness's bootstrap read, by design). One flipped byte gives MISMATCH. The page finds the rating on Arkiv and downloads the bundle from Swarm first (tested against a local Swarm node; live once published). `docs/evidence/anon-rpc/2026-11-06-browser-runs.md`
 

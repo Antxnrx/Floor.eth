@@ -19,3 +19,4 @@ ETHGlobal requires documenting where and how AI tools were used ([docs/18](docs/
 | `docs/evidence/cre/` | AI coding assistant (LLM) | Ran the CRE CLI simulation and fixed the workflow's URL validation for the WASM runtime | Logged in to CRE and requested deploy access |
 
 Planning artifacts and specs live in `docs/` and stay in the repo, as ETHGlobal requires.
+| 2026-11-07 | Pre-deploy hardening and the sponsor builds: dress rehearsal (`scripts/rehearse.sh`), node gas preflight (`scripts/preflight-gas.sh`), CRE lie fixtures and log trigger, CCIP-to-Base enforcement fork tests and `MorphoDemo` script, Arkiv dataset schemas/importer/page, all-chain inbound probe, live web Enforcement screen | AI assistant drafted code, tests and docs; every result was run against real chains or forks and checked; deploy transactions were signed by the team |
