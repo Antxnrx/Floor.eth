@@ -7,7 +7,7 @@
  */
 import { AnonRpcWorker } from "@anon-rpc/browser-harness";
 import type { EvidenceBundle } from "@floor/core";
-import { DEPLOYMENT } from "@floor/deployments";
+import { arkivRpc, DEPLOYMENT } from "@floor/deployments";
 import { arkivReader, EvidenceHashMismatch, fetchBundle, findRating } from "@floor/publish/browser";
 import { operatorMap } from "@floor/resolver/operators";
 import { fromAnonRpc, jsonRpcReader, TrafficMeter, verifyBundle, type FetchFn, type VerifyReport } from "@floor/verifier";
@@ -28,7 +28,7 @@ const DEFAULTS = {
   hash: DEPLOYMENT.kelp.bundleHash,
   writer: DEPLOYMENT.writer,
   token: DEPLOYMENT.kelp.token,
-  arkiv: DEPLOYMENT.chains.arkiv.rpc,
+  arkiv: arkivRpc(import.meta.env.VITE_ARKIV_ACCESS_KEY),
   gateway: DEPLOYMENT.swarm.gateway,
   registryRpc: DEPLOYMENT.chains.sepolia.rpcs[0]!,
   registry: DEPLOYMENT.contracts.registry.address,

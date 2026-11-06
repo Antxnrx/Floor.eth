@@ -15,3 +15,9 @@ export function contract(name: ContractKey): { chain: ChainKey; address: Address
 }
 export const rpcs = (chain: Exclude<ChainKey, "arkiv">): string[] => testnet.chains[chain].rpcs;
 export const explorerTx = (chain: "sepolia" | "baseSepolia", hash: string) => `${testnet.chains[chain].explorerTx}${hash}`;
+
+/**
+ * Arkiv RPC URL, with an access key appended when one is given (Arkiv keys are not secrets: they ship with the app and
+ * are restricted to its origins at hub.arkiv.network). The site gets it at build time from VITE_ARKIV_ACCESS_KEY.
+ */
+export const arkivRpc = (accessKey?: string) => (accessKey ? `${testnet.chains.arkiv.rpc}/${encodeURIComponent(accessKey)}` : testnet.chains.arkiv.rpc);

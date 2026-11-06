@@ -5,7 +5,7 @@
  * page is usable before the Arkiv write and as an offline check of what was published.
  */
 import { AnonRpcWorker } from "@anon-rpc/browser-harness";
-import { DEPLOYMENT } from "@floor/deployments";
+import { arkivRpc, DEPLOYMENT } from "@floor/deployments";
 import { adaptersBy, adapterValues, arkivReader, eventValues, timeline, unboundedAdapters } from "@floor/publish/browser";
 import type { Address } from "viem";
 import registry from "../../../packages/resolver/data/adapters-all-chains.json";
@@ -126,7 +126,7 @@ function preview() {
 }
 
 $<HTMLInputElement>("writer").value = new URLSearchParams(location.search).get("writer") ?? DEFAULT_WRITER;
-$<HTMLInputElement>("arkiv").value = new URLSearchParams(location.search).get("arkiv") ?? DEPLOYMENT.chains.arkiv.rpc;
+$<HTMLInputElement>("arkiv").value = new URLSearchParams(location.search).get("arkiv") ?? arkivRpc(import.meta.env.VITE_ARKIV_ACCESS_KEY);
 if (new URLSearchParams(location.search).get("net") === "direct") (document.querySelector("input[name=net][value=direct]") as HTMLInputElement).checked = true;
 $("go").addEventListener("click", () => void live());
 $("preview").addEventListener("click", preview);
