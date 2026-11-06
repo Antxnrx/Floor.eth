@@ -1,0 +1,102 @@
+/*
+ * The diagram's wires. The host is the positioning context and the SVG is laid
+ * over it at z-index 0, so every node inside keeps its own background and the
+ * curves pass behind them. See effects/beams.js.
+ */
+[data-beams] {
+	position: relative;
+}
+
+.beams__wires {
+	position: absolute;
+	inset: 0;
+	/* A control point can bow a little outside the host on the shortest hops;
+	   clipping it would square off the curve at the edge. */
+	overflow: visible;
+	pointer-events: none;
+}
+
+/*
+ * Darker than --color-rule, which is the page's divider weight and all but
+ * disappears as a 1px diagonal on ghost white. A wire has to be followable
+ * across a 400px run, not just felt as a boundary.
+ */
+.beam-wire {
+	fill: none;
+	stroke: color-mix(in srgb, var(--color-ink) 28%, transparent);
+	stroke-width: 1;
+}
+
+/*
+ * The travelling pulse: a single short dash on a path normalised to length 1,
+ * walked from source to target by its own offset. Round caps because a hard
+ * end on a hairline reads as a dropped line rather than a moving one.
+ */
+.beam-wire--pulse {
+	stroke: var(--color-ink);
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	stroke-dasharray: 0.14 0.86;
+	stroke-dashoffset: 1;
+	opacity: 0.8;
+	animation: beam-flow 3.2s linear infinite;
+	/* Paused rather than unset, so the per-wire delays are not re-dealt every
+	   time the diagram scrolls back into view. See effects/inView.js. */
+	animation-play-state: paused;
+}
+
+[data-beams].is-inview .beam-wire--pulse {
+	animation-play-state: running;
+}
+
+@keyframes beam-flow {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	/* Parked mid-run: the dash is 0.14 long, so an offset of 0.43 leaves it
+	   centred on the wire — a mark on a still diagram rather than a stopped
+	   animation caught at one end. */
+	.beam-wire--pulse {
+		animation: none;
+		stroke-dashoffset: 0.43;
+	}
+}
+
+/*
+ * Nodes sit above the wires. Both kinds are boxes with a hairline edge so a
+ * curve visibly terminates on something rather than trailing into text.
+ */
+.beam-node,
+.beam-pin {
+	position: relative;
+	z-index: 1;
+	background: var(--color-ghost);
+}
+
+.beam-pin {
+	display: block;
+	border: 1px solid var(--color-rule);
+	padding: 0.625rem 0.75rem;
+	font-size: 0.75rem;
+	line-height: 1.35;
+	color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+}
+
+.beam-node {
+	border: 1px solid var(--color-rule);
+	margin: 0;
+	padding: 1rem 0.75rem 0.875rem;
+	text-align: center;
+	/* The solid inside quantises on hover; the edge darkening is what says the
+	   tile is the target, since the canvas has no box of its own. */
+	transition: border-color 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+	.beam-node:hover {
+		border-color: color-mix(in srgb, var(--color-ink) 40%, transparent);
+	}
+}

@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>floor</title>
+		<meta
+			name="description"
+			content="Floor continuously rates the effective security of onchain collateral and gives lenders evidence to reduce exposure with bounded enforcement."
+		/>
+
+		<!--
+			Geist Pixel sets the hero wordmark, Inter italic sets the one on the
+			photo plate, and Lato sets everything else. A <link> rather than the
+			@import Google's own snippet hands out, because an @import inside
+			style.css cannot start downloading until the stylesheet has been
+			fetched and parsed.
+
+			Four faces in total, not the eleven the snippet offers: the page uses
+			Lato regular and one light italic (the headline's third line), one
+			Geist Pixel, and one Inter italic. All three families ride a single
+			request, and the Inter query is narrowed on its optical-size axis
+			as well, since the plate mark is only ever set large.
+		-->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Geist+Pixel&family=Inter:ital,opsz,wght@1,14..32,500&family=Lato:ital,wght@0,400;1,300&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-ghost text-ink">
+		<!--
+			The hero owns the WebGL scene. The canvas mounts into #app, which is
+			absolute inside this section, so it is clipped here and scrolls away
+			instead of floating over everything below. The camera only tracks the
+			cursor while the cursor is inside this section, and the render loop
+			stops when the section leaves the viewport.
+		-->
+		<section id="hero" class="relative h-lvh w-full overflow-hidden bg-void">
+			<div id="app" class="absolute inset-0"></div>
+
+			<!-- Keeps the copy legible where the beam crosses it. See .hero-scrim. -->
+			<div class="hero-scrim pointer-events-none absolute inset-0"></div>
+
+			<!-- pb clears the marquee strip pinned to the section's foot. -->
+			<div
+				class="pointer-events-none relative z-10 flex h-full flex-col justify-between p-6 pb-20 md:p-10 md:pb-24"
+			>
+				<!-- The wordmark stays as readable text while its light effect runs. -->
+				<header class="flex justify-center">
+					<div data-ascii="floor" role="img" aria-label="floor"></div>
+				</header>
+
+				<!--
+					The headline is the Filament effect's target: one element per line,
+					marked [data-line], which the effect splits into characters and then
+					re-draws in WebGL so each one catches like a lamp along a wall.
+					Nesting a differently coloured element inside a line would have no
+					effect while it plays — the shader takes one colour from the <h1> —
+					so the third line is set apart by weight and style instead.
+				-->
+				<div class="max-w-3xl">
+					<!-- w-fit so the effect's canvas is sized to the longest line rather
+					     than to the measure, which keeps the halo's 1em of room around the
+					     text instead of out at the column's right edge. -->
+					<h1
+						data-lamps
+						class="w-fit text-4xl leading-[1.0] text-white md:text-5xl"
+					>
+						<span data-line class="block">Security ratings for</span>
+						<span data-line class="block">onchain collateral,</span>
+						<span data-line class="block font-light italic"
+							>with bounded enforcement.</span
+						>
+					</h1>
+					<!-- 26rem rather than the 32rem the measure would allow: past that
+					     the last few words run into the beam. Measured over the
+					     paragraph's own box, 32rem puts 29% of the background above
+					     luma 110 and peaks at 201; 26rem is 15% and peaks at 159, and
+					     costs no extra line. -->
+					<p
+						data-fade="1"
+						class="mt-6 max-w-[26rem] text-sm leading-relaxed text-white/80"
+					>
+						Floor continuously checks the effective security of collateral: who
+						can create or release it, which independent verifiers must agree,
+						and how quickly its controls can change. Lenders can use the
+						evidence to reduce new exposure automatically.
+					</p>
+				</div>
+
+				<!--
+					The pipeline belongs with the copy's left edge, and down here it is
+					also off the beam: measured against the art, this band sits at mean
+					luma 20 where the old slot under the paragraph was at 124.
+				-->
+				<div
+					class="flex items-end justify-between font-mono text-xs uppercase tracking-[0.2em] text-white/35"
+				>
+					<div class="space-y-2">
+						<p data-fade="2" class="text-white/50">
+							Resolve <span class="text-white/25">&middot;</span> Assess
+							<span class="text-white/25">&middot;</span> Evidence
+							<span class="text-white/25">&middot;</span> Respond
+						</p>
+						<span class="block">Security posture, at a pinned block</span>
+					</div>
+					<span>Scroll &darr;</span>
+				</div>
+			</div>
+
+			<!--
+				The inputs a grade is computed from, running along the foot of the
+				scene. Every term here is named and defined somewhere below, which
+				is why the strip is hidden from assistive technology rather than
+				duplicated into it: it is the vocabulary of the page shown as a
+				list of parts, not a second copy of the content.
+
+				Two identical groups, with the track translated by half its own
+				width, so the loop closes on itself with no seam. See .marquee.
+			-->
+			<div
+				data-inview
+				aria-hidden="true"
+				class="marquee pointer-events-none absolute inset-x-0 bottom-0 z-10 border-t border-white/10 py-3.5"
+			>
+				<div
+					class="marquee__track font-mono text-[0.65rem] uppercase tracking-[0.28em] text-white/35"
+				>
+					<span class="marquee__group"
+						>Effective state &middot; Verifier threshold &middot; Timelock delay
+						&middot; Rate limits &middot; Mint authority &middot; Send and
+						receive libraries &middot; Oracle pins &middot; Delegates and owners
+						&middot; Pinned block &middot; Recomputable evidence &middot;
+					</span>
+					<span class="marquee__group"
+						>Effective state &middot; Verifier threshold &middot; Timelock delay
+						&middot; Rate limits &middot; Mint authority &middot; Send and
+						receive libraries &middot; Oracle pins &middot; Delegates and owners
+						&middot; Pinned block &middot; Recomputable evidence &middot;
+					</span>
+				</div>
+			</div>
+		</section>
+
+		<!--
+			The fluid trail mounts here and is scoped to this band: the canvas is
+			absolute inside it, the pointer is read from its box, and the solver
+			stops when the band scrolls away (see effects/fluidCursor.js).
+			`isolate` is load-bearing — the canvas sits at a negative z-index so
+			the copy paints over it, and that needs a stacking context here to
+			sit inside of.
+
+			The photo below is deliberately outside this element. Two canvas
+			effects over one box would overlap, and each section owning its own
+			motion is the rule the hero follows too.
+		-->
+		<main class="relative isolate">
+			<!--
+				What Floor is, before what it is for. The definition gets a band of
+				its own rather than a lede inside the problem section: a visitor
+				who reads one screen below the hero should leave with the sentence,
+				not with the argument for it.
+			-->
+			<section id="definition" class="band border-b border-rule py-24 md:py-28">
+				<div class="rail">
+					<!--
+						The label rail. It carries what an eyebrow over the heading used
+						to, except it is one system down the whole page rather than a
+						kicker per section, and it stays put while the band is read.
+					-->
+					<aside class="rail__aside mb-10 lg:mb-0">
+						<p class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60">
+							Definition
+						</p>
+						<p
+							class="mt-3 border-t border-rule pt-3 text-xs leading-relaxed text-ink/60"
+						>
+							What the rating is, before what it is for.
+						</p>
+					</aside>
+
+					<div>
+						<p
+							class="max-w-4xl text-2xl leading-snug md:text-4xl md:leading-[1.25]"
+						>
+							Floor is a security rating for onchain collateral.<span
+								class="text-ink/60"
+							>
+								It reads the live control surface of an asset — every route that
+								can create or release it — and publishes a grade a lender can
+								act on, with the evidence to recompute it.</span
+							>
+						</p>
+
+						<!--
+						Three claims the rest of the page has to keep. A ruled row
+						rather than three cards: they are one statement in three
+						parts, and boxing them would say they were three things.
+					-->
+						<dl
+							class="mt-16 grid border-t border-rule sm:grid-cols-3 sm:divide-x sm:divide-rule"
+						>
+							<div class="py-6 sm:pr-8">
+								<dt
+									class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60"
+								>
+									Pinned
+								</dt>
+								<dd class="mt-3 text-sm leading-relaxed text-ink/60">
+									Every grade names the block it was computed at, so two people
+									reading it are reading the same chain.
+								</dd>
+							</div>
+							<div class="border-t border-rule py-6 sm:border-t-0 sm:px-8">
+								<dt
+									class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60"
+								>
+									Lender-defined
+								</dt>
+								<dd class="mt-3 text-sm leading-relaxed text-ink/60">
+									Thresholds come from the lender’s own risk framework. Floor
+									encodes the rules; it does not invent them.
+								</dd>
+							</div>
+							<div class="border-t border-rule py-6 sm:border-t-0 sm:pl-8">
+								<dt
+									class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60"
+								>
+									Bounded
+								</dt>
+								<dd class="mt-3 text-sm leading-relaxed text-ink/60">
+									A response can only reduce new exposure. Floor never moves
+									funds, and never restores exposure on its own.
+								</dd>
+							</div>
+						</dl>
+					</div>
+				</div>
+			</section>
+
+			<!-- Why the thing exists: the failure it was built after. -->
+			<section id="why" class="band border-b border-rule py-24 md:py-32">
+				<div class="rail">
+					<aside class="rail__aside mb-10 lg:mb-0">
+						<p class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60">
+							Why Floor exists
+						</p>
+						<p
+							class="mt-3 border-t border-rule pt-3 text-xs leading-relaxed text-ink/60"
+						>
+							The failure it was built after, and why that failure was invisible
+							to everything watching.
+						</p>
+					</aside>
+
+					<div>
+						<h2 class="max-w-3xl text-3xl leading-tight md:text-5xl">
+							Collateral can look safe while its weakest route stays exposed.
+						</h2>
+
+						<div class="mt-12 grid gap-x-16 gap-y-10 lg:grid-cols-2">
+							<div>
+								<h3 class="text-lg">The risk is in the effective setup</h3>
+								<p class="mt-4 text-sm leading-relaxed text-ink/60">
+									A bridged token depends on more than its contract: bridge
+									routes, verifiers, owners, delegates, upgrade keys, timelocks
+									and rate limits all shape who can create or release it. A
+									field left at zero inherits a default somebody else controls,
+									and an optional threshold can make “three verifiers” mean “any
+									one of three”.
+								</p>
+								<p class="mt-4 text-sm leading-relaxed text-ink/60">
+									None of that is hidden. It is spread across contracts on
+									several chains, in fields whose meaning depends on which other
+									fields are set — which is why it goes unread until it matters.
+								</p>
+							</div>
+							<div>
+								<h3 class="text-lg">Most monitoring waits for a change</h3>
+								<p class="mt-4 text-sm leading-relaxed text-ink/60">
+									Guardians and alerting fire on movement: a transaction, a
+									parameter edit, a price break. That catches drift and misses
+									everything that was already wrong and simply stayed that way.
+								</p>
+								<p class="mt-4 text-sm leading-relaxed text-ink/60">
+									Floor grades standing state instead. The question is not “what
+									changed since yesterday” but “what is true at this block”,
+									which is the only question that has an answer when the
+									dangerous setting has not moved in a year.
+								</p>
+							</div>
+						</div>
+
+						<!--
+							The incident as a horizontal diagram rather than prose. The rule
+							is the twelve and a half months and the pulse crossing it is the
+							only moving thing in the band: four dated moments hung off one
+							continuous line, because the point of the story is the length of
+							the line between the first mark and the third.
+
+							Every row is from docs/03-kelp-onchain-timeline.md, which reads
+							them from Ethereum mainnet. No figure here is rounded up.
+						-->
+						<div class="mt-20">
+							<div
+								class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2"
+							>
+								<h3 class="text-xl md:text-2xl">
+									One route, one verifier, twelve and a half months.
+								</h3>
+								<p
+									class="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink/60"
+								>
+									rsETH &middot; Ethereum mainnet
+								</p>
+							</div>
+
+							<div data-inview class="beam mt-8" aria-hidden="true">
+								<span class="beam__pulse"></span>
+							</div>
+
+							<ol
+								class="mt-7 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
+							>
+								<li class="moment">
+									<p
+										class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										2 Apr 2025
+									</p>
+									<p class="mt-3 text-sm leading-relaxed text-ink/60">
+										A wallet acting as the adapter’s delegate sets one route to
+										a single required verifier, sending the change directly
+										rather than through the owning multisig.
+									</p>
+								</li>
+								<li class="moment">
+									<p
+										class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										Aug 2025 &rarr; Apr 2026
+									</p>
+									<p class="mt-3 text-sm leading-relaxed text-ink/60">
+										Control moves to a 3-of-6 Safe. The verifier setting is
+										never touched again, so nothing that watches for change has
+										anything to report. At the end of it, 24 of 26 Ethereum
+										routes stood on one verifier.
+									</p>
+								</li>
+								<li class="moment moment--break">
+									<p
+										class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										18 Apr 2026
+									</p>
+									<p class="mt-3 text-sm leading-relaxed text-ink/60">
+										That verifier’s own nodes are fed a false view of the source
+										chain and outside providers are knocked offline. A forged
+										message releases 116,500 rsETH.
+									</p>
+								</li>
+								<li class="moment">
+									<p
+										class="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										+22 blocks
+									</p>
+									<p class="mt-3 text-sm leading-relaxed text-ink/60">
+										The first borrow against the released collateral lands about
+										four and a half minutes after the drain. The first lender
+										freeze comes roughly 88 minutes after it.
+									</p>
+								</li>
+							</ol>
+						</div>
+
+						<!--
+							The one number on this page that came from an incident rather
+							than from the product, so it is set apart and its scope is
+							stated in the same breath. See docs/00-evidence-policy.md.
+						-->
+						<figure class="mt-20 border-t border-rule pt-8">
+							<figcaption
+								class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60"
+							>
+								The same block, replayed
+							</figcaption>
+							<div class="mt-6 grid gap-x-16 gap-y-6 lg:grid-cols-2">
+								<p class="text-2xl leading-tight md:text-3xl">
+									With Floor in the path, the borrow reverts:
+									<strong class="font-normal">$0 borrowed on Aave.</strong>
+								</p>
+								<div>
+									<p class="text-sm leading-relaxed text-ink/60">
+										The grade at the block before the drain is
+										<strong class="font-normal text-ink">BREACHED</strong>: a
+										single effective verifier on the attacked route, a receive
+										library left unpinned, and no timelock on the controlling
+										multisig. Each of those is a published rule, failed.
+									</p>
+									<p class="mt-4 text-xs leading-relaxed text-ink/60">
+										A scoped result from an Aave Ethereum fork — not a claim
+										that Floor prevented the real incident, or its losses on the
+										other lenders that took the same collateral.
+									</p>
+								</div>
+							</div>
+						</figure>
+
+						<!-- Why the problem is live now rather than in 2024. -->
+						<div class="mt-20">
+							<h3 class="text-lg">Why this is live now</h3>
+							<dl
+								class="mt-6 grid gap-x-10 gap-y-7 border-t border-rule pt-7 sm:grid-cols-2"
+							>
+								<div>
+									<dt class="text-sm">There is now a standard to fail</dt>
+									<dd class="mt-2 text-sm leading-relaxed text-ink/60">
+										Aave’s DAO approved a risk framework by Snapshot vote in
+										July 2026. Collateral is expected to meet it continuously,
+										not once at listing.
+									</dd>
+								</div>
+								<div>
+									<dt class="text-sm">Defaults moved, settings did not</dt>
+									<dd class="mt-2 text-sm leading-relaxed text-ink/60">
+										After the incident, LayerZero said protocol defaults would
+										be no less than a three-of-three verifier configuration. A
+										default is not an application’s effective setting, and most
+										applications set their own.
+									</dd>
+								</div>
+								<div>
+									<dt class="text-sm">One fewer independent reader</dt>
+									<dd class="mt-2 text-sm leading-relaxed text-ink/60">
+										Chaos Labs stepped away from Aave in April 2026, leaving a
+										single risk provider on the largest lending market.
+									</dd>
+								</div>
+								<div>
+									<dt class="text-sm">A second stack to read</dt>
+									<dd class="mt-2 text-sm leading-relaxed text-ink/60">
+										CCIP 2.0 launched in September 2026 with its own verifier
+										sets and thresholds, so the same posture questions now have
+										to be asked twice per asset.
+									</dd>
+								</div>
+							</dl>
+							<p class="mt-8 max-w-3xl text-sm leading-relaxed text-ink/60">
+								When the weakness sits in something many markets share rather
+								than in one asset, the only instrument most lenders have is a
+								broad freeze — on 29 October 2026 Aave froze 292 reserves while
+								one exploiter’s position was assessed. Knowing which markets
+								actually depend on a given verifier, library or key is what
+								makes a narrower answer possible.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 02 — How Floor works -->
+			<section id="components" class="band border-b border-rule py-24 md:py-32">
+				<div class="rail">
+					<aside class="rail__aside mb-12 lg:mb-0">
+						<p class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60">
+							How it works
+						</p>
+						<p class="mt-3 text-sm leading-relaxed text-ink/65">
+							One pass, left to right: what gets read, what decides, and what
+							the decision is allowed to do.
+						</p>
+					</aside>
+					<div>
+						<h2 class="max-w-2xl text-3xl leading-tight md:text-5xl">
+							From onchain state to a bounded response.
+						</h2>
+						<p class="mt-6 max-w-2xl text-base leading-relaxed text-ink/70">
+							Floor reads the live configuration of the bridges, keys and
+							libraries a collateral asset depends on, grades that reading
+							against a lender’s published rule pack, and publishes the reads
+							the grade was computed from. Enforcement is the last stage and the
+							narrowest one: an opt-in adapter can lower a cap or stop new
+							borrowing. It cannot move anyone’s funds.
+						</p>
+
+						<!--
+							The pipeline as a diagram rather than four numbered cards: the
+							point of the thing is that many readings converge on one
+							decision and that the decision fans out into a small, bounded
+							set of actions, and a row of equal cards says neither.
+
+							Edges are declared on the host; the wires and their travelling
+							pulses are drawn from the laid-out boxes by effects/beams.js.
+							Below `lg` the three columns stack, so the fan-in and fan-out
+							would cross the boxes between them — the narrow list drops to
+							the spine, which is the part that still reads vertically.
+						-->
+						<div
+							data-inview
+							data-beams="src-routes>resolve, src-control>resolve, src-market>resolve, src-declared>resolve, resolve>assess, assess>evidence, evidence>respond, respond>out-cap, respond>out-freeze, respond>out-mirror"
+							data-beams-narrow="resolve>assess, assess>evidence, evidence>respond"
+							class="mt-14 grid gap-y-12 lg:grid-cols-[11rem_minmax(0,1fr)_11rem] lg:gap-x-10"
+						>
+							<!-- The side columns stretch so their two captions sit on one
+							     line; only the spine is centred against them. -->
+							<div class="flex flex-col">
+								<p
+									class="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/60"
+								>
+									Read at a pinned block
+								</p>
+								<div class="mt-4 flex flex-1 flex-col justify-center gap-2">
+									<span class="beam-pin" data-beam-node="src-routes"
+										>Bridge routes — required and optional verifiers,
+										thresholds, receive libraries</span
+									>
+									<span class="beam-pin" data-beam-node="src-control"
+										>Control — delegates, Safe owners and threshold, timelock
+										delay</span
+									>
+									<span class="beam-pin" data-beam-node="src-market"
+										>Market — oracle, mint authority, caps and LTV in
+										force</span
+									>
+									<span class="beam-pin" data-beam-node="src-declared"
+										>Declared — the issuer’s Manifest, where one is
+										published</span
+									>
+								</div>
+							</div>
+
+							<div class="grid gap-7 lg:grid-cols-4 lg:self-center">
+								<article
+									class="beam-node"
+									data-beam-node="resolve"
+									data-shape-card
+								>
+									<div
+										class="flex items-baseline justify-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										<span>001</span><span>Resolve</span>
+									</div>
+									<div
+										data-pixel-shape="sphere"
+										class="mx-auto my-5 h-20 w-full max-w-[9rem]"
+									></div>
+									<h3 class="text-base leading-snug">Resolve the graph</h3>
+								</article>
+								<article
+									class="beam-node"
+									data-beam-node="assess"
+									data-shape-card
+								>
+									<div
+										class="flex items-baseline justify-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										<span>002</span><span>Assess</span>
+									</div>
+									<div
+										data-pixel-shape="cube"
+										class="mx-auto my-5 h-20 w-full max-w-[9rem]"
+									></div>
+									<h3 class="text-base leading-snug">Apply the rule pack</h3>
+								</article>
+								<article
+									class="beam-node"
+									data-beam-node="evidence"
+									data-shape-card
+								>
+									<div
+										class="flex items-baseline justify-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										<span>003</span><span>Evidence</span>
+									</div>
+									<div
+										data-pixel-shape="octahedron"
+										class="mx-auto my-5 h-20 w-full max-w-[9rem]"
+									></div>
+									<h3 class="text-base leading-snug">Publish the reads</h3>
+								</article>
+								<article
+									class="beam-node"
+									data-beam-node="respond"
+									data-shape-card
+								>
+									<div
+										class="flex items-baseline justify-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/60"
+									>
+										<span>004</span><span>Respond</span>
+									</div>
+									<div
+										data-pixel-shape="frustum"
+										class="mx-auto my-5 h-20 w-full max-w-[9rem]"
+									></div>
+									<h3 class="text-base leading-snug">Bound the exposure</h3>
+								</article>
+							</div>
+
+							<div class="flex flex-col">
+								<p
+									class="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/60"
+								>
+									Opt-in, and bounded
+								</p>
+								<div class="mt-4 flex flex-1 flex-col justify-center gap-2">
+									<span class="beam-pin" data-beam-node="out-cap"
+										>Supply cap lowered on a lender adapter</span
+									>
+									<span class="beam-pin" data-beam-node="out-freeze"
+										>New borrowing stopped; re-enabling stays with the
+										curator</span
+									>
+									<span class="beam-pin" data-beam-node="out-mirror"
+										>Signed grade mirrored for other consumers</span
+									>
+								</div>
+							</div>
+						</div>
+
+						<!--
+							The stages again, in prose. The diagram carries the shape of the
+							pass; this carries what each stage actually does, and the two are
+							kept apart so neither has to be read at the wrong size.
+						-->
+						<dl
+							class="mt-16 grid gap-x-10 gap-y-9 border-t border-rule pt-9 sm:grid-cols-2 xl:grid-cols-4"
+						>
+							<div>
+								<dt class="text-sm font-bold">Resolve the graph</dt>
+								<dd class="mt-2 text-sm leading-relaxed text-ink/70">
+									Every bridge route an asset can arrive on, with the verifier
+									set, receive library, control keys, timelock, oracle and mint
+									authority behind it — read at one block so the result can be
+									recomputed later.
+								</dd>
+							</div>
+							<div>
+								<dt class="text-sm font-bold">Apply the rule pack</dt>
+								<dd class="mt-2 text-sm leading-relaxed text-ink/70">
+									Defaults, optional thresholds and shared operators are
+									resolved to the setting actually in force, then checked
+									against a versioned lender policy and the issuer’s declared
+									Manifest.
+								</dd>
+							</div>
+							<div>
+								<dt class="text-sm font-bold">Publish the reads</dt>
+								<dd class="mt-2 text-sm leading-relaxed text-ink/70">
+									A grade ships with the block, the onchain reads and the rule
+									version it came from, so a third party can reproduce it from
+									public data instead of trusting the label.
+								</dd>
+							</div>
+							<div>
+								<dt class="text-sm font-bold">Bound the exposure</dt>
+								<dd class="mt-2 text-sm leading-relaxed text-ink/70">
+									Where a lender has opted in, a falling grade can lower a cap
+									or close new borrowing. Nothing is liquidated, nothing is
+									moved, and turning it back on is the lender’s decision.
+								</dd>
+							</div>
+						</dl>
+
+						<div
+							class="mt-14 grid gap-10 border-t border-rule pt-9 md:grid-cols-2"
+						>
+							<div>
+								<h3 class="text-lg">For issuers: Floor Check and Manifest</h3>
+								<p class="mt-3 text-sm leading-relaxed text-ink/70">
+									A Manifest states the security settings an issuer intends to
+									run — which verifiers are required, which library is pinned,
+									what delay a change has to sit through. Floor Check simulates
+									a proposed Safe transaction against that statement before
+									anyone signs it, and the same check runs in CI so drift is
+									caught as a failing build rather than as an incident.
+								</p>
+							</div>
+							<div>
+								<h3 class="text-lg">For risk teams: attestations and feeds</h3>
+								<p class="mt-3 text-sm leading-relaxed text-ink/70">
+									Grades are signed and can be mirrored to other chains, with
+									the history kept alongside the evidence. Lenders, curators,
+									insurers and exchanges read the same posture data, which is
+									the difference between four teams maintaining four private
+									spreadsheets and four teams disagreeing about one public
+									number.
+								</p>
+							</div>
+						</div>
+						<p
+							class="mt-9 max-w-3xl font-mono text-[0.65rem] uppercase leading-relaxed tracking-[0.14em] text-ink/60"
+						>
+							Current build: LayerZero effective-state resolver, Aave rule pack
+							v0, fork replay and browser verifier. CCIP 2.0 is in the rating
+							roadmap. Live enforcement requires lender or curator opt-in and
+							exists today as an adapter, not as a deployed control.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- 03 — Specification -->
+			<section
+				id="specification"
+				class="band border-b border-rule py-24 md:py-32"
+			>
+				<div class="rail">
+					<aside class="rail__aside mb-12 lg:mb-0">
+						<p class="font-mono text-xs uppercase tracking-[0.2em] text-ink/60">
+							What we check
+						</p>
+						<p class="mt-3 text-sm leading-relaxed text-ink/65">
+							The rules a grade is computed against, the four grades, one
+							measurement we ran ourselves, and the limit of every place Floor
+							can act.
+						</p>
+					</aside>
+					<div>
+						<h2 class="max-w-2xl text-3xl leading-tight md:text-5xl">
+							A security grade with reasons you can inspect.
+						</h2>
+						<p class="mt-6 max-w-2xl text-base leading-relaxed text-ink/70">
+							Thresholds belong to the lender, not to Floor. The first rule pack
+							encodes the Aave Risk Framework approved by Snapshot vote,
+							including its minimum of three independent verifiers on every
+							Aave-exposed route — and it is versioned, so a grade always names
+							the edition of the rules that produced it.
+						</p>
+						<dl class="mt-12 border-t border-rule text-sm">
+							<div
+								class="flex flex-col gap-2 border-b border-rule py-5 sm:flex-row sm:justify-between sm:gap-10"
+							>
+								<dt class="text-ink/65">Verifier threshold</dt>
+								<dd class="sm:text-right">
+									At least 3 independent verifiers per route, counted as
+									<em>required</em>, never as required plus optional
+								</dd>
+							</div>
+							<div
+								class="flex flex-col gap-2 border-b border-rule py-5 sm:flex-row sm:justify-between sm:gap-10"
+							>
+								<dt class="text-ink/65">Control and upgrades</dt>
+								<dd class="sm:text-right">
+									Bridge and library changes gated by a timelock, with delegates
+									and Safe thresholds resolved to the path actually usable today
+								</dd>
+							</div>
+							<div
+								class="flex flex-col gap-2 border-b border-rule py-5 sm:flex-row sm:justify-between sm:gap-10"
+							>
+								<dt class="text-ink/65">Route limits</dt>
+								<dd class="sm:text-right">
+									Inbound and outbound bounds checked separately, because only
+									the inbound one bounds what a forged message can release
+								</dd>
+							</div>
+							<div
+								class="flex flex-col gap-2 border-b border-rule py-5 sm:flex-row sm:justify-between sm:gap-10"
+							>
+								<dt class="text-ink/65">Libraries and dependencies</dt>
+								<dd class="sm:text-right">
+									Pinned receive library, oracle, mint authority and the
+									implementation address behind every proxy
+								</dd>
+							</div>
+						</dl>
+						<!--
+							The four grades, each with its headroom drawn as filled cells of
+							four. The meter is aria-hidden and carries nothing the label and
+							the sentence beside it do not already say — it is there so the
+							row can be scanned at a glance, and so the states read as one
+							scale rather than four unrelated words.
+						-->
+						<div class="mt-14 grid gap-10 sm:grid-cols-2 xl:grid-cols-4">
+							<div>
+								<span class="meter" aria-hidden="true"
+									><i></i><i></i><i></i><i></i
+								></span>
+								<p class="mt-4 font-mono text-xs tracking-[0.18em] text-ink">
+									OK
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-ink/70">
+									Meets the selected lender rules at the scanned block.
+								</p>
+							</div>
+							<div>
+								<span class="meter" aria-hidden="true"
+									><i></i><i></i><i class="is-off"></i><i class="is-off"></i
+								></span>
+								<p class="mt-4 font-mono text-xs tracking-[0.18em] text-ink">
+									DEGRADED
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-ink/70">
+									Weaker than required, with headroom left; a lender may lower
+									caps.
+								</p>
+							</div>
+							<div>
+								<span class="meter" aria-hidden="true"
+									><i></i><i class="is-off"></i><i class="is-off"></i
+									><i class="is-off"></i
+								></span>
+								<p class="mt-4 font-mono text-xs tracking-[0.18em] text-ink">
+									BREACHED
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-ink/70">
+									A hard rule fails; new exposure can be reduced where a lender
+									has opted in.
+								</p>
+							</div>
+							<div>
+								<span class="meter" aria-hidden="true"
+									><i class="is-void"></i><i class="is-void"></i
+									><i class="is-void"></i><i class="is-void"></i
+								></span>
+								<p class="mt-4 font-mono text-xs tracking-[0.18em] text-ink">
+									UNKNOWN
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-ink/70">
+									Evidence missing or a dependency unmapped. Not a pass, and not
+									a zero.
+								</p>
+							</div>
+						</div>
+
+						<!--
+							One check run with Floor's own tooling, reported with its block
+							and its failures. It is here rather than in the problem section
+							because it is the clearest statement of what "we check this"
+							means on this page: a number, where it came from, and the cases
+							the probe could not settle.
+						-->
+						<div class="mt-16 border-t border-rule pt-9">
+							<h3 class="max-w-2xl text-xl leading-snug md:text-2xl">
+								One of those rules, measured rather than asserted.
+							</h3>
+							<div class="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
+								<div>
+									<p class="max-w-2xl text-sm leading-relaxed text-ink/70">
+										Aave’s framework asks that a bridge bound how much a single
+										inbound message can release. To find out whether that bound
+										exists, Floor calls each adapter at a pinned block from the
+										LayerZero endpoint address, with a correctly formed credit
+										from the route’s own configured peer, and classifies the
+										result by revert reason. Simulation only, on a fork — never
+										a broadcast.
+									</p>
+									<p class="mt-4 max-w-2xl text-sm leading-relaxed text-ink/70">
+										Of 34 LayerZero adapters over Aave-listed tokens on Ethereum
+										at block 26,351,514:
+										<strong>20 accepted a credit for the entire escrow</strong>
+										across 111 routes, 1 enforced a real inbound rate limit, 5
+										held no escrow to bound, 6 had no active peers, and 2
+										returned a test error we count as neither a pass nor a
+										failure. The probe refuses to run at all unless the same
+										call is first rejected from a non-endpoint address and from
+										a wrong peer.
+									</p>
+									<p class="mt-4 max-w-2xl text-sm leading-relaxed text-ink/65">
+										This measures the application layer, not drainability: a
+										real attack still has to defeat the verifier layer first.
+										Floor does not claim to have reproduced the community’s
+										multi-chain “35 of 39” figure — the lists overlap and agree
+										on every adapter both could probe, and the rest is the next
+										step.
+									</p>
+								</div>
+								<dl class="text-sm">
+									<div
+										class="flex justify-between gap-6 border-b border-rule pb-3"
+									>
+										<dt class="text-ink/65">Chain, block</dt>
+										<dd class="text-right">Ethereum, 26,351,514</dd>
+									</div>
+									<div
+										class="flex justify-between gap-6 border-b border-rule py-3"
+									>
+										<dt class="text-ink/65">Adapters probed</dt>
+										<dd class="text-right">34</dd>
+									</div>
+									<div
+										class="flex justify-between gap-6 border-b border-rule py-3"
+									>
+										<dt class="text-ink/65">No inbound bound</dt>
+										<dd class="text-right">20 · 111 routes</dd>
+									</div>
+									<div
+										class="flex justify-between gap-6 border-b border-rule py-3"
+									>
+										<dt class="text-ink/65">Bounded</dt>
+										<dd class="text-right">1</dd>
+									</div>
+									<div class="flex justify-between gap-6 py-3">
+										<dt class="text-ink/65">Inconclusive</dt>
+										<dd class="text-right">2 custom codec</dd>
+									</div>
+								</dl>
+							</div>
+						</div>
+
+						<!--
+							The limits of each enforcement point, as a two-column list
+							rather than a feature table. Both halves are stated for every
+							point, because a monitoring product that only publishes the left
+							half is the thing this page is arguing against.
+						-->
+						<div class="mt-16 border-t border-rule pt-9">
+							<h3 class="max-w-2xl text-xl leading-snug md:text-2xl">
+								Where Floor can act, and where it cannot.
+							</h3>
+							<dl class="mt-8 border-t border-rule text-sm">
+								<div
+									class="grid gap-x-10 gap-y-3 border-b border-rule py-5 lg:grid-cols-[13rem_minmax(0,1fr)_minmax(0,1fr)]"
+								>
+									<dt class="font-bold">CI and pre-sign check</dt>
+									<dd class="text-ink/70">
+										Catches a planned config, library or delegate change that
+										lowers the floor — before anyone signs it.
+									</dd>
+									<dd class="text-ink/65">
+										Blind to anything sent outside the pipeline, such as a
+										transaction from an EOA delegate.
+									</dd>
+								</div>
+								<div
+									class="grid gap-x-10 gap-y-3 border-b border-rule py-5 lg:grid-cols-[13rem_minmax(0,1fr)_minmax(0,1fr)]"
+								>
+									<dt class="font-bold">Safe guard, fail-open</dt>
+									<dd class="text-ink/70">
+										Catches weakening through the Safe’s own signed path,
+										including batched calls and configs that only look like
+										three verifiers.
+									</dd>
+									<dd class="text-ink/65">
+										Blind to modules, EOA and timelock delegates, bridge default
+										changes, other chains — and to a quorum that removes the
+										guard first. Not deployed on funded Safes.
+									</dd>
+								</div>
+								<div
+									class="grid gap-x-10 gap-y-3 border-b border-rule py-5 lg:grid-cols-[13rem_minmax(0,1fr)_minmax(0,1fr)]"
+								>
+									<dt class="font-bold">Continuous monitoring</dt>
+									<dd class="text-ink/70">
+										Catches all of the above, plus default changes, owner and
+										delegate changes, modules and the same asset on other
+										chains. This is the source of truth.
+									</dd>
+									<dd class="text-ink/65">
+										Has nothing to block with. It can only publish and feed the
+										enforcers.
+									</dd>
+								</div>
+								<div
+									class="grid gap-x-10 gap-y-3 py-5 lg:grid-cols-[13rem_minmax(0,1fr)_minmax(0,1fr)]"
+								>
+									<dt class="font-bold">Lender enforcers</dt>
+									<dd class="text-ink/70">
+										Catches new exposure taken against collateral that is
+										already BREACHED.
+									</dd>
+									<dd class="text-ink/65">
+										Leaves existing positions alone. That is a design decision,
+										not a gap: no forced unwinds.
+									</dd>
+								</div>
+							</dl>
+							<p class="mt-8 max-w-3xl text-sm leading-relaxed text-ink/70">
+								Enforcers only ever reduce new exposure. Floor never moves
+								funds, never pauses a protocol, never blocks repayment,
+								withdrawal or liquidation, and never re-enables collateral by
+								itself. A lender or curator has to opt in, and a human decides
+								when exposure is restored.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!--
+			Closing visual plate with its pointer-driven image effect. No rule under
+			it: the plate is black and so is the footer below it, so the page's last
+			two bands read as one closing field rather than two stacked dark boxes.
+		-->
+		<section id="texture">
+			<figure>
+				<!--
+					The canvas magnifier mounts into this box and cover-fits the
+					photo to it (see effects/gridImage.js). The 6:1 frame keeps the
+					image to one third of its former height; cover fitting crops the
+					photo vertically to fill it.
+
+					The <img> both sizes the box and is the fallback — it stays
+					visible until the photo has decoded and the first frame is
+					drawn, and stays for good if the load fails. Vite rewrites
+					src/srcset against `base` but would not rewrite a path in a
+					data attribute, which is the other reason the photo is an
+					element here rather than a URL handed to the script.
+
+					Loading is eager, at low priority: the module decodes on mount,
+					so `lazy` would be overridden anyway and risks a decode that
+					rejects before the fetch has been triggered.
+				-->
+				<!-- 6:1 is a band on a desktop and a 65px letterbox on a phone, which
+				     is too little of the photo to be worth the bytes and too little
+				     room for the mark over it. The crop opens up as the viewport
+				     narrows; cover-fitting means the script needs no notice of it. -->
+				<div
+					data-grid-image
+					class="aspect-[5/2] w-full bg-void md:aspect-[6/1]"
+				>
+					<picture>
+						<source
+							type="image/avif"
+							srcset="./embers-1600.avif 1600w, ./embers-3200.avif 3200w"
+							sizes="100vw"
+						/>
+						<source
+							type="image/webp"
+							srcset="./embers-1600.webp 1600w, ./embers-3200.webp 3200w"
+							sizes="100vw"
+						/>
+						<img
+							src="./embers-2400.jpg"
+							alt="Long-exposure streaks of yellow light against black."
+							width="2400"
+							height="1200"
+							loading="eager"
+							fetchpriority="low"
+							decoding="async"
+						/>
+					</picture>
+
+					<!--
+						The plate's wordmark, over the photo rather than in it. It is a
+						sibling of the canvas with a z-index above it, so the magnifier
+						goes on resolving the photo underneath while the letterforms
+						stay type — and `pointer-events: none` keeps the host, not this,
+						as the element under the cursor, so moving across the word
+						drives the effect exactly as moving across the photo does.
+
+						Inter italic against the hero's Geist Pixel: the two marks are
+						the same word at opposite ends of the page and should not be
+						the same drawing of it. See .plate-mark.
+					-->
+					<p class="plate-mark" aria-hidden="true">floor</p>
+				</div>
+			</figure>
+		</section>
+
+		<!--
+			The closing band, dark like the plate above it. The page opens black,
+			runs ghost white through the argument, and closes black again — so the
+			footer is the end of the document rather than a lighter strip bolted
+			under a dark photo.
+		-->
+		<footer class="band bg-void pt-20 pb-10 text-ghost md:pt-24">
+			<div class="rail">
+				<div class="grid gap-12 sm:grid-cols-2 xl:grid-cols-4">
+					<div>
+						<p
+							class="font-mono text-xs uppercase tracking-[0.2em] text-ghost/55"
+						>
+							What this is
+						</p>
+						<p class="mt-4 max-w-xs text-sm leading-relaxed text-ghost/70">
+							A lender-side security rating for onchain collateral, built from
+							live effective state and evidence anyone can recompute.
+						</p>
+					</div>
+					<nav aria-label="Sections">
+						<p
+							class="font-mono text-xs uppercase tracking-[0.2em] text-ghost/55"
+						>
+							Sections
+						</p>
+						<ul class="mt-4 space-y-2 text-sm text-ghost/70">
+							<li>
+								<a class="hover:text-ghost hover:underline" href="#hero"
+									>Overview</a
+								>
+							</li>
+							<li>
+								<a class="hover:text-ghost hover:underline" href="#definition"
+									>What Floor is</a
+								>
+							</li>
+							<li>
+								<a class="hover:text-ghost hover:underline" href="#why"
+									>Why it exists</a
+								>
+							</li>
+							<li>
+								<a class="hover:text-ghost hover:underline" href="#components"
+									>How it works</a
+								>
+							</li>
+							<li>
+								<a
+									class="hover:text-ghost hover:underline"
+									href="#specification"
+									>What we check</a
+								>
+							</li>
+						</ul>
+					</nav>
+					<nav aria-label="Floor capabilities">
+						<p
+							class="font-mono text-xs uppercase tracking-[0.2em] text-ghost/55"
+						>
+							Capabilities
+						</p>
+						<ul class="mt-4 space-y-2 text-sm text-ghost/70">
+							<li>
+								<a class="hover:text-ghost hover:underline" href="#components"
+									>Floor Graph — the dependency map</a
+								>
+							</li>
+							<li>
+								<a class="hover:text-ghost hover:underline" href="#components"
+									>Floor Check — pre-sign and CI</a
+								>
+							</li>
+							<li>
+								<a
+									class="hover:text-ghost hover:underline"
+									href="#specification"
+									>Floor Rating — graded against a rule pack</a
+								>
+							</li>
+							<li>
+								<a
+									class="hover:text-ghost hover:underline"
+									href="#specification"
+									>Floor Enforcers — opt-in, reduce only</a
+								>
+							</li>
+						</ul>
+					</nav>
+					<div>
+						<p
+							class="font-mono text-xs uppercase tracking-[0.2em] text-ghost/55"
+						>
+							Who it is for
+						</p>
+						<p class="mt-4 max-w-xs text-sm leading-relaxed text-ghost/70">
+							Lenders and curators setting caps on collateral they did not
+							issue; issuers who want their security posture checkable rather
+							than argued; insurers and exchanges reading the same evidence.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="mt-16 flex flex-col gap-3 border-t border-ghost/15 pt-6 font-mono text-xs uppercase leading-relaxed tracking-[0.18em] text-ghost/55 sm:flex-row sm:justify-between sm:gap-10"
+				>
+					<span>Evidence led. Human controlled.</span>
+					<span class="sm:text-right"
+						>Every grade names its block, its reads and its rule version</span
+					>
+				</div>
+
+				<!-- The sign-off: the hero's pixel face read as large as the page
+				     allows. See .footer-mark. -->
+				<p class="footer-mark mt-16 md:mt-20" aria-hidden="true">floor</p>
+			</div>
+		</footer>
+		<script type="module" src="/src/main.js"></script>
+	</body>
+</html>

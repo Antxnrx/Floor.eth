@@ -1,0 +1,26 @@
+/*
+ * The trail is a background texture for the band it mounts into, not a layer
+ * over it, so the copy keeps its contrast whatever the trail is doing under
+ * it.
+ *
+ * Hence the negative z-index rather than 0. A positioned element at z-index 0
+ * paints after its container's non-positioned descendants — i.e. over the
+ * text — whereas a negative one paints before them but still after the
+ * container's own background, which is exactly the slot this wants. It does
+ * mean the host must establish a stacking context (`isolate` alongside
+ * `relative` in index.html): without one the canvas would go looking further
+ * up the tree for something to sit behind and disappear under the page.
+ *
+ * `width`/`height` are set here rather than by the canvas attributes, because
+ * those carry device pixels and these have to be CSS pixels.
+ */
+.fluid-cursor {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	display: block;
+	width: 100%;
+	height: 100%;
+	/* It covers the whole band, including its links. */
+	pointer-events: none;
+}
