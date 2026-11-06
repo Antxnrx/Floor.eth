@@ -113,9 +113,12 @@ check "paid exactly the fee (overpayment refunded)" "$(python3 -c "print($B0-$B1
 echo "    (delivery to Base Sepolia, and the cap cut there, need the real CCIP network; proven in contracts/test/fork/CCIPToBaseEnforcementFork.t.sol)"
 
 echo "== 6. Arkiv write preflight  [README step 8, estimate only, no key]"
-(cd packages/publish && SWARM_GATEWAY=${SWARM_GATEWAY:-http://localhost:1635} npx tsx src/importer.ts --bundle ../resolver/fixtures/rseth-24908284.json:$RSETH \
+(cd packages/publish && SWARM_GATEWAY=${SWARM_GATEWAY:-https://api.gateway.ethswarm.org} npx tsx src/importer.ts --bundle ../resolver/fixtures/rseth-24908284.json:$RSETH \
   --swarm-ref ${SWARM_REF:-ca035fbdfa74bfd611af912e4a7debb53f38047a78bcd181a20c1490e8419778} --arkiv-estimate $DEPLOYER > /tmp/floor-rehearse-6.log 2>&1) \
   && grep -q "estimate, nothing sent" /tmp/floor-rehearse-6.log && ok "$(grep 'estimate, nothing sent' /tmp/floor-rehearse-6.log | sed 's/^ *//')" || bad "Arkiv preflight failed (see /tmp/floor-rehearse-6.log)"
+
+(cd packages/publish && npx tsx src/importer.ts --dataset --arkiv-estimate $DEPLOYER > /tmp/floor-rehearse-6b.log 2>&1) \
+  && grep -q "arkiv dataset (estimate, nothing sent)" /tmp/floor-rehearse-6b.log && ok "$(grep 'arkiv dataset (estimate' /tmp/floor-rehearse-6b.log | sed 's/^ *//')" || bad "Arkiv dataset preflight failed (see /tmp/floor-rehearse-6b.log)"
 
 echo
 echo "rehearsal: $pass passed, $fail failed"

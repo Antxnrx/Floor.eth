@@ -32,6 +32,8 @@ const DEFAULTS = {
   arkiv: RABDI_PUBLIC_RPC,
   gateway: SWARM_PUBLIC_GATEWAY,
   registryRpc: "https://ethereum-sepolia-rpc.publicnode.com",
+  // FloorRegistry on Ethereum Sepolia: the deployer's first contract (nonce 0), README step 2. Override with ?registry=
+  registry: "0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6",
 };
 
 const REGISTRY_ABI = parseAbi(["function ratingOf(address asset) view returns ((uint8 grade, bool known, uint64 scanBlock, uint32 ruleVersion, uint64 updatedAt, bytes32 bundleHash))"]);
@@ -196,6 +198,7 @@ async function checkRegistry(expected: Hex, t: Transport, meter: TrafficMeter): 
   if (!registry) { step("onchain: skipped (no FloorRegistry address given; deploy step 2 in the README)", "skip"); return "skipped"; }
   const data = encodeFunctionData({ abi: REGISTRY_ABI, functionName: "ratingOf", args: [v("token") as Address] });
   const out = (await rpcCall(meter.wrap(`registry · ${t.label}`, t.raw), v("registryRpc"), "eth_call", [{ to: registry, data }, "latest"])) as Hex;
+  if (!out || out === "0x") { step(`onchain: skipped (no FloorRegistry contract at ${registry.slice(0, 10)}… on that chain yet)`, "skip"); return "skipped"; }
   const r = decodeFunctionResult({ abi: REGISTRY_ABI, functionName: "ratingOf", data: out });
   if (!r.known) { step(`onchain: FloorRegistry ${registry.slice(0, 10)}… has no rating for this asset yet`, "bad"); return "none"; }
   const ok = r.bundleHash.toLowerCase() === expected.toLowerCase();
@@ -288,8 +291,8 @@ document.querySelectorAll<HTMLInputElement>("input[name=net]").forEach((r) => r.
 $<HTMLInputElement>("boot").value = DEFAULTS.boot;
 $<HTMLInputElement>("hash").value = DEFAULTS.hash;
 const qs0 = new URLSearchParams(location.search);
-for (const k of ["writer", "token", "arkiv", "gateway", "registryRpc"] as const) $<HTMLInputElement>(k).value = qs0.get(k) ?? DEFAULTS[k];
-for (const k of ["ref", "registry", "hash"]) if (qs0.get(k)) $<HTMLInputElement>(k).value = qs0.get(k)!;
+for (const k of ["writer", "token", "arkiv", "gateway", "registryRpc", "registry"] as const) $<HTMLInputElement>(k).value = qs0.get(k) ?? DEFAULTS[k];
+for (const k of ["ref", "hash"]) if (qs0.get(k)) $<HTMLInputElement>(k).value = qs0.get(k)!;
 const qsrc = qs0.get("src");
 if (qsrc) (document.querySelector(`input[name=src][value="${qsrc}"]`) as HTMLInputElement | null)?.click();
 const q = qs0.get("net");
