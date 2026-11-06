@@ -12,7 +12,7 @@
 | 4. CRE workflow → FloorRegistry | ✅ code + tests + **CRE CLI v1.39.0 simulation passes** (dry run, 4 mainnet reads matched; `docs/evidence/cre/simulate-2026-11-06.txt`); deploy access requested, pending; onchain write needs the registry deployed | `cre/floor-rating` |
 | 5. CCIP send → FloorMirror state change | ✅ on the CCIP 2.0 local simulator; **testnet send needs your key** | `contracts` |
 | 6. Arkiv mirror + judged files | ✅ code + live reads + `/arkiv/*.md`; **writes need your key** | `packages/publish`, `arkiv/` |
-| 7. Web page with browser verify | ⚙️ verifier logic done and live-tested; UI wiring is the frontend owner's | `packages/verifier`, `apps/web` |
+| 7. Web page with browser verify | ⚙️ verifier runs in Chrome through **Anon-RPC (Nym)**: VERIFIED 624/624, 99.7% of reads via Anon-RPC (`docs/evidence/anon-rpc/`); reference page `apps/verify-lab`; wiring into `apps/web` is the frontend owner's | `packages/verifier`, `apps/verify-lab`, `apps/web` |
 | 8. Kelp replay on a fork | ✅ done with the attacker's real txs | `contracts/test/fork/KelpReplay.t.sol` |
 | 9. Swarm evidence + `swarm.md` | ✅ code + local Bee round trip; **public batch needs funds** | `packages/publish`, `arkiv/swarm.md` |
 

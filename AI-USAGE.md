@@ -15,5 +15,7 @@ ETHGlobal requires documenting where and how AI tools were used ([docs/18](docs/
 | `contracts/` | AI coding assistant (LLM) | Drafted the contracts, unit/fuzz/invariant tests, Base and mainnet fork tests, the Kelp replay and deploy scripts | Defined the bounded-authority invariants and the replay scenarios |
 | `arkiv/` | AI coding assistant (LLM) | Drafted the judging files from the built code and the friction we observed | Reviewed claims and numbers |
 | `apps/web/` | AI coding assistant (LLM) | Drafted the wireframe prototype of all screens | Screen list and copy rules; frontend owner restyles |
+| `apps/verify-lab/`, `docs/evidence/anon-rpc/` | AI coding assistant (LLM) | Drafted the Anon-RPC integration page, ran it in Chrome over Nym / passthrough / direct, diagnosed provider rate limits and content-type rejections, and wrote up the measured runs | Chose Anon-RPC as the default path and what counts as an honest traffic share |
+| `docs/evidence/cre/` | AI coding assistant (LLM) | Ran the CRE CLI simulation and fixed the workflow's URL validation for the WASM runtime | Logged in to CRE and requested deploy access |
 
 Planning artifacts and specs live in `docs/` and stay in the repo, as ETHGlobal requires.
