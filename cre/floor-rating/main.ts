@@ -28,7 +28,8 @@ import { encodeReport, feedSchema, planReads, verifyEntry, type Feed } from "./l
 
 export const configSchema = z.object({
   schedule: z.string(),
-  feedUrl: z.string().url(),
+  // z.string().url() needs the URL class, which the CRE WASM runtime does not provide
+  feedUrl: z.string().regex(/^https:\/\/[^\s]+$/, "feedUrl must be an https URL"),
   /** chain the evidence was read on (Ethereum mainnet for the rsETH demo) */
   sourceChainSelectorName: z.string(),
   /** chain FloorRegistry lives on */
