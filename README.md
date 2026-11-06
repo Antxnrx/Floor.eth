@@ -27,7 +27,8 @@ browser verifier: Arkiv -> Swarm -> hash check -> replay every read via Anon-RPC
 |---|---|---|
 | `packages/core` | Types, Aave rule pack v0, effective-independence math, canonical hashing | 17 |
 | `packages/resolver` | LayerZero effective-state scanner (3-RPC cross-check), inbound-limit probe, CRE feed builder | 12 (live) |
-| `packages/verifier` | Browser verifier: raw replay, state-vs-raw, grade reproduction, Anon-RPC traffic meter | 9 (live: 624/624 reads verified on mainnet) |
+| `packages/verifier` | Browser verifier: raw replay, state-vs-raw, grade reproduction, multi-RPC rotation with rate-limit benching and timeouts, Anon-RPC traffic meter | 14 (live: 624/624 reads verified on mainnet) |
+| `apps/verify-lab` | Minimal browser page: the verifier through EF Anon-RPC (Nym / tor-js / passthrough / direct); integration reference for `apps/web` | manual, in Chrome (results in `docs/evidence/anon-rpc/`) |
 | `packages/publish` | Arkiv schemas + queries, Swarm upload/fetch, re-runnable importer | 6 (live Arkiv read) + Swarm round trip |
 | `cre/floor-rating` | Chainlink CRE workflow (TypeScript); compiles to WASM with `cre-compile` | 8 (live) + 3 end-to-end in the CRE SDK runtime |
 | `contracts` | FloorRegistry, FloorBroadcaster, FloorMirror (CCIP 2.0), FloorSentinel, AaveFreezeEnforcer, deploy scripts | 35 (incl. fuzz, invariants, Base + mainnet forks) |
@@ -42,6 +43,17 @@ browser verifier: Arkiv -> Swarm -> hash check -> replay every read via Anon-RPC
 - **Inbound limits, 34 Ethereum adapters over Aave-listed tokens (block 26,351,514):** 20 adapters release their full escrow on one inbound message; only EtherFi weETH's main adapter is rate-limited (caps measured per route). `docs/09`
 - **Real Morpho Vault V2 (Base fork):** a BREACHED rating makes FloorSentinel cut the collateral cap to 0; the sentinel cannot raise caps. `contracts/test/fork/MorphoBaseFork.t.sol`
 - **CCIP 2.0:** registry → broadcaster → mirror state change on the CCIP 2.0 local simulator; Sepolia → Arbitrum Sepolia is a v2.0 lane (checked with `@chainlink/ccip-sdk`).
+- **CRE:** the workflow passes `cre workflow simulate` (CRE CLI v1.39.0): fetches the feed, re-reads the evidence on Ethereum mainnet at the pinned block, 4/4 reads match. `docs/evidence/cre/simulate-2026-11-06.txt`
+- **Anon-RPC:** in Chrome, the verifier re-checked all 624 reads of the rsETH bundle over the **Nym mixnet**: VERIFIED in 70–103 s, **99.7% of chain reads through Anon-RPC** (the other 2 are the harness's bootstrap read, by design). One flipped byte gives MISMATCH. `docs/evidence/anon-rpc/2026-11-06-browser-runs.md`
+
+## CROPS
+
+- **C (censorship resistant):** checking a grade needs no Floor server. The evidence bundle is on Swarm, its hash is on Arkiv and in the CRE report onchain, and every chain read goes through Anon-RPC and rotates across several RPC providers, any of which you can swap in the page. The rating is also mirrored to a second chain over CCIP. *Limits today:* the default RPCs are free public endpoints; the tor-js demo gateway was unreachable from our network; the site itself is not yet served from Swarm.
+- **O (open source):** Apache-2.0. All code, the rule pack, the evidence bundles, the importer and every test are in this repo; anyone can re-run the resolver at the same block and get the same bytes.
+- **P (private):** the browser verifier routes chain reads through EF Anon-RPC (Nym by default). Measured share: 99.7% of chain reads; the 2 direct reads are the harness reading the specifier contract before the anonymised fetch exists, which only reveals that Anon-RPC is in use. No trackers, analytics or third-party scripts. *Limits:* RPC providers still see the queries (not who sent them); "passthrough" mode exists for testing and is labelled not anonymous.
+- **S (secure):** the verifier trusts nothing from Floor: hash check, byte-for-byte replay of every read, decoded-state check and grade recomputation. Any failure ends MISMATCH or UNVERIFIED_RPC, never VERIFIED (tests). Anon-RPC worker bundles are hash-pinned onchain and run sandboxed. Enforcement contracts can only reduce risk (invariant tests). *Not yet audited.*
+
+Run the verifier yourself: `pnpm --filter @floor/verify-lab dev` → http://127.0.0.1:5181 (see `apps/verify-lab/README.md`).
 
 ## Run the tests
 
@@ -56,7 +68,7 @@ npx @ethersphere/bee-factory start --tag v2.8.1 && (cd packages/publish && FLOOR
 
 Tools: Node ≥ 20, pnpm 10, Foundry ≥ 1.8, Bun ≥ 1.2.21 (CRE), Docker (Swarm dev).
 
-## Commands that need your credentials (nothing here was run)
+## Commands that need your credentials
 
 Never paste keys into files. Use a Foundry keystore (`cast wallet import`) and environment variables.
 
