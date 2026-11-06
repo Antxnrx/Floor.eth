@@ -54,7 +54,7 @@ const DEFAULTS = {
 };
 
 const REGISTRY_ABI = parseAbi(["function ratingOf(address asset) view returns ((uint8 grade, bool known, uint64 scanBlock, uint32 ruleVersion, uint64 updatedAt, bytes32 bundleHash))"]);
-const GRADES = ["UNKNOWN", "OK", "DEGRADED", "BREACHED"]; // FloorTypes order; only used for display
+const GRADES = ["OK", "DEGRADED", "UNKNOWN", "BREACHED"]; // FloorTypes codes 0..3 (contracts/src/FloorTypes.sol)
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const logEl = $<HTMLPreElement>("log");

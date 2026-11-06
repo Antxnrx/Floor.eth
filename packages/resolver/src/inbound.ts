@@ -48,6 +48,11 @@ const CODEC_ERRORS = new Set(["InvalidMsgType"]);
 
 /** Recipient with no special behaviour (not 0x0, not a precompile, not 0xdead which some tokens block). */
 const RECIPIENT = "0x000000000000000000000000000000000000F100" as Address;
+/** The LayerZero EndpointV2 the probe impersonates. Same address on most chains; some chains differ (LZ metadata). */
+let endpoint: Address = ENDPOINT_V2;
+export function useEndpoint(a: Address) {
+  endpoint = a;
+}
 const U64_MAX = (1n << 64n) - 1n;
 
 export interface ProbeTarget {
@@ -79,7 +84,7 @@ async function simulate(rpc: Rpc, oapp: Address, eid: number, peer: Hex, amountS
   const guid = keccak256(encodeAbiParameters([{ type: "string" }, { type: "uint256" }], ["floor-probe", BigInt(n)]));
   const data = encodeFunctionData({ abi: oftAbi, functionName: "lzReceive", args: [{ srcEid: eid, sender: peer, nonce: BigInt(n) }, guid, message, "0x0000000000000000000000000000000000000000", "0x"] });
   try {
-    await rpc.client.call({ account: ENDPOINT_V2, to: oapp, data, blockNumber: block });
+    await rpc.client.call({ account: endpoint, to: oapp, data, blockNumber: block });
     return { ok: true };
   } catch (e) {
     const err = e as { data?: Hex; cause?: { data?: Hex; cause?: { data?: Hex } }; walk?: (f: (x: unknown) => boolean) => { data?: Hex } | null };
@@ -167,7 +172,7 @@ export async function harnessSelfCheck(rpc: Rpc, oapp: Address, eid: number, blo
       .call({ account, to: oapp, blockNumber: block, data: encodeFunctionData({ abi: oftAbi, functionName: "lzReceive", args: [{ srcEid: eid, sender, nonce: 1n }, keccak256(toHex("selfcheck")), message, "0x0000000000000000000000000000000000000000", "0x"] }) })
       .then(() => "ok", (e) => describeRevert(((e as { walk?: (f: (x: unknown) => boolean) => { data?: Hex } | null }).walk?.((x) => typeof (x as { data?: unknown }).data === "string")?.data ?? null) as Hex | null));
   const notEndpoint = await call("0x000000000000000000000000000000000000bEEF", peer);
-  const wrongPeer = await call(ENDPOINT_V2, `0x${"ab".repeat(32)}`);
+  const wrongPeer = await call(endpoint, `0x${"ab".repeat(32)}`);
   const ok = notEndpoint.startsWith("OnlyEndpoint") && (wrongPeer.startsWith("OnlyPeer") || wrongPeer.startsWith("NoPeer"));
   return { ok, detail: `non-endpoint → ${notEndpoint}; wrong peer → ${wrongPeer}` };
 }

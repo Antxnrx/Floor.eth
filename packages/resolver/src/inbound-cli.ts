@@ -1,19 +1,28 @@
 #!/usr/bin/env tsx
 /**
  * floor inbound [--block <n|latest>] [--only 0xabc,0xdef] [--out results.json]
- * Runs the inbound-limit probe over data/adapters-ethereum.json and cross-checks decisive results on a 2nd RPC.
+ *               [--registry data/adapters-all-chains.json --chain bsc]   (other chains: endpoint + RPCs from the registry)
+ * Runs the inbound-limit probe over an adapter registry and cross-checks decisive results on a 2nd RPC.
  */
 import { writeFileSync } from "node:fs";
 import { encodeFunctionData, getAddress, type Address, type Hex } from "viem";
-import registry from "../data/adapters-ethereum.json" with { type: "json" };
+import { readFileSync } from "node:fs";
+import ethRegistry from "../data/adapters-ethereum.json" with { type: "json" };
 import { oappAbi } from "./abis.js";
-import { confirmOutcome, harnessSelfCheck, probeInbound } from "./inbound.js";
+import { confirmOutcome, harnessSelfCheck, probeInbound, useEndpoint } from "./inbound.js";
 import { batch, makeRpcs } from "./rpc.js";
 
 const args = Object.fromEntries(
   process.argv.slice(2).reduce<[string, string][]>((acc, a, i, all) => (a.startsWith("--") ? [...acc, [a.slice(2), all[i + 1] ?? ""]] : acc), []),
 );
-const rpcs = makeRpcs((process.env.ETH_RPC_URLS ?? "https://eth.drpc.org,https://eth-mainnet.public.blastapi.io,https://gateway.tenderly.co/public/mainnet").split(",").filter(Boolean));
+type Entry = { oapp: string; symbol: string; [k: string]: unknown };
+type ChainReg = { endpoint: string; eid: number; rpcs: string[]; adapters: Entry[] };
+const chainReg: ChainReg | null = args.registry ? (JSON.parse(readFileSync(args.registry, "utf8")).chains[args.chain ?? "ethereum"] as ChainReg) : null;
+if (args.registry && !chainReg) throw new Error(`chain ${args.chain} not in ${args.registry}`);
+const registry: { adapters: Entry[] } = chainReg ?? ethRegistry;
+if (chainReg) useEndpoint(getAddress(chainReg.endpoint));
+const defaultRpcs = chainReg ? chainReg.rpcs.join(",") : "https://eth.drpc.org,https://eth-mainnet.public.blastapi.io,https://gateway.tenderly.co/public/mainnet";
+const rpcs = makeRpcs((process.env.ETH_RPC_URLS ?? defaultRpcs).split(",").filter(Boolean));
 const block = !args.block || args.block === "latest" ? await rpcs[0]!.client.getBlockNumber() : BigInt(args.block);
 const only = args.only ? new Set(args.only.toLowerCase().split(",")) : null;
 const EIDS = Array.from({ length: 400 }, (_, i) => 30100 + i);
@@ -25,7 +34,17 @@ async function peersOf(oapp: Address): Promise<number[]> {
 }
 
 // Negative control first: if the harness accepts a call from a non-endpoint address, every result is void.
-const self = await harnessSelfCheck(rpcs[0]!, "0x85d456B2DfF1fd8245387C0BfB64Dfb700e98Ef3", 30110, block);
+// Ethereum: the rsETH adapter (Arbitrum route). Other chains: the first adapter in the registry that has a peer.
+async function selfCheckTarget(): Promise<[Address, number]> {
+  if (!chainReg || args.chain === "ethereum") return ["0x85d456B2DfF1fd8245387C0BfB64Dfb700e98Ef3", 30110];
+  for (const a of registry.adapters) {
+    const eids = await peersOf(getAddress(a.oapp));
+    if (eids.length) return [getAddress(a.oapp), eids[0]!];
+  }
+  throw new Error("no adapter with a peer on this chain: nothing to self-check");
+}
+const [scOapp, scEid] = await selfCheckTarget();
+const self = await harnessSelfCheck(rpcs[0]!, scOapp, scEid, block);
 console.log(`harness self-check: ${self.ok ? "PASS" : "FAIL"} (${self.detail})`);
 if (!self.ok) { console.error("aborting: harness does not exercise the real receive path"); process.exit(1); }
 
