@@ -38,7 +38,7 @@ Credential-dependent steps are listed as ready-to-run commands in the root `READ
 | B3 | Deployer wallet funded on the two demo chains (+ CCIP fees; a little USDC for the Morpho vault) | Mainnet loop |
 | B4 | Archive-capable mainnet RPC for forks (public RPCs worked for reads; heavy fork tests may need a keyed provider) | Fork probe + replay |
 | B5 | Swarm postage batch (own Bee node or a service) | Swarm bonus |
-| B6 | Choose and add an open-source licence | Required by Arkiv and CROPS |
+| B6 | ✅ Done: Apache-2.0 licence added | Required by Arkiv and CROPS |
 | B7 | Booth: "Can one team win both CRE and CCIP?" (ETHGlobal says all of a partner's tracks count as one pick; winning multiple is the partner's call) | Avoid wasted work |
 | B8 | ✅ Done: Sepolia → Arbitrum Sepolia is a v2.0 lane (`getLaneFeatures`) | "CCIP 2.0" claim |
 

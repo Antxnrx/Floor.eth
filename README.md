@@ -71,7 +71,7 @@ Never paste keys into files. Use a Foundry keystore (`cast wallet import`) and e
 | 7 | Swarm public upload | buy a batch (Beeport or a Bee light node on Gnosis), then `BEE_URL=<node> BEE_BATCH_ID=<batch> pnpm --filter @floor/publish run importer --bundle packages/resolver/fixtures/rseth-24908284.json:0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7 --swarm` |
 | 8 | Arkiv write | faucet + access key at hub.arkiv.network, then `ARKIV_PRIVATE_KEY=… ARKIV_ACCESS_KEY=… pnpm --filter @floor/publish run importer --bundle …:0xA129… --swarm --arkiv`; put the writer address and one query in this README and `arkiv/swarm.md` |
 | 9 | Morpho mainnet loop (should-have) | deploy your own Vault V2 via the factory, `DeploySentinel`, then owner `setIsSentinel(sentinel,true)` + curator `watch(...)` (see `contracts/test/fork/MorphoBaseFork.t.sol` for the exact sequence) |
-| 10 | Licence | add a `LICENSE` file (MIT/Apache-2.0); required by Arkiv and EF CROPS |
+| 10 | Licence | ✅ Apache-2.0 (`LICENSE`) |
 
 ## Writer wallet and query (Arkiv)
 
