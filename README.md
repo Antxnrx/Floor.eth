@@ -70,19 +70,21 @@ Tools: Node ≥ 20, pnpm 10, Foundry ≥ 1.8, Bun ≥ 1.2.21 (CRE), Docker (Swar
 
 ## Commands that need your credentials
 
+The whole sequence is rehearsed on local forks, as the real deployer, by `scripts/rehearse.sh` (28 checks; run it before deploying).
+
 Never paste keys into files. Use a Foundry keystore (`cast wallet import`) and environment variables.
 
 | # | Step | Command |
 |---|---|---|
 | 1 | CRE CLI + login | ✅ `curl -sSL https://app.chain.link/cre/install.sh \| bash && cre login`. Deploy access was not granted for the hackathon; the prize rules say simulation is enough (`docs/11`), and `cre workflow simulate --broadcast` writes onchain (step 5) |
 | 2 | Deploy registry + broadcaster (Ethereum Sepolia) | `cd contracts && CRE_FORWARDER=0x15fC6ae953E024d975e77382eEeC56A9101f9F88 CCIP_ROUTER=0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59 forge script script/Deploy.s.sol:DeployHome --rpc-url https://ethereum-sepolia-rpc.publicnode.com --broadcast --account floor-deployer-2` (forwarder = CRE *simulation* MockKeystoneForwarder; a live CRE deployment, with the production KeystoneForwarder, is a post-hackathon step once deploy access is granted) |
-| 3 | Deploy mirror (Arbitrum Sepolia) | `CCIP_ROUTER=0x2a9C5afB0d0e4BAb2BCdaE109EC4b0c4Be15a165 SOURCE_CHAIN_SELECTOR=16015286601757825753 SOURCE_BROADCASTER=<step 2 broadcaster> forge script script/Deploy.s.sol:DeployMirror --rpc-url https://sepolia-rollup.arbitrum.io/rpc --broadcast --account floor-deployer-2` |
-| 4 | Point the workflow at the registry | set `registryAddress` in `cre/floor-rating/config.staging.json` to the step-2 registry |
+| 3 | Deploy mirror (Base Sepolia) | `CCIP_ROUTER=0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93 SOURCE_CHAIN_SELECTOR=16015286601757825753 SOURCE_BROADCASTER=<step 2 broadcaster> forge script script/Deploy.s.sol:DeployMirror --rpc-url https://sepolia.base.org --broadcast --account floor-deployer-2` |
+| 4 | Point the workflow at the registry | ✅ `registryAddress` in `cre/floor-rating/config.staging.json` = predicted registry `0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6` (deployer nonce 0); check it matches step 2 |
 | 5 | Simulate the CRE workflow (prize requirement) | ✅ dry run done 2026-11-06 (`docs/evidence/cre/simulate-2026-11-06.txt`). Onchain write after step 4: `cd cre && cre workflow simulate floor-rating --target staging-settings --non-interactive --trigger-index 0 --broadcast` with `CRE_ETH_PRIVATE_KEY` set in your shell (not in a file). **Then check the registry**, because the forwarder reports success even if the receiver rejects the report: `cast call <registry> "ratingOf(address)((uint8,bool,uint64,uint32,uint64,bytes32))" 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7 --rpc-url <sepolia>` must show grade 3 (BREACHED), known = true |
-| 6 | Broadcast via CCIP | `cast send <broadcaster> "broadcast(uint64,address,address[])" 3478487238524512106 <mirror> "[0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7]" --value <quote> --rpc-url <sepolia> --account floor-deployer-2` (get `<quote>` with `cast call <broadcaster> "quote(uint64,address,address[])(uint256)" …`) |
-| 7 | Swarm public upload | buy a batch (Beeport or a Bee light node on Gnosis), then `BEE_URL=<node> BEE_BATCH_ID=<batch> pnpm --filter @floor/publish run importer --bundle packages/resolver/fixtures/rseth-24908284.json:0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7 --swarm` |
-| 8 | Arkiv write | faucet + access key at hub.arkiv.network, then `ARKIV_PRIVATE_KEY=… ARKIV_ACCESS_KEY=… pnpm --filter @floor/publish run importer --bundle …:0xA129… --swarm --arkiv`; put the writer address and one query in this README and `arkiv/swarm.md` |
-| 9 | Morpho mainnet loop (should-have) | deploy your own Vault V2 via the factory, `DeploySentinel`, then owner `setIsSentinel(sentinel,true)` + curator `watch(...)` (see `contracts/test/fork/MorphoBaseFork.t.sol` for the exact sequence) |
+| 6 | Broadcast via CCIP to Base Sepolia | `cast send <broadcaster> "broadcast(uint64,address,address[])" 10344971235874465080 <mirror> "[0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7]" --value <quote> --rpc-url <sepolia> --account floor-deployer-2` (get `<quote>` with `cast call <broadcaster> "quote(uint64,address,address[])(uint256)" 10344971235874465080 <mirror> "[0xA129…]"`; delivery takes minutes, track it at ccip.chain.link) |
+| 7 | Swarm public upload | `pnpm --filter @floor/publish run importer --bundle packages/resolver/fixtures/rseth-24908284.json:0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7 --swarm-gateway https://api.gateway.ethswarm.org` (the public gateway stamps uploads; the importer reads the bytes back and checks the hash) |
+| 8 | Arkiv write | preflight (no key): `… importer --bundle … --swarm-ref <step 7 ref> --arkiv-estimate <deployer>`; then `ARKIV_PRIVATE_KEY=… ARKIV_ACCESS_KEY=… … importer --bundle … --swarm-ref <ref> --arkiv` (keys in your shell only) |
+| 9 | Morpho Vault V2 + FloorSentinel, Sepolia (reads the registry) and Base Sepolia (reads the mirror) | Sepolia: `FLOOR_RATING=<registry> forge script script/MorphoDemo.s.sol:MorphoDemo --rpc-url <sepolia> --broadcast --account floor-deployer-2`. Base Sepolia: `FLOOR_RATING=<mirror> VAULT_V2_FACTORY=0xE3a2CEbca662d99D0F279aF13a6bb8c9825D2ea0 VAULT_ASSET=0x036CbD53842c5426634e7929541eC2318f3dCF7e forge script script/MorphoDemo.s.sol:MorphoDemo --rpc-url https://sepolia.base.org --broadcast --account floor-deployer-2`. Then anyone: `cast send <sentinel> "poke(address)" 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7` |
 | 10 | Licence | ✅ Apache-2.0 (`LICENSE`) |
 
 ## Writer wallet and query (Arkiv)
