@@ -27,6 +27,10 @@ export class TrafficMeter {
       return f(url, init);
     };
   }
+  /** Count requests that don't go through `wrap` (e.g. a Swarm GET). */
+  count(label: string, n = 1) {
+    this.counts[label] = (this.counts[label] ?? 0) + n;
+  }
   get snapshot() {
     const total = Object.values(this.counts).reduce((a, b) => a + b, 0);
     return { total, byRoute: { ...this.counts }, share: (label: string) => (total ? (this.counts[label] ?? 0) / total : 0) };

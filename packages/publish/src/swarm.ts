@@ -36,26 +36,5 @@ export async function uploadBundle(bee: Bee, batchId: string, bundle: EvidenceBu
   return { reference: res.reference.toHex(), hash, size: bytes.length };
 }
 
-export class EvidenceHashMismatch extends Error {
-  constructor(public expected: Hex, public actual: Hex) {
-    super(`evidence hash mismatch: expected ${expected}, got ${actual}`);
-  }
-}
-
-/**
- * Browser-safe download: plain HTTP GET {gateway}/bytes/{reference} (Bee API), hash-checked before parsing.
- * Works against a local Bee node or a public gateway; no bee-js needed in the page.
- */
-export async function fetchBundle(
-  gateway: string,
-  reference: string,
-  expectedHash: Hex,
-  fetchFn: (url: string) => Promise<{ ok: boolean; status: number; arrayBuffer(): Promise<ArrayBuffer> }> = (u) => fetch(u),
-): Promise<EvidenceBundle> {
-  const res = await fetchFn(`${gateway.replace(/\/$/, "")}/bytes/${reference}`);
-  if (!res.ok) throw new Error(`swarm fetch failed: HTTP ${res.status}`);
-  const bytes = new Uint8Array(await res.arrayBuffer());
-  const actual = keccak256(bytes);
-  if (actual.toLowerCase() !== expectedHash.toLowerCase()) throw new EvidenceHashMismatch(expectedHash, actual);
-  return JSON.parse(new TextDecoder().decode(bytes)) as EvidenceBundle;
-}
+// Browser-safe download lives in swarm-fetch.ts (no bee-js), re-exported here for Node callers.
+export { EvidenceHashMismatch, fetchBundle } from "./swarm-fetch.js";

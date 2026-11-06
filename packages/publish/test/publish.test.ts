@@ -47,7 +47,9 @@ describe("Swarm bytes (offline)", () => {
     const tampered = bytes.slice();
     tampered[10] = tampered[10]! ^ 1;
     const fake = async () => ({ ok: true, status: 200, arrayBuffer: async () => tampered.buffer });
-    await expect(fetchBundle("http://x", "00", HASH, fake)).rejects.toBeInstanceOf(EvidenceHashMismatch);
+    await expect(fetchBundle("http://x", "ab".repeat(32), HASH, fake)).rejects.toBeInstanceOf(EvidenceHashMismatch);
+    // a malformed reference is refused before any request (it is read from Arkiv, i.e. untrusted input)
+    await expect(fetchBundle("http://x", "../stamps", HASH, fake)).rejects.toThrow(/not a Swarm reference/);
   });
 });
 
@@ -70,11 +72,22 @@ describe.runIf(process.env.FLOOR_SWARM)("Swarm round trip on a local Bee node", 
 
 /** Live read against Arkiv's Rabdi testnet with the SDK (reads need no funds; access key optional for reads). */
 describe.runIf(process.env.FLOOR_LIVE)("Arkiv Rabdi testnet (live read)", () => {
-  it("SDK query path works with our schema and owner filter", async () => {
+  it("SDK query path works with our schema and creator filter", async () => {
     const { arkivClients, latestRating, singleVerifierRoutes } = await import("../src/arkiv.js");
     const { publicClient } = arkivClients({ accessKey: process.env.ARKIV_ACCESS_KEY ?? "" });
     const writer = "0x000000000000000000000000000000000000F100" as const;
     expect(await latestRating(publicClient, writer, RSETH)).toBeNull(); // nothing written by this address yet
     expect(Array.isArray(await singleVerifierRoutes(publicClient, writer))).toBe(true);
+  }, 60_000);
+});
+
+/** The browser path (packages/publish/src/browser.ts): Arkiv read through a plain fetch function, as Anon-RPC provides. */
+describe.runIf(process.env.FLOOR_LIVE)("Arkiv browser reader (live read)", () => {
+  it("findRating goes through the given fetch function and returns null for a writer with no ratings", async () => {
+    const { arkivReader, findRating } = await import("../src/browser.js");
+    let calls = 0;
+    const client = arkivReader(async (url, init) => { calls++; return fetch(url, init); });
+    expect(await findRating(client, "0x000000000000000000000000000000000000F100", RSETH)).toBeNull();
+    expect(calls).toBeGreaterThan(0);
   }, 60_000);
 });
