@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Floor bridge dataset</title>
+    <style>
+      :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#9aa0a6; --ok:#3fb950; --bad:#f85149; --warn:#d29922; --card:#171a21; --line:#2a2f3a; }
+      @media (prefers-color-scheme: light) { :root { --bg:#fff; --fg:#111; --muted:#555; --card:#f6f8fa; --line:#d0d7de; } }
+      body { background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, sans-serif; margin:0; padding:16px; }
+      main { max-width:980px; margin:0 auto; display:grid; gap:16px; }
+      h1 { font-size:20px; margin:0; } h2 { font-size:17px; margin:0 0 8px; }
+      p { margin:0; } .muted { color:var(--muted); }
+      fieldset { border:1px solid var(--line); border-radius:8px; background:var(--card); margin:0; padding:12px; }
+      label { display:block; margin:6px 0; }
+      input[type=text] { width:100%; box-sizing:border-box; padding:6px; background:var(--bg); color:var(--fg); border:1px solid var(--line); border-radius:6px; font-family:ui-monospace, monospace; font-size:13px; }
+      button { padding:8px 14px; border-radius:6px; border:1px solid var(--line); background:var(--fg); color:var(--bg); font-weight:600; cursor:pointer; }
+      button.secondary { background:transparent; color:var(--fg); }
+      button:disabled { opacity:.5; cursor:default; }
+      .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+      .box { overflow-x:auto; border:1px solid var(--line); border-radius:8px; }
+      table { border-collapse:collapse; width:100%; min-width:640px; font-size:13px; }
+      th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+      th { color:var(--muted); font-weight:600; }
+      td.num { font-variant-numeric:tabular-nums; text-align:right; }
+      code, .mono { font-family:ui-monospace, monospace; font-size:12px; }
+      .big { font-size:28px; font-weight:700; }
+      .bad { color:var(--bad); } .ok { color:var(--ok); } .warn { color:var(--warn); }
+      .badge { font:600 11px/1 ui-monospace, monospace; padding:3px 6px; border-radius:4px; border:1px solid currentColor; }
+      ol.tl { margin:0; padding-left:20px; display:grid; gap:6px; }
+      pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; overflow:auto; font-size:12px; margin:0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div>
+        <h1>Which bridges can release everything in one message?</h1>
+        <p class="muted"><a href="./index.html">← Verify a rating</a> · Answered live from Arkiv, no Floor server: every LayerZero adapter backing an Aave-listed token on 8 chains, probed by simulating an inbound message from the real endpoint, plus rsETH's bridge history. Reads go through EF Anon-RPC (Tor) by default.</p>
+      </div>
+
+      <fieldset>
+        <legend>Query</legend>
+        <label><input type="radio" name="net" value="tor-js" checked /> Through Tor (EF Anon-RPC)</label>
+        <label><input type="radio" name="net" value="direct" /> Direct</label>
+        <label>Writer (only entities this address created are trusted)<input id="writer" type="text" /></label>
+        <label>Arkiv RPC (Rabdi; append /&lt;access key&gt; to use yours)<input id="arkiv" type="text" /></label>
+        <div class="row"><button id="go">Run the query on Arkiv</button><button id="preview" class="secondary">Preview from local evidence</button><span id="phase" class="warn"></span></div>
+      </fieldset>
+
+      <p id="source" class="muted"></p>
+      <pre id="query"></pre>
+
+      <section>
+        <h2>Can release everything in one message <span id="nUnb" class="badge bad"></span></h2>
+        <p class="muted">Outcome NO_INBOUND_LIMIT: a single inbound message releases the adapter's whole escrow, or mints with no cap. Widest exposure (most remote chains) first.</p>
+        <div class="box"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th>Routes</th><th>Escrow</th><th>Probe block</th></tr></thead><tbody id="unb"></tbody></table></div>
+      </section>
+
+      <section>
+        <h2>Rate-limited per message <span id="nLim" class="badge ok"></span></h2>
+        <div class="box"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th>Limited routes</th><th>Smallest per-message cap</th></tr></thead><tbody id="lim"></tbody></table></div>
+      </section>
+
+      <section>
+        <h2>Flight recorder: rsETH</h2>
+        <p class="big" id="days"></p>
+        <ol class="tl" id="tl"></ol>
+      </section>
+
+      <pre id="log"></pre>
+    </main>
+    <script type="module" src="./src/dataset-page.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "source": "docs/03-kelp-onchain-timeline.md; block timestamps read from Ethereum mainnet (eth_getBlockByNumber) on 2026-11-07; tx blocks confirmed with eth_getTransactionByHash",
+  "token": "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+  "events": [
+    { "block": 19166120, "time": 1707185231, "kind": "deployed", "detail": "rsETH OFT adapter deployed on Ethereum (no code at the previous block)", "tx": "" },
+    { "block": 22179964, "time": 1743581687, "kind": "single-verifier", "detail": "Unichain route (eid 30320) set to 1 required DVN (LZ Labs), 0 optional, by an EOA delegate, not the Safe", "tx": "0x2d48d9331d96c46f8b4a9f7a7bdcf256d2034dadb42f039d27dc28077d520592" },
+    { "block": 23218826, "time": 1756133387, "kind": "governance", "detail": "Delegate moves from the EOA to the 3-of-6 Safe; verifier set untouched", "tx": "" },
+    { "block": 24908284, "time": 1776533723, "kind": "floor-rating", "detail": "Floor scan: BREACHED. 24 of 26 inbound routes resolve to one verifier; 25 of 26 receive libraries unpinned", "tx": "" },
+    { "block": 24908285, "time": 1776533735, "kind": "drain", "detail": "Adapter releases 116,500 rsETH on a forged message from the Unichain route", "tx": "0x1ae232da212c45f35c1525f851e4c41d529bf18af862d9ce9fd40bf709db4222" },
+    { "block": 24908307, "time": 1776534011, "kind": "lender-hit", "detail": "First Aave borrow against the released rsETH, 22 blocks after the drain", "tx": "" },
+    { "block": 24908723, "time": 1776539039, "kind": "freeze", "detail": "Aave freezes rsETH on Ethereum Core, about 88 minutes after the drain", "tx": "" },
+    { "block": 24941876, "time": 1776938027, "kind": "fix", "detail": "About 25 send-side routes moved to 4 required DVNs; Unichain receive library pinned", "tx": "" }
+  ]
+}

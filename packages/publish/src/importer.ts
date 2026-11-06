@@ -10,6 +10,8 @@
  *            https://api.gateway.ethswarm.org; the bytes are read back and hash-checked before use
  *   --swarm-ref <ref>      use an existing Swarm reference (already uploaded); it is read back and hash-checked
  *   --arkiv  create floor.rating + floor.route entities on Rabdi (ARKIV_PRIVATE_KEY, ARKIV_ACCESS_KEY)
+ *   --dataset  also publish the public dataset: floor.adapter (all probed adapters, docs/evidence/inbound) and
+ *            floor.event (the rsETH flight recorder, data/rseth-timeline.json); works with --arkiv and --arkiv-estimate
  *   --arkiv-estimate <writer>  preflight: build the exact Arkiv transactions and ask Rabdi to estimate them
  *            from <writer> (address only, no key, nothing signed or sent)
  * --arkiv needs a real Swarm reference (from --swarm, --swarm-gateway or --swarm-ref): it never writes a placeholder.
@@ -22,10 +24,14 @@ import { Bee } from "@ethersphere/bee-js";
 import { readFileSync, writeFileSync } from "node:fs";
 import { getAddress, type Address, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { createWalletClient } from "@arkiv-network/sdk";
+import { createWalletClient, ExpirationTime } from "@arkiv-network/sdk";
+import { and, eq } from "@arkiv-network/sdk/query";
+import { u64 } from "@arkiv-network/sdk/schema";
+import { adapterValues, eventValues, FloorAdapter, FloorEvent } from "./dataset.js";
+import { loadProbe, loadTimeline } from "./dataset-load.js";
 import { rabdi } from "@arkiv-network/sdk/chains";
 import { custom } from "viem";
-import { arkivClients, latestRating, publishRating, publishRoutes, ratingValues, routeValues } from "./arkiv.js";
+import { arkivClients, EXPIRATION_DAYS, latestRating, publishRating, publishRoutes, ratingValues, routeValues } from "./arkiv.js";
 import { bundleBytes, createBatch, fetchBundle, uploadBundle, usableBatch } from "./swarm.js";
 
 const RABDI_RPC = "https://rpc.rabdi.db-chain.testnet.arkiv.network";
@@ -63,7 +69,7 @@ const argv = process.argv.slice(2);
 const flag = (f: string) => argv.includes(f);
 const val = (f: string) => (argv.includes(f) ? argv[argv.indexOf(f) + 1] : undefined);
 const pairs = argv.flatMap((a, i) => (a === "--bundle" ? [argv[i + 1]!] : []));
-if (!pairs.length) {
+if (!pairs.length && !flag("--dataset")) {
   console.error("usage: importer --bundle file.json:0xToken [...] [--swarm] [--arkiv] [--feed out.json]");
   process.exit(2);
 }
@@ -158,6 +164,52 @@ for (const p of pairs) {
   if (val("--feed")) {
     const { feedEntry } = await import("../../resolver/src/feed.js");
     feedEntries.push(feedEntry(bundle, hash, token));
+  }
+}
+
+if (flag("--dataset")) {
+  const adapters = loadProbe().map(({ row, chain }) => adapterValues(row, chain));
+  const tl = loadTimeline();
+  const events = tl.events.map((e) => eventValues(getAddress(tl.token), e));
+  console.log(`\ndataset: ${adapters.length} floor.adapter + ${events.length} floor.event entities`);
+  const expiration = ExpirationTime.fromDays(EXPIRATION_DAYS);
+  const creates = [
+    ...adapters.map((values) => ({ schema: FloorAdapter, values, expiration })),
+    ...events.map((values) => ({ schema: FloorEvent, values, expiration })),
+  ];
+  const CHUNK = 10; // ~0.6M gas per entity; Rabdi's block gas limit is 30M
+  const chunks = Array.from({ length: Math.ceil(creates.length / CHUNK) }, (_, i) => creates.slice(i * CHUNK, (i + 1) * CHUNK));
+  if (arkiv?.walletClient && writer) {
+    // re-run guard: skip if this writer already published the adapter rows at this probe block
+    const first = adapters[0]!;
+    const { entities } = await arkiv.publicClient.select().from(FloorAdapter).where(and(eq("chain", first.chain), eq("block", u64(BigInt(String(raw(first.block))))))).createdBy(writer).fetch();
+    if (entities.length) {
+      console.log("  arkiv: dataset for this probe block already exists, skipped");
+    } else {
+      for (const [i, c] of chunks.entries()) {
+        const r = await arkiv.walletClient.executeBatch({ creates: c as never });
+        console.log(`  arkiv: batch ${i + 1}/${chunks.length}: ${c.length} entities (tx ${r.txHash})`);
+      }
+    }
+  } else if (val("--arkiv-estimate")) {
+    let last: bigint | null = null;
+    const w = estimateOnlyClient(getAddress(val("--arkiv-estimate")!), process.env.ARKIV_ACCESS_KEY ?? "", (g) => (last = g));
+    let total = 0n;
+    for (const [i, c] of chunks.entries()) {
+      last = null;
+      try {
+        await w.executeBatch({ creates: c as never });
+      } catch (e) {
+        if (last === null) throw new Error(`dataset batch ${i + 1}: Rabdi would reject it: ${(e as Error).message.split("\n")[0]}`);
+        total += last;
+        if (last > 30_000_000n) throw new Error(`dataset batch ${i + 1}: ${last} gas exceeds the block gas limit`);
+        continue;
+      }
+      throw new Error("the send was not intercepted");
+    }
+    console.log(`  arkiv dataset (estimate, nothing sent): ${chunks.length} batches, ${total} gas ≈ ${Number(total) / 1e9} tGLM at 1 gwei`);
+  } else {
+    console.log(`  arkiv dataset (dry): ${chunks.length} batches of up to ${CHUNK}`);
   }
 }
 

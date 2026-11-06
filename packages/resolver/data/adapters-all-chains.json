@@ -15,13 +15,15 @@
      "oapp": "0x14e4a1b13bf7f943c8ff7c51fb60fa964a298d92",
      "symbol": "USD\u20ae0",
      "underlying": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x77652d5aba086137b595875263fc200182919b92",
      "symbol": "USD\u20ae0",
      "underlying": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     }
    ]
   },
@@ -38,7 +40,8 @@
      "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
      "symbol": "BTC.b",
      "underlying": "0x152b9d0fdc40c096757f570a51e494bd4b943e50",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     }
    ]
   },
@@ -55,19 +58,22 @@
      "oapp": "0x5b7b01bebcdf408dd14429a9b12465ab45204b13",
      "symbol": "BTCB",
      "underlying": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xb274202daba6ae180c665b4fbe59857b7c3a8091",
      "symbol": "Cake",
      "underlying": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0xa9004a5421372e1d83fb1f85b0fc986c912f91f3",
      "symbol": "WBNB",
      "underlying": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     }
    ]
   },
@@ -85,211 +91,246 @@
      "oapp": "0xe15bcb9e0ea69e6ab9fa080c4c4a5632896298c3",
      "symbol": "BAL",
      "underlying": "0xba100000625a3754423978a60c9317c58a424e3d",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0xc7ae4ab742f6b0b203f6710c87677005bc45ad01",
      "symbol": "CRV",
      "underlying": "0xd533a949740bb3306d119cc777fa900ba034cd52",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0x91a40c733c97a6e1bf876eaf9ed8c08102eb491f",
      "symbol": "DAI",
      "underlying": "0x6b175474e89094c44da98b954eedeac495271d0f",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0x39d0ce7d1509a4f22619d0f666978fbe820665e9",
      "symbol": "ETHx",
      "underlying": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x0b835f07a2a54c0e80c1f585e5b6dd732816da3f",
      "symbol": "FBTC",
      "underlying": "0xc96de26018a54d51c097160568752c4e3bd6c364",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xe41228a455700caf09e551805a8ab37caa39d08c",
      "symbol": "FRAX",
      "underlying": "0x853d955acef822db058eb8505911ed77f175b99e",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x909dbde1ebe906af95660033e478d59efe831fed",
      "symbol": "FRAX",
      "underlying": "0x853d955acef822db058eb8505911ed77f175b99e",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xc6f59a4fd50cac677b51558489e03138ac1784ec",
      "symbol": "FXS",
      "underlying": "0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x23432452b720c80553458496d4d9d7c5003280d0",
      "symbol": "FXS",
      "underlying": "0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x3a7647c1323144a16e7d0d71a581e3fe5bd95299",
      "symbol": "LBTC",
      "underlying": "0x8236a87084f8b84306f72007f36f2618a5634494",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xa7c4d94f98b6e94c139c4645e4e9a94cd7c0abf7",
      "symbol": "LBTC",
      "underlying": "0x8236a87084f8b84306f72007f36f2618a5634494",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x1290a6b480f7ef14925229fdb66f5680ad8f44ad",
      "symbol": "LBTC",
      "underlying": "0x8236a87084f8b84306f72007f36f2618a5634494",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xacb11bc20b1945e59976e3307d2a805faa126c31",
      "symbol": "LBTC",
      "underlying": "0x8236a87084f8b84306f72007f36f2618a5634494",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x8b3157e78f4ea5ad124e16f8c9df5fa27a7b0b33",
      "symbol": "LINK",
      "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x688e72142674041f8f6af4c808a4045ca1d6ac82",
      "symbol": "PYUSD",
      "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xe9e8330a71912f03e54e7d93795acd9a56f070aa",
      "symbol": "PYUSD",
      "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xa2c323fe5a74adffad2bf3e007e36bb029606444",
      "symbol": "PYUSD",
      "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xfa0e06b54986ad96de87a8c56fea76fbd8d493f8",
      "symbol": "PYUSD",
      "underlying": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x28a92dde19d9989f39a49905d7c9c2fac7799bdf",
      "symbol": "USDC",
      "underlying": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0x147bde4f997f0d4c7544ed0c55eacf1e5e6bf9c4",
      "symbol": "USDG",
      "underlying": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xcc1b99ddac1a33c201a742a1851662e87bc7f22c",
      "symbol": "USDT",
      "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0x6c96de32cea08842dcc4058c14d3aaad7fa41dee",
      "symbol": "USDT",
      "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x1f748c76de468e9d11bd340fa9d5cbadf315dfb0",
      "symbol": "USDT",
      "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
      "symbol": "USDe",
      "underlying": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xc708b6887db46005da033501f8aebee72d191a5d",
      "symbol": "USDtb",
      "underlying": "0xc139190f447e929f090edeb554d95abb8b18ac1c",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
      "symbol": "WBTC",
      "underlying": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x695921034f0387eac4e11620ee91b1b15a6a09fe",
      "symbol": "WETH",
      "underlying": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0xb9c2321bb7d0db468f570d10a424d1cc8efd696c",
      "symbol": "XAUt",
      "underlying": "0x68749665ff8d2d112fa859aa293f07a622782f38",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x59ea2825d8ad7d60cc6aa77ffbdd0e89c0fbf539",
      "symbol": "cbBTC",
      "underlying": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xaa798bf5ec09b6e3bc059ea4d36d4ca53e063ef7",
      "symbol": "crvUSD",
      "underlying": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v1"
     },
     {
      "oapp": "0x85d456b2dff1fd8245387c0bfb64dfb700e98ef3",
      "symbol": "rsETH",
      "underlying": "0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x211cc4dd073734da055fbf44a2b4667d5e5fe5d2",
      "symbol": "sUSDe",
      "underlying": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xcd2eb13d6831d4602d80e5db9230a57596cdca63",
      "symbol": "weETH",
      "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0xa2d339411624cfb6243f909b064e07320919ee3f",
      "symbol": "wstETH",
      "underlying": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x6cea302b297bb8c49e56d04cc080480822795848",
      "symbol": "wstETH",
      "underlying": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     }
    ]
   },
@@ -306,13 +347,15 @@
      "oapp": "0x9e12c058a20c5b0eebaa00e44a712ec54b838971",
      "symbol": "USDG",
      "underlying": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     },
     {
      "oapp": "0x1cb6de532588fca4a21b7209de7c456af8434a65",
      "symbol": "USD\u20ae0",
      "underlying": "0x0200c29006150606b650577bbe7b6248f58470c1",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     }
    ]
   },
@@ -329,7 +372,8 @@
      "oapp": "0xac800fd6159c2a2cb8fc31ef74621eb430287a5a",
      "symbol": "OP",
      "underlying": "0x4200000000000000000000000000000000000042",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     }
    ]
   },
@@ -346,7 +390,8 @@
      "oapp": "0x6ba10300f0dc58b7a1e4c0e41f5dabb7d7829e13",
      "symbol": "USDT",
      "underlying": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     }
    ]
   },
@@ -363,7 +408,8 @@
      "oapp": "0x94bcca6bdfd6a61817ab0e960bfede4984505554",
      "symbol": "USD\u20ae0",
      "underlying": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
-     "type": "OFT_ADAPTER"
+     "type": "OFT_ADAPTER",
+     "lzVersion": "v2"
     }
    ]
   }
