@@ -1,7 +1,20 @@
 import { useState } from "react";
 import { GRADES, type Grade } from "@floor/core";
-import { ASSETS, HEADLINE } from "../data/mock";
+import { ASSETS, HEADLINE, type AssetRow } from "../data/mock";
 import { Card, GradeChip, Link, Mock, Real, Stat } from "../components/ui";
+
+/**
+ * The constraint that caps the grade, in one line. A grade on its own tells a
+ * reader what we decided; this tells them why, which is the part they can argue
+ * with. Derived from the row's own counts, so it states no new claim.
+ */
+const binding = (a: AssetRow) => {
+  if (a.singleVerifier > 0) return `${a.singleVerifier} of ${a.receiveRoutes} routes on one effective verifier`;
+  if (a.unpinned > 0) return `${a.unpinned} receive librar${a.unpinned === 1 ? "y" : "ies"} unpinned`;
+  if (a.controller.includes("no timelock")) return "bridge authority has no timelock";
+  if (a.grade === "OK") return "meets every rule in the pack";
+  return "see asset detail";
+};
 
 /** Screen 1 · Live scan: every graded asset, filterable. */
 export function Dashboard() {
@@ -29,7 +42,10 @@ export function Dashboard() {
           <tbody>
             {rows.map((a) => (
               <tr key={a.key}>
-                <td><b>{a.symbol}</b> <span className="muted">{a.label}</span> {a.mock ? <Mock /> : <Real />}</td>
+                <td>
+                  <div className="title-row"><b>{a.symbol}</b> <span className="muted">{a.label}</span> {a.mock ? <Mock /> : <Real />}</div>
+                  <div className="why">{binding(a)}</div>
+                </td>
                 <td><GradeChip g={a.grade} /></td>
                 <td className="num">{a.receiveRoutes}</td>
                 <td className="num">{a.singleVerifier}</td>

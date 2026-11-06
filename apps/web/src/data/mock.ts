@@ -48,11 +48,14 @@ export const ASSETS: AssetRow[] = [
 
 export const findAsset = (key: string) => ASSETS.find((a) => a.key === key);
 
-/** Headline numbers. Community figures are attributed and labelled until we reproduce them (docs/02). */
+/**
+ * Headline numbers. Our own reproduced scan leads; community figures follow and
+ * stay labelled until we reproduce them (docs/02).
+ */
 export const HEADLINE = [
+  { value: "24 / 26", label: "rsETH routes on a single verifier, day before the hack", source: "Floor scan @ block 24,908,284 (3 RPCs agree)" },
   { value: "~99.98%", label: "of Aave LayerZero exposure passes the 3-verifier rule", source: "community analysis, Aave forum t/25114 #10 (not yet reproduced)" },
   { value: "35 / 39", label: "Aave-exposed adapters with no inbound limit (~$5.93B)", source: "community analysis, t/25114 #11 (not yet reproduced)" },
-  { value: "24 / 26", label: "rsETH routes on a single verifier, day before the hack", source: "Floor scan @ block 24,908,284 (3 RPCs agree)" },
 ];
 
 export interface EnforcementEvent {
