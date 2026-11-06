@@ -49,6 +49,19 @@ export const ASSETS: AssetRow[] = [
 export const findAsset = (key: string) => ASSETS.find((a) => a.key === key);
 
 /**
+ * The constraint that caps the grade, in one line. A grade on its own tells a
+ * reader what we decided; this tells them why, which is the part they can argue
+ * with. Derived from the row's own counts, so it states no new claim.
+ */
+export const binding = (a: AssetRow) => {
+  if (a.singleVerifier > 0) return `${a.singleVerifier} of ${a.receiveRoutes} inbound routes resolve to a single effective verifier`;
+  if (a.unpinned > 0) return `${a.unpinned} receive librar${a.unpinned === 1 ? "y is" : "ies are"} unpinned`;
+  if (a.controller.includes("no timelock")) return "bridge authority has no timelock";
+  if (a.grade === "OK") return "meets every rule in the pack";
+  return "see the route table below";
+};
+
+/**
  * Headline numbers. Our own reproduced scan leads; community figures follow and
  * stay labelled until we reproduce them (docs/02).
  */

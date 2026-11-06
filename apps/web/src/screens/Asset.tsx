@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { chainName } from "@floor/core";
-import { findAsset } from "../data/mock";
+import { binding, findAsset } from "../data/mock";
 import { Card, GradeChip, Link, Real, short } from "../components/ui";
 
 /** Screen 2 · Asset detail: grade, controllers, per-route rule results, raw evidence calls. */
@@ -16,14 +16,27 @@ export function Asset({ id }: { id: string }) {
     <>
       <p><Link to="/scan">← Live scan</Link></p>
       <div className="title-row">
+        {/* No grade chip here: the verdict banner below states it far louder. */}
         <h1>{a.symbol} <span className="muted">{a.label}</span></h1>
-        <GradeChip g={verdict.grade} /> <Real />
+        <Real />
         <span className="spacer" />
         <a className="btn" href={`#/verify/${a.key}`}>Verify in browser</a>
       </div>
-      <p className="muted">
-        OApp {state.asset.oapp} · block {state.scan.block.toLocaleString()} · {new Date(state.scan.timestamp * 1000).toUTCString()} · RPCs: {state.scan.rpcProviders.join(", ")} ({state.scan.rpcAgreement ? "all agree" : "NOT cross-checked"}) · rule pack {verdict.rulePack.id}@{verdict.rulePack.version}
-      </p>
+      <div className={`verdict g-${verdict.grade.toLowerCase()}`}>
+        <div className="verdict-grade"><i />{verdict.grade}</div>
+        <p className="verdict-why">Capped because <b>{binding(a)}</b>.</p>
+      </div>
+
+      <div className="meta">
+        <div><label>OApp</label><span>{short(state.asset.oapp)}</span></div>
+        <div><label>Block</label><span>{state.scan.block.toLocaleString()}</span></div>
+        <div><label>Scanned</label><span>{new Date(state.scan.timestamp * 1000).toUTCString()}</span></div>
+        <div>
+          <label>RPCs</label>
+          <span>{state.scan.rpcProviders.length} · {state.scan.rpcAgreement ? "all agree" : "NOT cross-checked"}</span>
+        </div>
+        <div><label>Rule pack</label><span>{verdict.rulePack.id}@{verdict.rulePack.version}</span></div>
+      </div>
 
       <div className="grid2">
         <Card title="Summary"><ul>{verdict.summary.map((s) => <li key={s}>{s}</li>)}</ul></Card>
@@ -60,7 +73,7 @@ export function Asset({ id }: { id: string }) {
                   <td className="num">{r.effectiveIndependent ?? "disabled"}</td>
                   <td>{r.operators.join(", ")}</td>
                   <td className="num">{s.effective.confirmations}</td>
-                  <td><code>{short(s.library)}</code> {s.libraryIsDefault ? <span className="warn">default</span> : <span className="muted">pinned</span>}</td>
+                  <td className="nowrap"><code>{short(s.library)}</code> {s.libraryIsDefault ? <span className="warn">default</span> : <span className="muted">pinned</span>}</td>
                   <td className="results-cell">{r.results.map((x) => <div key={x.rule} title={x.reason}><GradeChip g={x.outcome} /> <code>{x.rule}</code></div>)}</td>
                 </tr>
               );

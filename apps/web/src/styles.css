@@ -151,6 +151,8 @@ code {
 }
 .stat span { font-size: 13px; color: var(--dim); line-height: 1.45; }
 .stat small { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: auto; padding-top: 6px; }
+/* Same typography as a stat, without the card around it, for use inside one. */
+.stat-bare { background: none; border: 0; padding: 0; }
 
 /* ---------- tables ---------- */
 
@@ -176,6 +178,7 @@ tbody tr:last-child td { border-bottom: 0; }
 tbody tr { transition: background 0.12s; }
 tbody tr:hover { background: var(--panel-2); }
 td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+td.nowrap { white-space: nowrap; }
 .mono td { font-family: var(--mono); font-size: 12px; color: var(--dim); }
 
 /* ---------- chips ---------- */
@@ -244,7 +247,11 @@ button:hover { color: var(--ink); border-color: #3a424c; }
   font-weight: 600;
   cursor: pointer;
 }
-.btn:hover { background: #fff; border-color: #fff; text-decoration: none; }
+/* Must restate colour: the generic `button:hover` above is (0,1,1) and would
+   otherwise beat `.btn` (0,1,0), leaving a light label on a white fill. */
+.btn:hover { background: #fff; border-color: #fff; color: var(--bg); text-decoration: none; }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn:disabled:hover { background: var(--ink); border-color: var(--ink); }
 
 textarea, select {
   width: 100%;
@@ -263,6 +270,59 @@ textarea, select {
 .title-row h1 { margin: 0; }
 .spacer { flex: 1; }
 
+/* ---------- verdict banner ---------- */
+
+/* Grade plus the constraint that caps it, in that order. Same idea as the
+   landing's verdict card: say why, not just what. */
+.verdict {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  padding: 20px 22px;
+  margin: 16px 0;
+}
+.verdict.g-ok { --g: var(--ok); }
+.verdict.g-degraded { --g: var(--degraded); }
+.verdict.g-breached { --g: var(--breached); }
+.verdict.g-unknown { --g: var(--unknown); }
+
+.verdict-grade {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--g, var(--unknown));
+}
+.verdict-grade i {
+  width: 11px;
+  height: 28px;
+  border-radius: 2px;
+  background: var(--g, var(--unknown));
+  filter: drop-shadow(0 0 9px var(--g, transparent));
+}
+.verdict-why { margin: 0; font-size: 14px; color: var(--dim); max-width: 62ch; }
+.verdict-why b { color: var(--ink); font-weight: 600; }
+
+/* ---------- scan metadata ---------- */
+
+.meta { display: flex; flex-wrap: wrap; gap: 4px 30px; margin: 0 0 18px; }
+.meta > div { display: flex; flex-direction: column; gap: 2px; padding: 6px 0; }
+.meta label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta span { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
 /* The one-line reason a grade is what it is. Sits under the asset name so the
    scan reads as "verdict, because" rather than "verdict, trust us". */
 .why {
@@ -275,12 +335,46 @@ textarea, select {
 
 .results { list-style: none; padding: 0; margin: 12px 0 0; }
 .results li { margin: 5px 0; font-size: 13px; color: var(--dim); }
-.results-cell div { white-space: nowrap; margin-bottom: 3px; }
+
+/* Inline rather than stacked: 26 routes x 3 stacked rule chips made the route
+   table ~2700px tall and every row look like a paragraph. */
+.results-cell { display: flex; flex-wrap: wrap; gap: 4px; }
+.results-cell div { white-space: nowrap; margin: 0; }
 
 .warn { color: var(--breached); font-weight: 600; font-size: 11px; font-family: var(--mono); }
 .big { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
 .bad { color: var(--breached); }
 .ok { color: var(--ok); }
+
+/* ---------- verification run ---------- */
+
+.bar { height: 2px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 0 0 16px; }
+.bar div { height: 100%; background: var(--ok); transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+
+.run-steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.run-steps li {
+  display: grid;
+  grid-template-columns: 24px 14px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  counter-increment: s;
+  color: var(--muted);
+}
+.run-steps li:last-child { border-bottom: 0; }
+.run-steps li::before {
+  content: "0" counter(s);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.run-steps .mark { font-family: var(--mono); color: var(--line-2); }
+.run-steps li.done { color: var(--dim); }
+.run-steps li.done .mark { color: var(--ok); }
+.run-steps li.run { color: var(--ink); font-weight: 600; }
+.run-steps li.run .mark { color: var(--ok); }
 
 .steps { padding-left: 18px; }
 .steps li { margin: 7px 0; color: var(--muted); font-size: 13px; }
