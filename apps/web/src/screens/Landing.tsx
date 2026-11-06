@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { built, figures, gap, nav, pipeline, replay, routeTicker, site, stack, verdict, verify } from "../data/landing";
+import { VolumetricLight } from "../components/VolumetricLight";
 import "../landing.css";
 
 const GLYPHS = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#$%&/<>";
@@ -118,6 +119,7 @@ export function Landing() {
 
       <section className="lp-hero">
         <div className="lp-glow" />
+        <VolumetricLight />
         <div className="lp-wrap">
           <div>
             <p className="lp-eyebrow rv">Collateral security rating</p>
