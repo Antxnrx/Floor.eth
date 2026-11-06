@@ -32,6 +32,24 @@ Grade reproduced in every completed run: claimed BREACHED, recomputed BREACHED; 
 - **tor-js:** the only published gateway is a demonstration gateway ("limited capacity, may disappear"); from this network it timed out. Running our own gateway is the fix for production.
 - **Mixnet latency varies a lot** on shared Wi-Fi: the same configuration took 70 s in one run and stalled in another.
 
+## Arkiv → Swarm → verify in the browser (later the same day)
+
+The page now finds the rating on Arkiv, downloads the bundle from Swarm, checks the hash, then replays (source "Arkiv → Swarm", the default).
+
+| Check | Result |
+|---|---|
+| Arkiv query from the page (`@arkiv-network/sdk` bundled by Vite, public Rabdi RPC, no key; CORS `*`) | works; no Floor rating found yet (nothing written, README step 8), and the page stops with that message instead of using the local copy |
+| Swarm download from a local Bee node (bee-factory, node 1 reading a bundle uploaded via node 0), direct | bytes hash to the bundle hash; replay **VERIFIED 624/624 in 21.7 s** with blastapi + MEV Blocker |
+| Same, one RPC only (blastapi) | **UNVERIFIED_RPC** (613/624): 92 "exceeded its compute units per second capacity" answers. With one provider nothing can be benched; use two or more |
+| Wrong expected hash | refused before any replay: MISMATCH "evidence hash mismatch" |
+| One flipped byte in a recorded read | MISMATCH (hash fails, 1 read mismatched) |
+| Swarm GET through Anon-RPC to the public gateway (`api.gateway.ethswarm.org/health`) | passthrough 200 in 2.2 s; **Nym 200 in 15.5 s** (incl. worker start) |
+| Arkiv JSON-RPC through Nym | **HTTP 415** "Supplied content type is not allowed", or timed out |
+
+**Nym drops the `Content-Type` header.** Sent through the Nym worker to a header-echo service (httpbin.org/anything) with `Content-Type: application/json`, the header arrived **absent**; lower-case, title-case and no header all gave the same 415 from Arkiv's RPC. This also explains Nodies' 415 above. Servers that require `application/json` (Arkiv Rabdi, Nodies) reject every request through Nym; servers that accept any body type (blastapi, MEV Blocker) work. Reported to EF as a question.
+
+What the page does about it: the Arkiv lookup tries Anon-RPC first and, on any failure, reads Arkiv directly, shown on the meter as `arkiv · direct (fallback)`. What that leaks: the Arkiv RPC sees which asset is being looked up from your IP; the chain reads (the 624 replays) still go through Nym. A Swarm GET that fails through Anon-RPC (e.g. a `localhost` gateway, which a mixnet exit cannot reach) falls back to direct the same way, counted as `swarm · direct`.
+
 ## Fixes made in the verifier from these runs
 
 - `jsonRpcReader` takes a list of RPCs and rotates across them (no single provider sees the whole check or can rate-limit it alone).
