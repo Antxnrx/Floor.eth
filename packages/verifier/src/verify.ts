@@ -109,20 +109,29 @@ export async function verifyBundle(
   await reader.flush?.();
   await Promise.all(pending);
 
-  // Retry failed reads one at a time (providers throttle or cap batch sizes); a retry never upgrades a mismatch.
-  for (let attempt = 0; attempt < 2 && failed.length; attempt++) {
+  // Retry failed reads (providers throttle, mixnets drop packets). First retries go in parallel through the reader's
+  // own batching, which matters on slow transports (Nym: ~1-2 s per round trip); the last attempt goes one at a time
+  // for providers that cap batch sizes. A retry never upgrades a mismatch.
+  const retryOne = async (id: string, sequential: boolean) => {
+    const c = calls.find((x) => x.id === id)!;
+    try {
+      const p = replay(c, reader);
+      if (sequential) await reader.flush?.();
+      const got = await p;
+      if (got.toLowerCase() === c.result.toLowerCase()) matched++;
+      else mismatched.push(id);
+    } catch {
+      failed.push(id);
+    }
+  };
+  for (let attempt = 0; attempt < 3 && failed.length; attempt++) {
     const again = failed.splice(0, failed.length);
-    for (const id of again) {
-      const c = calls.find((x) => x.id === id)!;
-      try {
-        const p = replay(c, reader);
-        await reader.flush?.();
-        const got = await p;
-        if (got.toLowerCase() === c.result.toLowerCase()) matched++;
-        else mismatched.push(id);
-      } catch {
-        failed.push(id);
-      }
+    if (attempt < 2) {
+      const ps = again.map((id) => retryOne(id, false));
+      await reader.flush?.();
+      await Promise.all(ps);
+    } else {
+      for (const id of again) await retryOne(id, true);
     }
   }
 

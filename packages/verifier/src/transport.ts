@@ -38,8 +38,28 @@ type RpcReq = { method: string; params: unknown[] };
 /**
  * JSON-RPC over fetch with optional batching. `batch=1` sends single requests (safest for privacy transports
  * that may not support batches); larger batches are fine for direct providers.
+ *
+ * `url` may be a list: requests rotate round-robin across providers, so no single provider sees the whole check
+ * (privacy) or can rate-limit it alone, and a retried read naturally lands on a different provider.
  */
-export function jsonRpcReader(fetchFn: FetchFn, url: string, opts: { batch?: number; concurrency?: number } = {}): ChainReader & { flush(): Promise<void> } {
+export function jsonRpcReader(fetchFn: FetchFn, url: string | string[], opts: { batch?: number; concurrency?: number; cooldownMs?: number; timeoutMs?: number } = {}): ChainReader & { flush(): Promise<void> } {
+  const urls = Array.isArray(url) ? url : [url];
+  if (urls.length === 0) throw new Error("jsonRpcReader: no RPC url");
+  let next = 0;
+  // A provider that answers with a rate-limit / quota error (or a non-2xx) is benched for `cooldownMs`, as long as
+  // another provider is available. "execution reverted" is an answer, not a provider failure.
+  const cooldownMs = opts.cooldownMs ?? 30_000;
+  const benchedUntil = new Map<string, number>();
+  const now = () => Date.now();
+  const pickUrl = () => {
+    for (let i = 0; i < urls.length; i++) {
+      const u = urls[next++ % urls.length]!;
+      if ((benchedUntil.get(u) ?? 0) <= now()) return u;
+    }
+    return urls[next++ % urls.length]!; // everyone benched: keep trying in rotation
+  };
+  const bench = (u: string) => { if (urls.length > 1) benchedUntil.set(u, now() + cooldownMs); };
+  const LIMIT = /rate|limit|capacity|quota|too many|exceeded|throttl|usage/i;
   const batchSize = opts.batch ?? 1;
   let id = 1;
   let queue: { req: RpcReq; resolve: (v: Hex) => void; reject: (e: Error) => void }[] = [];
@@ -47,11 +67,23 @@ export function jsonRpcReader(fetchFn: FetchFn, url: string, opts: { batch?: num
 
   async function send(items: typeof queue) {
     const body = items.map((it) => ({ jsonrpc: "2.0", id: id++, ...it.req }));
+    const u = pickUrl();
     try {
-      const res = await fetchFn(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(batchSize === 1 ? body[0] : body) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      // A request that never answers must not stall the whole check: time it out, bench the provider, and let the
+      // verifier's retry pass send those reads elsewhere.
+      const timeoutMs = opts.timeoutMs ?? 30_000;
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const timeout = new Promise<never>((_, reject) => {
+        timer = setTimeout(() => { bench(u); reject(new Error(`timeout after ${timeoutMs} ms (${u})`)); }, timeoutMs);
+      });
+      const res = await Promise.race([fetchFn(u, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(batchSize === 1 ? body[0] : body) }), timeout]).finally(() => clearTimeout(timer));
+      if (!res.ok) {
+        bench(u);
+        throw new Error(`HTTP ${res.status}`);
+      }
       const json = (await res.json()) as { id: number; result?: Hex; error?: { message: string } } | { id: number; result?: Hex; error?: { message: string } }[];
       const arr = Array.isArray(json) ? json : [json];
+      if (arr.some((r) => r.error && LIMIT.test(r.error.message))) bench(u);
       const byId = new Map(arr.map((r) => [r.id, r]));
       body.forEach((b, i) => {
         const r = byId.get(b.id);

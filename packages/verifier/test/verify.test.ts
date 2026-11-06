@@ -106,6 +106,27 @@ describe("retry behaviour", () => {
   });
 });
 
+describe("retry behaviour (slow transports)", () => {
+  it("a read that fails on the first pass and both parallel retries still ends VERIFIED on the sequential retry", async () => {
+    const b = clone();
+    const honest = honestReader(b);
+    const fails = new Map<string, number>();
+    const stubborn: ChainReader = {
+      call: (to, data, block) => {
+        const k = `${to}${data}`;
+        const n = fails.get(k) ?? 0;
+        if (n < 3) { fails.set(k, n + 1); return Promise.reject(new Error("mixnet packet lost")); }
+        return honest.call(to, data, block);
+      },
+      getCode: honest.getCode,
+      getStorageAt: honest.getStorageAt,
+    };
+    const r = await verifyBundle(b, HASH, stubborn, ops);
+    expect(r.status).toBe("VERIFIED");
+    expect(r.raw.failed).toEqual([]);
+  });
+});
+
 describe("TrafficMeter", () => {
   it("counts JSON-RPC calls per route, batches count per call", async () => {
     const m = new TrafficMeter();
@@ -119,13 +140,84 @@ describe("TrafficMeter", () => {
   });
 });
 
+describe("jsonRpcReader with several providers", () => {
+  it("rotates requests round-robin across the given RPC urls", async () => {
+    const seen: string[] = [];
+    const f: FetchFn = async (url, init) => {
+      seen.push(url);
+      const reqs = JSON.parse(init.body) as { id: number }[];
+      return { ok: true, status: 200, json: async () => reqs.map((r) => ({ jsonrpc: "2.0", id: r.id, result: "0x01" })) };
+    };
+    const reader = jsonRpcReader(f, ["a", "b", "c"], { batch: 2, concurrency: 1 });
+    await Promise.all(Array.from({ length: 6 }, () => reader.call("0x0000000000000000000000000000000000000001", "0x", 1)));
+    expect(seen).toEqual(["a", "b", "c"]);
+  });
+
+  it("benches a provider that answers with a rate-limit error and uses the others", async () => {
+    const seen: string[] = [];
+    const f: FetchFn = async (url, init) => {
+      seen.push(url);
+      const r = JSON.parse(init.body) as { id: number }; // batch=1 sends a single request object
+      const limited = url === "a";
+      return { ok: true, status: 200, json: async () => (limited ? { jsonrpc: "2.0", id: r.id, error: { message: "You've reached the usage limit" } } : { jsonrpc: "2.0", id: r.id, result: "0x01" }) };
+    };
+    const reader = jsonRpcReader(f, ["a", "b"], { batch: 1, concurrency: 1 });
+    const first = await reader.call("0x0000000000000000000000000000000000000001", "0x", 1).catch((e: Error) => e.message);
+    expect(first).toMatch(/usage limit/);
+    for (let i = 0; i < 4; i++) await reader.call("0x0000000000000000000000000000000000000001", "0x", 1);
+    expect(seen).toEqual(["a", "b", "b", "b", "b"]);
+  });
+
+  it("times out a provider that never answers, benches it, and the retry pass verifies via another provider", async () => {
+    const b = clone();
+    const honest = honestReader(b);
+    // a fake JSON-RPC endpoint answering from the bundle; "hang" never responds
+    const f: FetchFn = (url, init) => {
+      if (url === "hang") return new Promise(() => {});
+      const parsed = JSON.parse(init.body) as { id: number; method: string; params: unknown[] } | { id: number; method: string; params: unknown[] }[];
+      const reqs = Array.isArray(parsed) ? parsed : [parsed];
+      return Promise.all(
+        reqs.map(async (r) => {
+          try {
+            const p = r.params as [{ to: `0x${string}`; data: `0x${string}` } | `0x${string}`, ...unknown[]];
+            const result =
+              r.method === "eth_call" ? await honest.call((p[0] as { to: `0x${string}` }).to, (p[0] as { data: `0x${string}` }).data, 0)
+              : r.method === "eth_getCode" ? await honest.getCode(p[0] as `0x${string}`, 0)
+              : await honest.getStorageAt(p[0] as `0x${string}`, p[1] as `0x${string}`, 0);
+            return { jsonrpc: "2.0", id: r.id, result };
+          } catch (e) {
+            return { jsonrpc: "2.0", id: r.id, error: { message: (e as Error).message } };
+          }
+        }),
+      ).then((out) => ({ ok: true, status: 200, json: async () => (Array.isArray(parsed) ? out : out[0]) }));
+    };
+    const reader = jsonRpcReader(f, ["hang", "good"], { batch: 50, concurrency: 2, timeoutMs: 50 });
+    const r = await verifyBundle(b, HASH, reader, ops);
+    expect(r.raw.failed).toEqual([]);
+    expect(r.status).toBe("VERIFIED");
+  });
+
+  it("does not bench a provider for an execution revert", async () => {
+    const seen: string[] = [];
+    const f: FetchFn = async (url, init) => {
+      seen.push(url);
+      const r = JSON.parse(init.body) as { id: number };
+      return { ok: true, status: 200, json: async () => ({ jsonrpc: "2.0", id: r.id, error: { message: "execution reverted" } }) };
+    };
+    const reader = jsonRpcReader(f, ["a", "b"], { batch: 1, concurrency: 1 });
+    for (let i = 0; i < 4; i++) await reader.call("0x0000000000000000000000000000000000000001", "0x", 1).catch(() => {});
+    expect(seen).toEqual(["a", "b", "a", "b"]);
+  });
+});
+
 /** The real thing: replay all 624 recorded reads against Ethereum mainnet at block 24,908,284. */
 describe.runIf(process.env.FLOOR_LIVE)("live verifyBundle against mainnet", () => {
   it("VERIFIED, with every read counted by the traffic meter", async () => {
     const meter = new TrafficMeter();
     const fetchFn = meter.wrap("direct-rpc", globalThis.fetch as unknown as FetchFn);
-    // blastapi allows JSON-RPC batches; drpc free tier caps batches at 3 (observed 2026-11-06)
-    const reader = jsonRpcReader(fetchFn, process.env.ETH_RPC_URL ?? "https://eth-mainnet.public.blastapi.io", { batch: 50, concurrency: 2 });
+    // archive + batch-capable free providers (checked 2026-11-06); drpc free tier caps batches at 3, so it is not listed
+    const urls = process.env.ETH_RPC_URL ? [process.env.ETH_RPC_URL] : ["https://eth-mainnet.public.blastapi.io", "https://1rpc.io/eth", "https://rpc.mevblocker.io", "https://eth-pokt.nodies.app"];
+    const reader = jsonRpcReader(fetchFn, urls, { batch: 10, concurrency: 6 });
     const b = clone();
     const r = await verifyBundle(b, HASH, reader, ops);
     expect(r.raw.failed, `failed: ${r.raw.failed.slice(0, 5)}`).toEqual([]);
