@@ -96,6 +96,12 @@ Simulation writes supported on ~33 testnets (Sepolia, Arb/Base/OP/Unichain Sepol
 
 **Deploy access:** `cre account access` → "Hackathon"; email approval; `cre whoami` shows `Deploy Access: Enabled`. Only needed for `cre workflow deploy`.
 
+**Friction we hit (2026-11-06, CRE CLI v1.39.0):**
+- The install script asks the GitHub API for the latest release. On shared Wi-Fi the anonymous limit (60/hour) was exhausted and the install failed with `403`. Workaround: the same script with that one call made through an authenticated `gh api`; the macOS codesign check is unchanged.
+- `zod`'s `z.string().url()` fails inside the workflow ("Invalid url") because the WASM runtime has no `URL` class. We use a regex instead.
+- `cre account access` is interactive only (no flags), so it can't be scripted.
+- Non-interactive simulation: `cre workflow simulate <name> --target <t> --non-interactive --trigger-index 0`.
+
 ---
 
 ## 2. Chainlink CCIP 2.0 (EVM)
