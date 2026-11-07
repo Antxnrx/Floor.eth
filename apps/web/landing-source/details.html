@@ -668,7 +668,7 @@
 							class="mt-14 grid gap-10 border-t border-rule pt-9 md:grid-cols-2"
 						>
 							<div>
-								<h3 class="text-lg">For issuers: Floor Check and Manifest</h3>
+								<h3 class="text-lg">For issuers: Floor Check and Manifest (planned)</h3>
 								<p class="mt-3 text-sm leading-relaxed text-ink/70">
 									A Manifest states the security settings an issuer intends to
 									run — which verifiers are required, which library is pinned,
@@ -693,10 +693,7 @@
 						<p
 							class="mt-9 max-w-3xl font-mono text-[0.65rem] uppercase leading-relaxed tracking-[0.14em] text-ink/60"
 						>
-							Current build: LayerZero effective-state resolver, Aave rule pack
-							v0, fork replay and browser verifier. CCIP 2.0 is in the rating
-							roadmap. Live enforcement requires lender or curator opt-in and
-							exists today as an adapter, not as a deployed control.
+							Current build, live on testnets: LayerZero effective-state resolver, Aave rule pack v0, a live read of all 24 Aave V3 markets, fork replay and browser verifier. A Chainlink CRE workflow writes the grade on Ethereum Sepolia, CCIP mirrors it to Base Sepolia, and there it cut a Morpho vault’s cap to 0. Floor Check, the Manifest and the Safe guard are planned. Rating CCIP-bridged assets is on the roadmap. Nothing runs on mainnet.
 						</p>
 					</div>
 				</div>
@@ -849,13 +846,14 @@
 										a broadcast.
 									</p>
 									<p class="mt-4 max-w-2xl text-sm leading-relaxed text-ink/70">
-										Of 34 LayerZero adapters over Aave-listed tokens on Ethereum
-										at block 26,351,514:
-										<strong>20 accepted a credit for the entire escrow</strong>
-										across 111 routes, 1 enforced a real inbound rate limit, 5
-										held no escrow to bound, 6 had no active peers, and 2
-										returned a test error we count as neither a pass nor a
-										failure. The probe refuses to run at all unless the same
+										Of 64 LayerZero adapters over Aave-listed tokens on 8 chains
+										(rerun 2026-11-07):
+										<strong>31 had no inbound bound</strong>: they accepted a
+										credit for their entire escrow, or minted the maximum amount.
+										4 enforced a real per-message limit, 4 returned a test error
+										we count as neither a pass nor a failure, 4 held nothing to
+										bound, 15 had no active peers, and 6 are LayerZero v1, which
+										this probe does not cover. The probe refuses to run at all unless the same
 										call is first rejected from a non-endpoint address and from
 										a wrong peer.
 									</p>
@@ -872,30 +870,30 @@
 									<div
 										class="flex justify-between gap-6 border-b border-rule pb-3"
 									>
-										<dt class="text-ink/65">Chain, block</dt>
-										<dd class="text-right">Ethereum, 26,351,514</dd>
+										<dt class="text-ink/65">Scope</dt>
+										<dd class="text-right">8 chains, 2026-11-07</dd>
 									</div>
 									<div
 										class="flex justify-between gap-6 border-b border-rule py-3"
 									>
 										<dt class="text-ink/65">Adapters probed</dt>
-										<dd class="text-right">34</dd>
+										<dd class="text-right">64</dd>
 									</div>
 									<div
 										class="flex justify-between gap-6 border-b border-rule py-3"
 									>
 										<dt class="text-ink/65">No inbound bound</dt>
-										<dd class="text-right">20 · 111 routes</dd>
+										<dd class="text-right">31</dd>
 									</div>
 									<div
 										class="flex justify-between gap-6 border-b border-rule py-3"
 									>
 										<dt class="text-ink/65">Bounded</dt>
-										<dd class="text-right">1</dd>
+										<dd class="text-right">4</dd>
 									</div>
 									<div class="flex justify-between gap-6 py-3">
 										<dt class="text-ink/65">Inconclusive</dt>
-										<dd class="text-right">2 custom codec</dd>
+										<dd class="text-right">4 custom codec</dd>
 									</div>
 								</dl>
 							</div>
@@ -915,7 +913,7 @@
 								<div
 									class="grid gap-x-10 gap-y-3 border-b border-rule py-5 lg:grid-cols-[13rem_minmax(0,1fr)_minmax(0,1fr)]"
 								>
-									<dt class="font-bold">CI and pre-sign check</dt>
+									<dt class="font-bold">CI and pre-sign check (planned)</dt>
 									<dd class="text-ink/70">
 										Catches a planned config, library or delegate change that
 										lowers the floor — before anyone signs it.
@@ -928,7 +926,7 @@
 								<div
 									class="grid gap-x-10 gap-y-3 border-b border-rule py-5 lg:grid-cols-[13rem_minmax(0,1fr)_minmax(0,1fr)]"
 								>
-									<dt class="font-bold">Safe guard, fail-open</dt>
+									<dt class="font-bold">Safe guard, fail-open (planned)</dt>
 									<dd class="text-ink/70">
 										Catches weakening through the Safe’s own signed path,
 										including batched calls and configs that only look like

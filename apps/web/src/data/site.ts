@@ -313,7 +313,7 @@ export const stageProse = [
 
 export const audiences = [
   {
-    head: "For issuers: Floor Check and Manifest",
+    head: "For issuers: Floor Check and Manifest (planned)",
     body: "A Manifest states the security settings an issuer intends to run — which verifiers are required, which library is pinned, what delay a change has to sit through. Floor Check simulates a proposed Safe transaction against that statement before anyone signs it, and the same check runs in CI so drift is caught as a failing build rather than as an incident.",
   },
   {
@@ -323,7 +323,7 @@ export const audiences = [
 ] as const;
 
 export const buildNote =
-  "Current build: LayerZero effective-state resolver, Aave rule pack v0, fork replay and browser verifier. CCIP 2.0 is in the rating roadmap. Live enforcement requires lender or curator opt-in and exists today as an adapter, not as a deployed control.";
+  "Current build, live on testnets: LayerZero effective-state resolver, Aave rule pack v0, a live read of all 24 Aave V3 markets, fork replay and browser verifier. A Chainlink CRE workflow writes the grade on Ethereum Sepolia, CCIP mirrors it to Base Sepolia, and there it cut a Morpho vault’s cap to 0. Floor Check, the Manifest and the Safe guard are planned. Rating CCIP-bridged assets is on the roadmap. Nothing runs on mainnet.";
 
 /** README.md "How it runs". Each step names the thing that actually runs. */
 export const runtime = [
@@ -396,16 +396,16 @@ export const measured = {
   head: "One of those rules, measured rather than asserted.",
   body: [
     "Aave’s framework asks that a bridge bound how much a single inbound message can release. To find out whether that bound exists, Floor calls each adapter at a pinned block from the LayerZero endpoint address, with a correctly formed credit from the route’s own configured peer, and classifies the result by revert reason. Simulation only, on a fork — never a broadcast.",
-    "Of 34 LayerZero adapters over Aave-listed tokens on Ethereum at block 26,351,514: 20 accepted a credit for the entire escrow across 111 routes, 1 enforced a real inbound rate limit, 5 held no escrow to bound, 6 had no active peers, and 2 returned a test error we count as neither a pass nor a failure. The probe refuses to run at all unless the same call is first rejected from a non-endpoint address and from a wrong peer.",
+    "Of 64 LayerZero adapters over Aave-listed tokens on 8 chains (rerun 2026-11-07): 31 had no inbound bound: they accepted a credit for their entire escrow, or minted the maximum amount. 4 enforced a real per-message limit, 4 returned a test error we count as neither a pass nor a failure, 4 held nothing to bound, 15 had no active peers, and 6 are LayerZero v1, which this probe does not cover. The probe refuses to run at all unless the same call is first rejected from a non-endpoint address and from a wrong peer.",
   ],
   scope:
     "This measures the application layer, not drainability: a real attack still has to defeat the verifier layer first. Floor does not claim to have reproduced the community’s multi-chain “35 of 39” figure — the lists overlap and agree on every adapter both could probe, and the rest is the next step.",
   ledger: [
-    { term: "Chain, block", value: "Ethereum, 26,351,514" },
-    { term: "Adapters probed", value: "34" },
-    { term: "No inbound bound", value: "20 · 111 routes" },
-    { term: "Bounded", value: "1" },
-    { term: "Inconclusive", value: "2 custom codec" },
+    { term: "Scope", value: "8 chains, 2026-11-07" },
+    { term: "Adapters probed", value: "64" },
+    { term: "No inbound bound", value: "31" },
+    { term: "Bounded", value: "4" },
+    { term: "Inconclusive", value: "4 custom codec" },
   ],
   source: "docs/09 · packages/resolver inbound-limit probe",
 } as const;
@@ -419,12 +419,12 @@ export const limits = {
   head: "Where Floor can act, and where it cannot.",
   rows: [
     {
-      term: "CI and pre-sign check",
+      term: "CI and pre-sign check (planned)",
       catches: "Catches a planned config, library or delegate change that lowers the floor — before anyone signs it.",
       blind: "Blind to anything sent outside the pipeline, such as a transaction from an EOA delegate.",
     },
     {
-      term: "Safe guard, fail-open",
+      term: "Safe guard, fail-open (planned)",
       catches: "Catches weakening through the Safe’s own signed path, including batched calls and configs that only look like three verifiers.",
       blind: "Blind to modules, EOA and timelock delegates, bridge default changes, other chains — and to a quorum that removes the guard first. Not deployed on funded Safes.",
     },
