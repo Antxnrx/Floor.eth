@@ -10,6 +10,7 @@ import { adaptersBy, adapterValues, arkivReader, eventValues, timeline, unbounde
 import type { Address } from "viem";
 import registry from "../../../packages/resolver/data/adapters-all-chains.json";
 import tl from "../../../packages/publish/data/rseth-timeline.json";
+import "./page.css";
 import { NETWORKS } from "./networks";
 
 const RSETH = DEPLOYMENT.kelp.token as Address;

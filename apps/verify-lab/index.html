@@ -3,68 +3,99 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Floor verify lab</title>
-    <style>
-      :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#9aa0a6; --ok:#3fb950; --bad:#f85149; --warn:#d29922; --card:#171a21; --line:#2a2f3a; }
-      @media (prefers-color-scheme: light) { :root { --bg:#fff; --fg:#111; --muted:#555; --card:#f6f8fa; --line:#d0d7de; } }
-      body { background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, sans-serif; margin:0; padding:16px; }
-      main { max-width:860px; margin:0 auto; }
-      h1 { font-size:20px; margin:0 0 4px; }
-      p.sub { color:var(--muted); margin:0 0 16px; }
-      fieldset { border:1px solid var(--line); border-radius:8px; background:var(--card); margin:0 0 12px; padding:12px; }
-      label { display:block; margin:6px 0; }
-      input[type=text] { width:100%; box-sizing:border-box; padding:6px; background:var(--bg); color:var(--fg); border:1px solid var(--line); border-radius:6px; font-family:ui-monospace, monospace; font-size:13px; }
-      button { padding:8px 14px; border-radius:6px; border:1px solid var(--line); background:var(--fg); color:var(--bg); font-weight:600; cursor:pointer; }
-      button:disabled { opacity:.5; cursor:default; }
-      .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-      pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; overflow:auto; font-size:12px; max-height:420px; }
-      .status { font-size:22px; font-weight:700; }
-      .VERIFIED { color:var(--ok); } .MISMATCH { color:var(--bad); } .UNVERIFIED_RPC, .UNVERIFIED_ONCHAIN, .warn { color:var(--warn); }
-      .meter { font-family:ui-monospace, monospace; }
-      .steps { font-family:ui-monospace, monospace; font-size:13px; padding-left:20px; }
-      .steps li { margin:2px 0; overflow-wrap:anywhere; }
-      .steps .ok::marker { color:var(--ok); } .steps .bad { color:var(--bad); } .steps .skip { color:var(--muted); }
-    </style>
+    <title>Verify a rating — Floor</title>
+    <meta name="description" content="Re-check a Floor rating in your browser: rating from Arkiv, evidence from Swarm, every chain read through EF Anon-RPC." />
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon-180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Pixel&family=Lato:ital,wght@0,400;0,700;1,300&display=swap" />
   </head>
   <body>
+    <div class="proto">Runs entirely in your browser · rating from Arkiv · evidence from Swarm · chain reads through EF Anon-RPC · no Floor server</div>
+    <nav>
+      <a class="brand" href="../#/">floor</a>
+      <a class="main" href="../#/live">Live market</a>
+      <a class="main" href="../#/kelp">Kelp simulation</a>
+      <span class="spacer"></span>
+      <a href="../#/scan">rsETH scan</a>
+      <a href="../#/rules">Rules</a>
+      <a href="../#/about">About</a>
+      <a href="./dataset.html">Bridge dataset</a>
+      <a class="on" href="./" aria-current="page">Verify</a>
+    </nav>
+
     <main>
-      <h1>Floor verify lab</h1>
-      <p class="sub">Re-checks a Floor evidence bundle against Ethereum mainnet, with every chain read routed through EF Anon-RPC. No Floor server is involved. · <a href="./dataset.html">Bridge dataset (Arkiv) →</a></p>
+      <h1>Verify a rating in your browser</h1>
+      <p class="lede">
+        This page finds Floor's latest rating on Arkiv, downloads the evidence from Swarm, checks its hash against the
+        rating and the onchain registry, then replays every recorded read against Ethereum mainnet. If the grade cannot be
+        reproduced, it says so.
+      </p>
 
-      <fieldset>
-        <legend>Anon-RPC network</legend>
-        <label><input type="radio" name="net" value="tor-js" checked /> tor-js: fetch over Tor (anonymising; temporary gateways) · default</label>
-        <label><input type="radio" name="net" value="nym" /> Nym mixnet (anonymising, ~18 MB bundle; drops Content-Type, so Arkiv is read directly)</label>
-        <label><input type="radio" name="net" value="passthrough" /> Passthrough: sandbox only, <b>not anonymous</b> (testing)</label>
-        <label><input type="radio" name="net" value="direct" /> Direct fetch, no Anon-RPC (baseline)</label>
-      </fieldset>
+      <!-- VERIFIED is green whatever the asset's grade is: success here is reproducing the grade, not the grade being good. -->
+      <div id="verdict" class="verdict g-skipped">
+        <div class="verdict-grade"><i></i><span id="status">NOT RUN</span></div>
+        <p class="verdict-why" id="phase">Press verify. Over Tor a full run takes one to two minutes.</p>
+        <span class="spacer"></span>
+        <button id="go" class="btn">Verify</button>
+      </div>
 
-      <fieldset>
-        <legend>Where the evidence comes from</legend>
-        <label><input type="radio" name="src" value="arkiv" checked /> Arkiv → Swarm: find the latest rating on Arkiv (created by the writer), download the bundle from Swarm · default</label>
-        <label><input type="radio" name="src" value="swarm" /> Swarm reference + hash given by hand</label>
-        <label><input type="radio" name="src" value="fixture" /> Local copy shipped with this page (offline fallback)</label>
-        <label>Writer address (Floor's Arkiv writer; only entities it created are accepted)<input id="writer" type="text" /></label>
-        <label>Asset (token address)<input id="token" type="text" /></label>
-        <label>Arkiv RPC (Rabdi testnet; reads need no key)<input id="arkiv" type="text" /></label>
-        <label>Swarm gateway (any Bee node or public gateway)<input id="gateway" type="text" /></label>
-        <label>Swarm reference (source "by hand" only)<input id="ref" type="text" /></label>
-        <label>Expected bundle hash (sources "by hand" and "local copy"; Arkiv mode takes it from Arkiv)<input id="hash" type="text" /></label>
-        <label>Optional onchain check: FloorRegistry address and its chain RPC (the CRE-signed hash must match)<input id="registry" type="text" placeholder="0x… (empty = skipped)" /><input id="registryRpc" type="text" /></label>
-      </fieldset>
+      <div class="controls">
+        <fieldset class="seg-field">
+          <legend>Route the reads through</legend>
+          <div class="seg">
+            <label><input type="radio" name="net" value="tor-js" checked /><span>Tor (EF Anon-RPC)</span></label>
+            <label><input type="radio" name="net" value="nym" /><span>Nym mixnet</span></label>
+            <label><input type="radio" name="net" value="passthrough" /><span>Passthrough · not anonymous</span></label>
+            <label><input type="radio" name="net" value="direct" /><span>Direct · no Anon-RPC</span></label>
+          </div>
+        </fieldset>
+        <label class="check"><input id="tamper" type="checkbox" /> Tamper: flip one byte of one recorded read. The result must be MISMATCH.</label>
+      </div>
 
-      <fieldset>
-        <legend>Chain reads</legend>
-        <label>Mainnet RPCs, comma-separated (archive, accept JSON-RPC batches; reads rotate across them)<input id="rpc" type="text" /></label>
-        <label>Bootstrap RPC (one read of the specifier contract; not anonymised by design)<input id="boot" type="text" /></label>
-        <label><input id="tamper" type="checkbox" /> Tamper: flip one byte of one recorded read (must give MISMATCH)</label>
-      </fieldset>
+      <div class="grid2">
+        <section class="card">
+          <div class="card-h"><h3>Steps</h3></div>
+          <ol id="steps" class="run-steps"><li class="skip empty"><span class="mark">·</span><span>Nothing run yet.</span></li></ol>
+        </section>
+        <section class="card">
+          <div class="card-h"><h3>Traffic</h3></div>
+          <p class="mono-line" id="meter">Every request this page makes is counted here, by route.</p>
+          <ul class="results">
+            <li><b>MISMATCH</b>: a read, the Swarm bytes or the onchain hash disagree. It names which, and stops.</li>
+            <li><b>UNVERIFIED_RPC</b>: reads still failing after 5 rounds. Add an RPC under Advanced and run again.</li>
+            <li><b>UNVERIFIED_ONCHAIN</b>: reads match, but the registry holds no rating for this asset.</li>
+          </ul>
+        </section>
+      </div>
 
-      <div class="row"><button id="go">Verify</button><span id="phase" class="warn"></span></div>
-      <p class="status" id="status"></p>
-      <ol id="steps" class="steps"></ol>
-      <p class="meter" id="meter"></p>
-      <pre id="log"></pre>
+      <details class="card fold">
+        <summary>Advanced: evidence source, addresses and RPCs</summary>
+        <fieldset>
+          <legend>Where the evidence comes from</legend>
+          <label class="check"><input type="radio" name="src" value="arkiv" checked /> Arkiv, then Swarm: latest rating created by the writer, bundle downloaded from Swarm (default)</label>
+          <label class="check"><input type="radio" name="src" value="swarm" /> Swarm reference and hash given by hand</label>
+          <label class="check"><input type="radio" name="src" value="fixture" /> Local copy shipped with this page (offline fallback)</label>
+        </fieldset>
+        <div class="fields">
+          <label>Writer address <small>only entities this address created on Arkiv are accepted</small><input id="writer" type="text" spellcheck="false" /></label>
+          <label>Asset <small>token address</small><input id="token" type="text" spellcheck="false" /></label>
+          <label>Arkiv RPC <small>Rabdi testnet; reads need no key</small><input id="arkiv" type="text" spellcheck="false" /></label>
+          <label>Swarm gateway <small>any Bee node or public gateway</small><input id="gateway" type="text" spellcheck="false" /></label>
+          <label>Swarm reference <small>"by hand" source only</small><input id="ref" type="text" spellcheck="false" /></label>
+          <label>Expected bundle hash <small>"by hand" and "local copy"; Arkiv mode reads it from Arkiv</small><input id="hash" type="text" spellcheck="false" /></label>
+          <label>FloorRegistry address <small>the CRE-written hash must match; empty skips the check</small><input id="registry" type="text" placeholder="0x…" spellcheck="false" /></label>
+          <label>Registry chain RPC<input id="registryRpc" type="text" spellcheck="false" /></label>
+          <label class="wide">Mainnet RPCs <small>comma-separated; archive, JSON-RPC batches; reads rotate across them</small><input id="rpc" type="text" spellcheck="false" /></label>
+          <label class="wide">Bootstrap RPC <small>one read of the specifier contract; not anonymised, by design</small><input id="boot" type="text" spellcheck="false" /></label>
+        </div>
+      </details>
+
+      <details class="card fold">
+        <summary>Run log</summary>
+        <pre id="log"></pre>
+      </details>
     </main>
     <script type="module" src="./src/main.ts"></script>
   </body>

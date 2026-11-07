@@ -17,6 +17,7 @@ import fixture from "../../../packages/resolver/fixtures/rseth-24908284.json";
 type Source = "arkiv" | "swarm" | "fixture";
 
 import { NETWORKS, type Net } from "./networks";
+import "./page.css";
 
 // All defaults come from the deployment manifest (packages/deployments/testnet.json); URL parameters override them.
 // Mainnet RPCs: free, keyless providers that passed archive reads, batches of 10, CORS for the sandbox and requests
@@ -137,10 +138,23 @@ async function rpcCall(f: FetchFn, url: string, method: string, params: unknown[
 const stepsEl = $<HTMLOListElement>("steps");
 function step(text: string, cls: "ok" | "bad" | "skip" = "ok") {
   const li = document.createElement("li");
-  li.className = cls;
-  li.textContent = text;
+  li.className = cls === "ok" ? "done" : cls;
+  const mark = document.createElement("span");
+  mark.className = "mark";
+  mark.textContent = cls === "ok" ? "✓" : cls === "bad" ? "✕" : "·";
+  const body = document.createElement("span");
+  body.textContent = text;
+  li.append(mark, body);
   stepsEl.append(li);
   log(`step: ${text}`);
+}
+/** The verdict banner: outcome word, its colour, and one line saying why. */
+const TONE: Record<string, string> = { VERIFIED: "g-ok", MISMATCH: "g-breached", UNVERIFIED_RPC: "g-degraded", UNVERIFIED_ONCHAIN: "g-degraded", ERROR: "g-unknown", RUNNING: "g-skipped", "NOT RUN": "g-skipped" };
+function setVerdict(status: string, why: string) {
+  $("status").textContent = status;
+  $("status").className = `status ${status}`;
+  $("verdict").className = `verdict ${TONE[status] ?? "g-unknown"}`;
+  $("phase").textContent = why;
 }
 const v = (id: string) => $<HTMLInputElement>(id).value.trim();
 
@@ -214,8 +228,7 @@ function renderMeter(meter: TrafficMeter, label: string) {
 async function run() {
   const btn = $<HTMLButtonElement>("go");
   btn.disabled = true;
-  $("status").textContent = "";
-  $("status").className = "status";
+  setVerdict("RUNNING", "Starting…");
   logEl.textContent = "";
   Object.assign(stats, { requests: 0, ms: [], http: {}, rpcErrors: {}, thrown: {} });
   const net = (document.querySelector("input[name=net]:checked") as HTMLInputElement).value as Net;
@@ -257,8 +270,7 @@ async function run() {
     // The onchain check can only make the result worse, never better: a different hash onchain is a MISMATCH even if
     // some reads also failed; a registry with no rating leaves the result unconfirmed onchain.
     const status = onchain === "differs" ? "MISMATCH" : onchain === "none" && report.status === "VERIFIED" ? "UNVERIFIED_ONCHAIN" : report.status;
-    $("status").textContent = `${status} in ${secs} s${src === "fixture" ? " (local copy; Arkiv/Swarm not used)" : ""}`;
-    $("status").className = `status ${status}`;
+    setVerdict(status, `${report.raw.matched} of ${report.raw.total} reads matched · grade claimed ${report.grade.claimed}, recomputed ${report.grade.recomputed} · ${secs} s via ${transport.label}${src === "fixture" ? " · local copy, Arkiv and Swarm not used" : ""}`);
     log(`hash ok=${report.hash.ok} · raw ${report.raw.matched}/${report.raw.total} matched, ${report.raw.mismatched.length} mismatched, ${report.raw.failed.length} failed · state ok=${report.state.ok} · grade claimed=${report.grade.claimed} recomputed=${report.grade.recomputed}`);
     if (report.raw.mismatched.length) log(`mismatched: ${report.raw.mismatched.slice(0, 5).join(", ")}`);
     if (report.raw.failed.length) log(`failed: ${report.raw.failed.slice(0, 5).join(", ")}`);
@@ -266,14 +278,12 @@ async function run() {
   } catch (e) {
     // a bundle whose bytes don't hash to the published hash is a MISMATCH, not an infrastructure error
     const mismatch = e instanceof EvidenceHashMismatch || (e as Error).message.includes("DOES NOT match");
-    $("status").textContent = `${mismatch ? "MISMATCH" : "ERROR"}: ${(e as Error).message}`;
-    $("status").className = mismatch ? "status MISMATCH" : "status UNVERIFIED_RPC";
+    setVerdict(mismatch ? "MISMATCH" : "ERROR", (e as Error).message);
     log(`error: ${(e as Error).stack ?? e}`);
     step(`stopped: ${(e as Error).message}`, "bad");
     (window as unknown as { __floorLab: unknown }).__floorLab = { net, src, error: String(e), meter: meter.snapshot.byRoute, steps: [...stepsEl.children].map((li) => li.textContent) };
   } finally {
     if (transport) renderMeter(meter, transport.label);
-    $("phase").textContent = "";
     transport?.close();
     btn.disabled = false;
   }

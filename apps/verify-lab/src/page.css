@@ -1,0 +1,156 @@
+/*
+ * The verify and dataset pages use the app's own token set and stylesheet, so
+ * they cannot drift from it: same header, same verdict banner, same cards.
+ * Only the form controls these two pages need (and the app has none of) are
+ * defined here, in the same vocabulary: square, hairline, mono for anything
+ * machine-shaped.
+ */
+@import "../../web/src/theme.css";
+@import "../../web/src/styles.css";
+
+/* Machine output in prose position: phase, source, traffic counts. */
+.mono-line {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-65);
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- verdict states this page adds ---------- */
+
+.verdict-grade { min-width: 0; }
+#status { overflow-wrap: anywhere; }
+.verdict-why { overflow-wrap: anywhere; }
+.verdict .btn { margin: 0; }
+
+/* ---------- controls ---------- */
+
+.controls,
+.controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px 28px;
+  margin: 0 0 8px;
+}
+.controls-bar { align-items: center; }
+
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+legend,
+.fields label,
+.fold summary {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+legend { padding: 0; margin-bottom: 8px; }
+
+/* Radio group drawn as the app's joined segment control. The input stays in
+   the DOM (keyboard and screen readers use it); the span is what is seen. */
+.seg label { position: relative; display: block; }
+.seg label + label { margin-left: -1px; }
+.seg input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.seg span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink-60);
+  padding: 8px 12px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.seg label:hover span { color: var(--ink); border-color: var(--ink-30); }
+.seg input:checked + span { background: var(--ink); color: var(--color-ghost); border-color: var(--ink); position: relative; z-index: 1; }
+.seg input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+label.check {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 13px;
+  color: var(--ink-70);
+  cursor: pointer;
+  margin: 6px 0;
+  max-width: 72ch;
+}
+label.check input { accent-color: var(--ink); flex: none; }
+
+/* ---------- advanced fields ---------- */
+
+.fold { padding: 0; }
+.fold summary {
+  cursor: pointer;
+  padding: 16px 20px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.fold summary::-webkit-details-marker { display: none; }
+.fold summary::after { content: "+"; font-size: 14px; }
+.fold[open] summary::after { content: "−"; }
+.fold[open] summary { border-bottom: 1px solid var(--line); }
+.fold > :not(summary) { margin: 16px 20px; }
+.fold fieldset { margin-bottom: 8px; }
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 16px 24px;
+}
+.fields label { display: flex; flex-direction: column; gap: 6px; }
+.fields label.wide { grid-column: 1 / -1; }
+.fields small { text-transform: none; letter-spacing: 0; font-family: var(--sans); font-size: 12px; color: var(--ink-60); }
+input[type="text"] {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--panel);
+  color: var(--ink);
+}
+input[type="text"]:focus { outline: none; border-color: var(--ink); }
+
+pre {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink-70);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 12px;
+  margin: 0;
+  max-height: 420px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+pre:empty::before { content: "Empty until a run."; color: var(--ink-60); }
+
+/* ---------- run steps the verifier writes ---------- */
+
+.run-steps li > span:last-child { overflow-wrap: anywhere; }
+.run-steps li.bad { color: var(--breached); }
+.run-steps li.bad .mark { color: var(--breached); }
+.run-steps li.skip { color: var(--ink-60); }
+.run-steps li.empty { grid-template-columns: 14px 1fr; }
+.run-steps li.empty::before { content: none; }
+
+/* ---------- dataset page ---------- */
+
+td.num, th.num { text-align: right; }
+.mono { font-family: var(--mono); font-size: 12px; }
+.big { font-size: 28px; letter-spacing: -0.02em; margin: 0 0 12px; }
+ol.tl { list-style: none; margin: 0; padding: 0; }
+ol.tl li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-70); }
+ol.tl li:last-child { border-bottom: 0; }
+#source .ok, #source .bad, #source .warn { font-family: var(--mono); font-size: 12px; font-weight: 700; }
+#source .ok { color: var(--ok); }

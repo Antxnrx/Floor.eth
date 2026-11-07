@@ -3,71 +3,81 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Floor bridge dataset</title>
-    <style>
-      :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#9aa0a6; --ok:#3fb950; --bad:#f85149; --warn:#d29922; --card:#171a21; --line:#2a2f3a; }
-      @media (prefers-color-scheme: light) { :root { --bg:#fff; --fg:#111; --muted:#555; --card:#f6f8fa; --line:#d0d7de; } }
-      body { background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, sans-serif; margin:0; padding:16px; }
-      main { max-width:980px; margin:0 auto; display:grid; gap:16px; }
-      h1 { font-size:20px; margin:0; } h2 { font-size:17px; margin:0 0 8px; }
-      p { margin:0; } .muted { color:var(--muted); }
-      fieldset { border:1px solid var(--line); border-radius:8px; background:var(--card); margin:0; padding:12px; }
-      label { display:block; margin:6px 0; }
-      input[type=text] { width:100%; box-sizing:border-box; padding:6px; background:var(--bg); color:var(--fg); border:1px solid var(--line); border-radius:6px; font-family:ui-monospace, monospace; font-size:13px; }
-      button { padding:8px 14px; border-radius:6px; border:1px solid var(--line); background:var(--fg); color:var(--bg); font-weight:600; cursor:pointer; }
-      button.secondary { background:transparent; color:var(--fg); }
-      button:disabled { opacity:.5; cursor:default; }
-      .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-      .box { overflow-x:auto; border:1px solid var(--line); border-radius:8px; }
-      table { border-collapse:collapse; width:100%; min-width:640px; font-size:13px; }
-      th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
-      th { color:var(--muted); font-weight:600; }
-      td.num { font-variant-numeric:tabular-nums; text-align:right; }
-      code, .mono { font-family:ui-monospace, monospace; font-size:12px; }
-      .big { font-size:28px; font-weight:700; }
-      .bad { color:var(--bad); } .ok { color:var(--ok); } .warn { color:var(--warn); }
-      .badge { font:600 11px/1 ui-monospace, monospace; padding:3px 6px; border-radius:4px; border:1px solid currentColor; }
-      ol.tl { margin:0; padding-left:20px; display:grid; gap:6px; }
-      pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; overflow:auto; font-size:12px; margin:0; }
-    </style>
+    <title>Bridge dataset — Floor</title>
+    <meta name="description" content="Which LayerZero bridges behind Aave collateral can release everything in one message, answered live from Arkiv." />
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon-180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Pixel&family=Lato:ital,wght@0,400;0,700;1,300&display=swap" />
   </head>
   <body>
+    <div class="proto">Answered live from Arkiv · no Floor server · reads through EF Anon-RPC by default</div>
+    <nav>
+      <a class="brand" href="../#/">floor</a>
+      <a class="main" href="../#/live">Live market</a>
+      <a class="main" href="../#/kelp">Kelp simulation</a>
+      <span class="spacer"></span>
+      <a href="../#/scan">rsETH scan</a>
+      <a href="../#/rules">Rules</a>
+      <a href="../#/about">About</a>
+      <a class="on" href="./dataset.html" aria-current="page">Bridge dataset</a>
+      <a href="./">Verify</a>
+    </nav>
+
     <main>
-      <div>
-        <h1>Which bridges can release everything in one message?</h1>
-        <p class="muted"><a href="./index.html">← Verify a rating</a> · Answered live from Arkiv, no Floor server: every LayerZero adapter backing an Aave-listed token on 8 chains, probed by simulating an inbound message from the real endpoint, plus rsETH's bridge history. Reads go through EF Anon-RPC (Tor) by default.</p>
+      <h1>Which bridges can release everything in one message?</h1>
+      <p class="lede">
+        Every LayerZero adapter backing an Aave-listed token on 8 chains, probed by simulating an inbound message from the
+        real endpoint, plus rsETH's bridge history. Stored on Arkiv by Floor's writer wallet, and queried here straight
+        from Arkiv.
+      </p>
+
+      <div class="verdict g-skipped controls-bar">
+        <fieldset class="seg-field">
+          <legend>Read through</legend>
+          <div class="seg">
+            <label><input type="radio" name="net" value="tor-js" checked /><span>Tor (EF Anon-RPC)</span></label>
+            <label><input type="radio" name="net" value="direct" /><span>Direct</span></label>
+          </div>
+        </fieldset>
+        <span class="spacer"></span>
+        <button id="preview">Preview from local evidence</button>
+        <button id="go" class="btn">Run the query on Arkiv</button>
       </div>
+      <p class="mono-line"><span id="phase"></span> <span id="source">Not queried yet.</span></p>
 
-      <fieldset>
-        <legend>Query</legend>
-        <label><input type="radio" name="net" value="tor-js" checked /> Through Tor (EF Anon-RPC)</label>
-        <label><input type="radio" name="net" value="direct" /> Direct</label>
-        <label>Writer (only entities this address created are trusted)<input id="writer" type="text" /></label>
-        <label>Arkiv RPC (Rabdi; append /&lt;access key&gt; to use yours)<input id="arkiv" type="text" /></label>
-        <div class="row"><button id="go">Run the query on Arkiv</button><button id="preview" class="secondary">Preview from local evidence</button><span id="phase" class="warn"></span></div>
-      </fieldset>
-
-      <p id="source" class="muted"></p>
-      <pre id="query"></pre>
-
-      <section>
-        <h2>Can release everything in one message <span id="nUnb" class="badge bad"></span></h2>
-        <p class="muted">Outcome NO_INBOUND_LIMIT: a single inbound message releases the adapter's whole escrow, or mints with no cap. Widest exposure (most remote chains) first.</p>
-        <div class="box"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th>Routes</th><th>Escrow</th><th>Probe block</th></tr></thead><tbody id="unb"></tbody></table></div>
+      <section class="card">
+        <div class="card-h"><h3>Can release everything in one message</h3><span id="nUnb" class="chip chip-breached">–</span></div>
+        <p class="muted">Outcome NO_INBOUND_LIMIT: one inbound message releases the adapter's whole escrow, or mints with no cap. Widest exposure (most remote chains) first.</p>
+        <div class="tablebox"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th class="num">Routes</th><th>Escrow</th><th class="num">Probe block</th></tr></thead><tbody id="unb"></tbody></table></div>
       </section>
 
-      <section>
-        <h2>Rate-limited per message <span id="nLim" class="badge ok"></span></h2>
-        <div class="box"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th>Limited routes</th><th>Smallest per-message cap</th></tr></thead><tbody id="lim"></tbody></table></div>
+      <section class="card">
+        <div class="card-h"><h3>Rate-limited per message</h3><span id="nLim" class="chip chip-ok">–</span></div>
+        <div class="tablebox"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th class="num">Limited routes</th><th class="num">Smallest per-message cap</th></tr></thead><tbody id="lim"></tbody></table></div>
       </section>
 
-      <section>
-        <h2>Flight recorder: rsETH</h2>
+      <section class="card">
+        <div class="card-h"><h3>Flight recorder: rsETH</h3></div>
         <p class="big" id="days"></p>
         <ol class="tl" id="tl"></ol>
       </section>
 
-      <pre id="log"></pre>
+      <details class="card fold">
+        <summary>Advanced: writer, Arkiv RPC and the query</summary>
+        <div class="fields">
+          <label>Writer <small>only entities this address created are trusted</small><input id="writer" type="text" spellcheck="false" /></label>
+          <label>Arkiv RPC <small>Rabdi; append /&lt;access key&gt; to use yours</small><input id="arkiv" type="text" spellcheck="false" /></label>
+        </div>
+        <h4>Query sent to Arkiv</h4>
+        <pre id="query"></pre>
+      </details>
+
+      <details class="card fold">
+        <summary>Run log</summary>
+        <pre id="log"></pre>
+      </details>
     </main>
     <script type="module" src="./src/dataset-page.ts"></script>
   </body>
