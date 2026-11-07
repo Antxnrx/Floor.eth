@@ -6,7 +6,7 @@ Effective-state security ratings for onchain collateral, with bounded enforcemen
 
 Floor continuously grades who or what can release a collateral asset, how many independent parties must agree, and how fast those settings can change. It encodes Aave's DAO-approved risk framework as code, and lets lenders act on the grade automatically, without ever moving funds or blocking repayments or liquidations. Every grade carries its evidence, and anyone can re-verify it in a browser without trusting Floor.
 
-**Live: https://floor.aexiz.in** · landing, [Live market](https://floor.aexiz.in/#/live) (every Aave V3 market, read in your browser), [Kelp simulation](https://floor.aexiz.in/#/kelp), [verify a rating](https://floor.aexiz.in/verify/) and the [bridge dataset](https://floor.aexiz.in/verify/dataset.html). The same build is on Swarm: https://bah5acgzaf2sbw664j66ntj5gz4kttvnviv5i3mfvdtthz5b3izltcslqbkhq.bzz.limo/ (republished on every deploy). Everything that writes runs on testnets; mainnet is only read. No real funds.
+**Live: https://floor.aexiz.in** · landing, [Live market](https://floor.aexiz.in/#/live) (every Aave V3 market, read in your browser), [Kelp simulation](https://floor.aexiz.in/#/kelp), [verify a rating](https://floor.aexiz.in/verify/) and the [bridge dataset](https://floor.aexiz.in/verify/dataset.html). The same build is on Swarm: https://bah5acgzameuojj5ckt57ci7qg7rnfshqohfyq6sazzee36jahyfdggvodjeq.bzz.limo/ (republished on every deploy). Everything that writes runs on testnets; mainnet is only read. No real funds.
 
 Built at ETHGlobal Mumbai (Nov 5–7 2026). Docs: [`docs/README.md`](docs/README.md). Agent rules: [`AGENTS.md`](AGENTS.md). AI disclosure: [`AI-USAGE.md`](AI-USAGE.md).
 
@@ -103,7 +103,7 @@ Never paste keys into files. Use a Foundry keystore (`cast wallet import`) and e
 
 Everything below is live and was checked onchain (full table with tx hashes: `docs/evidence/live-2026-11-07.md`).
 
-- **Site:** https://floor.aexiz.in (GitHub Pages, custom domain, HTTPS). Same build on Swarm: https://bah5acgzaf2sbw664j66ntj5gz4kttvnviv5i3mfvdtthz5b3izltcslqbkhq.bzz.limo/ (`#/kelp` for the live loop, `verify/` and `verify/dataset.html` for the Arkiv + Swarm pages). Each deploy prints its Swarm URL in the workflow summary.
+- **Site:** https://floor.aexiz.in (GitHub Pages, custom domain, HTTPS). Same build on Swarm: https://bah5acgzameuojj5ckt57ci7qg7rnfshqohfyq6sazzee36jahyfdggvodjeq.bzz.limo/ (`#/kelp` for the live loop, `verify/` and `verify/dataset.html` for the Arkiv + Swarm pages). Each deploy prints its Swarm URL in the workflow summary.
 - **Ethereum Sepolia:** FloorRegistry `0xE69c3e47DdaB083D0Ba4D8aD2B2dA8531ec18220` (rsETH = BREACHED, written by the CRE workflow), FloorBroadcaster `0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4`
 - **Base Sepolia:** FloorMirror `0xDA6E769b22ecb6815cea57aBf61494a07E571Dd6` (rating delivered by CCIP), Morpho Vault V2 `0xff5E3b49d94AA7C5213938c4B8FF1983456869Be`, FloorSentinel `0x83ccA5fFB6389fff54Dbde6709779a8e92F945D4`. **Detected on Ethereum, protection fired on Base:** the sentinel cut the vault's rsETH cap 1,000,000 USDC → 0 (tx `0x2e02faf9…7908`)
 - **Swarm evidence:** `ca035fbdfa74bfd611af912e4a7debb53f38047a78bcd181a20c1490e8419778`
