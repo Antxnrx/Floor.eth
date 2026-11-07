@@ -111,8 +111,14 @@ export function CatchLines({ lines }: { lines: readonly HeroLine[] }) {
 export function useSiteShell(title: string) {
   const root = useRef<HTMLDivElement>(null);
 
+  // Put the previous title back on the way out, so the app's screens do not
+  // keep "Documentation — Floor" after leaving the docs.
   useEffect(() => {
+    const prev = document.title;
     document.title = title;
+    return () => {
+      document.title = prev;
+    };
   }, [title]);
 
   useEffect(() => {

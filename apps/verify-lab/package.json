@@ -17,6 +17,7 @@
     "@floor/publish": "workspace:*",
     "@floor/resolver": "workspace:*",
     "@floor/verifier": "workspace:*",
+    "@fontsource/lato": "^5.3.0",
     "viem": "^2.38.6"
   },
   "devDependencies": {

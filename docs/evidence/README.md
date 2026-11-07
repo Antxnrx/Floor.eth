@@ -1,6 +1,15 @@
 # Evidence
 
-Re-runnable proof for claims in the docs. Written 2026-11-06, during the event.
+Re-runnable proof for claims in the docs. Written 2026-11-06 and 2026-11-07, during the event.
+
+| Path | What |
+|---|---|
+| `live-2026-11-07.md` | Every live testnet tx: CRE write, CCIP send and delivery, Morpho cap cut, Arkiv and Swarm writes, browser verification runs |
+| `cre/` | CRE CLI runs: simulate, broadcast, lies refused, log trigger on Kelp's config tx |
+| `inbound/` | Inbound-limit probe results per chain (all-chain rerun, 64 adapters) |
+| `anon-rpc/` | Browser verifier runs over Tor, Nym, passthrough and direct |
+| `watch/` | State and events of the 15-minute config watcher (committed by `.github/workflows/watch.yml`) |
+| `onchain/`, `guard-proof/` | Below |
 
 ## onchain/
 

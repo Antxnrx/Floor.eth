@@ -5,6 +5,10 @@
  * defined here, in the same vocabulary: square, hairline, mono for anything
  * machine-shaped.
  */
+/* Fonts are bundled, not fetched from a CDN: this is the privacy page, and a
+   font request would hand the visitor's IP to a third party (EF CROPS). */
+@import "@fontsource/lato/400.css";
+@import "@fontsource/lato/700.css";
 @import "../../web/src/theme.css";
 @import "../../web/src/styles.css";
 

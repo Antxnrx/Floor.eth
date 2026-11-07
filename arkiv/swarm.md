@@ -10,7 +10,7 @@
 3. **Postage batch, buyer, node.**
    - Local test network: bee-factory (Bee v2.8.1). Batch `19056cc9f8b0563a1f48d88dc0c5a6a8bbbe8b3e623629d9ab7c422a957cf2ae`, bought by the bee-factory queen node on its local chain.
    - Public network (2026-11-07): uploaded through the public gateway `api.gateway.ethswarm.org`, which stamps uploads with its own batch (no batch bought by us; `importer --swarm-gateway`, bytes read back and hash-checked). Retention is the gateway's; production uses our own batch (`--swarm` with `BEE_BATCH_ID`).
-   - The verify and dataset pages are also on Swarm (ref `4f1e4068fb86d4d652bca69a6d72d5e5f6fe9c275e11f6f46a0ae96a78890d7f`, https://bah5acgzaj4pea2h3q3knmuv4u2ng24wv4x3p5hbhlyi7n5dkbluwu6ejbv7q.bzz.limo/), and the web app (ref `80fe87fa3ed40b8312f7f509b6d7256139f35124d6fda0d162c5e549255db728`). The public gateway does not serve unreviewed websites (it redirects to a "Request Approval" page), so the sites are opened through bzz.limo.
+   - The whole site (landing, app, verify and dataset pages) is also on Swarm, republished by `.github/workflows/deploy.yml` on every deploy. Latest checked: ref `2ea41b7bdc4fbcd9a7a6cf1539d5b5457a8db0b51ce67cf43b46573149700a8f`, https://bah5acgzaf2sbw664j66ntj5gz4kttvnviv5i3mfvdtthz5b3izltcslqbkhq.bzz.limo/ (`verify/` for the verify page). The public gateway does not serve unreviewed websites (it redirects to a "Request Approval" page), so the site is opened through bzz.limo. No feed manifest yet, so each deploy has a new reference.
 
 4. **Files that upload and read.**
    - Upload: [`packages/publish/src/swarm.ts`](../packages/publish/src/swarm.ts) `uploadBundle` (non-deferred) and the importer [`packages/publish/src/importer.ts`](../packages/publish/src/importer.ts).
@@ -27,6 +27,6 @@
    ```
    Expected: `swarm: ca035fbd…9778 (303927 bytes …)`, and the test prints the same reference and passes the hash check.
 
-6. **Demo-video moment.** The verify page, served from Swarm, with no Floor server: it finds the rating on Arkiv, downloads the bundle from Swarm by `swarmRef`, checks `keccak256 == bundleHash` and the same hash in the CRE-written FloorRegistry, then replays all 624 reads through Anon-RPC over Tor. Measured 2026-11-07: **VERIFIED in 81 s, 99.8% of 923 requests through Anon-RPC** (`docs/evidence/live-2026-11-07.md`). Tamper one byte: MISMATCH.
+6. **Demo-video moment.** The verify page (https://floor.aexiz.in/verify/, or the same page on Swarm), with no Floor server: it finds the rating on Arkiv, downloads the bundle from Swarm by `swarmRef`, checks `keccak256 == bundleHash` and the same hash in the CRE-written FloorRegistry, then replays all 624 reads through Anon-RPC over Tor. Measured 2026-11-07: **VERIFIED in 81 s, 99.8% of 923 requests through Anon-RPC** (`docs/evidence/live-2026-11-07.md`); rerun after the restyle: 63 s, 99.7%. Tamper one byte: MISMATCH.
 
 7. **What got in our way.** See [`friction.md`](friction.md) §Swarm: deferred uploads by default, the postage minimum, bee-factory start time.

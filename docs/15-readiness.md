@@ -1,20 +1,23 @@
 # 15 · Are we ready to build? (honest check, 2026-11-06 ~02:40 IST)
 
+> **Status at submission (2026-11-07):** all nine must-haves are done and live on testnets; the table below is updated. The rest of this file is the original pre-build check, kept as the record.
+
 **Verdict: yes. Research is done; start building now.** Nothing left needs more research. What's left is setup actions, one booth question and a hard scope cut. Deadline: **Sat Nov 7 2026, 09:00 IST** (verbatim, event details page); our internal target is 07:00 IST, so roughly **28 hours** from this check.
 
-## Build status (updated 2026-11-06, after the first build session)
+## Build status (updated 2026-11-07, at submission)
 
 | Must-have | Status | Where |
 |---|---|---|
 | 1. Resolver (effective state, 3-RPC cross-check) | ✅ done, rsETH fixture passes live | `packages/resolver` |
 | 2. Rule pack v0 + grades with evidence | ✅ done | `packages/core` |
-| 3. Inbound-limit probe | ✅ done: 34 Ethereum adapters probed, calibrated on rsETH/weETH | `packages/resolver`, `docs/09` |
-| 4. CRE workflow → FloorRegistry | ✅ code + tests + **CRE CLI v1.39.0 simulation passes** (dry run, 4 mainnet reads matched; `docs/evidence/cre/simulate-2026-11-06.txt`); deploy access not granted for the hackathon (simulation is enough for the prize, docs/11); `cre workflow simulate --broadcast` writes onchain once the registry is deployed, rehearsed on a Sepolia fork (`scripts/rehearse.sh`) | `cre/floor-rating` |
-| 5. CCIP send → FloorMirror state change | ✅ on the CCIP 2.0 local simulator; **testnet send needs your key** | `contracts` |
-| 6. Arkiv mirror + judged files | ✅ code + live reads + `/arkiv/*.md`; **writes need your key** | `packages/publish`, `arkiv/` |
-| 7. Web page with browser verify | ⚙️ verifier runs in Chrome through **Anon-RPC (Nym)**: VERIFIED 624/624, 99.7% of reads via Anon-RPC (`docs/evidence/anon-rpc/`); reference page `apps/verify-lab`; wiring into `apps/web` is the frontend owner's | `packages/verifier`, `apps/verify-lab`, `apps/web` |
+| 3. Inbound-limit probe | ✅ done: 64 adapters on 8 chains (all-chain rerun 2026-11-07), calibrated on rsETH/weETH; published to Arkiv | `packages/resolver`, `docs/09` |
+| 4. CRE workflow → FloorRegistry | ✅ code + tests + **CRE CLI v1.39.0 simulation passes** (dry run, 4 mainnet reads matched; `docs/evidence/cre/simulate-2026-11-06.txt`); deploy access not granted for the hackathon (simulation is enough for the prize, docs/11); **`cre workflow simulate --broadcast` wrote rsETH = BREACHED to FloorRegistry on Sepolia**; refuses a lying feed and forged evidence; log trigger on `UlnConfigSet` (`docs/evidence/cre/`) | `cre/floor-rating` |
+| 5. CCIP send → FloorMirror state change | ✅ live: Sepolia → Base Sepolia, delivered in 17.7 min; the sentinel then cut a Morpho Vault V2 cap to 0 | `contracts`, `docs/evidence/live-2026-11-07.md` |
+| 6. Arkiv mirror + judged files | ✅ live on Rabdi: rating, 52 routes, 64-adapter dataset, rsETH flight recorder; read by the verify and dataset pages | `packages/publish`, `arkiv/` |
+| 7. Web page with browser verify | ✅ live at https://floor.aexiz.in/verify/ and on Swarm: Arkiv → Swarm → registry → 624/624 reads over Tor, 99.7–99.8% via Anon-RPC; the app links to it | `packages/verifier`, `apps/verify-lab`, `apps/web` |
 | 8. Kelp replay on a fork | ✅ done with the attacker's real txs | `contracts/test/fork/KelpReplay.t.sol` |
-| 9. Swarm evidence + `swarm.md` | ✅ code + local Bee round trip; **public batch needs funds** | `packages/publish`, `arkiv/swarm.md` |
+| 9. Swarm evidence + `swarm.md` | ✅ bundle on the public network (through the public gateway's stamp), whole site on Swarm | `packages/publish`, `arkiv/swarm.md` |
+| + Live market | ✅ all 24 Aave V3 markets read in the browser every minute; config watcher every 15 min, probe hourly (GitHub Actions) | `packages/live`, `.github/workflows` |
 
 Credential-dependent steps are listed as ready-to-run commands in the root `README.md` ("Commands that need your credentials").
 
@@ -34,13 +37,13 @@ Credential-dependent steps are listed as ready-to-run commands in the root `READ
 | # | Action | Why |
 |---|---|---|
 | B1 | Bun ≥ 1.2.21 ✅ installed (1.3.1). Still needed: CRE CLI, `cre login`, `cre account access` → "Hackathon" | CRE TS SDK needs Bun; deploy approval takes time; simulation works meanwhile |
-| B2 | Arkiv: faucet + access key (hub.arkiv.network) | Writes to Rabdi testnet |
-| B3 | Deployer wallet funded on the two demo chains (+ CCIP fees; a little USDC for the Morpho vault) | Mainnet loop |
+| B2 | ✅ Done: Arkiv faucet + access key (self-serve, hub.arkiv.network) | Writes to Rabdi testnet |
+| B3 | ✅ Done on testnets (Sepolia, Base Sepolia); mainnet dropped (no real funds) | Testnet loop |
 | B4 | Archive-capable mainnet RPC for forks (public RPCs worked for reads; heavy fork tests may need a keyed provider) | Fork probe + replay |
-| B5 | Swarm postage batch (own Bee node or a service) | Swarm bonus |
+| B5 | ✅ Not needed: the public gateway stamps uploads; own batch for production | Swarm bonus |
 | B6 | ✅ Done: Apache-2.0 licence added | Required by Arkiv and CROPS |
 | B7 | Booth: "Can one team win both CRE and CCIP?" (ETHGlobal says all of a partner's tracks count as one pick; winning multiple is the partner's call) | Avoid wasted work |
-| B8 | ✅ Done: Sepolia → Arbitrum Sepolia is a v2.0 lane (`getLaneFeatures`) | "CCIP 2.0" claim |
+| B8 | ✅ Done: Sepolia → Arbitrum Sepolia and Sepolia → Base Sepolia are v2.0 lanes (`getLaneFeatures`); the live send used Base Sepolia | "CCIP 2.0" claim |
 
 ## Scope cut
 
@@ -77,7 +80,7 @@ Credential-dependent steps are listed as ready-to-run commands in the root `READ
 
 ## Known unknowns (track, don't block)
 
-- Whether our inbound-limit count matches 35/39.
+- Whether our inbound-limit count matches 35/39 (resolved: lists overlap and agree where both probed; we do not claim to reproduce 35/39, see docs/09).
 - CCIP lane version on the chosen pair.
 - CRE's 15 EVM reads per execution: the workflow re-checks a critical subset, the resolver supplies the rest ([19](19-sponsor-dev-reference.md)).
 - Anon-RPC traffic-share measurement (no documented method; we count in our own wrapper).

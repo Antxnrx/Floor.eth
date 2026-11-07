@@ -45,6 +45,8 @@ jobs:
           CID=$(python3 -c "import base64,sys;r=bytes.fromhex(sys.argv[1]);print('b'+base64.b32encode(bytes([1,0xfa,1,0x1b,0x20])+r).decode().lower().rstrip('='))" "$REF")
           echo "Swarm reference: \`$REF\`" >> "$GITHUB_STEP_SUMMARY"
           echo "Swarm URL: https://$CID.bzz.limo/" >> "$GITHUB_STEP_SUMMARY"
+          echo "Swarm reference: $REF"
+          echo "Swarm URL: https://$CID.bzz.limo/"
 
   deploy:
     needs: build

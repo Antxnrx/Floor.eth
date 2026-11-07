@@ -55,15 +55,17 @@ Network: RPC `https://rpc.rabdi.db-chain.testnet.arkiv.network` · Explorer `htt
 
 ## Submission checklist
 
-- [ ] Public repo, open-source licence, steady commit history.
-- [ ] README: what it does, architecture, setup, contract addresses, how AI was used.
+Status 2026-11-07. Live site: https://floor.aexiz.in. Live tx record: [`evidence/live-2026-11-07.md`](evidence/live-2026-11-07.md).
+
+- [x] Public repo, open-source licence, steady commit history.
+- [x] README: what it does, architecture, setup, contract addresses, how AI was used.
 - [ ] Demo video 2:30–2:55 (ETHGlobal requires 2–4 min; CROPS caps at 3 min), ≥720p, no speed-up, no AI voiceover.
-- [ ] AI usage documented per file/area (`AI-USAGE.md`); specs/prompts/planning docs in repo.
+- [x] AI usage documented per file/area (`AI-USAGE.md`); specs/prompts/planning docs in repo.
 - [ ] Per-partner integration explanation + feedback text ready for the submission form.
 - [ ] CRE simulation shown in the video (chain + external source).
-- [ ] CCIP message delivered; `_ccipReceive` changes state; tx links.
-- [ ] Arkiv: writes on Rabdi testnet; a user-visible feature reads back; re-runnable importer; data licence; writer wallet(s) + one runnable query in README.
-- [ ] `/arkiv/schema.md`, `friction.md`, `reach.md`, `why-arkiv.md`, `data-quality.md`.
-- [ ] `/arkiv/swarm.md` with all seven items; Swarm bonus selected at submission.
-- [ ] Anon-RPC default for every browser read; show traffic share.
-- [ ] README "CROPS" section; backend-off moment in the demo; no trackers.
+- [x] CCIP message delivered (Sepolia → Base Sepolia); `_ccipReceive` changes state; tx links.
+- [x] Arkiv: writes on Rabdi testnet; a user-visible feature reads back; re-runnable importer; data licence; writer wallet(s) + one runnable query in README.
+- [x] `/arkiv/schema.md`, `friction.md`, `reach.md`, `why-arkiv.md`, `data-quality.md`.
+- [x] `/arkiv/swarm.md` with all seven items. [ ] Swarm bonus selected at submission.
+- [x] Anon-RPC default for every read on the verify and dataset pages; traffic share shown. (The Live market tab reads public RPCs directly; it is a dashboard, not the verifier.)
+- [x] README "CROPS" section; no trackers. [ ] Backend-off moment in the demo.

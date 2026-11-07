@@ -1,36 +1,31 @@
-# @floor/web: UI prototype (design handoff)
+# @floor/web: the site
 
-Plain wireframe of every screen. The frontend owner restyles it; the structure and data contract should stay.
+Landing page, Live market, Kelp simulation and the reference screens. Live at https://floor.aexiz.in (GitHub Pages) and on Swarm (every deploy; URL in the deploy workflow summary).
 
 ```bash
-pnpm install            # repo root
-pnpm --filter @floor/web dev      # http://localhost:5173
-pnpm --filter @floor/web build    # static build in dist/ (base "./", hash routing → works on any host and on Swarm)
+pnpm install                       # repo root
+pnpm --filter @floor/web dev       # builds the landing, then http://localhost:5173
+pnpm --filter @floor/web build     # landing (landing-source → public/landing) + typecheck + app, base "./", hash routes
+scripts/build-site.sh              # the deployed site: this app at /, apps/verify-lab at /verify/
 ```
 
-## Screens
+## Routes
 
 | Route | Screen | File | Data |
 |---|---|---|---|
-| `#/` | Live scan: headline stats, asset table, grade filter | `screens/Dashboard.tsx` | `ASSETS`, `HEADLINE` |
-| `#/asset/:key` | Asset detail: grade, controllers, routes (receive/send), rule results, raw evidence calls | `screens/Asset.tsx` | `EvidenceBundle` |
-| `#/verify/:key` | Browser verification: 6 steps, Anon-RPC traffic share, failure states | `screens/Verify.tsx` | bundle (simulated progress) |
-| `#/kelp` | Kelp replay: without/with Floor + onchain timeline | `screens/Others.tsx` | `KELP_TIMELINE` |
-| `#/enforcement` | Live loop, read from the chains: CRE write on Ethereum Sepolia → CCIP → FloorMirror on Base Sepolia → FloorSentinel cuts a real Morpho Vault V2 cap; real txs and measured times | `screens/Others.tsx` | `EVENTS` |
-| `#/blast` | Blast radius: pick an operator, see exposed assets | `screens/Others.tsx` | `ASSETS` |
-| `#/check` | Issuer pre-sign check: paste Safe tx, see effective-state diff | `screens/Others.tsx` | mock |
-| `#/rules` | Rule pack with verbatim citations | `screens/Others.tsx` | `RULES` |
-| `#/about` | CROPS + trust model | `screens/Others.tsx` | static |
+| `#/` | Landing (static page in an iframe; `details.html` is the long version) | `screens/Landing.tsx`, `landing-source/` | sourced copy; "Live now" receipts from `@floor/deployments` |
+| `#/live` | **Live market**: every Aave V3 market read from its chain every 60 s; collateral, supply, LayerZero exposure; config-watch panel | `screens/LiveMarket.tsx` | `@floor/live`, `docs/evidence/inbound`, `docs/evidence/watch` |
+| `#/kelp` | **Kelp simulation**: the fork replay (without/with Floor) and the live testnet loop (CRE → CCIP → Morpho cap cut), read from the chains | `screens/Others.tsx` | `data/live.ts` (`@floor/deployments`) |
+| `#/scan` | rsETH scan: full rule-pack grades at fixed blocks (REAL) plus labelled MOCK rows | `screens/Dashboard.tsx` | `data/mock.ts` |
+| `#/asset/:key` | Asset detail: verdict, controllers, routes, rule results, raw evidence calls | `screens/Asset.tsx` | `EvidenceBundle` |
+| `#/verify/:key` | Launches the real verifier (`/verify/`, served alongside) and shows the last recorded live run | `screens/Verify.tsx` | `@floor/deployments` |
+| `#/docs` | Long-form docs | `screens/Docs.tsx` | `data/site.ts` |
+| `#/blast`, `#/check` | Blast radius, pre-sign check (MOCK UI states; Floor Check is planned) | `screens/Others.tsx` | mock |
+| `#/rules`, `#/about` | Rule pack with citations; CROPS and trust model | `screens/Others.tsx` | static |
 
-## Data contract
+## Rules
 
-- All data comes from `src/data/mock.ts`. Types are from `@floor/core` (`EvidenceBundle`, `Verdict`, `Grade`).
-- **REAL** rows are actual scans (`packages/resolver/fixtures/*.json`). **MOCK** rows are invented UI states. Keep the badges visible until real data replaces them (evidence policy, `docs/00`).
-- Grades: `OK` / `DEGRADED` / `UNKNOWN` / `BREACHED`; rule outcomes add `SKIPPED` (not evaluated yet; never shown as passing).
-- Copy rules: no "drainable", no "would have saved $X", no "first". Use the exact wording in `docs/03` and `docs/14`.
-
-## Must-keep for prizes
-
-- No third-party trackers/analytics/fonts from CDNs (EF CROPS).
-- Verify screen must show the Anon-RPC traffic share (EF Anon-RPC judging).
-- Works with the backend off (data from Arkiv + Swarm), and from a Swarm URL (`base: "./"`, hash routes).
+- **REAL** rows are actual scans; **MOCK** rows are invented UI states and keep their badge (evidence policy, `docs/00`).
+- Addresses, RPCs and tx hashes come from `@floor/deployments`, never hard-coded in screens.
+- Copy: no "drainable", no "would have saved $X", no "first" (`docs/03`, `docs/14`).
+- Known CROPS gap: the landing and app load fonts from Google Fonts; the verify pages bundle theirs. Self-hosting here is open.

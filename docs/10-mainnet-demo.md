@@ -1,5 +1,7 @@
 # 10 · Mainnet demo: the full loop on our own contracts
 
+> **Status at submission (2026-11-07): not done on mainnet, by decision (no real funds).** The same loop ran on public testnets instead: CRE wrote the rsETH grade to FloorRegistry on Ethereum Sepolia, CCIP carried it to FloorMirror on Base Sepolia, and FloorSentinel cut a real Morpho Vault V2 cap there to 0. Every tx: [`evidence/live-2026-11-07.md`](evidence/live-2026-11-07.md). The plan below (own test OFT, re-enacting the config change on stage) is the post-hackathon mainnet milestone.
+
 **What no other team will show:** Kelp's mistake re-enacted on mainnet with real LayerZero contracts, and Floor cutting a real Morpho vault's cap automatically, with every step a verifiable tx.
 
 ## Loop

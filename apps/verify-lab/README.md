@@ -1,6 +1,6 @@
 # verify-lab
 
-Minimal page that runs the Floor browser verifier with every chain read routed through EF Anon-RPC. No Floor server is involved. It is the integration reference for `apps/web`: copy `makeTransport()` and the `verifyBundle()` call from `src/main.ts`.
+The verify page and the bridge dataset page. Live at https://floor.aexiz.in/verify/ and `/verify/dataset.html` (and on Swarm, same paths). The verifier runs with every read routed through EF Anon-RPC (Tor by default); no Floor server is involved. Both pages use the app's own `theme.css` and `styles.css` (`src/page.css`), and bundle their fonts so no third party sees the visitor.
 
 ```bash
 pnpm install
@@ -8,7 +8,7 @@ pnpm --filter @floor/verify-lab dev        # http://127.0.0.1:5181
 ```
 
 Evidence sources:
-- **Arkiv → Swarm** (default): latest `floor.rating` for the asset **created by** the writer wallet → its `swarmRef` and `bundleHash` → `GET {gateway}/bytes/{swarmRef}` → keccak256 of the bytes must equal `bundleHash` → replay. Needs README step 8 (Arkiv write) and step 7 (Swarm upload); until then it stops with "no floor.rating … created by …".
+- **Arkiv → Swarm** (default): latest `floor.rating` for the asset **created by** the writer wallet → its `swarmRef` and `bundleHash` → `GET {gateway}/bytes/{swarmRef}` → keccak256 of the bytes must equal `bundleHash` → replay. Both are published (README steps 7 and 8); with no rating from the writer it stops with "no floor.rating … created by …".
 - **Swarm by hand:** give a reference and the expected hash (e.g. a local bee-factory upload).
 - **Local copy:** the fixture shipped with the page (offline fallback; labelled as such in the result).
 - **Optional onchain check:** a FloorRegistry address (+ its chain RPC). The CRE-signed `bundleHash` must match, or the result is MISMATCH. Skipped while empty.
@@ -22,7 +22,7 @@ Local Swarm test: `npx @ethersphere/bee-factory start --tag v2.8.1`, upload with
 Known limit: the Nym worker drops the `Content-Type` header, so Arkiv's RPC answers 415 through Nym; the page then reads Arkiv directly and shows that on the meter (`arkiv · direct (fallback)`). Chain reads are unaffected.
 
 What the page shows:
-- status: VERIFIED / MISMATCH / UNVERIFIED_RPC (never VERIFIED if any read failed);
+- status: VERIFIED / MISMATCH / UNVERIFIED_RPC / UNVERIFIED_ONCHAIN (never VERIFIED if any read failed);
 - traffic meter: reads per route and the share through Anon-RPC (the 2 bootstrap reads of the specifier contract go direct, by design, and are shown);
 - per-request diagnostics (latency, HTTP status per provider, JSON-RPC errors).
 

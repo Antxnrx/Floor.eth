@@ -14,7 +14,7 @@ Dev reference (bee-js, stamps, feeds): [19 §4](19-sponsor-dev-reference.md#4-sw
 |---|---|---|
 | 1 | Evidence bundle per rating on Swarm; Arkiv entity stores the reference + hash | **Must have** |
 | 2 | Browser verifier downloads the bundle from Swarm and re-checks each value via Anon-RPC | **Must have** (this is the CROPS demo moment) |
-| 3 | Static site hosted on Swarm behind a feed manifest (stable URL) | Should have |
+| 3 | Static site hosted on Swarm behind a feed manifest (stable URL) | Should have. **Status 2026-11-07:** site on Swarm on every deploy; feed manifest not done (new reference each deploy) |
 | 4 | "Latest rating" feed per asset | Should have |
 
 **No encryption anywhere.** Evidence is public by design. That avoids the "encrypted reference in a public entity" trap entirely.

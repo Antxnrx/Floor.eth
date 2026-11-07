@@ -17,7 +17,7 @@ export function Asset({ id }: { id: string }) {
       <p><Link to="/scan">← rsETH scan</Link></p>
       <div className="title-row">
         {/* No grade chip here: the verdict banner below states it far louder. */}
-        <h1>{a.symbol} <span className="muted">{a.label}</span></h1>
+        <h1>{a.symbol} <span className="muted">{a.label.replace(/^[^·]*·\s*/, "")}</span></h1>
         <Real />
         <span className="spacer" />
         <a className="btn" href={`#/verify/${a.key}`}>Verify in browser</a>
