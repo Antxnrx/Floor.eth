@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit -p . && vite build",
+    "dev": "vite build --config vite.landing.config.ts && vite",
+    "build": "vite build --config vite.landing.config.ts && tsc --noEmit -p . && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p .",
     "test": "echo 'no web tests yet'"
@@ -14,14 +14,20 @@
     "@floor/core": "workspace:*",
     "@floor/deployments": "workspace:*",
     "@floor/live": "workspace:*",
+    "maath": "^0.10.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "three": "^0.182.0",
+    "three-mesh-bvh": "^0.9.18",
     "viem": "^2.38.6"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
-    "vite": "^7.1.12"
+    "tailwindcss": "^4.3.5",
+    "vite": "^7.1.12",
+    "vite-plugin-glsl": "^1.6.2"
   }
 }

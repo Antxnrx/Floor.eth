@@ -1,0 +1,266 @@
+/*
+ * The scan player. Two real scans of one asset, one on screen at a time.
+ * See effects/scenarios.js.
+ */
+
+[data-scenario] {
+	border: 1px solid var(--hair);
+	background: var(--panel);
+}
+
+.scan-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem 1.25rem;
+	border-bottom: 1px solid var(--hair);
+	padding: 1rem 1.25rem;
+}
+
+/*
+ * The two scans, as a row of labels rather than as buttons with boxes. They
+ * are a choice of reading, not an action on the page, and a pair of filled
+ * controls here would outrank the Replay beside them.
+ */
+.scan-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+}
+
+.scan-tab {
+	border: 1px solid transparent;
+	padding: 0.4rem 0.7rem;
+	font-family: var(--font-mono);
+	font-size: 0.65rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: color-mix(in srgb, var(--fg) 55%, transparent);
+	cursor: pointer;
+	transition:
+		color var(--dur-1) var(--ease),
+		border-color var(--dur-1) var(--ease),
+		background-color var(--dur-1) var(--ease);
+}
+
+@media (hover: hover) {
+	.scan-tab:hover {
+		color: var(--fg);
+	}
+}
+
+.scan-tab[aria-selected="true"] {
+	border-color: var(--hair);
+	background: var(--bg);
+	color: var(--fg);
+}
+
+/*
+ * Replay reads as the one thing on this block that does something, so it is
+ * the only outlined control. The glyph is the affordance and the word is the
+ * label; neither is load-bearing alone.
+ */
+.scan-replay {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	border: 1px solid color-mix(in srgb, var(--fg) 28%, transparent);
+	padding: 0.4rem 0.8rem;
+	font-family: var(--font-mono);
+	font-size: 0.65rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: color-mix(in srgb, var(--fg) 75%, transparent);
+	cursor: pointer;
+	transition:
+		color var(--dur-1) var(--ease),
+		border-color var(--dur-1) var(--ease);
+}
+
+@media (hover: hover) {
+	.scan-replay:hover {
+		border-color: color-mix(in srgb, var(--fg) 60%, transparent);
+		color: var(--fg);
+	}
+}
+
+/* A quarter turn on press, in the direction the glyph points. The control's
+   job is to restate something, and the mark restates itself to say so. */
+.scan-replay i {
+	font-style: normal;
+	transition: transform var(--dur-3) var(--ease);
+}
+
+.scan-replay:active i {
+	transform: rotate(-180deg);
+}
+
+.scan-body {
+	padding: 1.5rem 1.25rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+	.scan-head {
+		padding-inline: 1.75rem;
+	}
+
+	.scan-body {
+		padding: 1.75rem;
+	}
+}
+
+/*
+ * The verdict line. The grade is set in the page's one accent, and the square
+ * beside it carries the degree the way the timeline and the headroom meter
+ * already do on this page: filled is the finding in force, outlined is the
+ * finding standing but not binding on every route.
+ */
+.scan-verdict {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.5rem 1rem;
+}
+
+.scan-grade {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+	letter-spacing: 0.16em;
+	color: var(--color-flag);
+}
+
+.scan-grade::before {
+	content: "";
+	width: 0.5rem;
+	height: 0.5rem;
+	background: var(--color-flag);
+}
+
+.scan-grade[data-degree="partial"]::before {
+	background: none;
+	box-shadow: inset 0 0 0 1px var(--color-flag);
+}
+
+.scan-at {
+	font-family: var(--font-mono);
+	font-size: 0.7rem;
+	color: color-mix(in srgb, var(--fg) 55%, transparent);
+}
+
+/* Counters. Tabular figures so a number counting up does not shuffle the
+   ones beside it on every frame. */
+.scan-figs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+	gap: 1.25rem;
+	margin-top: 1.5rem;
+}
+
+.scan-fig dt {
+	font-family: var(--font-mono);
+	font-size: 0.62rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: color-mix(in srgb, var(--fg) 60%, transparent);
+}
+
+.scan-fig dd {
+	margin: 0.4rem 0 0;
+	font-size: 1.875rem;
+	line-height: 1.1;
+	font-variant-numeric: tabular-nums;
+}
+
+.scan-bars {
+	margin-top: 1.75rem;
+	border-top: 1px solid var(--hair);
+	padding-top: 1.25rem;
+}
+
+.scan-bar + .scan-bar {
+	margin-top: 1rem;
+}
+
+.scan-bar-h {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	font-size: 0.875rem;
+}
+
+.scan-bar-h b {
+	font-weight: 400;
+	font-variant-numeric: tabular-nums;
+	/* A ratio is one token. On a narrow column the label wraps and this must
+	   not, or `24 / 26` breaks after the slash and reads as two figures. */
+	white-space: nowrap;
+}
+
+.scan-track {
+	display: block;
+	height: 0.5rem;
+	margin-top: 0.6rem;
+	background: var(--color-raise);
+}
+
+/*
+ * The fill is driven from --fill rather than from `width`, so the script
+ * writes one custom property and the stylesheet keeps the colour rule: amber
+ * is a finding, ghost is a route with nothing to say about it.
+ */
+.scan-fill {
+	display: block;
+	height: 100%;
+	width: var(--fill, 0%);
+	background: var(--color-flag);
+}
+
+.scan-track[data-clear="true"] .scan-fill {
+	background: color-mix(in srgb, var(--fg) 45%, transparent);
+}
+
+/*
+ * A share of zero still has to be legible as a measurement that was taken.
+ * The rule across the empty track says the bar ran and found nothing, which
+ * a bare trough does not.
+ */
+.scan-track[data-clear="true"] {
+	box-shadow: inset 0 0 0 1px var(--hair);
+}
+
+.scan-note {
+	margin-top: 1.5rem;
+	border-top: 1px solid var(--hair);
+	padding-top: 1rem;
+	font-family: var(--font-mono);
+	font-size: 0.62rem;
+	line-height: 1.7;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: color-mix(in srgb, var(--fg) 55%, transparent);
+}
+
+/*
+ * With no script both panels are in the document and both are shown, which is
+ * the honest fallback: two scans, stacked, each labelled with its block. The
+ * rule only appears in that state, to separate them.
+ */
+[data-scenario-panel]:not([hidden]) + [data-scenario-panel]:not([hidden]) {
+	margin-top: 1.75rem;
+	border-top: 1px solid var(--hair);
+	padding-top: 1.75rem;
+}
+
+[data-scenario-panel][hidden] {
+	display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.scan-replay i {
+		transition: none;
+	}
+}

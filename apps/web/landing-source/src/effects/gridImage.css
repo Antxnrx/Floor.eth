@@ -1,0 +1,70 @@
+/*
+ * Adapted from the CSS panel of "Canvas Grid Mouse Effect" by Tom Miller
+ * (creativeocean): https://codepen.io/creativeocean/pen/emBOove
+ * MIT — full text and attribution in LICENSE-codepen-grid.
+ *
+ * Almost nothing survives from upstream. The pen was a full-bleed fixed
+ * background, so its canvas was centred in the viewport, pinned to
+ * `aspect-ratio: 1` and flipped between width- and height-driven sizing by a
+ * `min-aspect-ratio` media query — all of it in service of keeping a square
+ * canvas square. Here the canvas fills whatever box the page gives the host and
+ * the script cover-fits the photo into it, so the aspect-ratio rules, the media
+ * query and the centring transform all go.
+ */
+
+[data-grid-image] {
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+
+/*
+ * The fallback photo, and what sizes the host when the page gives it no height
+ * of its own: a percentage height resolved against an auto-height parent
+ * becomes auto, so the photo sets the box. Where the page does set a height —
+ * an aspect-ratio utility, a fixed height, a grid row — the percentage
+ * resolves and `cover` crops the photo exactly the way the script crops it, so
+ * the fallback and the canvas frame the same part of the image.
+ *
+ * A descendant selector rather than a child one, and the <picture> wrapper
+ * given a box of its own, because the photo this was built for ships as AVIF,
+ * WebP and JPEG and so arrives wrapped. <picture> is display: inline by
+ * default, which gives the <img> inside it nothing to resolve 100% against.
+ */
+[data-grid-image] picture {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+[data-grid-image] img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/*
+ * Taken out of sight once the canvas has drawn its first frame, but not out of
+ * the document: it goes on sizing the host, it comes straight back if the
+ * effect is destroyed, and at zero opacity — rather than `visibility: hidden`
+ * or `display: none` — it keeps its alt text in the accessibility tree, which
+ * is the only description of the photo once the canvas (aria-hidden) is over
+ * it. A photo that fails to load never reaches this class, which is the whole
+ * of the error path: the plain <img> simply stays visible.
+ */
+[data-grid-image].is-live img {
+	opacity: 0;
+}
+
+[data-grid-image] > canvas {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	/* The pen listened for pointermove on the canvas. This one listens on the
+	   host instead, so the canvas never needs to be the element under the
+	   cursor and anything the page layers over the photo stays interactive. */
+	pointer-events: none;
+}

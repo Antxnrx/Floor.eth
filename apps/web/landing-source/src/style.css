@@ -1,0 +1,536 @@
+@import "tailwindcss";
+
+* {
+	@apply antialiased tracking-tight;
+}
+
+@theme {
+	/* Page below the fold. --color-void matches Scene's clear colour (0x010204)
+	   so the hero section and the WebGL canvas agree on black. */
+	--color-ghost: #f8f8ff;
+	--color-void: #010204;
+	--color-ink: #0e0e14;
+	--color-rule: #dcdce8;
+
+	/*
+	 * The dark ramp the landing runs on. Four steps, because the page already
+	 * owns the bottom one: --color-void is fixed by the WebGL clear colour, so
+	 * the hero, the photo plate and the footer sit lower than anything else and
+	 * the bands in between need somewhere to be. The separations are small on
+	 * purpose (page/void 1.08:1, surface/page 1.08:1) — a dark interface that
+	 * steps hard between its surfaces reads as stacked boxes rather than as one
+	 * lit room, and the hairline is what makes a card's edge findable.
+	 *
+	 * Not #000: the page is asked to hold a WebGL hero, two photographs and a
+	 * chart, and true black gives all three a hard seam where they end.
+	 */
+	--color-page: #0d0f15;
+	--color-surface: #151822;
+	--color-raise: #1d212c;
+	--color-edge: #2d3340;
+
+	/*
+	 * The only colour on the page, and it means one thing: this is the part
+	 * that is exposed. Nothing is coloured for being fine — a resolved route is
+	 * drawn in plain ghost — so the eye can take every amber mark on the page
+	 * as a finding without reading the label first.
+	 *
+	 * It comes out of the photography rather than off a palette: the plate and
+	 * the two figures are long-exposure streaks of this colour on black.
+	 *
+	 * 13.3:1 on --color-page, 12.3:1 on --color-surface, 14.4:1 on --color-void.
+	 */
+	--color-flag: #fcd34d;
+
+	/*
+	 * Lato for the page; the wordmark sets Geist Pixel on itself, because it has
+	 * to hand canvas measureText() the identical family string (see
+	 * effects/wordmark.js). Tailwind derives --default-font-family from this, so
+	 * setting it here is what moves the body copy off the system stack.
+	 *
+	 * A humanist sans against a pixel display face is a contrast pairing rather
+	 * than two near-identical grotesques. --font-mono is left alone: the eyebrows
+	 * and the pipeline want a true monospace, which Lato has no answer for.
+	 */
+	--font-sans: "Lato", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * The shared components below — the timeline tick, the headroom meter, the
+ * diagram's wires and nodes — are used by two documents in this bundle that
+ * are not the same colour. index.html is dark; details.html is still the
+ * original light page. So they are written against a foreground/surface pair
+ * rather than against a literal, and each document declares which one it is.
+ *
+ * Light is the default so details.html needs no change to keep working.
+ */
+:root {
+	--fg: var(--color-ink);
+	--bg: var(--color-ghost);
+	--panel: #fff;
+	--panel-hover: #fbfbfe;
+	--hair: var(--color-rule);
+}
+
+.theme-dark {
+	--fg: var(--color-ghost);
+	--bg: var(--color-page);
+	--panel: var(--color-surface);
+	--panel-hover: var(--color-raise);
+	--hair: var(--color-edge);
+}
+
+/*
+ * One easing and three durations for everything that is not a canvas.
+ *
+ * The curve is a quintic ease-out: it leaves immediately and lands slowly,
+ * which is what makes a state change read as a response rather than as a
+ * trip. No overshoot — this page grades collateral, and a control that
+ * bounces is making a claim about how it feels to use rather than about what
+ * it did.
+ *
+ * The three steps are the three sizes of change: a colour, a box, a section.
+ */
+:root {
+	--ease: cubic-bezier(0.16, 1, 0.3, 1);
+	--dur-1: 180ms;
+	--dur-2: 320ms;
+	--dur-3: 560ms;
+}
+
+/*
+ * Page frame. Every band below the hero shares one measure and one pair of
+ * gutters, set here rather than repeated as utilities so changing the page's
+ * width is one edit.
+ *
+ * The gutter is fluid: 1.5rem on a phone, 5vw through the middle sizes, and
+ * capped at 6rem so a very wide display does not push the content into a
+ * column floating in the centre of the screen.
+ */
+.band {
+	padding-inline: clamp(1.5rem, 5vw, 6rem);
+}
+
+.rail {
+	margin-inline: auto;
+	max-width: 96rem;
+}
+
+/*
+ * From the laptop width up, a band that carries a label splits into a label
+ * rail and a content rail. The label stays with the reader while the content
+ * scrolls past it, so the page always answers "which part of the argument is
+ * this" without an eyebrow over every heading — and the content gets the full
+ * remaining width instead of a centred column with air on both sides.
+ *
+ * Gated on the aside being present, so a band with its own internal columns
+ * (the footer) can share the measure without inheriting the split.
+ */
+@media (min-width: 1024px) {
+	.rail:has(.rail__aside) {
+		display: grid;
+		grid-template-columns: 13rem minmax(0, 1fr);
+		column-gap: clamp(2.5rem, 5vw, 6rem);
+	}
+
+	.rail__aside {
+		position: sticky;
+		top: 3rem;
+		align-self: start;
+	}
+}
+
+/*
+ * The photo plate's wordmark: the same word as the hero's, at the other end
+ * of the page, drawn the other way. The hero's is a pixel face on a grid; this
+ * one is a humanist italic, so the page closes on the human reading of the
+ * mark rather than repeating the machine one.
+ *
+ * It sits above the magnifier canvas (which has no z-index of its own, so DOM
+ * order would otherwise put it on top) and takes no pointer events, which is
+ * what keeps the host — not the word — as the element under the cursor. The
+ * photo therefore goes on resolving underneath the letterforms.
+ */
+.plate-mark {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+	font-style: italic;
+	font-weight: 500;
+	/* The plate is a 6:1 band, so its height is the ceiling here, not the
+	   measure: 6rem leaves the word about a third of the band's height clear
+	   above and below it at every width this page is read at. */
+	font-size: clamp(2.25rem, 7vw, 6rem);
+	line-height: 1;
+	/* Tighter than the global tracking-tight, but off the -0.04em floor where
+	   an italic's exits start to touch the letter after them. */
+	letter-spacing: -0.03em;
+	color: #fff;
+	pointer-events: none;
+	/*
+	 * The photo is long-exposure streaks on black, and the streaks are bright
+	 * enough in places to take the word down to grey-on-yellow. A soft shadow
+	 * the size of the type rather than a plate behind it: it only shows where
+	 * the photo is light, which is the only place it is needed.
+	 */
+	text-shadow: 0 0 2.5rem rgb(1 2 4 / 0.85);
+}
+
+/*
+ * A scrolling list of the inputs a grade is computed from, along the foot of
+ * the hero. Two identical groups and a translate of half the track, so the
+ * second group is exactly where the first started when the loop restarts and
+ * there is no seam to see.
+ *
+ * Masked at both edges rather than faded with a gradient overlay, because the
+ * strip sits over the WebGL scene and an overlay would have to match a
+ * background that is moving.
+ */
+.marquee {
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(
+		90deg,
+		transparent,
+		#000 7%,
+		#000 93%,
+		transparent
+	);
+	mask-image: linear-gradient(
+		90deg,
+		transparent,
+		#000 7%,
+		#000 93%,
+		transparent
+	);
+}
+
+.marquee__track {
+	display: flex;
+	width: max-content;
+}
+
+/* Only while the hero is on screen; see effects/inView.js. */
+.marquee.is-inview .marquee__track {
+	animation: marquee-drift 54s linear infinite;
+}
+
+.marquee__group {
+	padding-right: 2.5rem;
+	white-space: nowrap;
+}
+
+@keyframes marquee-drift {
+	to {
+		transform: translate3d(-50%, 0, 0);
+	}
+}
+
+/*
+ * The process grid's top rule, with one pulse travelling it. The pulse is 22%
+ * of the rule's width, so a translate of 455% of its own width carries it from
+ * just off the left edge to just off the right — the distance is expressed in
+ * the element's own width rather than the parent's so nothing here has to know
+ * how wide the section is.
+ */
+.beam {
+	position: relative;
+	height: 1px;
+	overflow: hidden;
+	background: var(--hair);
+}
+
+.beam__pulse {
+	position: absolute;
+	inset-block: 0;
+	left: 0;
+	width: 22%;
+	background: linear-gradient(90deg, transparent, var(--fg), transparent);
+	transform: translate3d(-100%, 0, 0);
+}
+
+.beam.is-inview .beam__pulse {
+	animation: beam-run 4.2s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+}
+
+@keyframes beam-run {
+	from {
+		transform: translate3d(-100%, 0, 0);
+	}
+	to {
+		transform: translate3d(455%, 0, 0);
+	}
+}
+
+/*
+ * One moment on the incident timeline. The square is the tick: the rule above
+ * the row is the twelve and a half months, and these are the four points on it
+ * where something is known to have happened.
+ */
+.moment {
+	position: relative;
+	padding-top: 1.75rem;
+}
+
+.moment::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0.5rem;
+	height: 0.5rem;
+	background: var(--fg);
+}
+
+/* The moment the page is actually about. */
+.moment--break::before {
+	background: none;
+	box-shadow: inset 0 0 0 1px var(--fg);
+}
+
+/*
+ * The sign-off. The hero's wordmark is a pixel face read small, at the top of
+ * a black screen; this is the same face read as large as the page allows, at
+ * the bottom of another one. Nothing else on the page is set at this size, so
+ * it ends the document rather than labelling the footer.
+ */
+.footer-mark {
+	margin: 0;
+	font-family: "Geist Pixel", ui-monospace, monospace;
+	font-size: clamp(4.5rem, 20vw, 11rem);
+	line-height: 0.82;
+	/* Geist Pixel is drawn on a grid and already carries its own sidebearings;
+	   the global tracking-tight closes them past the point where the stems of
+	   two letters read as one. */
+	letter-spacing: 0.02em;
+	color: var(--color-ghost);
+}
+
+/*
+ * Four cells of headroom, filled from the left, under each grade name. Squares
+ * rather than a bar so the row belongs to the same pixel grid as the wordmark,
+ * the trail and the shapes; aria-hidden, because the grade's name and sentence
+ * already say everything it does.
+ */
+.meter {
+	display: flex;
+	gap: 0.25rem;
+}
+
+.meter i {
+	width: 0.5rem;
+	height: 0.5rem;
+	background: var(--fg);
+}
+
+.meter i.is-off {
+	background: var(--hair);
+}
+
+/* UNKNOWN is not zero headroom — it is no reading at all, so its cells are
+   outlines rather than empty fills. */
+.meter i.is-void {
+	background: none;
+	box-shadow: inset 0 0 0 1px var(--hair);
+}
+
+html {
+	background: var(--bg);
+	scroll-behavior: smooth;
+}
+
+/*
+ * The footer's section links scroll to a band's very top edge, which puts the
+ * heading hard against the viewport. A little room above it reads as having
+ * arrived somewhere rather than having been cut off.
+ */
+:target,
+section[id] {
+	scroll-margin-block-start: 2.5rem;
+}
+
+::selection {
+	background: var(--color-flag);
+	color: var(--color-ink);
+}
+
+/*
+ * One focus treatment, on the ring rather than on the element's own box, so a
+ * keyboard reader lands on the same mark whatever they land on. Offset,
+ * because several of these controls already have a 1px edge of their own and
+ * a ring drawn on top of it reads as a thicker border.
+ */
+:focus-visible {
+	outline: 2px solid var(--color-flag);
+	outline-offset: 2px;
+}
+
+/*
+ * Anything that answers a pointer answers it over the same interval. Colour
+ * and edge only: a card that also moves is making a second claim, and the
+ * page already has one element per band whose whole job is to respond to
+ * being read.
+ */
+a,
+button {
+	transition:
+		color var(--dur-1) var(--ease),
+		border-color var(--dur-1) var(--ease),
+		background-color var(--dur-1) var(--ease),
+		opacity var(--dur-1) var(--ease);
+}
+
+/*
+ * A content block's entrance. Deliberately not on every section: the bands
+ * that use it are the ones whose content is a set of parts arriving together
+ * — the three readings in Why, the three figures in Without Floor, the
+ * moments on the timeline. The argument's headings are simply there.
+ *
+ * The armed state carries no transition of its own, so the class can be added
+ * after the first paint without the block being seen to fade out. And it is
+ * only ever added by script (effects/inView.js), which is what keeps the
+ * default — for a crawler, a print, or a failed module — the arrived state.
+ */
+[data-reveal].is-armed {
+	opacity: 0;
+}
+
+[data-reveal].is-revealed {
+	animation: reveal var(--dur-3) var(--ease) both;
+	animation-delay: var(--reveal-at, 0ms);
+}
+
+@keyframes reveal {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 0.875rem, 0);
+	}
+}
+
+/*
+ * The incident band. It is still the page's deepest surface, but on an
+ * all-dark page --color-void and --color-page are 1.08:1 apart and the drop
+ * no longer reads on its own. An ember cast up from the lower left does the
+ * work the old black-on-white flip used to: it is the same light as the
+ * photographs either side of it, and it only appears under the one section
+ * that is about something going wrong.
+ */
+.band-incident {
+	position: relative;
+	isolation: isolate;
+}
+
+.band-incident::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(
+		ellipse 70rem 32rem at 8% 108%,
+		color-mix(in srgb, var(--color-flag) 9%, transparent) 0%,
+		transparent 68%
+	);
+	pointer-events: none;
+}
+
+/*
+ * Legibility scrim for the hero copy. The spotlight sweeps up from the lower
+ * left and crosses the headline and body: measured over the paragraph's own
+ * box, 62% of the background pixels came back brighter than luma 110, under
+ * white text.
+ *
+ * An ellipse centred on the copy rather than a full-width linear gradient. A
+ * linear one has to stay strong out to the paragraph's right edge, and by then
+ * it is also dimming the hand beside it and the beam foot below it — both of
+ * which sit outside this ellipse and keep their brightness.
+ */
+.hero-scrim {
+	background: radial-gradient(
+		ellipse 62rem 26rem at 2% 46%,
+		color-mix(in srgb, var(--color-void) 88%, transparent) 0%,
+		color-mix(in srgb, var(--color-void) 55%, transparent) 42%,
+		transparent 72%
+	);
+}
+
+/*
+ * The headline is drawn in WebGL character by character (see effects/lamps.js),
+ * which means the script has to split it into one element per character first.
+ * Holding the lines back until it has keeps the unsplit text from showing for a
+ * frame, and gating on .js-lamps — set by main.js at parse time — keeps the
+ * text visible to a visitor whose script never arrives.
+ */
+.js-lamps [data-lamps]:not(.is-split) [data-line] {
+	visibility: hidden;
+}
+
+/* The copy under the headline arrives as the first characters catch, so the
+   block reads top to bottom rather than appearing all at once around them. */
+.js-lamps #hero [data-fade] {
+	animation: hero-fade 1.1s ease-out both;
+}
+
+.js-lamps #hero [data-fade="1"] {
+	animation-delay: 0.5s;
+}
+
+.js-lamps #hero [data-fade="2"] {
+	animation-delay: 0.75s;
+}
+
+@keyframes hero-fade {
+	from {
+		opacity: 0;
+		transform: translateY(0.4rem);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	/* The headline stays plain text at rest, so there is nothing to wait for. */
+	.js-lamps #hero [data-fade] {
+		animation: none;
+	}
+
+	/*
+	 * Both of these are infinite loops with no end state to land on, and
+	 * neither carries information the stopped version loses: the marquee is a
+	 * list of terms, the beam is a rule. So they stop rather than crossfade.
+	 */
+	.marquee.is-inview .marquee__track,
+	.beam.is-inview .beam__pulse {
+		animation: none;
+	}
+
+	/* Off the left edge is where the pulse rests; centred is where it reads as
+	   a deliberate highlight on a still rule. */
+	.beam__pulse {
+		transform: translate3d(195%, 0, 0);
+	}
+
+	/*
+	 * The entrance is never armed in the first place (effects/inView.js
+	 * returns early), so there is nothing here to undo. This is the belt: if
+	 * the preference is turned on while the page is open, an already-armed
+	 * block still resolves rather than staying at zero.
+	 */
+	[data-reveal].is-armed {
+		opacity: 1;
+	}
+
+	[data-reveal].is-revealed {
+		animation: none;
+	}
+
+	a,
+	button {
+		transition-duration: 1ms;
+	}
+}

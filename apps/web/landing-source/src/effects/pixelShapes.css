@@ -1,0 +1,37 @@
+/*
+ * The host is the box the shape is drawn into; the page gives it its size and
+ * the script reads it back, so the drawing can be re-laid-out from markup
+ * alone. See effects/pixelShapes.js.
+ */
+[data-pixel-shape] {
+	position: relative;
+	display: block;
+	/*
+	 * The colour the solid is drawn in. A canvas cannot take `currentColor`, so
+	 * the script reads this back off the host at mount — which is the only way
+	 * an effect that paints bitmaps can follow a theme it does not know about.
+	 * See effects/pixelShapes.js.
+	 */
+	color: var(--fg);
+}
+
+.pixel-shape {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	/* Hover is read on the card, not on the drawing, so this never needs to
+	   be the element under the cursor. */
+	pointer-events: none;
+}
+
+/*
+ * The card reads the hover for the drawing inside it, so the pointer target is
+ * the whole article rather than a 112px box in the middle of it. Nothing here
+ * styles that state: the shape quantising is the answer to the gesture, and a
+ * card that also lifts, tints and shadows is three answers to one.
+ */
+[data-shape-card] {
+	position: relative;
+}

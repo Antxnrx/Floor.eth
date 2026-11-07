@@ -3,7 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Floor</title>
+    <title>Floor — security ratings for onchain collateral</title>
+    <meta
+      name="description"
+      content="Floor continuously rates the effective security of onchain collateral and gives lenders evidence to reduce exposure with bounded enforcement."
+    />
+    <!-- The landing opens on a black hero, so the UA chrome should not flash white. -->
+    <meta name="theme-color" content="#010204" />
+
+    <!--
+      The pixel `f`, cropped in from icons/icon.png so the mark still reads at
+      32px rather than sitting in the middle of its own padding. Three sizes
+      and no .ico: every browser this app targets takes a PNG icon, and the
+      180 is what iOS asks for by name.
+    -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./icon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
+
+    <!--
+      Share card. The paths stay relative on purpose: this ships to a Swarm
+      /bzz/<manifest>/ URL whose host depends on the gateway the reader
+      happens to use, so an absolute og:image would be wrong for most of them.
+      Every current scraper resolves a relative og:image against the page URL.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Floor" />
+    <meta property="og:title" content="Floor — security ratings for onchain collateral" />
+    <meta
+      property="og:description"
+      content="Floor continuously rates the effective security of onchain collateral and gives lenders evidence to reduce exposure with bounded enforcement."
+    />
+    <meta property="og:image" content="./og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Floor wordmark, a pixel f followed by 'loor', white on black." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!--
+      The same three families, from the same source, as landing-source/index.html:
+      Geist Pixel for the wordmark, Inter italic for the mark on the photo plate,
+      Lato for everything else. Matching the landing's loader matters more than
+      the mechanism — the two are one surface and must not disagree about the
+      body face. The self-hosted woff2 files this used to preload no longer
+      exist in public/, so those preloads were 404ing.
+
+      This is an outbound dependency at runtime: a Swarm /bzz/ deploy behind a
+      blocked network falls back to the system stack on both pages alike.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist+Pixel&family=Inter:ital,opsz,wght@1,14..32,500&family=Lato:ital,wght@0,400;0,700;1,300&display=swap"
+    />
   </head>
   <body>
     <div id="root"></div>
