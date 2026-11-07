@@ -48,18 +48,18 @@
       <p class="mono-line"><span id="phase"></span> <span id="source">Not queried yet.</span></p>
 
       <section class="card">
-        <div class="card-h"><h3>Can release everything in one message</h3><span id="nUnb" class="chip chip-breached">–</span></div>
+        <div class="card-h"><h2>Can release everything in one message</h2><span id="nUnb" class="chip chip-breached">–</span></div>
         <p class="muted">Outcome NO_INBOUND_LIMIT: one inbound message releases the adapter's whole escrow, or mints with no cap. Widest exposure (most remote chains) first.</p>
         <div class="tablebox"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th class="num">Routes</th><th>Escrow</th><th class="num">Probe block</th></tr></thead><tbody id="unb"></tbody></table></div>
       </section>
 
       <section class="card">
-        <div class="card-h"><h3>Rate-limited per message</h3><span id="nLim" class="chip chip-ok">–</span></div>
+        <div class="card-h"><h2>Rate-limited per message</h2><span id="nLim" class="chip chip-ok">–</span></div>
         <div class="tablebox"><table><thead><tr><th>Chain</th><th>Token</th><th>Adapter</th><th class="num">Limited routes</th><th class="num">Smallest per-message cap</th></tr></thead><tbody id="lim"></tbody></table></div>
       </section>
 
       <section class="card">
-        <div class="card-h"><h3>Flight recorder: rsETH</h3></div>
+        <div class="card-h"><h2>Flight recorder: rsETH</h2></div>
         <p class="big" id="days"></p>
         <ol class="tl" id="tl"></ol>
       </section>
@@ -70,7 +70,7 @@
           <label>Writer <small>only entities this address created are trusted</small><input id="writer" type="text" spellcheck="false" /></label>
           <label>Arkiv RPC <small>Rabdi; append /&lt;access key&gt; to use yours</small><input id="arkiv" type="text" spellcheck="false" /></label>
         </div>
-        <h4>Query sent to Arkiv</h4>
+        <h3 class="kicker">Query sent to Arkiv</h3>
         <pre id="query"></pre>
       </details>
 

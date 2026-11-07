@@ -154,3 +154,7 @@ ol.tl li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13p
 ol.tl li:last-child { border-bottom: 0; }
 #source .ok, #source .bad, #source .warn { font-family: var(--mono); font-size: 12px; font-weight: 700; }
 #source .ok { color: var(--ok); }
+
+/* Card titles are h2 here (they sit directly under the page h1); same look as
+   the app's h3 card titles. */
+.card-h h2 { font-size: 15px; font-weight: 700; margin: 0; letter-spacing: -0.015em; }
