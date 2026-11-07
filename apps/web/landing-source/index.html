@@ -379,6 +379,70 @@
 				</div>
 			</section>
 
+			<!-- What runs today. A ledger, not a card grid: each row is one stage of
+			     the loop that ran on testnets, in the order it ran, and each ends in
+			     the receipt for it. Receipt links are filled from
+			     packages/deployments/testnet.json by src/effects/liveLinks.js; the
+			     hrefs written here are the fallback (the Kelp simulation page, which
+			     lists every transaction). -->
+			<section id="live" class="band border-b border-edge py-20 md:py-28">
+				<div class="rail">
+					<div class="grid gap-8 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-x-16">
+						<aside>
+							<p class="font-mono text-xs uppercase tracking-[0.2em] text-ghost/60">05 / Live now</p>
+							<p class="mt-3 border-t border-edge pt-3 text-xs leading-relaxed text-ghost/60">Testnets for every write. Mainnet only for reading. No real funds anywhere.</p>
+						</aside>
+						<div>
+							<h2 class="max-w-4xl text-3xl leading-tight text-balance md:text-5xl">Running now, with a receipt for every step.</h2>
+							<p class="mt-6 max-w-3xl text-base leading-relaxed text-pretty text-ghost/70">The rsETH grade went through the whole loop on public testnets: graded, written onchain, carried to a second chain, and enforced there. The market data beside it is mainnet, read live.</p>
+
+							<a data-reveal href="../#/live" target="_top" class="live-lead group mt-10 grid gap-6 border border-edge bg-surface p-6 transition-colors hover:border-ghost/40 hover:bg-raise md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-8">
+								<span>
+									<span class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-ghost/65"><i class="live-dot" aria-hidden="true"></i>Live market</span>
+									<span class="mt-4 block max-w-2xl text-xl leading-snug text-balance md:text-2xl">Every Aave V3 market, read straight from its chain by your browser, every minute.</span>
+									<span class="mt-3 block max-w-2xl text-sm leading-relaxed text-ghost/65">Which assets are collateral, how much is supplied, and which are bridged by LayerZero. A scheduler checks every chain for bridge config changes every 15 minutes.</span>
+								</span>
+								<span class="inline-flex items-center gap-3 self-start border border-ghost/45 px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] transition-colors group-hover:bg-ghost group-hover:text-page md:self-end">Open live market <span aria-hidden="true">→</span></span>
+							</a>
+
+							<ol class="live-ledger mt-12 border-t border-edge">
+								<li data-reveal>
+									<span class="live-ledger__n">1</span>
+									<span class="live-ledger__who">Chainlink CRE</span>
+									<p>A CRE workflow grades rsETH and writes the grade to FloorRegistry on Ethereum Sepolia. Given a false grade or forged evidence, it refuses to write.</p>
+									<a data-live-tx="creWrite" href="../#/kelp" target="_top">Write tx →</a>
+								</li>
+								<li data-reveal style="--reveal-at: 70ms">
+									<span class="live-ledger__n">2</span>
+									<span class="live-ledger__who">Chainlink CCIP</span>
+									<p>The grade crosses to Base Sepolia as a CCIP message.</p>
+									<a data-live-tx="ccipDelivery" href="../#/kelp" target="_top">Delivery tx →</a>
+								</li>
+								<li data-reveal style="--reveal-at: 140ms">
+									<span class="live-ledger__n">3</span>
+									<span class="live-ledger__who">Morpho</span>
+									<p>On arrival, Floor’s sentinel cut a Morpho vault’s cap to 0. It can only lower caps; raising one again stays with the curator.</p>
+									<a data-live-tx="capCut" href="../#/kelp" target="_top">Cap-cut tx →</a>
+								</li>
+								<li data-reveal style="--reveal-at: 210ms">
+									<span class="live-ledger__n">4</span>
+									<span class="live-ledger__who">Arkiv</span>
+									<p>The rating, every route behind it, a dataset of 64 bridge adapters and a log of config changes, queryable by anyone.</p>
+									<a href="../verify/dataset.html" target="_top">Bridge dataset →</a>
+								</li>
+								<li data-reveal style="--reveal-at: 280ms">
+									<span class="live-ledger__n">5</span>
+									<span class="live-ledger__who">Swarm · EF Anon-RPC</span>
+									<p>The evidence bundle sits on Swarm. The verifier page re-runs every recorded read in your browser over Tor: in the last run 624 of 624 matched, with 99.8% of requests through Anon-RPC.</p>
+									<a data-verify-link href="../verify/" target="_top">Run the verifier →</a>
+								</li>
+							</ol>
+							<p class="mt-5 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ghost/55">Every transaction: docs/evidence/live-2026-11-07.md · Addresses: packages/deployments/testnet.json</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
 			<section class="band bg-page py-16 md:py-20">
 				<div class="rail flex flex-col gap-6 border-t border-edge pt-8 sm:flex-row sm:items-end sm:justify-between">
 					<div><p class="font-mono text-xs uppercase tracking-[0.2em] text-ghost/60">Read the full analysis</p><h2 class="mt-3 max-w-2xl text-2xl leading-tight text-balance md:text-3xl">The rules, evidence and implementation details are still here.</h2></div>
@@ -513,6 +577,11 @@
 									class="hover:text-ghost hover:underline"
 									href="#difference"
 									>What we check</a
+								>
+							</li>
+							<li>
+								<a class="hover:text-ghost hover:underline" href="#live"
+									>Live now</a
 								>
 							</li>
 						</ul>

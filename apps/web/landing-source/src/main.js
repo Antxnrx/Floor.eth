@@ -8,6 +8,7 @@ import { mountPixelShapes } from "./effects/pixelShapes";
 import { mountBeams } from "./effects/beams";
 import { mountInView, mountReveal } from "./effects/inView";
 import { mountScenarios } from "./effects/scenarios";
+import { mountLiveLinks } from "./effects/liveLinks";
 
 // Marks the document as scripted, at parse time, so the hero's lines can be
 // held back until they are split without hiding them from a visitor whose
@@ -50,6 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	 * band: where the comparison belongs is a question for the markup.
 	 */
 	mountScenarios(document);
+
+	// "Live now" receipts, pointed at the transactions in the deployment manifest.
+	mountLiveLinks(document);
 
 	// The same rule for the page's two CSS loops, which have no canvas to gate.
 	mountInView();

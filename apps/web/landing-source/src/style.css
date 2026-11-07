@@ -534,3 +534,81 @@ button {
 		transition-duration: 1ms;
 	}
 }
+
+/* ---------- Live now ---------- */
+
+/* The one status mark on the page. Ghost, not amber: amber means exposure, and
+   "running" is not a warning. The ring breathes so the row reads as live, not
+   as a bullet. */
+.live-dot {
+	position: relative;
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 999px;
+	background: var(--color-ghost);
+}
+.live-dot::after {
+	content: "";
+	position: absolute;
+	inset: -0.25rem;
+	border-radius: inherit;
+	border: 1px solid var(--color-ghost);
+	opacity: 0;
+	animation: live-ring 2.4s var(--ease) infinite;
+}
+@keyframes live-ring {
+	0% { transform: scale(0.6); opacity: 0.7; }
+	100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Number, who, what, receipt. Four columns on a wide screen; on a narrow one
+   the receipt drops under the sentence and the number keeps its gutter. */
+.live-ledger { list-style: none; padding: 0; margin-left: 0; }
+.live-ledger li {
+	display: grid;
+	grid-template-columns: 2rem minmax(0, 1fr);
+	column-gap: 1rem;
+	row-gap: 0.4rem;
+	padding: 1.25rem 0;
+	border-bottom: 1px solid var(--color-edge);
+}
+.live-ledger__n,
+.live-ledger__who,
+.live-ledger a {
+	font-family: var(--font-mono, ui-monospace, monospace);
+	font-size: 0.7rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+.live-ledger__n { color: rgb(248 248 255 / 0.6); grid-row: span 3; padding-top: 0.15rem; }
+.live-ledger__who { color: rgb(248 248 255 / 0.75); }
+.live-ledger p {
+	max-width: 62ch;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	color: rgb(248 248 255 / 0.7);
+	text-wrap: pretty;
+}
+.live-ledger a {
+	justify-self: start;
+	color: var(--color-ghost);
+	border-bottom: 1px solid rgb(248 248 255 / 0.3);
+	padding-bottom: 0.15rem;
+	transition: border-color var(--dur-1) var(--ease);
+}
+.live-ledger a:hover { border-color: var(--color-ghost); }
+.live-ledger a:focus-visible,
+.live-lead:focus-visible { outline: 2px solid var(--color-ghost); outline-offset: 3px; }
+
+@media (min-width: 64rem) {
+	.live-ledger li {
+		grid-template-columns: 2rem 11rem minmax(0, 1fr) 10rem;
+		align-items: baseline;
+	}
+	.live-ledger__n { grid-row: auto; }
+	.live-ledger a { justify-self: end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.live-dot::after { animation: none; opacity: 0.4; transform: scale(1.4); }
+}
