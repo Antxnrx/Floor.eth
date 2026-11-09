@@ -1,0 +1,23 @@
+{
+ "block": 97040984,
+ "rpcs": [
+  "polygon-bor-rpc.publicnode.com",
+  "polygon-rpc.com"
+ ],
+ "method": "eth_call from EndpointV2 (no broadcast); docs/09",
+ "rows": [
+  {
+   "oapp": "0x6ba10300f0dc58b7a1e4c0e41f5dabb7d7829e13",
+   "symbol": "USDT",
+   "underlying": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+   "type": "OFT_ADAPTER",
+   "lzVersion": "v2",
+   "error": "HTTP request failed."
+  }
+ ],
+ "tally": {},
+ "selfCheck": {
+  "ok": true,
+  "detail": "non-endpoint → OnlyEndpoint(0x000000000000000000000000000000000000bEEF); wrong peer → OnlyPeer(30101,0xabababababababababababababababababababababababababababababababab)"
+ }
+}

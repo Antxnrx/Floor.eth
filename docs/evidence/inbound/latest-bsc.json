@@ -1,0 +1,69 @@
+{
+ "block": 132672323,
+ "rpcs": [
+  "bsc-dataseed.bnbchain.org",
+  "bsc-rpc.publicnode.com"
+ ],
+ "method": "eth_call from EndpointV2 (no broadcast); docs/09",
+ "rows": [
+  {
+   "oapp": "0x5b7b01bebcdf408dd14429a9b12465ab45204b13",
+   "symbol": "BTCB",
+   "underlying": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c",
+   "type": "OFT_ADAPTER",
+   "lzVersion": "v2",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 1.801438,
+   "eids": [
+    30361
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30361,
+     "forkBlock": 132672323,
+     "escrowSD": "1801438",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "1801438",
+     "proof": "full escrow released in one inbound message · full+1 reverts (Error(BEP20: transfer amount exceeds balance)) → escrow is the only ceiling"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0xb274202daba6ae180c665b4fbe59857b7c3a8091",
+   "symbol": "Cake",
+   "underlying": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
+   "type": "OFT_ADAPTER",
+   "lzVersion": "v1",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  },
+  {
+   "oapp": "0xa9004a5421372e1d83fb1f85b0fc986c912f91f3",
+   "symbol": "WBNB",
+   "underlying": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+   "type": "OFT_ADAPTER",
+   "lzVersion": "v1",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  }
+ ],
+ "tally": {
+  "NO_INBOUND_LIMIT": 1,
+  "NO_PEERS": 2
+ },
+ "selfCheck": {
+  "ok": true,
+  "detail": "non-endpoint → OnlyEndpoint(0x000000000000000000000000000000000000bEEF); wrong peer → OnlyPeer(30361,0xabababababababababababababababababababababababababababababababab)"
+ }
+}

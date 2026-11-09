@@ -1,0 +1,344 @@
+{
+ "block": 522817803,
+ "rpcs": [
+  "arb1.arbitrum.io",
+  "arbitrum-one-rpc.publicnode.com"
+ ],
+ "method": "eth_call from EndpointV2 (no broadcast); docs/09",
+ "rows": [
+  {
+   "oapp": "0x14e4a1b13bf7f943c8ff7c51fb60fa964a298d92",
+   "symbol": "USD₮0",
+   "underlying": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+   "type": "OFT_ADAPTER",
+   "lzVersion": "v2",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 4.013209,
+   "eids": [
+    30101,
+    30109,
+    30111,
+    30181,
+    30212,
+    30274,
+    30280,
+    30295,
+    30316,
+    30320,
+    30322,
+    30333,
+    30339,
+    30362,
+    30367,
+    30383,
+    30390,
+    30396,
+    30398,
+    30410,
+    30600
+   ],
+   "outcome": "NO_INBOUND_LIMIT",
+   "routeCounts": {
+    "NO_INBOUND_LIMIT": 21
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30101,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30109,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30181,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30212,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30274,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30280,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30295,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30316,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30320,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30322,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30333,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30367,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30383,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30390,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30396,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30398,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30410,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30600,
+     "forkBlock": 522817803,
+     "escrowSD": "4013209",
+     "outcome": "NO_INBOUND_LIMIT",
+     "revert": null,
+     "maxAcceptedSD": "18446744073709551615",
+     "proof": "credits by minting (full escrow + 1 accepted) · uint64-max credit accepted in one inbound message"
+    }
+   ],
+   "crossCheck": "agree"
+  },
+  {
+   "oapp": "0x77652d5aba086137b595875263fc200182919b92",
+   "symbol": "USD₮0",
+   "underlying": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+   "type": "OFT_ADAPTER",
+   "lzVersion": "v2",
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 3769285.325174,
+   "eids": [
+    30101,
+    30125,
+    30168,
+    30343,
+    30420
+   ],
+   "outcome": "TEST_ERROR",
+   "routeCounts": {
+    "TEST_ERROR": 5
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30101,
+     "forkBlock": 522817803,
+     "escrowSD": "3769285325174",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30125,
+     "forkBlock": 522817803,
+     "escrowSD": "3769285325174",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 522817803,
+     "escrowSD": "3769285325174",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30343,
+     "forkBlock": 522817803,
+     "escrowSD": "3769285325174",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30420,
+     "forkBlock": 522817803,
+     "escrowSD": "3769285325174",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    }
+   ],
+   "crossCheck": "agree"
+  }
+ ],
+ "tally": {
+  "NO_INBOUND_LIMIT": 1,
+  "TEST_ERROR": 1
+ },
+ "selfCheck": {
+  "ok": true,
+  "detail": "non-endpoint → OnlyEndpoint(0x000000000000000000000000000000000000bEEF); wrong peer → OnlyPeer(30101,0xabababababababababababababababababababababababababababababababab)"
+ }
+}

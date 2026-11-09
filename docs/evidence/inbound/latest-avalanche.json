@@ -1,0 +1,27 @@
+{
+ "block": 99890680,
+ "rpcs": [
+  "api.avax.network",
+  "avalanche-c-chain-rpc.publicnode.com"
+ ],
+ "method": "eth_call from EndpointV2 (no broadcast); docs/09",
+ "rows": [
+  {
+   "oapp": "0x2297aebd383787a160dd0d9f71508148769342e3",
+   "symbol": "BTC.b",
+   "underlying": "0x152b9d0fdc40c096757f570a51e494bd4b943e50",
+   "type": "OFT_ADAPTER",
+   "lzVersion": "v1",
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
+  }
+ ],
+ "tally": {
+  "NO_PEERS": 1
+ },
+ "selfCheck": {
+  "ok": true,
+  "detail": "skipped: no adapter on this chain has a peer, so no route is probed"
+ }
+}
