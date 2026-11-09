@@ -1,1 +1,17 @@
-[]
+[
+ {
+  "chainId": 1,
+  "chain": "ethereum",
+  "block": 26379807,
+  "tx": "0x8d94a2ec68bec649045d0c52fab9fcaff5df05b759b59bf2eabc1ec463eb9488",
+  "logIndex": 992,
+  "event": "UlnConfigSet",
+  "symbol": "T-USDY",
+  "kind": "layerzero-adapter",
+  "oapp": "0x099c9a1f29822cfb01512db5ab4981cd0487c2c4",
+  "eid": 30600,
+  "requiredDVNs": 3,
+  "optionalThreshold": 0,
+  "singleVerifier": false
+ }
+]
