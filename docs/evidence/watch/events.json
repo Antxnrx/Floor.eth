@@ -1,5 +1,48 @@
 [
  {
+  "chainId": 42161,
+  "chain": "arbitrum",
+  "block": 523371323,
+  "tx": "0x69713990aae509b69b3a94e5c5fa9d926782f5957a3c414cf45f9ebf848369aa",
+  "logIndex": 1,
+  "event": "UlnConfigSet",
+  "symbol": "USDT0",
+  "kind": "layerzero-adapter",
+  "oapp": "0x77652d5aba086137b595875263fc200182919b92",
+  "eid": 30343,
+  "requiredDVNs": 2,
+  "optionalThreshold": 0,
+  "singleVerifier": false
+ },
+ {
+  "chainId": 8453,
+  "chain": "base",
+  "block": 56125503,
+  "tx": "0x3f0660f7fcfdc51ebe64486abe32635f79c6460d299a7fcb9550e75f097a6e1b",
+  "logIndex": 5,
+  "event": "ReceiveLibrarySet",
+  "symbol": "SLC",
+  "kind": "layerzero-oft",
+  "oapp": "0x6bd83abc39391af1e24826e90237c4bd3468b5d2",
+  "eid": 30168,
+  "newLib": "0xc70AB6f32772f59fBfc23889Caf4Ba3376C84bAf"
+ },
+ {
+  "chainId": 1,
+  "chain": "ethereum",
+  "block": 26393918,
+  "tx": "0xea3269e57c0d0c46f21288eb1fc755a19210e88de1d31f415b231d4dc6a50aac",
+  "logIndex": 810,
+  "event": "UlnConfigSet",
+  "symbol": "USDT0",
+  "kind": "layerzero-adapter",
+  "oapp": "0x1f748c76de468e9d11bd340fa9d5cbadf315dfb0",
+  "eid": 30343,
+  "requiredDVNs": 2,
+  "optionalThreshold": 0,
+  "singleVerifier": false
+ },
+ {
   "chainId": 1,
   "chain": "ethereum",
   "block": 26379807,
