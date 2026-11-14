@@ -1,5 +1,5 @@
 {
- "block": 523982420,
+ "block": 524033048,
  "rpcs": [
   "arb1.arbitrum.io",
   "arbitrum-one-rpc.publicnode.com"
@@ -47,7 +47,7 @@
     {
      "name": "inbound-limit",
      "eid": 30101,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -57,7 +57,7 @@
     {
      "name": "inbound-limit",
      "eid": 30109,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -67,7 +67,7 @@
     {
      "name": "inbound-limit",
      "eid": 30111,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -77,7 +77,7 @@
     {
      "name": "inbound-limit",
      "eid": 30181,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -87,7 +87,7 @@
     {
      "name": "inbound-limit",
      "eid": 30212,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -97,7 +97,7 @@
     {
      "name": "inbound-limit",
      "eid": 30274,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -107,7 +107,7 @@
     {
      "name": "inbound-limit",
      "eid": 30280,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -117,7 +117,7 @@
     {
      "name": "inbound-limit",
      "eid": 30295,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -127,7 +127,7 @@
     {
      "name": "inbound-limit",
      "eid": 30316,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -137,7 +137,7 @@
     {
      "name": "inbound-limit",
      "eid": 30320,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -147,7 +147,7 @@
     {
      "name": "inbound-limit",
      "eid": 30322,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -157,7 +157,7 @@
     {
      "name": "inbound-limit",
      "eid": 30333,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -167,7 +167,7 @@
     {
      "name": "inbound-limit",
      "eid": 30339,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -177,7 +177,7 @@
     {
      "name": "inbound-limit",
      "eid": 30362,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -187,7 +187,7 @@
     {
      "name": "inbound-limit",
      "eid": 30367,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -197,7 +197,7 @@
     {
      "name": "inbound-limit",
      "eid": 30383,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -207,7 +207,7 @@
     {
      "name": "inbound-limit",
      "eid": 30390,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -217,7 +217,7 @@
     {
      "name": "inbound-limit",
      "eid": 30396,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -227,7 +227,7 @@
     {
      "name": "inbound-limit",
      "eid": 30398,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -237,7 +237,7 @@
     {
      "name": "inbound-limit",
      "eid": 30410,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -247,7 +247,7 @@
     {
      "name": "inbound-limit",
      "eid": 30600,
-     "forkBlock": 523982420,
+     "forkBlock": 524033048,
      "escrowSD": "4013209",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
@@ -266,7 +266,7 @@
    "kind": "adapter",
    "sharedDecimals": 6,
    "tokenDecimals": 6,
-   "escrowTokens": 3875193.707738,
+   "escrowTokens": 4023387.877527,
    "eids": [
     30101,
     30125,
@@ -282,8 +282,8 @@
     {
      "name": "inbound-limit",
      "eid": 30101,
-     "forkBlock": 523982420,
-     "escrowSD": "3875193707738",
+     "forkBlock": 524033048,
+     "escrowSD": "4023387877527",
      "outcome": "TEST_ERROR",
      "revert": "InvalidMsgType(0)",
      "maxAcceptedSD": null,
@@ -292,8 +292,8 @@
     {
      "name": "inbound-limit",
      "eid": 30125,
-     "forkBlock": 523982420,
-     "escrowSD": "3875193707738",
+     "forkBlock": 524033048,
+     "escrowSD": "4023387877527",
      "outcome": "TEST_ERROR",
      "revert": "InvalidMsgType(0)",
      "maxAcceptedSD": null,
@@ -302,8 +302,8 @@
     {
      "name": "inbound-limit",
      "eid": 30168,
-     "forkBlock": 523982420,
-     "escrowSD": "3875193707738",
+     "forkBlock": 524033048,
+     "escrowSD": "4023387877527",
      "outcome": "TEST_ERROR",
      "revert": "InvalidMsgType(0)",
      "maxAcceptedSD": null,
@@ -312,8 +312,8 @@
     {
      "name": "inbound-limit",
      "eid": 30343,
-     "forkBlock": 523982420,
-     "escrowSD": "3875193707738",
+     "forkBlock": 524033048,
+     "escrowSD": "4023387877527",
      "outcome": "TEST_ERROR",
      "revert": "InvalidMsgType(0)",
      "maxAcceptedSD": null,
@@ -322,8 +322,8 @@
     {
      "name": "inbound-limit",
      "eid": 30420,
-     "forkBlock": 523982420,
-     "escrowSD": "3875193707738",
+     "forkBlock": 524033048,
+     "escrowSD": "4023387877527",
      "outcome": "TEST_ERROR",
      "revert": "InvalidMsgType(0)",
      "maxAcceptedSD": null,
