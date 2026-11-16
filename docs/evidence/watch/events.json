@@ -114,6 +114,30 @@
  {
   "chainId": 1,
   "chain": "ethereum",
+  "block": 26426342,
+  "tx": "0x8d1ba241520ee255cfec426158b1036a642a347cab1af6205ce634a23bf952c7",
+  "logIndex": 126,
+  "event": "DelegateSet",
+  "symbol": "rsETH",
+  "kind": "layerzero-adapter",
+  "oapp": "0x85d456b2dff1fd8245387c0bfb64dfb700e98ef3",
+  "delegate": "0xb3696a817D01C8623E66D156B6798291fa10a46d"
+ },
+ {
+  "chainId": 1,
+  "chain": "ethereum",
+  "block": 26426342,
+  "tx": "0x8d1ba241520ee255cfec426158b1036a642a347cab1af6205ce634a23bf952c7",
+  "logIndex": 128,
+  "event": "DelegateSet",
+  "symbol": "KERNEL",
+  "kind": "layerzero-adapter",
+  "oapp": "0x2a1d74de3027cce18d31011518c571130a4cd513",
+  "delegate": "0xb3696a817D01C8623E66D156B6798291fa10a46d"
+ },
+ {
+  "chainId": 1,
+  "chain": "ethereum",
   "block": 26402224,
   "tx": "0x0d1fad9d70702511fd5d7f63ab5873bb161428ee28eb51901c37248f022c9abc",
   "logIndex": 635,
