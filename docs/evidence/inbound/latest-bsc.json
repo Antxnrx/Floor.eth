@@ -1,5 +1,5 @@
 {
- "block": 133990348,
+ "block": 134049602,
  "rpcs": [
   "bsc-dataseed.bnbchain.org",
   "bsc-rpc.publicnode.com"
@@ -15,7 +15,7 @@
    "kind": "adapter",
    "sharedDecimals": 6,
    "tokenDecimals": 18,
-   "escrowTokens": 1.801332,
+   "escrowTokens": 1.801274,
    "eids": [
     30361
    ],
@@ -27,11 +27,11 @@
     {
      "name": "inbound-limit",
      "eid": 30361,
-     "forkBlock": 133990348,
-     "escrowSD": "1801332",
+     "forkBlock": 134049602,
+     "escrowSD": "1801274",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
-     "maxAcceptedSD": "1801332",
+     "maxAcceptedSD": "1801274",
      "proof": "full escrow released in one inbound message · full+1 reverts (Error(BEP20: transfer amount exceeds balance)) → escrow is the only ceiling"
     }
    ],
