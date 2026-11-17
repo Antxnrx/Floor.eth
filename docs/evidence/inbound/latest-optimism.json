@@ -1,5 +1,5 @@
 {
- "block": 159644139,
+ "block": 159661058,
  "rpcs": [
   "mainnet.optimism.io",
   "optimism-rpc.publicnode.com"
@@ -15,7 +15,7 @@
    "kind": "adapter",
    "sharedDecimals": 6,
    "tokenDecimals": 18,
-   "escrowTokens": 364795.76649,
+   "escrowTokens": 366088.819669,
    "eids": [
     30106,
     30110
@@ -28,21 +28,21 @@
     {
      "name": "inbound-limit",
      "eid": 30106,
-     "forkBlock": 159644139,
-     "escrowSD": "364795766490",
+     "forkBlock": 159661058,
+     "escrowSD": "366088819669",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
-     "maxAcceptedSD": "364795766490",
+     "maxAcceptedSD": "366088819669",
      "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
     },
     {
      "name": "inbound-limit",
      "eid": 30110,
-     "forkBlock": 159644139,
-     "escrowSD": "364795766490",
+     "forkBlock": 159661058,
+     "escrowSD": "366088819669",
      "outcome": "NO_INBOUND_LIMIT",
      "revert": null,
-     "maxAcceptedSD": "364795766490",
+     "maxAcceptedSD": "366088819669",
      "proof": "full escrow released in one inbound message · full+1 reverts (Error(ERC20: transfer amount exceeds balance)) → escrow is the only ceiling"
     }
    ],
