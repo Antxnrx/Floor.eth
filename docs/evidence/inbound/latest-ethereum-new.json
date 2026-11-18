@@ -1,5 +1,5 @@
 {
- "block": 26437509,
+ "block": 26439294,
  "rpcs": [
   "eth-mainnet.public.blastapi.io",
   "api.zan.top",
@@ -23,7 +23,9 @@
    "underlying": "0xd533a949740bb3306d119cc777fa900ba034cd52",
    "type": "OFT_ADAPTER",
    "lzVersion": "v1",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0x91a40c733c97a6e1bf876eaf9ed8c08102eb491f",
@@ -31,7 +33,9 @@
    "underlying": "0x6b175474e89094c44da98b954eedeac495271d0f",
    "type": "OFT_ADAPTER",
    "lzVersion": "v1",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0x39d0ce7d1509a4f22619d0f666978fbe820665e9",
@@ -39,7 +43,9 @@
    "underlying": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
    "type": "OFT_ADAPTER",
    "lzVersion": "v2",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0x0b835f07a2a54c0e80c1f585e5b6dd732816da3f",
@@ -47,7 +53,30 @@
    "underlying": "0xc96de26018a54d51c097160568752c4e3bd6c364",
    "type": "OFT_ADAPTER",
    "lzVersion": "v2",
-   "error": "RPC Request failed."
+   "kind": "adapter",
+   "sharedDecimals": 8,
+   "tokenDecimals": 8,
+   "escrowTokens": 0.01797963,
+   "eids": [
+    30362
+   ],
+   "outcome": "TEST_ERROR",
+   "routeCounts": {
+    "TEST_ERROR": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26439294,
+     "escrowSD": "1797963",
+     "outcome": "TEST_ERROR",
+     "revert": "Error(from is blocked)",
+     "maxAcceptedSD": null,
+     "proof": "small (1 SD) reverts: Error(from is blocked)"
+    }
+   ],
+   "crossCheck": "agree"
   },
   {
    "oapp": "0xe41228a455700caf09e551805a8ab37caa39d08c",
@@ -73,7 +102,184 @@
    "underlying": "0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0",
    "type": "OFT_ADAPTER",
    "lzVersion": "v2",
-   "error": "RPC Request failed."
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 0,
+   "eids": [
+    30102,
+    30106,
+    30109,
+    30110,
+    30111,
+    30158,
+    30168,
+    30184,
+    30243,
+    30255,
+    30260,
+    30274,
+    30280,
+    30332,
+    30339
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 15
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30106,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30109,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30158,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30243,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30255,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30260,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30274,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30280,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30332,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30339,
+     "forkBlock": 26439294,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(FXS::_moveVotes: vote amount underflows)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(FXS::_moveVotes: vote amount underflows))"
+    }
+   ],
+   "crossCheck": "agree"
   },
   {
    "oapp": "0x23432452b720c80553458496d4d9d7c5003280d0",
@@ -157,7 +363,9 @@
    "underlying": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
    "type": "OFT_ADAPTER",
    "lzVersion": "v1",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0xa2d339411624cfb6243f909b064e07320919ee3f",
@@ -177,7 +385,9 @@
   }
  ],
  "tally": {
-  "NO_PEERS": 8
+  "NO_PEERS": 12,
+  "TEST_ERROR": 1,
+  "UNKNOWN": 1
  },
  "selfCheck": {
   "ok": true,
