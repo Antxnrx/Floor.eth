@@ -1,5 +1,5 @@
 {
- "block": 26464911,
+ "block": 26467804,
  "rpcs": [
   "eth-mainnet.public.blastapi.io",
   "api.zan.top",
@@ -29,7 +29,9 @@
    "underlying": "0x514910771af9ca656af840dff83e8264ecf986ca",
    "issuer": "harmony",
    "type": "ProxyOFT",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0x53e1c2647a6c7fb34c3b18377061cb05ab64d816",
@@ -93,7 +95,74 @@
    "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
    "issuer": "usdt0",
    "type": "ProxyOFT",
-   "error": "RPC Request failed."
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 26069189.882769,
+   "eids": [
+    30110,
+    30125,
+    30168,
+    30343,
+    30420
+   ],
+   "outcome": "TEST_ERROR",
+   "routeCounts": {
+    "TEST_ERROR": 5
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26467804,
+     "escrowSD": "26069189882769",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30125,
+     "forkBlock": 26467804,
+     "escrowSD": "26069189882769",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30168,
+     "forkBlock": 26467804,
+     "escrowSD": "26069189882769",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30343,
+     "forkBlock": 26467804,
+     "escrowSD": "26069189882769",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30420,
+     "forkBlock": 26467804,
+     "escrowSD": "26069189882769",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    }
+   ],
+   "crossCheck": "agree"
   },
   {
    "oapp": "0x2d342de4c58a871b3525740c58a1c112d5835865",
@@ -125,7 +194,63 @@
    "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
    "issuer": "usdt0",
    "type": "ProxyOFT",
-   "error": "RPC Request failed."
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 6,
+   "escrowTokens": 0.0109,
+   "eids": [
+    30110,
+    30125,
+    30343,
+    30420
+   ],
+   "outcome": "TEST_ERROR",
+   "routeCounts": {
+    "TEST_ERROR": 4
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26467804,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30125,
+     "forkBlock": 26467804,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30343,
+     "forkBlock": 26467804,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30420,
+     "forkBlock": 26467804,
+     "escrowSD": "10900",
+     "outcome": "TEST_ERROR",
+     "revert": "InvalidMsgType(0)",
+     "maxAcceptedSD": null,
+     "proof": "custom message codec (InvalidMsgType(0)): standard OFT payload rejected, needs an adapter-specific probe"
+    }
+   ],
+   "crossCheck": "agree"
   },
   {
    "oapp": "0x933597a323eb81cae705c5bc29985172fd5a3973",
@@ -133,7 +258,9 @@
    "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
    "issuer": null,
    "type": "ProxyOFT",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0xc2e75f4db642cf1b8b5ca9a1dc0450dae9505352",
@@ -149,7 +276,9 @@
    "underlying": "0xdac17f958d2ee523a2206206994597c13d831ec7",
    "issuer": "layerzero",
    "type": "ProxyOFT",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0xf6a097b278383ef0a800abd7d700b29b159b19b5",
@@ -175,7 +304,30 @@
    "underlying": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
    "issuer": "anubis-bridge",
    "type": "ProxyOFT",
-   "error": "RPC Request failed."
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 0,
+   "eids": [
+    30465
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30465,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    }
+   ],
+   "crossCheck": "agree"
   },
   {
    "oapp": "0xc708b6887db46005da033501f8aebee72d191a5d",
@@ -250,7 +402,7 @@
     {
      "name": "inbound-limit",
      "eid": 30465,
-     "forkBlock": 26464911,
+     "forkBlock": 26467804,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(ERC20: transfer amount exceeds balance)",
@@ -306,12 +458,146 @@
    "underlying": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
    "issuer": "etherfi",
    "type": "ProxyOFT",
-   "error": "RPC Request failed."
+   "kind": "adapter",
+   "sharedDecimals": 6,
+   "tokenDecimals": 18,
+   "escrowTokens": 0,
+   "eids": [
+    30102,
+    30110,
+    30111,
+    30165,
+    30183,
+    30184,
+    30214,
+    30243,
+    30260,
+    30280,
+    30303
+   ],
+   "outcome": "UNKNOWN",
+   "routeCounts": {
+    "UNKNOWN": 11
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30102,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30110,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30111,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30165,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30183,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30184,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30214,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30243,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30260,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30280,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    },
+    {
+     "name": "inbound-limit",
+     "eid": 30303,
+     "forkBlock": 26467804,
+     "escrowSD": "0",
+     "outcome": "UNKNOWN",
+     "revert": "Error(ERC20: transfer amount exceeds balance)",
+     "maxAcceptedSD": null,
+     "proof": "escrow is empty: nothing to bound (1-unit credit reverts: Error(ERC20: transfer amount exceeds balance))"
+    }
+   ],
+   "crossCheck": "agree"
   }
  ],
  "tally": {
-  "NO_PEERS": 3,
-  "UNKNOWN": 1
+  "NO_PEERS": 6,
+  "TEST_ERROR": 2,
+  "UNKNOWN": 3
  },
  "selfCheck": {
   "ok": true,
