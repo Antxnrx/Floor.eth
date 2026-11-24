@@ -186,6 +186,18 @@
  {
   "chainId": 10,
   "chain": "optimism",
+  "block": 159943205,
+  "tx": "0xe2b9d24c159bb2aa542b3c3961d5b93957c0632e69325cc07ea809a2c246b07f",
+  "logIndex": 49,
+  "event": "DelegateSet",
+  "symbol": "CYBER",
+  "kind": "layerzero-adapter",
+  "oapp": "0x9a9d5a29206dde4f70825032df32333de5f63921",
+  "delegate": "0x2f199646760aE75d423F4E98bb5249207ED1DC15"
+ },
+ {
+  "chainId": 10,
+  "chain": "optimism",
   "block": 159841493,
   "tx": "0x1ddca7388172a6d6faf1509fbfd14145b1155e6740190199f38fd25d62aacc71",
   "logIndex": 25,
@@ -363,6 +375,18 @@
   "kind": "layerzero-oft",
   "oapp": "0x7ff7fa94b8b66ef313f7970d4eebd2cb3103a2c0",
   "delegate": "0xDDF71a6ddf3FCABBbA4D607b57f0f6Fc0265bb84"
+ },
+ {
+  "chainId": 56,
+  "chain": "bsc",
+  "block": 135379293,
+  "tx": "0xb56e310ab951065855e73bf6f3049595c5106fc41a46f0cbdc2e86915d8fd9b4",
+  "logIndex": 1008,
+  "event": "DelegateSet",
+  "symbol": "CYBER",
+  "kind": "layerzero-adapter",
+  "oapp": "0x9a9d5a29206dde4f70825032df32333de5f63921",
+  "delegate": "0x4729A8F1FEc3b1353a751ce0143Fb16d119f706a"
  },
  {
   "chainId": 56,
@@ -1010,6 +1034,18 @@
   "oapp": "0x6bd83abc39391af1e24826e90237c4bd3468b5d2",
   "eid": 30168,
   "newLib": "0xc70AB6f32772f59fBfc23889Caf4Ba3376C84bAf"
+ },
+ {
+  "chainId": 1,
+  "chain": "ethereum",
+  "block": 26481881,
+  "tx": "0x044c38a7d15ddae9547d4dad789802d2e8a7a1cb8c21ca69a3d73374947f39ba",
+  "logIndex": 973,
+  "event": "DelegateSet",
+  "symbol": "CYBER",
+  "kind": "layerzero-adapter",
+  "oapp": "0xcb07992de144bdee56fdb66fff2454b43243b052",
+  "delegate": "0x455DB34c99A866489F3ac63fa2F068c726BC286b"
  },
  {
   "chainId": 1,
