@@ -1244,6 +1244,21 @@
  {
   "chainId": 1,
   "chain": "ethereum",
+  "block": 26501716,
+  "tx": "0x0f722f839da6600b1179f6d1a33b792d31f878b8f1f8cc1086cb9f6376b6f81a",
+  "logIndex": 742,
+  "event": "UlnConfigSet",
+  "symbol": "CRYPTO",
+  "kind": "layerzero-oft",
+  "oapp": "0x78d11e37e890af4589fc9d0f6f884fd165c5aa0a",
+  "eid": 30168,
+  "requiredDVNs": 3,
+  "optionalThreshold": 1,
+  "singleVerifier": false
+ },
+ {
+  "chainId": 1,
+  "chain": "ethereum",
   "block": 26497881,
   "tx": "0x8c12a9fff6a106a64b89d198098ccf72b98740f7a5998dfd1725f1fad81e197f",
   "logIndex": 324,
