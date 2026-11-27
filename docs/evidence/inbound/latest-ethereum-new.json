@@ -1,5 +1,5 @@
 {
- "block": 26502715,
+ "block": 26505191,
  "rpcs": [
   "eth-mainnet.public.blastapi.io",
   "api.zan.top",
@@ -53,7 +53,30 @@
    "underlying": "0xc96de26018a54d51c097160568752c4e3bd6c364",
    "type": "OFT_ADAPTER",
    "lzVersion": "v2",
-   "error": "RPC Request failed."
+   "kind": "adapter",
+   "sharedDecimals": 8,
+   "tokenDecimals": 8,
+   "escrowTokens": 0.01797963,
+   "eids": [
+    30362
+   ],
+   "outcome": "TEST_ERROR",
+   "routeCounts": {
+    "TEST_ERROR": 1
+   },
+   "results": [
+    {
+     "name": "inbound-limit",
+     "eid": 30362,
+     "forkBlock": 26505191,
+     "escrowSD": "1797963",
+     "outcome": "TEST_ERROR",
+     "revert": "Error(from is blocked)",
+     "maxAcceptedSD": null,
+     "proof": "small (1 SD) reverts: Error(from is blocked)"
+    }
+   ],
+   "crossCheck": "agree"
   },
   {
    "oapp": "0xe41228a455700caf09e551805a8ab37caa39d08c",
@@ -61,7 +84,9 @@
    "underlying": "0x853d955acef822db058eb8505911ed77f175b99e",
    "type": "OFT_ADAPTER",
    "lzVersion": "v2",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0x909dbde1ebe906af95660033e478d59efe831fed",
@@ -106,7 +131,7 @@
     {
      "name": "inbound-limit",
      "eid": 30102,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -116,7 +141,7 @@
     {
      "name": "inbound-limit",
      "eid": 30106,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -126,7 +151,7 @@
     {
      "name": "inbound-limit",
      "eid": 30109,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -136,7 +161,7 @@
     {
      "name": "inbound-limit",
      "eid": 30110,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -146,7 +171,7 @@
     {
      "name": "inbound-limit",
      "eid": 30111,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -156,7 +181,7 @@
     {
      "name": "inbound-limit",
      "eid": 30158,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -166,7 +191,7 @@
     {
      "name": "inbound-limit",
      "eid": 30168,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -176,7 +201,7 @@
     {
      "name": "inbound-limit",
      "eid": 30184,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -186,7 +211,7 @@
     {
      "name": "inbound-limit",
      "eid": 30243,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -196,7 +221,7 @@
     {
      "name": "inbound-limit",
      "eid": 30255,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -206,7 +231,7 @@
     {
      "name": "inbound-limit",
      "eid": 30260,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -216,7 +241,7 @@
     {
      "name": "inbound-limit",
      "eid": 30274,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -226,7 +251,7 @@
     {
      "name": "inbound-limit",
      "eid": 30280,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -236,7 +261,7 @@
     {
      "name": "inbound-limit",
      "eid": 30332,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -246,7 +271,7 @@
     {
      "name": "inbound-limit",
      "eid": 30339,
-     "forkBlock": 26502715,
+     "forkBlock": 26505191,
      "escrowSD": "0",
      "outcome": "UNKNOWN",
      "revert": "Error(FXS::_moveVotes: vote amount underflows)",
@@ -338,7 +363,9 @@
    "underlying": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
    "type": "OFT_ADAPTER",
    "lzVersion": "v1",
-   "error": "RPC Request failed."
+   "eids": [],
+   "outcome": "NO_PEERS",
+   "results": []
   },
   {
    "oapp": "0xa2d339411624cfb6243f909b064e07320919ee3f",
@@ -358,7 +385,8 @@
   }
  ],
  "tally": {
-  "NO_PEERS": 10,
+  "NO_PEERS": 12,
+  "TEST_ERROR": 1,
   "UNKNOWN": 1
  },
  "selfCheck": {
